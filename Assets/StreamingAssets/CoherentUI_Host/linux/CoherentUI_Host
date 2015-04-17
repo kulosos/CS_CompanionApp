@@ -1,0 +1,57 @@
+#!/bin/bash
+
+UDEV=lib/x86_64-linux-gnu/libudev.so
+
+function has_ldconfig {
+	(which ldconfig && ldconfig -p) > /dev/null
+	return $?
+}
+
+function check_udev {
+	if has_ldconfig
+	then
+		ldconfig -p | grep libudev.so.0 > /dev/null
+	else
+		test -e "/$UDEV.0" -o -e "/usr/$UDEV.0"
+	fi
+	return $?
+}
+
+function find_udev {
+	if has_ldconfig
+	then
+		UDEV_SO=`ldconfig -p | grep libudev | sed -e 's/.*=>\s*//'`
+	elif [ -e "/$UDEV.1" ]
+	then
+		UDEV_SO="/$UDEV.1"
+	elif [ -e "/usr/$UDEV.1" ]
+	then
+		UDEV_SO="/usr/$UDEV.1"
+	else
+		UDEV_SO=''
+	fi
+	echo "$UDEV_SO"
+}
+
+HOST_DIR=`dirname "$0"`
+if [ -n "$LD_LIBRARY_PATH" ]
+then
+	export LD_LIBRARY_PATH="$HOST_DIR":$LD_LIBRARY_PATH
+else
+	export LD_LIBRARY_PATH="$HOST_DIR"
+fi
+
+if ! ( [ -e "$HOST_DIR/libudev.so.0" ] || check_udev )
+then
+	UDEV_SO=`find_udev`
+	if [ -e "$UDEV_SO" ]
+	then
+		ln -s "$UDEV_SO" "$HOST_DIR/libudev.so.0"
+	else
+		echo "Could not find libudev."
+	fi
+fi
+
+chmod u+x "$HOST_DIR/CoherentUI_Host.bin"
+exec -a "$0" "$HOST_DIR/CoherentUI_Host.bin" "$@"
+

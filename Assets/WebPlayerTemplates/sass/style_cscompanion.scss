@@ -1,0 +1,103 @@
+@charset "UTF-8";
+/* --------------------------------------
+ 	BRIEF:
+	STANDARD STYLE MAIN CSS DOCUMENT
+	Construction Simulator 2015 Companion App
+	Author: Oliver Kulas
+	Date: April 2015
+ ---------------------------------------*/
+
+$font-stack:    		Helvetica, sans-serif;
+$font-size-text: 		18px;
+$font-weight-text:		300;
+
+$font-size-hl1:			22px;
+$font-weight-hl1:		500;
+
+$primary-color: 		#333;
+
+$bg_transparent50:		rgba(43,43,43,0.5);
+$bg_transparent80:		rgba(43,43,43,0.8);
+$bg_div_hover:			red;
+
+$height_header:			60px;	
+
+
+* {
+	margin:  0px; 
+}
+
+body {
+  	font: 100% $font-stack;
+  	color: $primary-color;
+  	font-size: $font-size-text;  
+	font-weight: $font-weight-text;
+}
+
+.header { 
+	position:fixed; 
+	height: $height_header;  
+	top:0px; 
+	left:0px; 
+	right:0px; 
+	overflow:hidden; 
+	background-color: $bg_transparent80; 
+}
+
+#headerMenuBtn{
+	position: absolute;
+	right:5px;
+	top:10px;
+	height: 40px;
+}
+
+.headerMenuBtn:hover{
+	position: absolute;
+	right:5px;
+	top:10px;
+	height: 40px;
+	background: $bg_div_hover;
+}
+
+.wrapperHeader { 
+	position:fixed;  
+	width:98%; 
+	left:50%; 
+	right:50%; 
+	margin-left:-49%;
+	background:none;
+}
+
+.footer {
+	position: fixed;
+	z-index:100;
+	left:-$height_header;
+	bottom: 0px;
+	width:220px;
+	height:50px;
+	background: $bg_transparent80;
+	-webkit-transform: skew(45deg);
+	-moz-transform: skew(45deg);
+	-o-transform: skew(45deg);
+}
+
+.footerLogoFixWB {
+	position: absolute;
+	z-index:100;
+	left:-10px;
+	bottom: 0px;
+	width:180px;
+	height:45px;
+}
+
+.footerLogoFixConSim {
+	position: absolute;
+	z-index:100;
+	right:20px;
+	bottom: 0px;
+	height:120px;
+}
+
+@import "_style_cscompanion_start.scss";
+
+@import "_style_cscompanion_mainmenu.scss";

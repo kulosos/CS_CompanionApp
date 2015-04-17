@@ -1,0 +1,13 @@
+
+SASS to CSS Convert
+
+
+Watch task for files:
+sass --watch input.scss:output.css
+
+Watch task for directories:
+sass --watch app/sass:public/stylesheets
+
+
+Ordner überwachen:
+>> sudo sass --watch sass:css

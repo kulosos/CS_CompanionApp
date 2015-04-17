@@ -1,0 +1,22 @@
+@charset "UTF-8";
+/* --------------------------------------
+	MAIN MENU
+ ---------------------------------------*/		
+
+#mainmenu {
+
+	position:absolute;
+	z-index: 2000;
+
+	top:100px;
+	right:100px;
+
+
+	.outerWrapper {
+		position:relative;
+		height: 200px;
+		width: 200px;
+		background:red;
+	}
+
+}

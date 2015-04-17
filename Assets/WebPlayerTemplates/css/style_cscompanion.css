@@ -1,0 +1,162 @@
+/* --------------------------------------
+ 	BRIEF:
+	STANDARD STYLE MAIN CSS DOCUMENT
+	Construction Simulator 2015 Companion App
+	Author: Oliver Kulas
+	Date: April 2015
+ ---------------------------------------*/
+* {
+  margin: 0px; }
+
+body {
+  font: 100% Helvetica, sans-serif;
+  color: #333;
+  font-size: 18px;
+  font-weight: 300; }
+
+.header {
+  position: fixed;
+  height: 60px;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  overflow: hidden;
+  background-color: rgba(43, 43, 43, 0.8); }
+
+#headerMenuBtn {
+  position: absolute;
+  right: 5px;
+  top: 10px;
+  height: 40px; }
+
+.headerMenuBtn:hover {
+  position: absolute;
+  right: 5px;
+  top: 10px;
+  height: 40px;
+  background: red; }
+
+.wrapperHeader {
+  position: fixed;
+  width: 98%;
+  left: 50%;
+  right: 50%;
+  margin-left: -49%;
+  background: none; }
+
+.footer {
+  position: fixed;
+  z-index: 100;
+  left: -60px;
+  bottom: 0px;
+  width: 220px;
+  height: 50px;
+  background: rgba(43, 43, 43, 0.8);
+  -webkit-transform: skew(45deg);
+  -moz-transform: skew(45deg);
+  -o-transform: skew(45deg); }
+
+.footerLogoFixWB {
+  position: absolute;
+  z-index: 100;
+  left: -10px;
+  bottom: 0px;
+  width: 180px;
+  height: 45px; }
+
+.footerLogoFixConSim {
+  position: absolute;
+  z-index: 100;
+  right: 20px;
+  bottom: 0px;
+  height: 120px; }
+
+/* --------------------------------------
+	STARTPAGE
+ ---------------------------------------*/
+#startpage {
+  color: white; }
+  #startpage .outerWrapper {
+    position: absolute;
+    z-index: 50;
+    height: 100%;
+    width: 100%;
+    vertical-align: middle;
+    margin: 0px;
+    background: url("../img/bg/bg_conSim_overpaint1.png") no-repeat center center fixed;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover; }
+  #startpage .wrapper {
+    z-index: 200;
+    height: 100%;
+    width: 100%;
+    display: table; }
+  #startpage .innerWrapper {
+    z-index: 60;
+    position: relative;
+    display: table-cell;
+    width: 100%;
+    vertical-align: middle; }
+  #startpage .hlLogo {
+    z-index: 60;
+    position: relative;
+    height: 80px;
+    width: 500px;
+    margin: 0px auto 5px auto; }
+  #startpage .hlLogoImage {
+    z-index: 60;
+    position: relative;
+    top: -20px;
+    left: 10px;
+    height: 100px; }
+  #startpage .hlJoinGame {
+    z-index: 60;
+    position: relative;
+    width: 500px;
+    height: 60px;
+    margin: 0px auto 5px auto;
+    background: rgba(43, 43, 43, 0.5); }
+    #startpage .hlJoinGame span {
+      position: absolute;
+      margin: 20px 0px 0px 30px;
+      font-size: 22px; }
+  #startpage .contentBox {
+    z-index: 60;
+    position: relative;
+    height: 200px;
+    width: 500px;
+    background-color: rgba(43, 43, 43, 0.5);
+    margin-left: auto;
+    margin-right: auto;
+    overflow: auto; }
+  #startpage .itemJoinGame {
+    z-index: 60;
+    position: relative;
+    width: 90%;
+    height: 40px;
+    margin: 10px auto 10px auto;
+    background: rgba(43, 43, 43, 0.8); }
+    #startpage .itemJoinGame span {
+      position: absolute;
+      margin: 10px 0px 0px 10px;
+      padding-top: 0px; }
+  #startpage .itemJoinGame:hover {
+    background: red; }
+
+/* --------------------------------------
+	MAIN MENU
+ ---------------------------------------*/
+#mainmenu {
+  position: absolute;
+  z-index: 2000;
+  top: 100px;
+  right: 100px; }
+  #mainmenu .outerWrapper {
+    position: relative;
+    height: 200px;
+    width: 200px;
+    background: red; }
+
+/*# sourceMappingURL=style_cscompanion.css.map */

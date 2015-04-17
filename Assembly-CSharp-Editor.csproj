@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+	<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+	<ProductVersion>10.0.20506</ProductVersion>
+	<SchemaVersion>2.0</SchemaVersion>
+	<ProjectGuid>{AB7A8C76-CD06-509F-3B84-AD4A3CEA69FB}</ProjectGuid>
+	<OutputType>Library</OutputType>
+	<AppDesignerFolder>Properties</AppDesignerFolder>
+	<RootNamespace></RootNamespace>
+	<AssemblyName>Assembly-CSharp-Editor</AssemblyName>
+	<TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+	<FileAlignment>512</FileAlignment>
+	<BaseDirectory>Assets</BaseDirectory>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+	<DebugSymbols>true</DebugSymbols>
+	<DebugType>full</DebugType>
+	<Optimize>false</Optimize>
+	<OutputPath>Temp\bin\Debug\</OutputPath>
+	<DefineConstants>DEBUG;TRACE;UNITY_4_6_4;UNITY_4_6;UNITY_IPHONE;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_IL2CPP;INCLUDE_WP8SUPPORT;ENABLE_WWW;ENABLE_IMAGEEFFECTS;UNITY_IPHONE_API;ENABLE_4_6_FEATURES;INCLUDE_WP_BLUE_SUPPORT;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;ENABLE_NETWORK;ENABLE_PHYSICS;UNITY5_SCRIPTING_IN_UNITY4;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_GAMECENTER;UNITY_IOS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_MONO;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_OSX;UNITY_TEAM_LICENSE;UNITY_PRO_LICENSE;ENABLE_DUCK_TYPING</DefineConstants>
+	<ErrorReport>prompt</ErrorReport>
+	<WarningLevel>4</WarningLevel>
+	<NoWarn>0169</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+	<DebugType>pdbonly</DebugType>
+	<Optimize>true</Optimize>
+	<OutputPath>Temp\bin\Release\</OutputPath>
+	<DefineConstants>TRACE</DefineConstants>
+	<ErrorReport>prompt</ErrorReport>
+	<WarningLevel>4</WarningLevel>
+	<NoWarn>0169</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+	<Reference Include="System" />
+    <Reference Include="System.XML" />
+	<Reference Include="System.Core" />
+	<Reference Include="System.Xml.Linq" />
+	<Reference Include="UnityEngine">
+	  <HintPath>/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEngine.dll</HintPath>
+	</Reference>
+	<Reference Include="UnityEditor">
+	  <HintPath>/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEditor.dll</HintPath>
+	</Reference>
+  </ItemGroup>
+  <ItemGroup>
+     <Compile Include="Assets\Libs\CoherentUI\Editor\CoherentUI\AndroidPostProcessor.cs" />
+     <Compile Include="Assets\Libs\CoherentUI\Editor\CoherentUI\CoherentExposeProperties.cs" />
+     <Compile Include="Assets\Libs\CoherentUI\Editor\CoherentUI\CoherentPostProcessor.cs" />
+     <Compile Include="Assets\Libs\CoherentUI\Editor\CoherentUI\CoherentSystemEditor.cs" />
+     <Compile Include="Assets\Libs\CoherentUI\Editor\CoherentUI\CoherentUIInstaller.cs" />
+     <Compile Include="Assets\Libs\CoherentUI\Editor\CoherentUI\CoherentUILiveGameViewEditor.cs" />
+     <Compile Include="Assets\Libs\CoherentUI\Editor\CoherentUI\CoherentViewEditor.cs" />
+     <Compile Include="Assets\Libs\CoherentUI\Editor\CoherentUI\IOSPostProcessor.cs" />
+     <Compile Include="Assets\Libs\CoherentUI\Editor\CoherentUI\MobileSurfaceViewEditor.cs" />
+     <None Include="Assets\Standard Assets\Shaders\CoherentUI\DiffuseIgnoreZ.shader" />
+     <None Include="Assets\Standard Assets\Shaders\CoherentUI\TransparentDiffuseIgnoreZ.shader" />
+     <None Include="Assets\WebPlayerTemplates\sass\SASS_Services.txt" />
+     <None Include="Assets\Libs\CoherentUI\Copyright.txt" />
+ <Reference Include="UnityEngine.UI">
+ <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/4.6.4/UnityEngine.UI.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.UI">
+ <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/4.6.4/Editor/UnityEditor.UI.dll</HintPath>
+ </Reference>
+ <Reference Include="TouchScript.Editor">
+ <HintPath>/Users/oli/Documents/workspace/unity/CS_CompanionApp/Assets/Libs/TouchScript/Editor/TouchScript.Editor.dll</HintPath>
+ </Reference>
+ <Reference Include="TouchScript.Windows.Editor">
+ <HintPath>/Users/oli/Documents/workspace/unity/CS_CompanionApp/Assets/Libs/TouchScript/Editor/TouchScript.Windows.Editor.dll</HintPath>
+ </Reference>
+ <Reference Include="TouchScript">
+ <HintPath>/Users/oli/Documents/workspace/unity/CS_CompanionApp/Assets/Libs/TouchScript/Plugins/TouchScript.dll</HintPath>
+ </Reference>
+ <Reference Include="TouchScript.Windows">
+ <HintPath>/Users/oli/Documents/workspace/unity/CS_CompanionApp/Assets/Libs/TouchScript/Plugins/TouchScript.Windows.dll</HintPath>
+ </Reference>
+ <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
+ <HintPath>/Users/oli/Documents/workspace/unity/CS_CompanionApp/Assets/Libs/UnityVS/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
+ </Reference>
+ <Reference Include="SyntaxTree.VisualStudio.Unity.Messaging">
+ <HintPath>/Users/oli/Documents/workspace/unity/CS_CompanionApp/Assets/Libs/UnityVS/Editor/SyntaxTree.VisualStudio.Unity.Messaging.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityVS.VersionSpecific">
+ <HintPath>/Users/oli/Documents/workspace/unity/CS_CompanionApp/Assets/Libs/UnityVS/Editor/UnityVS.VersionSpecific.dll</HintPath>
+ </Reference>
+ <Reference Include="CoherentUIMobileNet">
+ <HintPath>/Users/oli/Documents/workspace/unity/CS_CompanionApp/Assets/Plugins/CoherentUIMobileNet.dll</HintPath>
+ </Reference>
+ <Reference Include="CoherentUINet">
+ <HintPath>/Users/oli/Documents/workspace/unity/CS_CompanionApp/Assets/Plugins/CoherentUINet.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.Graphs">
+ <HintPath>/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEditor.Graphs.dll</HintPath>
+ </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
+      <Project>{FB896E19-AB96-56F2-DA48-62DC694204A7}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
+    <ProjectReference Include="Assembly-CSharp.csproj">
+      <Project>{4D35BC20-A277-BD75-A0AE-4949EFA09222}</Project>      <Name>Assembly-CSharp</Name>    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+	   Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  
+</Project>

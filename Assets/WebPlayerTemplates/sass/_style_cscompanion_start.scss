@@ -1,0 +1,109 @@
+@charset "UTF-8";
+/* --------------------------------------
+	STARTPAGE
+ ---------------------------------------*/		
+
+$start_content_width: 		500px;
+$item_height_hl:			60px;
+$item_height:				40px;
+
+#startpage {
+
+	color:white;
+
+	.outerWrapper {
+		position: absolute;
+		z-index: 50;
+		height: 100%;
+		width:100%;
+		vertical-align: middle; 
+		margin: 0px; 
+		background: url("../img/bg/bg_conSim_overpaint1.png") no-repeat center center fixed;
+		background-size: cover;
+		-webkit-background-size: cover;
+		-moz-background-size: cover;
+		-o-background-size: cover;
+	}
+
+	.wrapper {
+		z-index: 200;
+		height: 100%; 
+		width: 100%; 
+		display: table; 
+	}
+
+	.innerWrapper {
+		z-index: 60;
+		position: relative;
+		display: table-cell; 
+		width: 100%; 
+		vertical-align: middle;
+	}
+
+	.hlLogo {
+		z-index: 60;
+		position: relative;
+		height:80px;
+		width:$start_content_width;
+		margin: 0px auto 5px auto;
+	
+
+	}
+
+	.hlLogoImage {
+		z-index: 60;
+		position: relative;
+		top:-20px;
+		left:10px;
+		height:100px;
+	}
+
+	.hlJoinGame {
+		z-index: 60;
+		position: relative;
+		width:$start_content_width;
+		height:$item_height_hl;
+		margin: 0px auto 5px auto;
+		background:$bg_transparent50;
+
+		span {
+			position: absolute;
+			margin: 20px 0px 0px 30px;
+			font-size: $font-size-hl1;
+			
+		}
+	}
+
+	.contentBox {
+		z-index: 60;
+		position: relative;
+		height: 200px; 
+		width: $start_content_width; 
+		background-color: $bg_transparent50; 
+		margin-left: auto; 
+		margin-right: auto;
+		overflow: auto;
+	}
+
+	.itemJoinGame {
+		z-index: 60;
+		position: relative;
+		width: 90%;
+		height:$item_height;
+		margin: 10px auto 10px auto;
+		background:$bg_transparent80;
+
+		span {
+			position: absolute;
+			margin: 10px 0px 0px 10px;
+			padding-top: 0px;
+		}
+	}
+
+	.itemJoinGame:hover {
+		background:$bg_div_hover;
+	}
+
+}
+
+
