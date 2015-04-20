@@ -46,6 +46,7 @@ function loadStartPage(){
 		if(joinGame1 != null){
 			joinGame1.addEventListener("click", function() {
 				switchGameUI();
+
 			});
 		}
 
@@ -63,38 +64,17 @@ function loadStartPage(){
 }
 
 function switchGameUI(){
-
 	if(!isGameUIActive){
-		// translate out animation
-		$('.header').animate({ "top": "0px" }, duration );
-		$('#startpage .outerWrapper').animate({ "top":  $(document).height()+ "px"}, duration );
-		$('.footerLogoFixConSim').animate({ "bottom": "-"+$(".footerLogoFixConSim").css("height") }, duration);
-		$('.footerLogoFixWB').animate({ "bottom": "-"+$(".footer").css("height") }, duration);
-		$('.footer').animate({ "bottom": "-"+$(".footer").css("height") }, duration);
+		loadGameUI()
 		isGameUIActive = true;
 	}
 	else{
-
-		unloadMainMenu();
-		$('.header').animate({ "top": "-60px" }, duration, function(){
-			$("#content").load("./content/start.html", loadStartPage(), function(){
-
-				$('#startpage .outerWrapper').css("top", $(document).height()+ "px");
-				// translate in animation
-				$('.header').animate({ "top": "0px" }, duration);
-				$('#startpage .outerWrapper').animate({ "top": "0px"}, duration);
-				$('.footerLogoFixConSim').animate({ "bottom": "0px" }, duration);
-				$('.footerLogoFixWB').animate({ "bottom": "0px" }, duration);
-				$('.footer').animate({ "bottom": "0px"}, duration);
-			});
-		});
-
+		unloadGameUI();
 		isGameUIActive = false;
 	}
 }
 
 function toggleMainMenu(){
-
 	if(!isMainMenuActive){
 		loadMainMenu();
 		isMainMenuActive = true;
@@ -105,34 +85,72 @@ function toggleMainMenu(){
 	}
 }
 
-function loadMainMenu(){
-	$("#content").load("./content/menu.html", function(){
-
-			backToStartBtn = document.getElementById("menuIdBackToStart");
-	    	if(backToStartBtn != null){
-				backToStartBtn.addEventListener("click", function() {
-					switchGameUI();
-				});
-			}
-
-			var headerHeight =  parseInt($(".header").css("height")) * 3;
-			var docHeight = parseInt($(document).height());
-			var owHeight = docHeight - headerHeight ;
-			var menuItemWidth = parseInt($("#mainmenu").css("width"))*-1;
-			
-			$("#mainmenu").css("height", owHeight+"px");
-			$("#mainmenu .outerWrapper").css("height", owHeight+"px");
-			$("#mainmenu").css("right", menuItemWidth);
-			$('#mainmenu').animate({ "right": "2px" }, duration);
-		});
+function loadGameUI(){
+	// translate out animation
+	$('.header').animate({ "top": "0px" }, duration );
+	$('#startpage .outerWrapper').animate({ "top": globals.docHeight + "px"}, duration, function(){
+		$("#startpage").remove();
+	});
+	$('.footerLogoFixConSim').animate({ "bottom": "-"+$(".footerLogoFixConSim").css("height") }, duration);
+	$('.footer').animate({ "bottom": "-"+$(".footer").css("height") }, duration);
 }
 
-function unloadMainMenu(){
+function unloadGameUI(){
+	unloadMainMenu(function(){
+		$("#content").load("./content/start.html", loadStartPage(), function(){
+			$('#startpage .outerWrapper').css("top", globals.docHeight + "px");
+			
+			$('.header').animate({ "top": $(".header").css("height")+"px" }, duration, function(){
+				// translate in animation
+				$('.header').animate({ "top": "0px" }, duration);
+				$('#startpage .outerWrapper').animate({ "top": "0px"}, duration);
+				$('.footerLogoFixConSim').animate({ "bottom": "0px" }, duration);
+				$('.footer').animate({ "bottom": "0px"}, duration);
+			});
+		});
+	});
+}
+
+
+function loadMainMenu(callback){
+
+	$("#content").load("./content/menu.html", function(){
+
+		backToStartBtn = document.getElementById("menuIdBackToStart");
+    	if(backToStartBtn != null){
+			backToStartBtn.addEventListener("click", function() {
+				switchGameUI();
+			});
+		}
+
+		$("#mainmenu").css("top", $(".header").css("height"));
+
+		var headerHeight =  parseInt($(".header").css("height")) + 3;
+		var owHeight = globals.docHeight - headerHeight ;
+		var menuItemWidth = parseInt($("#mainmenu").css("width"))*-1;
+		
+		$("#mainmenu").css("height", owHeight+"px");
+		$("#mainmenu .outerWrapper").css("height", owHeight+"px");
+		$("#mainmenu").css("right", menuItemWidth);
+		$('#mainmenu').animate({ "right": "2px" }, duration, function() {
+			// CALLBACK
+			if(callback != undefined && typeof callback == 'function') callback();
+		});
+	});
+
+   
+}
+
+function unloadMainMenu(callback){
 	var menuItemWidth = parseInt($("#mainmenu").css("width"));
 		
-		$('#mainmenu').animate({ "right": "-"+menuItemWidth+"px" }, duration, function(){
-			$("#mainmenu").remove();
-		});
+	$('#mainmenu').animate({ "right": (menuItemWidth * -1)+"px" }, duration, function(){
+		$("#mainmenu").remove();
+		// CALLBACK
+		if(callback != undefined && typeof callback == 'function') callback();
+	});
+
+   
 }
 
 

@@ -13,19 +13,17 @@
 var outerWrapperWidth;
 var itemSize;
 
+
 $(document).ready(function(){
-	updateElementsWidth();
+	//updateElementsWidth();
 });
 
 function updateElementsWidth(){
 
-	docWidth = $(window).width();
-	docHeight = $(window).height();
-
 	// outer wrapper
-	itemSize = Math.floor((docWidth * 0.8) / 4);
+	itemSize = Math.floor((globals.docWidth * 0.8) / 4);
 	outerWrapperWidth = itemSize * 4 + (8*5); //(8*5) equals the margins
-	$("#outerWrapper").css("left", Math.floor(docWidth/2));
+	$("#outerWrapper").css("left", Math.floor(globals.docWidth/2));
 	$("#outerWrapper").css("width", outerWrapperWidth);
 	$("#outerWrapper").css("margin-left", (outerWrapperWidth * -1)/2);
 

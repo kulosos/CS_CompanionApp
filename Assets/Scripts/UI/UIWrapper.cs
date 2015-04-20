@@ -39,24 +39,20 @@ namespace Wb.Core.UI {
             this.coherentUiView.View.BindCall("functionName", new Func<string, string>(this.LogWithReturn));
 
             // Example of binding JavaScript to UNITY with Return Parameter
-            this.coherentUiView.View.RegisterForEvent("functionName", new Action<string>(this.Log));
+          //  this.coherentUiView.View.RegisterForEvent("functionName", new Action<string>(this.Log));
 
-			//this.uiManager.ExampleTriggerToUI("huhu");
+			this.coherentUiView.View.RegisterForEvent("debugInfo", new Action<string>( this.printDebugInfo ));
+			
+			this.uiManager.ExampleTriggerToUI("huhu");
         }
 
 		//-----------------------------------------------------------------------------
 
 		//[Coherent.UI.CoherentMethod("functionName")]
-		public void functionName(){
+		private void printDebugInfo(string di){
 		
-			Debug.Log (" t e s t - t e s t - t e s t ");
+			Debug.Log (di);
 		}
-	
-
-
-        //-------------------------------------------------------------------------
-        // Protected Methods
-        //-------------------------------------------------------------------------
 
         private void Log(string s) {
             Debug.Log("From Coherent : " + s);

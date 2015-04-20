@@ -17,7 +17,7 @@ body {
 
 .header {
   position: fixed;
-  height: 60px;
+  height: 40px;
   top: 0px;
   left: 0px;
   right: 0px;
@@ -26,15 +26,15 @@ body {
 
 #headerMenuBtn {
   position: absolute;
-  right: 5px;
-  top: 10px;
+  right: 0px;
+  top: 0px;
   height: 40px; }
 
 .headerMenuBtn:hover {
   position: absolute;
   right: 5px;
   top: 10px;
-  height: 40px;
+  height: 100%;
   background: red; }
 
 .wrapperHeader {
@@ -48,29 +48,30 @@ body {
 .footer {
   position: fixed;
   z-index: 100;
-  left: -60px;
+  left: -40px;
   bottom: 0px;
-  width: 220px;
-  height: 50px;
+  width: 180px;
+  height: 40px;
   background: rgba(43, 43, 43, 0.8);
   -webkit-transform: skew(45deg);
   -moz-transform: skew(45deg);
   -o-transform: skew(45deg); }
 
 .footerLogoFixWB {
-  position: absolute;
+  position: relative;
   z-index: 100;
-  left: -10px;
-  bottom: 0px;
-  width: 180px;
-  height: 45px; }
+  height: 30px;
+  margin: 5px 0px 0px 65px;
+  -webkit-transform: skew(-45deg);
+  -moz-transform: skew(-45deg);
+  -o-transform: skew(-45deg); }
 
 .footerLogoFixConSim {
   position: absolute;
   z-index: 100;
   right: 20px;
   bottom: 0px;
-  height: 120px; }
+  height: 20%; }
 
 /* --------------------------------------
 	STARTPAGE
@@ -82,7 +83,6 @@ body {
     z-index: 50;
     height: 100%;
     width: 100%;
-    vertical-align: middle;
     margin: 0px;
     background: url("../img/bg/bg_conSim_overpaint1.png") no-repeat center center fixed;
     background-size: cover;
@@ -103,30 +103,32 @@ body {
   #startpage .hlLogo {
     z-index: 60;
     position: relative;
-    height: 80px;
     width: 400px;
-    margin: 0px auto 5px auto; }
+    height: 20%;
+    margin: 0px auto 0px auto; }
   #startpage .hlLogoImage {
     z-index: 60;
-    position: relative;
-    top: -20px;
-    left: 10px;
-    height: 100px; }
+    position: absolute;
+    width: auto;
+    height: 100%;
+    margin: 0px 0px 0px 2%; }
   #startpage .hlJoinGame {
     z-index: 60;
     position: relative;
     width: 400px;
-    height: 60px;
+    height: 40px;
     margin: 0px auto 5px auto;
     background: rgba(43, 43, 43, 0.5); }
     #startpage .hlJoinGame span {
       position: absolute;
-      margin: 20px 0px 0px 30px;
+      margin: 10px 0px 0px 30px;
       font-size: 22px; }
   #startpage .contentBox {
     z-index: 60;
     position: relative;
-    height: 200px;
+    height: 30%;
+    min-height: 80px;
+    max-height: 300px;
     width: 400px;
     background-color: rgba(43, 43, 43, 0.5);
     margin-left: auto;
@@ -152,8 +154,8 @@ body {
 #mainmenu {
   position: fixed;
   z-index: 2000;
-  top: 62px;
-  right: 2px;
+  /*top: setted by JS*/
+  right: 1px;
   width: 250px;
   height: auto;
   overflow: scroll;

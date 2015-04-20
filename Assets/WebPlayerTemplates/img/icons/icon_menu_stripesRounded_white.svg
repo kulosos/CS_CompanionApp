@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 18.1.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 500 500" enable-background="new 0 0 500 500" xml:space="preserve">
+<g id="Layer_2" display="none">
+	<rect display="inline" fill="#6D6D6D" width="500" height="500"/>
+</g>
+<g id="eckige" display="none">
+	<rect x="42.3" y="362.8" display="inline" fill="#FFFFFF" width="415.4" height="76"/>
+	<rect x="42.3" y="212" display="inline" fill="#FFFFFF" width="415.4" height="76"/>
+	<rect x="41.7" y="61.2" display="inline" fill="#FFFFFF" width="415.4" height="76"/>
+	<path display="inline" fill="#FFFFFF" d="M1007.7,112H608c-6.6,0-12-5.4-12-12V56c0-6.6,5.4-12,12-12h399.7c6.6,0,12,5.4,12,12v44
+		C1019.7,106.6,1014.3,112,1007.7,112z"/>
+</g>
+<g id="runde">
+	<g>
+		<path fill="#FFFFFF" d="M392.5,279.8H106.3c-16.4,0-29.8-13.4-29.8-29.8v0c0-16.4,13.4-29.8,29.8-29.8h286.2
+			c16.4,0,29.8,13.4,29.8,29.8v0C422.3,266.4,408.9,279.8,392.5,279.8z"/>
+		<path fill="#FFFFFF" d="M392.5,149.6H106.3c-16.4,0-29.8-13.4-29.8-29.8v0c0-16.4,13.4-29.8,29.8-29.8h286.2
+			c16.4,0,29.8,13.4,29.8,29.8v0C422.3,136.2,408.9,149.6,392.5,149.6z"/>
+		<path fill="#FFFFFF" d="M393.7,410H107.5c-16.4,0-29.8-13.4-29.8-29.8v0c0-16.4,13.4-29.8,29.8-29.8h286.2
+			c16.4,0,29.8,13.4,29.8,29.8v0C423.5,396.6,410.1,410,393.7,410z"/>
+	</g>
+</g>
+</svg>

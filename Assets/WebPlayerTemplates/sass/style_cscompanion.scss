@@ -20,7 +20,7 @@ $bg_transparent50:		rgba(43,43,43,0.5);
 $bg_transparent80:		rgba(43,43,43,0.8);
 $bg_div_hover:			red;
 
-$height_header:			60px;	
+$height_header:			40px;	
 
 
 * {
@@ -37,7 +37,7 @@ body {
 
 .header { 
 	position:fixed; 
-	height: $height_header;  
+	height: $height_header;
 	top:0px; 
 	left:0px; 
 	right:0px; 
@@ -47,16 +47,16 @@ body {
 
 #headerMenuBtn{
 	position: absolute;
-	right:5px;
-	top:10px;
-	height: 40px;
+	right:0px;
+	top:0px;
+	height: $height_header;
 }
 
 .headerMenuBtn:hover{
 	position: absolute;
 	right:5px;
 	top:10px;
-	height: 40px;
+	height: 100%;
 	background: $bg_div_hover;
 }
 
@@ -74,8 +74,8 @@ body {
 	z-index:100;
 	left:-$height_header;
 	bottom: 0px;
-	width:220px;
-	height:50px;
+	width:180px;
+	height:40px;
 	background: $bg_transparent80;
 	-webkit-transform: skew(45deg);
 	-moz-transform: skew(45deg);
@@ -83,12 +83,13 @@ body {
 }
 
 .footerLogoFixWB {
-	position: absolute;
+	position: relative;
 	z-index:100;
-	left:-10px;
-	bottom: 0px;
-	width:180px;
-	height:45px;
+	height:30px;
+	margin: 5px 0px 0px 65px;
+	-webkit-transform: skew(-45deg);
+	-moz-transform: skew(-45deg);
+	-o-transform: skew(-45deg);
 }
 
 .footerLogoFixConSim {
@@ -96,7 +97,7 @@ body {
 	z-index:100;
 	right:20px;
 	bottom: 0px;
-	height:120px;
+	height:20%;
 }
 
 @import "_style_cscompanion_start.scss";

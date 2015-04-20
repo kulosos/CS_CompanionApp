@@ -4,13 +4,13 @@
  ---------------------------------------*/		
 $menuItemHeight:	60px;
 $menuItemWidth: 	250px;
-$menuOuterMargin:	2px;
+$menuOuterMargin:	1px;
 
 #mainmenu {
 
 	position:fixed;
 	z-index: 2000;
-	top: $height_header + $menuOuterMargin;
+	/*top: setted by JS*/
 	right:$menuOuterMargin;
 	width:$menuItemWidth;
 	height:auto;

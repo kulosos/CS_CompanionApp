@@ -4,7 +4,7 @@
  ---------------------------------------*/		
 
 $start_content_width: 		400px;
-$item_height_hl:			60px;
+$item_height_hl:			40px;
 $item_height:				40px;
 
 #startpage {
@@ -16,7 +16,7 @@ $item_height:				40px;
 		z-index: 50;
 		height: 100%;
 		width:100%;
-		vertical-align: middle; 
+		
 		margin: 0px; 
 		background: url("../img/bg/bg_conSim_overpaint1.png") no-repeat center center fixed;
 		background-size: cover;
@@ -43,19 +43,17 @@ $item_height:				40px;
 	.hlLogo {
 		z-index: 60;
 		position: relative;
-		height:80px;
 		width:$start_content_width;
-		margin: 0px auto 5px auto;
-	
-
+		height:20%;
+		margin: 0px auto 0px auto;
 	}
 
 	.hlLogoImage {
 		z-index: 60;
-		position: relative;
-		top:-20px;
-		left:10px;
-		height:100px;
+		position: absolute;
+		width:auto;
+		height:100%;
+		margin: 0px 0px 0px 2%;
 	}
 
 	.hlJoinGame {
@@ -68,7 +66,7 @@ $item_height:				40px;
 
 		span {
 			position: absolute;
-			margin: 20px 0px 0px 30px;
+			margin: 10px 0px 0px 30px;
 			font-size: $font-size-hl1;
 			
 		}
@@ -77,7 +75,9 @@ $item_height:				40px;
 	.contentBox {
 		z-index: 60;
 		position: relative;
-		height: 200px; 
+		height: 30%;
+		min-height:80px; 
+		max-height:300px;
 		width: $start_content_width; 
 		background-color: $bg_transparent50; 
 		margin-left: auto; 
