@@ -2,21 +2,57 @@
 /* --------------------------------------
 	MAIN MENU
  ---------------------------------------*/		
+$menuItemHeight:	60px;
+$menuItemWidth: 	250px;
+$menuOuterMargin:	2px;
 
 #mainmenu {
 
-	position:absolute;
+	position:fixed;
 	z-index: 2000;
+	top: $height_header + $menuOuterMargin;
+	right:$menuOuterMargin;
+	width:$menuItemWidth;
+	height:auto;
+	overflow: scroll;
+	color:white;
 
-	top:100px;
-	right:100px;
+	.menuOuterWrapper {
+		position: relative;
+		width: 100%;
+		height: 100px;
+		background:none;
+		overflow: scroll;
+	}
 
+	.menuItemWrapper {
+		position: relative;
+		width: $menuItemWidth;
+		height: $menuItemHeight;
+		margin: 1px 0px 1px 0px;
+		background:$bg_transparent80;
+	}
 
-	.outerWrapper {
-		position:relative;
-		height: 200px;
-		width: 200px;
-		background:red;
+	.menuItemIcon img {
+		position: relative;
+		float:left;
+		top:0px;
+		left:0px;
+		width:  $menuItemHeight;
+		height: $menuItemHeight;
+		margin: 0px 0px 0px 0px;
+		background:$bg_transparent50;
+		
+	}
+
+	.menuItemLabel {
+		position: relative;
+		float:left;
+		top:0px;
+		left:0px;
+		max-width:  $menuItemWidth - $menuItemHeight -35px;
+		margin: 20px 15px 0px 20px;
+		background:none;
 	}
 
 }

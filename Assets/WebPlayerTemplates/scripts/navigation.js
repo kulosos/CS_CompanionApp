@@ -24,21 +24,14 @@ $(document).ready(function() {
 	// set header hidden to scroll from top
 	$('.header').css("top", headerHeight * -1);
 
-	loadStartPage();
-
+	$("#content").load("./content/start.html", loadStartPage());
 });
 
 function loadStartPage(){
 
-	console.log("DOC READY - navigation class - loadStartPage");
-
-	$("#content").load("./content/start.html", onPageLoadingFinished());
+	
 	//blurElement(".start_contentBox", ".outerWrapper" );
 	//$('body').css("background", "red");
-}
-
-
-function onPageLoadingFinished(){
 
     setTimeout(function () { 
 
@@ -74,19 +67,28 @@ function switchGameUI(){
 	if(!isGameUIActive){
 		// translate out animation
 		$('.header').animate({ "top": "0px" }, duration );
-		$('.outerWrapper').animate({ "top":  $(document).height()+ "px"}, duration );
+		$('#startpage .outerWrapper').animate({ "top":  $(document).height()+ "px"}, duration );
 		$('.footerLogoFixConSim').animate({ "bottom": "-"+$(".footerLogoFixConSim").css("height") }, duration);
 		$('.footerLogoFixWB').animate({ "bottom": "-"+$(".footer").css("height") }, duration);
 		$('.footer').animate({ "bottom": "-"+$(".footer").css("height") }, duration);
 		isGameUIActive = true;
 	}
 	else{
-		// translate in animation
-		$('.header').animate({ "top": "0px" }, duration);
-		$('.outerWrapper').animate({ "top": "0px"}, duration);
-		$('.footerLogoFixConSim').animate({ "bottom": "0px" }, duration);
-		$('.footerLogoFixWB').animate({ "bottom": "0px" }, duration);
-		$('.footer').animate({ "bottom": "0px"}, duration);
+
+		unloadMainMenu();
+		$('.header').animate({ "top": "-60px" }, duration, function(){
+			$("#content").load("./content/start.html", loadStartPage(), function(){
+
+				$('#startpage .outerWrapper').css("top", $(document).height()+ "px");
+				// translate in animation
+				$('.header').animate({ "top": "0px" }, duration);
+				$('#startpage .outerWrapper').animate({ "top": "0px"}, duration);
+				$('.footerLogoFixConSim').animate({ "bottom": "0px" }, duration);
+				$('.footerLogoFixWB').animate({ "bottom": "0px" }, duration);
+				$('.footer').animate({ "bottom": "0px"}, duration);
+			});
+		});
+
 		isGameUIActive = false;
 	}
 }
@@ -94,16 +96,43 @@ function switchGameUI(){
 function toggleMainMenu(){
 
 	if(!isMainMenuActive){
-		console.log("Main Menu in header clicked - toggleOn");
-		$("#content").load("./content/menu.html", function(){
-			console.log("Main Menu in header clicked - toggleOn - AFTER");
-		});
+		loadMainMenu();
 		isMainMenuActive = true;
 	}
 	else{
-		console.log("Main Menu in header clicked - toggleOff");
+		unloadMainMenu();		
 		isMainMenuActive = false;
 	}
+}
+
+function loadMainMenu(){
+	$("#content").load("./content/menu.html", function(){
+
+			backToStartBtn = document.getElementById("menuIdBackToStart");
+	    	if(backToStartBtn != null){
+				backToStartBtn.addEventListener("click", function() {
+					switchGameUI();
+				});
+			}
+
+			var headerHeight =  parseInt($(".header").css("height")) * 3;
+			var docHeight = parseInt($(document).height());
+			var owHeight = docHeight - headerHeight ;
+			var menuItemWidth = parseInt($("#mainmenu").css("width"))*-1;
+			
+			$("#mainmenu").css("height", owHeight+"px");
+			$("#mainmenu .outerWrapper").css("height", owHeight+"px");
+			$("#mainmenu").css("right", menuItemWidth);
+			$('#mainmenu').animate({ "right": "2px" }, duration);
+		});
+}
+
+function unloadMainMenu(){
+	var menuItemWidth = parseInt($("#mainmenu").css("width"));
+		
+		$('#mainmenu').animate({ "right": "-"+menuItemWidth+"px" }, duration, function(){
+			$("#mainmenu").remove();
+		});
 }
 
 

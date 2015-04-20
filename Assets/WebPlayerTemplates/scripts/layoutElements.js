@@ -19,8 +19,8 @@ $(document).ready(function(){
 
 function updateElementsWidth(){
 
-	docWidth = $(document).width();
-	docHeight = $(document).height();
+	docWidth = $(window).width();
+	docHeight = $(window).height();
 
 	// outer wrapper
 	itemSize = Math.floor((docWidth * 0.8) / 4);
