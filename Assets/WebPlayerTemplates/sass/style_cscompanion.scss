@@ -16,8 +16,8 @@ $font-weight-hl1:		500;
 
 $primary-color: 		#333;
 
-$bg_transparent50:		rgba(43,43,43,0.5);
-$bg_transparent80:		rgba(43,43,43,0.8);
+$bg_transparent50:		rgba(0,0,0,0.4);
+$bg_transparent80:		rgba(0,0,0,0.7);
 $bg_div_hover:			red;
 
 $height_header:			40px;	
@@ -42,7 +42,52 @@ body {
 	left:0px; 
 	right:0px; 
 	overflow:hidden; 
-	background-color: $bg_transparent80; 
+	background-color: none; 
+}
+
+.wrapperHeader { 
+	position:static;  
+	 
+	left:50%; 
+	right:50%; 
+	margin-left:-50%;
+	background:none;
+
+}
+
+.headerLeft {
+	position: fixed;
+	z-index:1000;
+	float:left;
+	top:0px;
+	left:0px;
+	height: $height_header;
+	width: 320px;
+	margin:0px;
+	background-color:none;
+
+}
+
+.headerRight {
+	position:fixed;
+	z-index: 1000;
+	float:left;
+	top:0px;
+	right:0px;
+	height: $height_header;
+	width:70%;
+	margin:0px;
+	background-color:$bg_transparent80;
+
+}
+
+#headerMenuCompLogo{
+	position: relative;
+	left:0px;
+	top:0px;
+	height: $height_header;
+	opacity: 0.7;
+    filter: alpha(opacity=70); 
 }
 
 #headerMenuBtn{
@@ -58,15 +103,6 @@ body {
 	top:10px;
 	height: 100%;
 	background: $bg_div_hover;
-}
-
-.wrapperHeader { 
-	position:fixed;  
-	width:98%; 
-	left:50%; 
-	right:50%; 
-	margin-left:-49%;
-	background:none;
 }
 
 .footer {

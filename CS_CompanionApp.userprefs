@@ -1,10 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Tap_Breaker.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/CameraTransform.cs">
     <Files>
-      <File FileName="Assets/Scripts/UI/UIManager.cs" Line="37" Column="15" />
-      <File FileName="Assets/Scripts/UI/UIWrapper.cs" Line="46" Column="46" />
-      <File FileName="Assets/Scripts/Tap_Breaker.cs" Line="55" Column="2" />
+      <File FileName="Assets/Scripts/Core/Inputs/InputManager.cs" Line="45" Column="35" />
+      <File FileName="Assets/Scripts/CameraTransform.cs" Line="127" Column="39" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
