@@ -15,12 +15,22 @@ using Coherent.UI.Binding;
 
 //-----------------------------------------------------------------------------
 
-namespace Wb.Core.UI {
+namespace Wb.Companion.Core.UI {
+
+
+	public enum InputBehavior 
+	{
+		CoherentUI_Only = 1,
+		Unity3D_Only = 2,
+		CoherentUI_Unity3D = 3,
+	}
 
     public class UIWrapper : MonoBehaviour {
 
         private CoherentUIView coherentUiView;
 		public UIManager uiManager;
+
+		private InputBehavior inputBehavior = InputBehavior.CoherentUI_Unity3D;
         
         //-----------------------------------------------------------------------------
 
@@ -28,6 +38,9 @@ namespace Wb.Core.UI {
 
             this.coherentUiView = this.GetComponent<CoherentUIView>();
             this.coherentUiView.Listener.ReadyForBindings += this.BindMethods;
+
+			this.coherentUiView.IsTransparent = true;
+
         }
 
         //-----------------------------------------------------------------------------
@@ -38,7 +51,7 @@ namespace Wb.Core.UI {
             this.coherentUiView.View.BindCall("functionName", new Func<string, string>(this.LogWithReturn));
 
             // Example of binding JavaScript to UNITY with Return Parameter
-          //  this.coherentUiView.View.RegisterForEvent("functionName", new Action<string>(this.Log));
+          	//  this.coherentUiView.View.RegisterForEvent("functionName", new Action<string>(this.Log));
 
 			this.coherentUiView.View.RegisterForEvent("debugInfo", new Action<string>( this.printDebugInfo ));
 			

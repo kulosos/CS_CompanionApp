@@ -6,7 +6,16 @@
 	Date: April 2015
  ---------------------------------------*/
 * {
-  margin: 0px; }
+  margin: 0px;
+  /*
+  background-color: red;
+  
+  zoom: 1; 
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+  filter: alpha(opacity=50);
+  -moz-opacity: 0.5;
+  -khtml-opacity: 0.5;
+  opacity: 0.5;*/ }
 
 body {
   font: 100% Helvetica, sans-serif;

@@ -23,6 +23,8 @@ namespace Wb.Companion.Core.Inputs {
         public TouchScript.Gestures.PanGesture panGesture;
         public TouchScript.Gestures.ScaleGesture scaleGesture;
         public TouchScript.Gestures.TapGesture tapGesture;
+		public TouchScript.Gestures.RotateGesture rotateGesture;
+		public TouchScript.Gestures.ReleaseGesture releaseGesture;
 
 		public System.Action<Vector2> OnTouchSinglePan;
 		public System.Action<Vector2> OnTouchDoublePan;
@@ -41,11 +43,14 @@ namespace Wb.Companion.Core.Inputs {
 
         public void Start() {
 
-            this.tapGesture.Tapped += touchGestureTapEvent;
-            this.scaleGesture.Scaled += touchGestureScaleEvent;
+            this.tapGesture.Tapped += CameraTransform.getInstance().tapHandler;
+            this.scaleGesture.Scaled += CameraTransform.getInstance().scaled;
 			this.panGesture.Panned += CameraTransform.getInstance().panned; //this.wbTransformer2d.panStarted; //touchGesturePanEvent;
-			this.panGesture.PanStarted += touchGesturePanStartet;
+			//this.panGesture.PanStarted += touchGesturePanStartet;
 			this.panGesture.PanCompleted += CameraTransform.getInstance().panCompleted;
+			this.rotateGesture.Rotated += CameraTransform.getInstance().rotateHandler;
+			this.releaseGesture.Released += CameraTransform.getInstance().releasedHandler;
+
         }
 
         //---------------------------------------------------------------------
