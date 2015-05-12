@@ -44,12 +44,12 @@ namespace Wb.Companion.Core.Inputs {
         public void Start() {
 
             this.tapGesture.Tapped += CameraTransform.getInstance().tapHandler;
-            this.scaleGesture.Scaled += CameraTransform.getInstance().scaled;
-			this.panGesture.Panned += CameraTransform.getInstance().panned; //this.wbTransformer2d.panStarted; //touchGesturePanEvent;
+            this.scaleGesture.Scaled += CameraTransform.getInstance().scaleHandler;
+			this.panGesture.Panned += CameraTransform.getInstance().panStartedHandler; //this.wbTransformer2d.panStarted; //touchGesturePanEvent;
 			//this.panGesture.PanStarted += touchGesturePanStartet;
-			this.panGesture.PanCompleted += CameraTransform.getInstance().panCompleted;
+			this.panGesture.PanCompleted += CameraTransform.getInstance().panCompletedHandler;
 			this.rotateGesture.Rotated += CameraTransform.getInstance().rotateHandler;
-			this.releaseGesture.Released += CameraTransform.getInstance().releasedHandler;
+			this.releaseGesture.Released += CameraTransform.getInstance().releaseHandler;
 
         }
 
