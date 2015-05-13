@@ -20,13 +20,15 @@ namespace Wb.Companion.Core.Inputs {
         private Vector3 oldPos;
         private Vector3 pos;
 
-		public float dampSpeed = 50.0f;
+
+		public float dampingSpeedFactor = 10.0f;
 		public float minBounds = -1500f;
 		public float maxBounds = 1500f;
 		public float zoomMin = 0.0f;
 		public float zoomMax = 1000f;
 
 		private Vector3 targetPosition = Vector3.zero;
+		private float panMagnitude = 0f;
 
       	// ----------------------------------------------------------------------------
 
@@ -60,7 +62,11 @@ namespace Wb.Companion.Core.Inputs {
 
 		private void LateUpdate() {
 
-			this.translateTarget.position = Vector3.Lerp(this.translateTarget.position, this.targetPosition, Time.deltaTime*10f);
+
+			float damping = this.dampingSpeedFactor * (1 + this.panMagnitude/100);
+
+			this.translateTarget.position = Vector3.Lerp(this.translateTarget.position, this.targetPosition, Time.deltaTime * damping);
+
 		}
 
         //-----------------------------------------------------------------------------
@@ -96,7 +102,12 @@ namespace Wb.Companion.Core.Inputs {
 			if (float.IsNaN(gesture.ScreenPosition.x) || float.IsNaN(gesture.ScreenPosition.y)) {
 				return;
 			}
-			//this.setTappedPosition(gesture.ScreenPosition);
+			if (gesture.ActiveTouches.Count < 2) {
+				//Debug.Log ("TAP NAME : " + this.rotateTarget.transform.name);
+				//Debug.Log ("TAP SCALE: " + this.rotateTarget.transform.rotation);
+				//this.setTappedPosition(gesture.ScreenPosition);
+			}
+
 		}
 
 		//-----------------------------------------------------------------------------
@@ -116,6 +127,7 @@ namespace Wb.Companion.Core.Inputs {
 			}
 
 			if (gesture.ActiveTouches.Count > 1 && gesture.ActiveTouches.Count < 3) {
+				Debug.Log ("----- Scale Gesture");
 				this.setZoom(gesture.LocalDeltaScale);
 			}
 		}
@@ -174,9 +186,15 @@ namespace Wb.Companion.Core.Inputs {
 			}
 
 			if (gesture.ActiveTouches.Count > 1 && gesture.ActiveTouches.Count < 3) {
+				Debug.Log ("----- Rotation Gesture");
+
+				Debug.Log ("LOCAL SCALE: "  + this.rotateTarget);// this.rotateTarget.transform.rotation);//Vector3 rotationOld = this.getWorldScale(this.rotateTarget.transform);
+
 				// FIXME Fix moving lag on rotation start with Gesture Rotation Threshold
 				float rotationAngle = /*gesture.RotationThreshold - */gesture.DeltaRotation;
-				this.rotateTarget.rotation = Quaternion.AngleAxis(rotationAngle, this.rotateTarget.up) * this.rotateTarget.rotation;
+
+				this.rotateTarget.rotation = Quaternion.AngleAxis(rotationAngle, this.rotateTarget.up ) * this.rotateTarget.rotation;
+
 			}
         }
 
@@ -209,19 +227,15 @@ namespace Wb.Companion.Core.Inputs {
 			Vector3 pos = this.targetPosition;
 			Vector3 oPos = this.targetPosition;
 			pos -= delta;
-			Vector3 toSet = pos;
-
-			Debug.Log("delta Magnitude: " + delta.magnitude.ToString());
-			Debug.Log ("delta: " + delta.ToString());
-
-			Vector3 speedMultiplier = -delta * Time.deltaTime * this.dampSpeed;
-			speedMultiplier.y = 0f;
+			Vector3 newPos = pos;
+		
+			this.panMagnitude = delta.magnitude;
 			//toSet = pos - delta;
 
-			toSet.x = Mathf.Clamp(toSet.x, this.minBounds, this.maxBounds);
-			toSet.z = Mathf.Clamp(toSet.z, this.minBounds, this.maxBounds);
+			newPos.x = Mathf.Clamp(newPos.x, this.minBounds, this.maxBounds);
+			newPos.z = Mathf.Clamp(newPos.z, this.minBounds, this.maxBounds);
 
-			this.targetPosition = toSet + speedMultiplier;
+			this.targetPosition = newPos;
 		}
 
 		//-----------------------------------------------------------------------------
@@ -231,9 +245,11 @@ namespace Wb.Companion.Core.Inputs {
 			Vector3 pos = this.translateTarget.position;
 			float zoomY = Mathf.Clamp(pos.y * localDeltaScale, this.zoomMin, this.zoomMax);
 			//Debug.Log ("RESULT " + resultY.ToString());
-			this.translateTarget.position = new Vector3(pos.x, zoomY, pos.z);
+			this.targetPosition = new Vector3(pos.x, zoomY, pos.z);
 		}
 
-    }
+
+		
+	}
 }
 

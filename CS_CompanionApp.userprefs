@@ -1,8 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/CameraTransform.cs">
     <Files>
-      <File FileName="Assets/Scripts/CameraTransform.cs" Line="133" Column="42" />
+      <File FileName="Assets/Scripts/CameraTransform.cs" Line="66" Column="137" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
