@@ -19,7 +19,7 @@
 	<DebugType>full</DebugType>
 	<Optimize>false</Optimize>
 	<OutputPath>Temp\bin\Debug\</OutputPath>
-	<DefineConstants>DEBUG;TRACE;UNITY_4_6_4;UNITY_4_6;UNITY_ANDROID;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_IL2CPP;INCLUDE_WP8SUPPORT;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_4_6_FEATURES;INCLUDE_WP_BLUE_SUPPORT;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;UNITY5_SCRIPTING_IN_UNITY4;ENABLE_CACHING;ENABLE_CLOTH;UNITY_ANDROID_API;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_MONO;DEVELOPMENT_BUILD;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_OSX;UNITY_TEAM_LICENSE;UNITY_PRO_LICENSE</DefineConstants>
+	<DefineConstants>DEBUG;TRACE;UNITY_4_6_4;UNITY_4_6;UNITY_IPHONE;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_IL2CPP;INCLUDE_WP8SUPPORT;ENABLE_WWW;ENABLE_IMAGEEFFECTS;UNITY_IPHONE_API;ENABLE_4_6_FEATURES;INCLUDE_WP_BLUE_SUPPORT;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;ENABLE_NETWORK;ENABLE_PHYSICS;UNITY5_SCRIPTING_IN_UNITY4;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_GAMECENTER;UNITY_IOS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_MONO;DEVELOPMENT_BUILD;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_OSX;UNITY_TEAM_LICENSE;UNITY_PRO_LICENSE</DefineConstants>
 	<ErrorReport>prompt</ErrorReport>
 	<WarningLevel>4</WarningLevel>
 	<NoWarn>0169</NoWarn>
@@ -49,14 +49,102 @@
      <Compile Include="Assets\Scripts\CameraController2.cs" />
      <Compile Include="Assets\Scripts\CameraTransform.cs" />
      <Compile Include="Assets\Scripts\Core\Inputs\InputManager.cs" />
+     <Compile Include="Assets\Scripts\Image Effects\Blur.cs" />
+     <Compile Include="Assets\Scripts\Image Effects\BlurEffect.cs" />
+     <Compile Include="Assets\Scripts\Image Effects\ColorCorrectionEffect.cs" />
+     <Compile Include="Assets\Scripts\Image Effects\ContrastStretchEffect.cs" />
+     <Compile Include="Assets\Scripts\Image Effects\DepthOfFieldScatter.cs" />
+     <Compile Include="Assets\Scripts\Image Effects\FastBloom.cs" />
+     <Compile Include="Assets\Scripts\Image Effects\GlowEffect.cs" />
+     <Compile Include="Assets\Scripts\Image Effects\GrayscaleEffect.cs" />
+     <Compile Include="Assets\Scripts\Image Effects\ImageEffectBase.cs" />
+     <Compile Include="Assets\Scripts\Image Effects\ImageEffects.cs" />
+     <Compile Include="Assets\Scripts\Image Effects\MotionBlur.cs" />
+     <Compile Include="Assets\Scripts\Image Effects\NoiseEffect.cs" />
+     <Compile Include="Assets\Scripts\Image Effects\PostEffectsBase.cs" />
+     <Compile Include="Assets\Scripts\Image Effects\SSAOEffectDepthCutoff.cs" />
+     <Compile Include="Assets\Scripts\Image Effects\SepiaToneEffect.cs" />
+     <Compile Include="Assets\Scripts\Image Effects\SunShafts.cs" />
+     <Compile Include="Assets\Scripts\Image Effects\TwirlEffect.cs" />
+     <Compile Include="Assets\Scripts\Image Effects\Vignetting.cs" />
+     <Compile Include="Assets\Scripts\Image Effects\VortexEffect.cs" />
      <Compile Include="Assets\Scripts\Tap_Breaker.cs" />
      <Compile Include="Assets\Scripts\ToggleGUI.cs" />
      <Compile Include="Assets\Scripts\UI\UIManager.cs" />
      <Compile Include="Assets\Scripts\UI\UIWrapper.cs" />
+     <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\_Antialiasing\FXAAPreset2.shader" />
+     <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\_BloomAndFlares\MobileBlur.shader" />
+     <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\_BloomAndFlares\BrightPassFilter.shader" />
+     <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\ContrastComposite.shader" />
+     <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\ShowAlphaChannel.shader" />
+     <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\GlowCompose.shader" />
+     <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\frag_ao.cginc" />
+     <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\BlendModesOverlay.shader" />
+     <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\ColorCorrectionEffect.shader" />
+     <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\_DepthOfField\SeparableWeightedBlurDof34.shader" />
+     <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\EdgeDetectNormals.shader" />
+     <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\CameraMotionBlurDX11.shader" />
+     <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\_Antialiasing\FXAA3Console.shader" />
+     <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\NoiseEffectShaderRGB.shader" />
+     <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\ConvertDepth.shader" />
+     <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\NoiseEffectShaderYUV.shader" />
+     <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\CameraMotionBlur.shader" />
+     <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\_Antialiasing\SSAA.shader" />
+     <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\ColorCorrectionSelective.shader" />
+     <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\_BloomAndFlares\VignetteShader.shader" />
+     <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\MotionBlur.shader" />
+     <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\ColorCorrection3DLut.shader" />
+     <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\BlurEffectConeTaps.shader" />
+     <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\_BloomAndFlares\MobileBloom.shader" />
      <None Include="Assets\Standard Assets\Shaders\CoherentUI\DiffuseIgnoreZ.shader" />
+     <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\_BloomAndFlares\BlendOneOne.shader" />
+     <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\_BloomAndFlares\LensFlareCreate.shader" />
+     <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\VortexEffect.shader" />
+     <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\ColorCorrectionCurves.shader" />
+     <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\Contrast Stretch\MinMaxReduction.shader" />
+     <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\_Antialiasing\NFAA.shader" />
+     <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\VignettingShader.shader" />
+     <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\_Antialiasing\DLAA.shader" />
+     <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\SimpleClear.shader" />
+     <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\PrepareSunShaftsBlur.shader" />
+     <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\_DepthOfField\SeparableBlur.shader" />
+     <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\_BloomAndFlares\SeparableBlurPlus.shader" />
+     <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\_Antialiasing\FXAA2.shader" />
+     <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\_BloomAndFlares\BlendForBloom.shader" />
+     <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\ChromaticAberrationShader.shader" />
+     <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\GlowEffectDownsample.shader" />
+     <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\TwirlEffect.shader" />
+     <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\_Antialiasing\FXAAPreset3.shader" />
+     <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\SunShaftsComposite.shader" />
+     <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\FisheyeShader.shader" />
+     <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\Contrast Stretch\Luminance.shader" />
+     <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\SepiaToneEffect.shader" />
+     <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\NoiseAndGrainDX11.shader" />
+     <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\_DepthOfField\DepthOfFieldDX11.shader" />
+     <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\_BloomAndFlares\Blend.shader" />
+     <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\NoiseAndGrain.shader" />
+     <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\_BloomAndFlares\MultiPassHollywoodFlares.shader" />
+     <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\RadialBlur.shader" />
+     <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\_DepthOfField\Bokeh34.shader" />
+     <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\_BloomAndFlares\BlurAndFlares.shader" />
+     <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\GlobalFog.shader" />
+     <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\GrayscaleEffect.shader" />
+     <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\ScreenSpaceAmbientObscurance.shader" />
+     <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\_DepthOfField\TiltShiftHdrLensBlur.shader" />
+     <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\_DepthOfField\DepthOfFieldScatter.shader" />
+     <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\Tonemapper.shader" />
+     <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\MotionBlurClear.shader" />
+     <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\Contrast Stretch\Adaptation.shader" />
+     <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\_DepthOfField\DepthOfField34.shader" />
      <None Include="Assets\Standard Assets\Shaders\CoherentUI\TransparentDiffuseIgnoreZ.shader" />
+     <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\Contrast Stretch\Apply.shader" />
      <None Include="Assets\WebPlayerTemplates\sass\SASS_Services.txt" />
+     <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\CreaseApply.shader" />
+     <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\ColorCorrectionCurvesSimple.shader" />
+     <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\SSAOShader.shader" />
      <None Include="Assets\Libs\CoherentUI\Copyright.txt" />
+     <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\_BloomAndFlares\BrightPassFilter2.shader" />
+     <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\GlowConeTap.shader" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/4.6.4/UnityEngine.UI.dll</HintPath>
  </Reference>

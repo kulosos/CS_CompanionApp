@@ -19,6 +19,8 @@ namespace Wb.Companion.Core.Inputs {
         public Plane plane = new Plane();
         private Vector3 oldPos;
         private Vector3 pos;
+		
+		sa s sdklg  alskdjg lkn lsdkng
 
 
 		public float dampingSpeedFactor = 10.0f;
