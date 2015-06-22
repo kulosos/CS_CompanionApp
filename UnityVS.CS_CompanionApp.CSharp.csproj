@@ -171,6 +171,15 @@
     <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\TwirlEffect.shader" />
     <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\VignettingShader.shader" />
     <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\VortexEffect.shader" />
+    <None Include="Assets\Shader\DebugDraw.shader" />
+    <None Include="Assets\Shader\Mobile\WbFakeMobileGlass.shader" />
+    <None Include="Assets\Shader\Mobile\WbMobileColoredVertexLit.shader" />
+    <None Include="Assets\Shader\Mobile\WbMobileDiffuseVertexColorSelectNoLightmap.shader" />
+    <None Include="Assets\Shader\Mobile\WbMobileStreets.shader" />
+    <None Include="Assets\Shader\Mobile\WbShaderInclude.cginc" />
+    <None Include="Assets\Shader\Terrain.shader" />
+    <None Include="Assets\Shader\VertexBlend3.shader" />
+    <None Include="Assets\Shader\VertexMultiply.shader" />
     <None Include="Assets\Standard Assets\Shaders\CoherentUI\DiffuseIgnoreZ.shader" />
     <None Include="Assets\Standard Assets\Shaders\CoherentUI\TransparentDiffuseIgnoreZ.shader" />
     <None Include="Assets\WebPlayerTemplates\sass\SASS_Services.txt" />
