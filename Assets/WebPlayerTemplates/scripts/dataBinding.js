@@ -19,7 +19,7 @@ var globals = {
 
 
 $(document).ready(function(){
-	bindData();
+	//bindData();
 });
 
 function bindData(){

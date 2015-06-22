@@ -22,27 +22,15 @@ $bg_div_hover:			red;
 
 $height_header:			40px;	
 
-
 * {
-	margin:  0px; 
-	
-	/*
-	background-color: red;
-	
-	zoom: 1; 
-	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
-	filter: alpha(opacity=50);
-	-moz-opacity: 0.5;
-	-khtml-opacity: 0.5;
-	opacity: 0.5;*/
-}
+  margin: 0px; }
 
 body {
-  	font: 100% $font-stack;
-  	color: $primary-color;
-  	font-size: $font-size-text;  
-	font-weight: $font-weight-text;
-	overflow: hidden;
+  font: 100% Helvetica, sans-serif;
+  color: #333;
+  font-size: 18px;
+  font-weight: 300; 
+  background-color: rgba(255,0,0,0.1);
 }
 
 .header { 

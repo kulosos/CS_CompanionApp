@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>CS Companion</title>
+        
+        <link rel="stylesheet" type="text/css" href="css/style_test.css">
+
+        <script type='text/javascript' src='scripts/jquery-1.11.1.min.js'></script>
+
+        <script type='text/javascript' src='scripts/coherent.js'></script>
+        <script type='text/javascript' src='scripts/dataBinding.js'></script>
+<!--
+        <script type='text/javascript' src='scripts/blurjs/blur.min.js'></script>
+        <script type='text/javascript' src='scripts/blurElements.js'></script>
+
+        <script type='text/javascript' src='scripts/navigation.js'></script>
+
+
+		<script type='text/javascript' src='scripts/layoutElements.js'></script>-->
+        
+
+        <script type='text/javascript' >
+
+			$(document).ready(function(){
+				$("#eindeutig").append(" this is appended text");
+
+				joinGame2 = document.getElementById("eindeutig");
+				if(joinGame2 != null){
+					joinGame2.addEventListener("click", function() {
+						
+						$("#eindeutig").append(" and more appended text");
+
+					});
+				}
+			});
+
+        </script>
+</head>
+
+
+<body>
+	THIS IS DA TEST! THIS IS DA TEST! THIS IS DA TEST! THIS IS DA TEST! THIS IS DA TEST! THIS IS DA TEST! THIS IS DA TEST! THIS IS DA TEST! THIS IS DA TEST! THIS IS DA TEST! THIS IS DA TEST! THIS IS DA TEST! THIS IS DA TEST! THIS IS DA TEST! THIS IS DA TEST! THIS IS DA TEST! THIS IS DA TEST! THIS IS DA TEST! THIS IS DA TEST! THIS IS DA TEST! THIS IS DA TEST! THIS IS DA TEST! THIS IS DA TEST! THIS IS DA TEST! THIS IS DA TEST! THIS IS DA TEST! THIS IS DA TEST! THIS IS DA TEST! THIS IS DA TEST! THIS IS DA TEST! THIS IS DA TEST! THIS IS DA TEST! THIS IS DA TEST! THIS IS DA TEST! THIS IS DA TEST! THIS IS DA TEST! THIS IS DA TEST! THIS IS DA TEST! THIS IS DA TEST! THIS IS DA TEST! THIS IS DA TEST! THIS IS DA TEST! THIS IS DA TEST! THIS IS DA TEST! THIS IS DA TEST! THIS IS DA TEST! THIS IS DA TEST! THIS IS DA TEST! THIS IS DA TEST! THIS IS DA TEST! THIS IS DA TEST!
+
+    <header class="header"> 
+        <div class="wrapperHeader">
+
+            <div class="headerLeft"> 
+                 <img src="img/logos/CompanionApp01_headerLogo.svg" id="headerMenuCompLogo" alt=""/>
+            </div>
+                 	
+            <div class="headerRight">
+               
+            </div>
+           
+        </div>
+    </header>
+
+
+    <div id="content"> 
+
+		<div class="hlJoinGame" id="eindeutig">
+			<span>Choose Game</span>
+        </div>
+
+    </div>
+
+    <div class="footer"> 
+        <img src="img/logos/wbLogo_wSpace_white.svg" class="footerLogoFixWB" alt=""/>
+    </div>
+
+    
+
+    <img src="img/logos/ConSim2015.png" class="footerLogoFixConSim" alt=""/>
+    
+</body>
+
+
+   
+
+
+
+</html>
