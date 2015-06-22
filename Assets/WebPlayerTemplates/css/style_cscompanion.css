@@ -117,9 +117,7 @@ body {
     background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;
-    -o-background-size: cover;
-    /*background:rgba(0,255,0,0.5);*/
-    opacity: 0.8; }
+    -o-background-size: cover; }
   #startpage .wrapper {
     z-index: 200;
     height: 100%;

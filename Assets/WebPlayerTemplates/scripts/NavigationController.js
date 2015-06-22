@@ -1,7 +1,7 @@
 /*
  * Navigation Script
  *
- * @brief: Navigation & content loading on entire site
+ * @brief: Navigation, Listener, Events & content loading on entire site
  * 
  * @autor: Oliver Kulas
  * @version: 1.0
@@ -10,8 +10,6 @@
  */
 //-----------------------------------------------------------------------------
 
-var D = true; // TOGGLE DEBUG CONSOLE OUTPUTS
-
 var headerHeight = 60;
 var joinGame1;
 var duration = 500;
@@ -19,49 +17,50 @@ var duration = 500;
 var isGameUIActive = false;
 var isMainMenuActive = false;
 
-$(document).ready(function() {
+function initNavigation() {
 
 	// set header hidden to scroll from top
 	$('.header').css("top", headerHeight * -1);
 
-	$("#content").load("./content/start.html", loadStartPage());
-});
-
-function loadStartPage(){
-
-	
-	//blurElement(".start_contentBox", ".outerWrapper" );
-	//$('body').css("background", "red");
-
-    setTimeout(function () { 
-
-    	mainMenuBtn = document.getElementById("headerMenuBtn");
-    	if(mainMenuBtn != null){
-			mainMenuBtn.addEventListener("click", function() {
-				toggleMainMenu();
-			});
-		}
-
-		joinGame1 = document.getElementById("game1");
-		if(joinGame1 != null){
-			joinGame1.addEventListener("click", function() {
-				switchGameUI();
-
-			});
-		}
-
-		/*    	
-    	$('.start_hlLogo').css("background", "red");
-		//$("#content").find('.start_hlLogo').css("background", "red");
-		
-		$('.start_contentBox').blurjs({
-		    source: 'body',
-		    radius: 10,
-		    overlay: 'rgba(255,255,255,0.5)'
-    	});
-		*/
-   	}, 500);
+	// load start page default
+	loadPageContent("start");
 }
+
+
+function loadPageContent(page){	
+	
+	var filepath = "./content/" + page + ".html";
+	
+	$("#content").load(filepath, function(){
+		setStartPageEventListeners();
+	});
+	
+}
+
+
+function setStartPageEventListeners(){
+
+	mainMenuBtn = document.getElementById("headerMenuBtn");
+	if(mainMenuBtn != null){
+		mainMenuBtn.addEventListener("click", function() {
+			toggleMainMenu();
+		});
+	}
+
+	joinGame1 = document.getElementById("game1");
+	if(joinGame1 != null){
+		joinGame1.addEventListener("click", function() {
+			switchGameUI();
+
+		});
+	}
+	
+	$("#content").find("#btnConnect").bind( "click", function() {
+		connect();
+	});
+   
+}
+
 
 function switchGameUI(){
 	if(!isGameUIActive){
@@ -152,6 +151,8 @@ function unloadMainMenu(callback){
 
    
 }
+
+
 
 
 

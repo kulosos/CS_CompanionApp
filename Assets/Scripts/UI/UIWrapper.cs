@@ -47,22 +47,31 @@ namespace Wb.Companion.Core.UI {
 
         public void BindMethods(int frameId, string path, bool isMainFrame) {
 
-            // Example of binding JavaScript to UNITY with RETURN
-            this.coherentUiView.View.BindCall("functionName", new Func<string, string>(this.LogWithReturn));
+			Debug.Log ("init bind methods");
+
+			// Example of binding JavaScript to UNITY with RETURN
+			this.coherentUiView.View.BindCall("functionName", new Func<string, string>(this.LogWithReturn));
+
+			
+			// Example of binding JavaScript to UNITY with RETURN
+            //this.coherentUiView.View.BindCall("getConnectionParameter", new Func<string, string>(this.LogWithReturn));
 
             // Example of binding JavaScript to UNITY with Return Parameter
-          	//  this.coherentUiView.View.RegisterForEvent("functionName", new Action<string>(this.Log));
+			this.coherentUiView.View.RegisterForEvent("getConnectionParameter", new Action<string>(this.Log));
 
-			this.coherentUiView.View.RegisterForEvent("debugInfo", new Action<string>( this.printDebugInfo ));
+			//this.coherentUiView.View.RegisterForEvent("debugInfo", new Action<string>( this.printDebugInfo ));
 			
 			this.uiManager.ExampleTriggerToUI("huhu");
         }
 
 		//-----------------------------------------------------------------------------
 
+		public void getConnectionParameter(string parameter){
+			Debug.Log ("connection: " + parameter);
+		}
+
 		//[Coherent.UI.CoherentMethod("functionName")]
 		private void printDebugInfo(string di){
-		
 			Debug.Log (di);
 		}
 

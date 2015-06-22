@@ -17,33 +17,20 @@ var globals = {
 	docWidth: 		$(window).width()
 }
 
-
-$(document).ready(function(){
-	//bindData();
-});
-
-function bindData(){
-	engine.on("dataBindingEvent", triggeredEventFromUnity);
-	engine.on("Ready");
+function initDataBinding(){
+	//engine.on("dataBindingEvent", triggeredEventFromUnity);
+	engine.on("Ready", function(){
+		
+	});
 }
 
 function triggeredEventFromUnity(receivedArguments){
 
-	$(".wrapperHeader").append(receivedArguments);
+	$("#btnConnect").append(receivedArguments);
 	console.log("hier: " + receivedArguments);
 
 	//mainMenuUITest();
-
 }
-/*
-function test4(){
-	//console.log("test4 dingens");
-	engine.trigger("functionName", "kram von drinnen in dem string");
-
-	engine.trigger("functionName", "irgendeinen string");
-	console.log(engine.call("functionName", "bla anderer string"));
-}*/
-
 
 function mainMenuUITest(){
 	engine.trigger("functionName", "kram von drinnen in dem string");

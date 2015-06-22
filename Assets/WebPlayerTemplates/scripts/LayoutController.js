@@ -10,22 +10,19 @@
   
 //-----------------------------------------------------------------------------
 
-var D = true; // TOGGLE DEBUG CONSOLE OUTPUTS
-
 var outerWrapperWidth;
 var itemSize;
 
-
-$(document).ready(function(){
+function initLayoutController(){
 	updateElementsWidth();
-});
+}
 
 function updateElementsWidth(){
 
 	// header
 	var headerRightWidth = $(window).width() - parseInt($(".headerLeft").css("width"));
 	$(".headerRight").css("width", headerRightWidth);
-	if(D)console.info("Updating UI Elements");
+	//if(D)console.info("Updating UI Elements");
 
 };
 
