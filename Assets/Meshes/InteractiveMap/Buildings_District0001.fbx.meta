@@ -7,16 +7,26 @@ ModelImporter:
     100002: //RootNode
     100004: District0001_NonStatic
     100006: District0001_Static
+    100008: District0001_Static_MeshPart0
+    100010: District0001_Static_MeshPart1
     400000: Buildings
     400002: //RootNode
     400004: District0001_NonStatic
     400006: District0001_Static
+    400008: District0001_Static_MeshPart0
+    400010: District0001_Static_MeshPart1
     2300000: District0001_NonStatic
     2300002: District0001_Static
+    2300004: District0001_Static_MeshPart0
+    2300006: District0001_Static_MeshPart1
     3300000: District0001_NonStatic
     3300002: District0001_Static
+    3300004: District0001_Static_MeshPart0
+    3300006: District0001_Static_MeshPart1
     4300000: District0001_Static
     4300002: District0001_NonStatic
+    4300004: District0001_Static_MeshPart0
+    4300006: District0001_Static_MeshPart1
     9500000: //RootNode
   materials:
     importMaterials: 0
@@ -42,7 +52,7 @@ ModelImporter:
     addColliders: 0
     importBlendShapes: 0
     swapUVChannels: 0
-    generateSecondaryUV: 0
+    generateSecondaryUV: 1
     useFileUnits: 1
     optimizeMeshForGPU: 1
     weldVertices: 1
