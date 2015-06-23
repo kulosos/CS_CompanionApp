@@ -1,8 +1,13 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/CameraTransform.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/NetworkManager.cs">
     <Files>
-      <File FileName="Assets/Scripts/CameraTransform.cs" Line="190" Column="5" />
+      <File FileName="Assets/Scripts/Core/Inputs/InputManager.cs" Line="13" Column="1" />
+      <File FileName="Assets/Scripts/UI/UIManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/UI/UIWrapper.cs" Line="59" Column="87" />
+      <File FileName="Assets/Scripts/NetworkManager.cs" Line="67" Column="4" />
+      <File FileName="Assets/Scripts/ToggleGUI.cs" Line="6" Column="31" />
+      <File FileName="Assets/Standard Assets/Scripts/CoherentUI/Detail/LogHandler.cs" Line="19" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

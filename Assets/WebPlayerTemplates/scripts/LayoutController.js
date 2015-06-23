@@ -12,9 +12,15 @@
 
 var outerWrapperWidth;
 var itemSize;
+var docHeight;
+var docWidth;
 
 function initLayoutController(){
 	updateElementsWidth();
+	
+	// get documents size
+	docHeight = $(window).height();
+	docWidth = $(window).width();
 }
 
 function updateElementsWidth(){

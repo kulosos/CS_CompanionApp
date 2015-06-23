@@ -16,9 +16,18 @@
                     <form id="connectionInput" >
                         <fieldset>
                             <!--<label for="ipAdress">IP:PORT</label> -->
-                            <input type="text" name="input_ip" class="input inputleft" value="127.0.0.1" id="ipAdress" maxlength="15" />
-                            <input type="text" name="input_port" class="input inputright" value="25000" id="port" maxlength="6" />
+                            <div class="inputrow">
+                                <input type="text" name="input_ip" class="input inputleft" value="192.168.1.100" id="ipAdress" maxlength="15" />
+                                <input type="text" name="input_port" class="input inputright" value="25000" id="port" maxlength="6" />
+                            </div>
+                            
+                            <div class="inputrow">
+                                <label class="imgLabel"><img src="img/icons/icon_lock.svg"></label>
+                                <input type="password" name="input_pw" class="input inputpw" value="pw" id="password" />
+                            </div>
+                            
                             <button type="submit" name="action" value="1">Connect</button>
+                        
                             <label class="inputError">ERROR LABEL</label>
                         </fieldset>
                     </form>

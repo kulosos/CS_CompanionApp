@@ -12,7 +12,6 @@
 
 var D = true; // TOGGLE DEBUG CONSOLE OUTPUTS
 
-
 $(document).ready(function() {
 
 	// Execution Order

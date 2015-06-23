@@ -17,8 +17,8 @@ namespace Wb.Companion.Core.Inputs {
         public Transform translateTarget;
 
         public Plane plane = new Plane();
-        private Vector3 oldPos;
-        private Vector3 pos;
+        //private Vector3 oldPos;
+        //private Vector3 pos;
 
 		public float dampingSpeedFactor = 10.0f;
 		public float minBounds = -1500f;
@@ -56,7 +56,7 @@ namespace Wb.Companion.Core.Inputs {
                 this.translateTarget = this.transform;
             }
 		
-            this.pos = this.translateTarget.position;
+            //this.pos = this.translateTarget.position;
         }
 
 		private void LateUpdate() {
@@ -210,10 +210,10 @@ namespace Wb.Companion.Core.Inputs {
 	
 	        if (this.plane.Raycast(ray, out hitDistance)) {
 
-	            if (changePos) {
-					this.changePosition(this.oldPos - ray.GetPoint(hitDistance), isCompleted);
-	            }
-	            this.oldPos = ray.GetPoint(hitDistance);
+	           	// if (changePos) {
+				//	this.changePosition(this.oldPos - ray.GetPoint(hitDistance), isCompleted);
+	           	// }
+	           	// this.oldPos = ray.GetPoint(hitDistance);
 	        }
         }
 
@@ -224,7 +224,7 @@ namespace Wb.Companion.Core.Inputs {
 			delta.y = 0; // fix value
 
 			Vector3 pos = this.targetPosition;
-			Vector3 oPos = this.targetPosition;
+			//Vector3 oPos = this.targetPosition;
 			pos -= delta;
 			Vector3 newPos = pos;
 		

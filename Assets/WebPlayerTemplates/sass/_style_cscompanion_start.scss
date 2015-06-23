@@ -78,7 +78,7 @@ $item_height:				40px;
 		position: relative;
 		width:$start_content_width;
 		height:$item_height_hl;
-		margin: 0px auto 5px auto;
+		margin: 0px auto 0px auto;
 		background:$bg_darkgray80;
 
 		span {
@@ -106,6 +106,13 @@ $item_height:				40px;
 		width:100%;
 	}
 	
+	.inputrow {
+		clear:both;
+		float:none;
+		height:40px;
+		margin: 2px 0px 0px 0px;
+	}
+	
 	/* INPUT FIELDS */ 
 	
 	fieldset {
@@ -117,7 +124,7 @@ $item_height:				40px;
 		padding:0;
 	}
 	
-	input[type="text"] {
+	input {
 		appearance: none;
 	  	box-shadow: none;
 	  	border-radius: none;
@@ -131,7 +138,7 @@ $item_height:				40px;
 		padding: 10px 20px 10px 20px;
 	}
 	
-	input[type="text"]:focus {
+	input:focus {
 	  	border: solid 0px #969696;
 		background:$bg_gray80;
 	}
@@ -145,6 +152,26 @@ $item_height:				40px;
 		float:right;
 		width:110px;
 	}
+	
+	.inputpw {
+		float:left;
+		width:299px;
+		padding-left:20px;
+	}
+	
+	.imgLabel{
+		height:41px;
+		width:41px;
+		float:left;
+		background: $bg_darkgray80;
+		padding: 0px 10px 0px 10px;
+		img {
+			height:30px;
+			width:30px;
+			margin: 5px 5px 5px 5px;
+		}
+	}
+	
 	
 	button {
 	  	width: 100%;
@@ -178,6 +205,9 @@ $item_height:				40px;
 		margin: 10px 0px 0px 0px;
 		padding:10px 0px 10px 0px;
 	}
+	
+	
+	
 }
 
 

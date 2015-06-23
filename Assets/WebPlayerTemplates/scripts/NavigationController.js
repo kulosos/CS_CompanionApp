@@ -11,7 +11,6 @@
 //-----------------------------------------------------------------------------
 
 var headerHeight = 60;
-var joinGame1;
 var duration = 500;
 
 var isGameUIActive = false;
@@ -26,39 +25,19 @@ function initNavigation() {
 	loadPageContent("start");
 }
 
-
 function loadPageContent(page, callback){	
 	var filepath = "./content/" + page + ".html";
 	$("#content").load(filepath, function(){
-		setStartPageEventListeners();
+		setEventListeners(page);
 	});
 	
-	// callback function
-    if (typeof callback === "function") {
-        callback();
-    }
-}
-
-
-function setStartPageEventListeners(){
-
-	mainMenuBtn = document.getElementById("headerMenuBtn");
-	if(mainMenuBtn != null){
-		mainMenuBtn.addEventListener("click", function() {
-			toggleMainMenu();
-		});
-	}
-	
-	$( "#connectionInput" ).submit(function(event) {
-	  connect();
-	  event.preventDefault();
-	});
-   
+    // CALLBACK
+	if(callback != undefined && typeof callback == 'function') callback();
 }
 
 function switchGameUI(){
 	if(!isGameUIActive){
-		loadGameUI()
+		loadGameUI();
 		isGameUIActive = true;
 	}
 	else{
@@ -81,7 +60,7 @@ function toggleMainMenu(){
 function loadGameUI(){
 	// translate out animation
 	$('.header').animate({ "top": "0px" }, duration );
-	$('#startpage .outerWrapper').animate({ "top": globals.docHeight + "px"}, duration, function(){
+	$('#startpage .outerWrapper').animate({ "top": docHeight + "px"}, duration, function(){
 		$("#startpage").remove();
 	});
 	$('.footerLogoFixConSim').animate({ "bottom": "-"+$(".footerLogoFixConSim").css("height") }, duration);
@@ -91,7 +70,7 @@ function loadGameUI(){
 function unloadGameUI(){
 	unloadMainMenu(function(){
 		loadPageContent("start", function(){
-			$('#startpage .outerWrapper').css("top", globals.docHeight + "px");
+			$('#startpage .outerWrapper').css("top", docHeight + "px");
 			
 			$('.header').animate({ "top": $(".header").css("height")+"px" }, duration, function(){
 				// translate in animation
@@ -106,19 +85,14 @@ function unloadGameUI(){
 
 function loadMainMenu(callback){
 
-	loadPageContent("menu", function(){
+	console.info("load main menu");
 
-		backToStartBtn = document.getElementById("menuIdBackToStart");
-    	if(backToStartBtn != null){
-			backToStartBtn.addEventListener("click", function() {
-				switchGameUI();
-			});
-		}
+	loadPageContent("menu", function(){
 
 		$("#mainmenu").css("top", $(".header").css("height"));
 
 		var headerHeight =  parseInt($(".header").css("height")) + 3;
-		var owHeight = globals.docHeight - headerHeight ;
+		var owHeight = docHeight - headerHeight ;
 		var menuItemWidth = parseInt($("#mainmenu").css("width"))*-1;
 		
 		$("#mainmenu").css("height", owHeight+"px");
@@ -138,5 +112,35 @@ function unloadMainMenu(callback){
 		$("#mainmenu").remove();
 		// CALLBACK
 		if(callback != undefined && typeof callback == 'function') callback();
+	});
+}
+
+function setEventListeners(page){
+	
+	if(page == "start"){
+		mainMenuBtn = document.getElementById("headerMenuBtn");
+		if(mainMenuBtn != null){
+			mainMenuBtn.addEventListener("click", function() {
+				toggleMainMenu();
+			});
+		}
+		
+		$( "#connectionInput" ).submit(function(event) {
+		  connect();
+		  switchGameUI();
+		  event.preventDefault();
+		});
+		return;
+	}
+	
+	if(page == "menu"){
+		bindMenuButtons();
+		return;
+	}
+}
+
+function bindMenuButtons(){
+	$("body").find("#menuIdBackToStart").bind( "click", function() {
+			switchGameUI();
 	});
 }

@@ -10,23 +10,28 @@
  */
 //-----------------------------------------------------------------------------
 
-var connectBtn;
-var connection = { ip: "127.0.0.1", port: "25000" } 
+var connection = { ip: "127.0.0.1", port: "25000", password: "pw" } ;
 
 function initConnectionMananger() {
 	// console.log("init ConnectionManager");	
 }
 
 function connect(){
-	connection.ip = $("#content").find('#ipAdress').val(), 
-	connection.port = $("#content").find('#port').val();
+	
 	resetInputError();
 	
+	connection.ip = $("#content").find('#ipAdress').val(), 
+	connection.port = $("#content").find('#port').val();
+	connection.password = $("#content").find("#password").val();
+	
 	if(validateIPaddress(connection.ip) && validatePort(connection.port)){
-		engine.trigger("getConnectionParameter", connection.ip + ":" + connection.port);
-		switchGameUI();
-		if(D)console.log("Connection: " + connection.ip + ":" + connection.port);
+		engine.trigger("connect", connection.ip, connection.port, connection.password);
+		if(D)console.log("Connection: " + connection.ip + ":" + connection.port + " - " + connection.password);
 	}
+}
+
+function disconnect(){
+	engine.trigger("disconnect");
 }
 
 function validateIPaddress(ipaddress) {  
@@ -40,7 +45,6 @@ function validateIPaddress(ipaddress) {
 function validatePort(port){
 	
 	if(/^\d+$/.test(port)){
-		console.info("valid port");
 		return (true);
 	}
 	setInputError("Invalid Port");

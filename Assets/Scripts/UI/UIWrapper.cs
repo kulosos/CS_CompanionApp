@@ -16,8 +16,7 @@ using Coherent.UI.Binding;
 //-----------------------------------------------------------------------------
 
 namespace Wb.Companion.Core.UI {
-
-
+	
 	public enum InputBehavior 
 	{
 		CoherentUI_Only = 1,
@@ -30,7 +29,7 @@ namespace Wb.Companion.Core.UI {
         private CoherentUIView coherentUiView;
 		public UIManager uiManager;
 
-		private InputBehavior inputBehavior = InputBehavior.CoherentUI_Unity3D;
+		//private InputBehavior inputBehavior = InputBehavior.CoherentUI_Unity3D;
         
         //-----------------------------------------------------------------------------
 
@@ -57,7 +56,8 @@ namespace Wb.Companion.Core.UI {
             //this.coherentUiView.View.BindCall("getConnectionParameter", new Func<string, string>(this.LogWithReturn));
 
             // Example of binding JavaScript to UNITY with Return Parameter
-			this.coherentUiView.View.RegisterForEvent("getConnectionParameter", new Action<string>(this.Log));
+			this.coherentUiView.View.RegisterForEvent("connect", new Action<string, string, string>(NetworkManager.connect));
+			this.coherentUiView.View.RegisterForEvent("disconnect", new Action(NetworkManager.disconnect));
 
 			//this.coherentUiView.View.RegisterForEvent("debugInfo", new Action<string>( this.printDebugInfo ));
 			
@@ -65,11 +65,7 @@ namespace Wb.Companion.Core.UI {
         }
 
 		//-----------------------------------------------------------------------------
-
-		public void getConnectionParameter(string parameter){
-			Debug.Log ("connection: " + parameter);
-		}
-
+	
 		//[Coherent.UI.CoherentMethod("functionName")]
 		private void printDebugInfo(string di){
 			Debug.Log (di);

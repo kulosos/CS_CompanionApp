@@ -4,7 +4,6 @@ using System.Collections;
 public class ToggleGUI : MonoBehaviour {
 
 	private bool isActive = true;
-	public GameObject gameObject;
 	
 	// --------------------------------------------------------------------
 
