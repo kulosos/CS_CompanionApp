@@ -14,13 +14,14 @@ $font-weight-text:		300;
 $font-size-hl1:			22px;
 $font-weight-hl1:		500;
 
-$primary-color: 		#333;
-
-$bg_transparent50:		rgba(0,0,0,0.4);
-$bg_transparent80:		rgba(0,0,0,0.7);
-$bg_div_hover:			red;
+$bg_yellow80:			rgba(254,193,6,08); //#fec106
+$bg_darkgray50:			rgba( 20, 20, 20,0.5);
+$bg_darkgray80:			rgba( 20, 20, 20,0.8);
+$bg_gray80:				rgba(100,100,100,0.8);
 
 $height_header:			40px;	
+
+ /*---------------------------------------*/
 
 * {
   margin: 0px; }
@@ -75,7 +76,7 @@ body {
 	height: $height_header;
 	width:70%;
 	margin:0px;
-	background-color:$bg_transparent80;
+	background-color:$bg_darkgray80;
 
 }
 
@@ -100,7 +101,6 @@ body {
 	right:5px;
 	top:10px;
 	height: 100%;
-	background: $bg_div_hover;
 }
 
 .footer {
@@ -110,7 +110,7 @@ body {
 	bottom: 0px;
 	width:180px;
 	height:40px;
-	background: $bg_transparent80;
+	background: $bg_darkgray80;
 	-webkit-transform: skew(45deg);
 	-moz-transform: skew(45deg);
 	-o-transform: skew(45deg);
@@ -135,5 +135,4 @@ body {
 }
 
 @import "_style_cscompanion_start.scss";
-
 @import "_style_cscompanion_mainmenu.scss";

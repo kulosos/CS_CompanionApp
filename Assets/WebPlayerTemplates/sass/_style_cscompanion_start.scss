@@ -3,9 +3,25 @@
 	STARTPAGE
  ---------------------------------------*/		
 
+$font-stack:    		Helvetica, sans-serif;
+$font-size-text: 		18px;
+$font-weight-text:		300;
+
+$font-size-hl1:			22px;
+$font-weight-hl1:		500;
+
+$bg_yellow80:			rgba(254,193,6,08); //#fec106
+$bg_darkgray50:			rgba( 20, 20, 20,0.5);
+$bg_darkgray80:			rgba( 20, 20, 20,0.8);
+$bg_gray80:				rgba(150,150,150,0.8);
+
+$height_header:			40px;	
+
 $start_content_width: 		400px;
 $item_height_hl:			40px;
 $item_height:				40px;
+
+/* --------------------------------------*/
 
 #startpage {
 
@@ -47,10 +63,6 @@ $item_height:				40px;
 		margin: 0px auto 0px auto;
 	}
 
-	.hlLogo:hover {
-		background:blue;
-	}
-
 	.hlLogoImage {
 		z-index: 60;
 		position: relative;
@@ -61,24 +73,19 @@ $item_height:				40px;
     	filter: alpha(opacity=80); /* For IE8 and earlier */
 	}
 
-	.hlJoinGame {
+	.hlConnection {
 		z-index: 60;
 		position: relative;
 		width:$start_content_width;
 		height:$item_height_hl;
 		margin: 0px auto 5px auto;
-		background:$bg_transparent80;
+		background:$bg_darkgray80;
 
 		span {
 			position: absolute;
-			margin: 10px 0px 0px 20px;
+			margin: 8px 0px 0px 20px;
 			font-size: $font-size-hl1;
-			
 		}
-	}
-
-	.hlJoinGame:hover {
-		background:blue;
 	}
 
 	.contentBox {
@@ -93,27 +100,84 @@ $item_height:				40px;
 		margin-right: auto;
 		overflow: auto;
 	}
-
-	.itemJoinGame {
-		z-index: 60;
+	
+	#connectionInput {
+		float:left;
+		width:100%;
+	}
+	
+	/* INPUT FIELDS */ 
+	
+	fieldset {
+		width:100%;
+		height:auto;
+	  	outline: none;
+		border: 0;
+		margin: 0;
+		padding:0;
+	}
+	
+	input[type="text"] {
+		appearance: none;
+	  	box-shadow: none;
+	  	border-radius: none;
+	  	outline: none;
+	  	font-family: $font-stack;
+	  	font-size: $font-size-text;
+	  	font-weight: $font-weight-text;
+	  	border: solid 0px #c9c9c9;	
+		background:$bg_darkgray80;
+	  	color: white;
+		padding: 10px 20px 10px 20px;
+	}
+	
+	input[type="text"]:focus {
+	  	border: solid 0px #969696;
+		background:$bg_gray80;
+	}
+	
+	.inputleft {
+		float:left;
+		width:300px;
+	}
+	
+	.inputright {
+		float:right;
+		width:110px;
+	}
+	
+	button {
+	  	width: 100%;
+	  	font-family: $font-stack;
+	  	font-size: $font-size-text;
+	  	font-weight: $font-weight-text;
+	  	
+		appearance: none;
+	  	box-shadow: none;
+	  	border-radius: none;
+	  	outline: none;
+	  
+	  	border: solid 0px #c9c9c9;
+	  	transition: border 0.3s;	
+		background:$bg_yellow80;
+	  	color: black;
+	  	margin: 10px 0px 0px 0px;
+		padding: 10px;
+	}
+	
+	.inputError{
+		visibility:hidden;
+		float:left;
+		clear:both;
 		position: relative;
-		width: 100%;
-		height:$item_height;
-		margin: 1px auto 1px auto;
-		background:$bg_transparent80;
-
-		span {
-			position: absolute;
-			margin: 10px 0px 0px 10px;
-			padding-top: 0px;
-			padding-left: 20px;
-		}
+		width:400px;
+		height:auto;
+		color:white;
+		background:red;
+		text-align: center;
+		margin: 10px 0px 0px 0px;
+		padding:10px 0px 10px 0px;
 	}
-
-	.itemJoinGame:hover {
-		background:$bg_div_hover;
-	}
-
 }
 
 

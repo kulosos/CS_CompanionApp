@@ -55,8 +55,10 @@ function setStartPageEventListeners(){
 		});
 	}
 	
-	$("#content").find("#btnConnect").bind( "click", function() {
-		connect();
+	
+	$( "#connectionInput" ).submit(function(event) {
+	  connect();
+	  event.preventDefault();
 	});
    
 }
@@ -151,11 +153,3 @@ function unloadMainMenu(callback){
 
    
 }
-
-
-
-
-
-
-
- 

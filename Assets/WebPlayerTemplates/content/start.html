@@ -7,22 +7,23 @@
                      <img src="img/logos/CompanionApp01.svg" class="hlLogoImage"  alt=""/>
                 </div>
 
-                <div class="hlJoinGame">
-                    <span>Connection Settings</span>
+                <div class="hlConnection">
+                    <span>Enter Connection</span>
                 </div>
 
                 <div class="contentBox" >
-                    <!--<div class="itemJoinGame" id="game1">
-                        <span>Computer CD</span>
-                    </div> -->
                     
-                    <form>
-                       
-                        <input type="text" name="input_ip" class="input" value="127.0.0.1" id="ipAdress"/>
-                        <input type="text" name="input_port" class="input" value="25000" id="port"/>
-                        <div class="itemJoinGame" id="btnConnect">Connect</div>
-                        
+                    <form id="connectionInput" >
+                        <fieldset>
+                            <!--<label for="ipAdress">IP:PORT</label> -->
+                            <input type="text" name="input_ip" class="input inputleft" value="127.0.0.1" id="ipAdress" maxlength="15" />
+                            <input type="text" name="input_port" class="input inputright" value="25000" id="port" maxlength="6" />
+                            <button type="submit" name="action" value="1">Connect</button>
+                            <label class="inputError">ERROR LABEL</label>
+                        </fieldset>
                     </form>
+                    
+                    
                     
                     
                 </div>
