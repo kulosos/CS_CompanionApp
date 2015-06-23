@@ -27,14 +27,16 @@ function initNavigation() {
 }
 
 
-function loadPageContent(page){	
-	
+function loadPageContent(page, callback){	
 	var filepath = "./content/" + page + ".html";
-	
 	$("#content").load(filepath, function(){
 		setStartPageEventListeners();
 	});
 	
+	// callback function
+    if (typeof callback === "function") {
+        callback();
+    }
 }
 
 
@@ -46,15 +48,6 @@ function setStartPageEventListeners(){
 			toggleMainMenu();
 		});
 	}
-
-	joinGame1 = document.getElementById("game1");
-	if(joinGame1 != null){
-		joinGame1.addEventListener("click", function() {
-			switchGameUI();
-
-		});
-	}
-	
 	
 	$( "#connectionInput" ).submit(function(event) {
 	  connect();
@@ -62,7 +55,6 @@ function setStartPageEventListeners(){
 	});
    
 }
-
 
 function switchGameUI(){
 	if(!isGameUIActive){
@@ -98,7 +90,7 @@ function loadGameUI(){
 
 function unloadGameUI(){
 	unloadMainMenu(function(){
-		$("#content").load("./content/start.html", loadStartPage(), function(){
+		loadPageContent("start", function(){
 			$('#startpage .outerWrapper').css("top", globals.docHeight + "px");
 			
 			$('.header').animate({ "top": $(".header").css("height")+"px" }, duration, function(){
@@ -112,10 +104,9 @@ function unloadGameUI(){
 	});
 }
 
-
 function loadMainMenu(callback){
 
-	$("#content").load("./content/menu.html", function(){
+	loadPageContent("menu", function(){
 
 		backToStartBtn = document.getElementById("menuIdBackToStart");
     	if(backToStartBtn != null){
@@ -138,8 +129,6 @@ function loadMainMenu(callback){
 			if(callback != undefined && typeof callback == 'function') callback();
 		});
 	});
-
-   
 }
 
 function unloadMainMenu(callback){
@@ -150,6 +139,4 @@ function unloadMainMenu(callback){
 		// CALLBACK
 		if(callback != undefined && typeof callback == 'function') callback();
 	});
-
-   
 }

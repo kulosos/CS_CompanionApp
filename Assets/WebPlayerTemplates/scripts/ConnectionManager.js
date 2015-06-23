@@ -14,28 +14,23 @@ var connectBtn;
 var connection = { ip: "127.0.0.1", port: "25000" } 
 
 function initConnectionMananger() {
-	
-	
-	// console.log("init ConnectionManager");
-	
+	// console.log("init ConnectionManager");	
 }
 
 function connect(){
-	
 	connection.ip = $("#content").find('#ipAdress').val(), 
 	connection.port = $("#content").find('#port').val();
 	resetInputError();
 	
 	if(validateIPaddress(connection.ip) && validatePort(connection.port)){
 		engine.trigger("getConnectionParameter", connection.ip + ":" + connection.port);
+		switchGameUI();
 		if(D)console.log("Connection: " + connection.ip + ":" + connection.port);
 	}
 }
 
-function validateIPaddress(ipaddress)   
-{  
-	if (/^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(ipaddress))  
-	{  
+function validateIPaddress(ipaddress) {  
+	if (/^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(ipaddress))  {  
     	return (true);
   	}
 	setInputError("Invalid IP-Adress");
