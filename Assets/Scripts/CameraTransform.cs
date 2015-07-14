@@ -17,7 +17,7 @@ namespace Wb.Companion.Core.Inputs {
         public float cameraHeight = 1000f;
 
 		public float dampingFactor = 10.0f;
-        public float speedFactor = 2.0f;
+		public float movementMultiplier = 2f;
 		public float minBounds = -1500f;
 		public float maxBounds = 1500f;
 		public float zoomMin = 0.0f;
@@ -50,7 +50,7 @@ namespace Wb.Companion.Core.Inputs {
 
             float damping = this.dampingFactor * (1 + this.panMagnitude / 100);
             //float damping = this.dampingSpeedFactor * (1 + this.panMagnitude / 100);
-            //Debug.Log("PanMagnitude: " + this.panMagnitude);
+            Debug.Log("daming: " + damping);
 
             Camera.main.transform.localPosition = Vector3.Lerp(Camera.main.transform.localPosition, this.targetPosition, Time.deltaTime * damping);
             
@@ -163,8 +163,10 @@ namespace Wb.Companion.Core.Inputs {
 
                 Vector3 oldPos = Camera.main.transform.localPosition;
                 Vector3 camMovement = gesture.WorldDeltaPosition;
-                camMovement.y = 0;
-                camMovement.x *= 1.5f; // better real feeling on touch screen devices
+                
+                camMovement.x *= 1.5f * this.movementMultiplier; // better real feeling on touch screen devices
+				camMovement.y = 0;
+				camMovement.z *= this.movementMultiplier;
 
                 oldPos -= camMovement;
                 
