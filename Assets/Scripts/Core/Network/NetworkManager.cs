@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 using Wb.Companion.Core.UI;
+using Wb.Companion.Core.WbAdministration;
 using System;
 
-namespace Wb.Companion {
+namespace Wb.Companion.Core.WbNetwork {
 
 	public class NetworkManager : MonoBehaviour {
 
@@ -11,10 +12,11 @@ namespace Wb.Companion {
 
 		public static NetworkManager instance;
 
-	    public int defaultMaxConnecitions = 4;
-	    public string defaultip = "127.0.0.1";
-	    public int defaultPort = 25000;
+		public int defaultMaxConnecitions = 4;
+		public string defaultip = "127.0.0.1";
+		public int defaultPort = 25000;
 		public UIManager uiManager;
+		public SceneManager sceneManager;
 
 		//---------------------------------------------------------------------
 		
@@ -28,50 +30,50 @@ namespace Wb.Companion {
 		
 		//---------------------------------------------------------------------
 	
-	    // Use this for initialization
-	    void Start() {
+		// Use this for initialization
+		void Start() {
 			if(D)Network.logLevel = NetworkLogLevel.Informational;
 		}
 
-	    // Update is called once per frame
-	    void Update() {
-	    }
+		// Update is called once per frame
+		void Update() {
+		}
 
 		//---------------------------------------------------------------------
 
-	    void OnGUI() {
+		//void OnGUI() {
 
-			if (GUI.Button(new Rect(0, 5, 150, 50), "launch Server")){
-	            NetworkManager.launchServer("4", "25000", "pw");
-	        }
+		//    if (GUI.Button(new Rect(0, 5, 150, 50), "launch Server")){
+		//        NetworkManager.launchServer("4", "25000", "pw");
+		//    }
 
-			if (GUI.Button(new Rect(170, 5, 150, 50), "connect")) {
-	           Network.Connect(this.defaultip, this.defaultPort);
-	        }
+		//    if (GUI.Button(new Rect(170, 5, 150, 50), "connect")) {
+		//       Network.Connect(this.defaultip, this.defaultPort);
+		//    }
 
-			if (GUI.Button(new Rect(330, 5, 150, 50), "disconnect")) {
-				NetworkManager.disconnect();
-	        }
+		//    if (GUI.Button(new Rect(330, 5, 150, 50), "disconnect")) {
+		//        NetworkManager.disconnect();
+		//    }
 
-			if (GUI.Button(new Rect(490, 5, 150, 50), "info")) {
-				NetworkManager.connectionInfo();
-	        }
-	        
-	    }
+		//    if (GUI.Button(new Rect(490, 5, 150, 50), "info")) {
+		//        NetworkManager.connectionInfo();
+		//    }
+			
+		//}
 
 
 		//---------------------------------------------------------------------
 
-	    public static void launchServer(string maxConnections, string listenport, string password) {
-	        Debug.Log("Init Server");
-	        Network.incomingPassword = password;
+		public static void launchServer(string maxConnections, string listenport, string password) {
+			Debug.Log("Init Server");
+			Network.incomingPassword = password;
 			bool useNat = !Network.HavePublicAddress();
 
 			int maxCon = int.Parse(maxConnections);
 			int lPort = int.Parse(listenport);
 
 			Network.InitializeServer(maxCon, lPort, useNat);
-	    }
+		}
 
 		//---------------------------------------------------------------------
 
@@ -125,7 +127,7 @@ namespace Wb.Companion {
 				//                Debug.Log ("Connections: " + Network.;
 			}
 		}
-
+ 
 
 		//---------------------------------------------------------------------
 
@@ -133,6 +135,7 @@ namespace Wb.Companion {
 		private void OnConnectedToServer() {
 			Debug.Log("Server connection successfully established.");
 			this.uiManager.switchGameUI();
+			this.sceneManager.loadScene(SceneList.Map);
 		}
 
 		// Call on the client
@@ -154,6 +157,7 @@ namespace Wb.Companion {
 		private void OnFailedToConnect() {
 			Debug.Log("Failed to establish server connection.");
 			this.uiManager.setConnectionErrorMsg("Failed to establish server connection");
+            this.sceneManager.loadScene(SceneList.Map);
 
 		}
 

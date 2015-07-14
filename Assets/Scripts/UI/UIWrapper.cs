@@ -1,16 +1,8 @@
-﻿/*
- * brief	
- * author	Benedikt Niesen (benedikt@weltenbauer-se.com)
- * company	weltenbauer. Software Entwicklung GmbH
- * date		March 2015
- */
-
-//-----------------------------------------------------------------------------
-
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using Wb.Companion.Core.WbNetwork;
 using Coherent.UI.Binding;
 
 //-----------------------------------------------------------------------------
@@ -24,27 +16,27 @@ namespace Wb.Companion.Core.UI {
 		CoherentUI_Unity3D = 3,
 	}
 
-    public class UIWrapper : MonoBehaviour {
+	public class UIWrapper : MonoBehaviour {
 
-        private CoherentUIView coherentUiView;
+		private CoherentUIView coherentUiView;
 		public UIManager uiManager;
 
 		//private InputBehavior inputBehavior = InputBehavior.CoherentUI_Unity3D;
-        
-        //-----------------------------------------------------------------------------
+		
+		//-----------------------------------------------------------------------------
 
-        public void Start() {
+		public void Start() {
 
-            this.coherentUiView = this.GetComponent<CoherentUIView>();
-            this.coherentUiView.Listener.ReadyForBindings += this.BindMethods;
+			this.coherentUiView = this.GetComponent<CoherentUIView>();
+			this.coherentUiView.Listener.ReadyForBindings += this.BindMethods;
 
 			this.coherentUiView.IsTransparent = true;
 
-        }
+		}
 
-        //-----------------------------------------------------------------------------
+		//-----------------------------------------------------------------------------
 
-        public void BindMethods(int frameId, string path, bool isMainFrame) {
+		public void BindMethods(int frameId, string path, bool isMainFrame) {
 
 			Debug.Log ("init bind methods");
 
@@ -57,16 +49,16 @@ namespace Wb.Companion.Core.UI {
 
 			
 			// Example of binding JavaScript to UNITY with RETURN
-            //this.coherentUiView.View.BindCall("getConnectionParameter", new Func<string, string>(this.LogWithReturn));
+			//this.coherentUiView.View.BindCall("getConnectionParameter", new Func<string, string>(this.LogWithReturn));
 
-            // Example of binding JavaScript to UNITY with Return Parameter
+			// Example of binding JavaScript to UNITY with Return Parameter
 			// From JavaScript to Unity
 			this.coherentUiView.View.RegisterForEvent("connect", new Action<string, string, string>(NetworkManager.connect));
 			this.coherentUiView.View.RegisterForEvent("disconnect", new Action(NetworkManager.disconnect));
 
 			//this.coherentUiView.View.RegisterForEvent("debugInfo", new Action<string>( this.printDebugInfo ));
 
-        }
+		}
 
 		//-----------------------------------------------------------------------------
 	
@@ -75,14 +67,14 @@ namespace Wb.Companion.Core.UI {
 			Debug.Log (di);
 		}
 
-        private void Log(string s) {
-            Debug.Log("From Coherent : " + s);
-        }
+		private void Log(string s) {
+			Debug.Log("From Coherent : " + s);
+		}
 
-        private string LogWithReturn(string s) {
+		private string LogWithReturn(string s) {
 			Debug.Log("debug log with return: " + s);
-            return s;
-        }
+			return s;
+		}
 
-    }
+	}
 }

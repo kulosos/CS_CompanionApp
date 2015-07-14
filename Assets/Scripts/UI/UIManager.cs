@@ -26,20 +26,21 @@ using Coherent.UI.Binding; // TriggerEvent binding with extra parameter on deskt
 
 namespace Wb.Companion.Core.UI {
 
-    public class UIManager : MonoBehaviour {
+	public class UIManager : MonoBehaviour {
 
-        public CoherentUIView coherentUiView;
-        public UIWrapper uiWrapper;
+		public CoherentUIView coherentUiView;
+		public UIWrapper uiWrapper;
+		public bool debugging = false;
 
-        //-----------------------------------------------------------------------------
-        // MonoBehaviour
-        //-----------------------------------------------------------------------------
+		//-----------------------------------------------------------------------------
+		// MonoBehaviour
+		//-----------------------------------------------------------------------------
 
-        public void Start() {
-            this.coherentUiView.ReceivesInput = true;
-        }
+		public void Start() {
+			this.coherentUiView.ReceivesInput = true;
+		}
 
-        //-----------------------------------------------------------------------------
+		//-----------------------------------------------------------------------------
 		// Bind Methods to UI 
 		//-----------------------------------------------------------------------------
 
@@ -50,5 +51,9 @@ namespace Wb.Companion.Core.UI {
 		public void setConnectionErrorMsg(string obj){
 			this.coherentUiView.View.TriggerEvent("setConnectionErrorMsg", obj);
 		}
-    }
+
+        //-----------------------------------------------------------------------------
+
+
+	}
 }

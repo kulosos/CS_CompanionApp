@@ -21,7 +21,6 @@ function initDataBinding(){
 	
 	engine.on("Ready", function(){});
 	
-	engine.on("triggeredEventFromUnity", triggeredEventFromUnity);
 	engine.on("switchGameUI", switchGameUI);
 	engine.on("setConnectionErrorMsg", setInputError);
 }
