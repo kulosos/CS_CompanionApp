@@ -9,14 +9,22 @@
 
 using UnityEngine;
 using System.Collections;
-using Coherent.UI.Binding;
-using System.Collections.Generic;
+
+#if UNITY_IOS
+using Coherent.UI.Mobile.Binding; // TriggerEvent binding with extra parameter on mobile 
+#endif
+
+#if UNITY_ANDROID
+using Coherent.UI.Mobile.Binding; // TriggerEvent binding with extra parameter on mobile 
+#endif
+
+#if UNITY_EDITOR
+using Coherent.UI.Binding; // TriggerEvent binding with extra parameter on desktop 
+#endif
 
 //-----------------------------------------------------------------------------
 
 namespace Wb.Companion.Core.UI {
-
-    //-----------------------------------------------------------------------------
 
     public class UIManager : MonoBehaviour {
 
@@ -32,9 +40,15 @@ namespace Wb.Companion.Core.UI {
         }
 
         //-----------------------------------------------------------------------------
+		// Bind Methods to UI 
+		//-----------------------------------------------------------------------------
 
-        public void ExampleTriggerToUI(string obj) {
-            //this.coherentUiView.View.TriggerEvent("dataBindingEvent", obj);
-        }
+		public void switchGameUI(){
+			this.coherentUiView.View.TriggerEvent("switchGameUI");
+		}
+
+		public void setConnectionErrorMsg(string obj){
+			this.coherentUiView.View.TriggerEvent("setConnectionErrorMsg", obj);
+		}
     }
 }

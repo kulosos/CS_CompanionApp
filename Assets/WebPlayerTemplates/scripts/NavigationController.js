@@ -36,6 +36,7 @@ function loadPageContent(page, callback){
 }
 
 function switchGameUI(){
+	console.info("GameUI switched");
 	if(!isGameUIActive){
 		loadGameUI();
 		isGameUIActive = true;
@@ -127,7 +128,7 @@ function setEventListeners(page){
 		
 		$( "#connectionInput" ).submit(function(event) {
 		  connect();
-		  switchGameUI();
+		  if(D)switchGameUI();
 		  event.preventDefault();
 		});
 		return;

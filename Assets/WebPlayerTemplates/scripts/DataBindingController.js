@@ -18,34 +18,23 @@ var globals = {
 }
 
 function initDataBinding(){
-	//engine.on("dataBindingEvent", triggeredEventFromUnity);
-	engine.on("Ready", function(){
-		
-	});
+	
+	engine.on("Ready", function(){});
+	
+	engine.on("triggeredEventFromUnity", triggeredEventFromUnity);
+	engine.on("switchGameUI", switchGameUI);
+	engine.on("setConnectionErrorMsg", setInputError);
 }
 
+
+
+//-----------------------------------------------------------------------------
+/* EXAMPLES
 function triggeredEventFromUnity(receivedArguments){
-
-	$("#btnConnect").append(receivedArguments);
-	console.log("hier: " + receivedArguments);
-
-	//mainMenuUITest();
+	console.log("Output " + receivedArguments);
 }
-
-function mainMenuUITest(){
-	engine.trigger("functionName", "kram von drinnen in dem string");
-
-	engine.trigger("functionName", "irgendeinen string");
-	console.log(engine.call("functionName", "bla anderer string"));
+function jsFunctionName(){
+	engine.trigger("functionName", "kram von JS to Unity. Trigger ohne Rückgabeparameter");
+	engine.call("functionName", "kram von JS to Unity. Call mit Rückgabeparameter");
 }
-
-function debugInfosToUnity(){
-
-	//var str = "JQuery (h/w): " + globals.docHeightJQ + ", " + globals.docWidthJQ	+ "\nJavaScript (h/w): " + globals.docHeightJS + ", " + globals.docWidthJS;
-	var str = "JavaScript (h/w): " + globals.docHeight + ", " + globals.docWidth;
-
-	engine.trigger("debugInfo", str);
-	//engine.call("functionName");
-	console.log(str);
-
-}
+*/

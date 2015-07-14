@@ -110,7 +110,7 @@ $item_height:				40px;
 		clear:both;
 		float:none;
 		height:40px;
-		margin: 2px 0px 0px 0px;
+		margin: 4px 0px 0px 0px;
 	}
 	
 	/* INPUT FIELDS */ 
@@ -136,6 +136,9 @@ $item_height:				40px;
 		background:$bg_darkgray80;
 	  	color: white;
 		padding: 10px 20px 10px 20px;
+		-webkit-border-radius: x0px;
+		-moz-border-radius: 0px;
+		border-radius: 0px;
 	}
 	
 	input:focus {
@@ -205,9 +208,5 @@ $item_height:				40px;
 		margin: 10px 0px 0px 0px;
 		padding:10px 0px 10px 0px;
 	}
-	
-	
-	
+		
 }
-
-

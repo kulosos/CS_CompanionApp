@@ -176,7 +176,7 @@ body {
     clear: both;
     float: none;
     height: 40px;
-    margin: 2px 0px 0px 0px; }
+    margin: 4px 0px 0px 0px; }
   #startpage fieldset {
     width: 100%;
     height: auto;
@@ -195,7 +195,10 @@ body {
     border: solid 0px #c9c9c9;
     background: rgba(20, 20, 20, 0.8);
     color: white;
-    padding: 10px 20px 10px 20px; }
+    padding: 10px 20px 10px 20px;
+    -webkit-border-radius: x0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px; }
   #startpage input:focus {
     border: solid 0px #969696;
     background: rgba(150, 150, 150, 0.8); }

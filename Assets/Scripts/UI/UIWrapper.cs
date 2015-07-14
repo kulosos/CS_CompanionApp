@@ -49,19 +49,23 @@ namespace Wb.Companion.Core.UI {
 			Debug.Log ("init bind methods");
 
 			// Example of binding JavaScript to UNITY with RETURN
-			this.coherentUiView.View.BindCall("functionName", new Func<string, string>(this.LogWithReturn));
+			// From Unity to JavaScript
+			//this.coherentUiView.View.BindCall("switchGameUI", new Action<string>(this.uiManager.ExampleTriggerToUI));
+
+
+			//this.coherentUiView.View.BindCall("functionName", new Func<string, string>(this.LogWithReturn));
 
 			
 			// Example of binding JavaScript to UNITY with RETURN
             //this.coherentUiView.View.BindCall("getConnectionParameter", new Func<string, string>(this.LogWithReturn));
 
             // Example of binding JavaScript to UNITY with Return Parameter
+			// From JavaScript to Unity
 			this.coherentUiView.View.RegisterForEvent("connect", new Action<string, string, string>(NetworkManager.connect));
 			this.coherentUiView.View.RegisterForEvent("disconnect", new Action(NetworkManager.disconnect));
 
 			//this.coherentUiView.View.RegisterForEvent("debugInfo", new Action<string>( this.printDebugInfo ));
-			
-			this.uiManager.ExampleTriggerToUI("huhu");
+
         }
 
 		//-----------------------------------------------------------------------------
@@ -79,5 +83,6 @@ namespace Wb.Companion.Core.UI {
 			Debug.Log("debug log with return: " + s);
             return s;
         }
+
     }
 }
