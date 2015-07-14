@@ -13,21 +13,18 @@ namespace Wb.Companion.Core.Inputs {
 
         public bool isActive = true;
 
-        public Transform rotateTarget;
-        public Transform translateTarget;
-
         public Plane plane = new Plane();
-        //private Vector3 oldPos;
-        //private Vector3 pos;
+        public float cameraHeight = 1000f;
 
-		public float dampingSpeedFactor = 10.0f;
+		public float dampingFactor = 10.0f;
+        public float speedFactor = 2.0f;
 		public float minBounds = -1500f;
 		public float maxBounds = 1500f;
 		public float zoomMin = 0.0f;
 		public float zoomMax = 1000f;
 
 		private Vector3 targetPosition = Vector3.zero;
-		private float panMagnitude = 0f;
+		private float panMagnitude;
 
       	// ----------------------------------------------------------------------------
 
@@ -41,31 +38,23 @@ namespace Wb.Companion.Core.Inputs {
 
 		private void Awake() {
 			CameraTransform.instance = this;
-			this.targetPosition = this.translateTarget.position;
+            this.targetPosition = new Vector3(0f, this.cameraHeight, 0f);
 		}
 
 		//-----------------------------------------------------------------------------
 
         private void Start() {
-
-            if (this.rotateTarget == null) {
-                this.rotateTarget = this.transform;
-            }
-
-            if (this.translateTarget == null) {
-                this.translateTarget = this.transform;
-            }
-		
-            //this.pos = this.translateTarget.position;
         }
 
 		private void LateUpdate() {
 
+            float damping = this.dampingFactor * (1 + this.panMagnitude / 100);
+            //float damping = this.dampingSpeedFactor * (1 + this.panMagnitude / 100);
+            //Debug.Log("PanMagnitude: " + this.panMagnitude);
 
-			float damping = this.dampingSpeedFactor * (1 + this.panMagnitude/100);
-
-			this.translateTarget.position = Vector3.Lerp(this.translateTarget.position, this.targetPosition, Time.deltaTime * damping);
-
+            Camera.main.transform.localPosition = Vector3.Lerp(Camera.main.transform.localPosition, this.targetPosition, Time.deltaTime * damping);
+            
+            //Camera.main.transform.localPosition = Vector3.Lerp(this.oldPos, this.camMovement, Time.deltaTime);
 		}
 
         //-----------------------------------------------------------------------------
@@ -95,7 +84,7 @@ namespace Wb.Companion.Core.Inputs {
         //-----------------------------------------------------------------------------
 
 		public void tapHandler(object sender, EventArgs e) {
-			//Debug.Log ("TIPPIDITAPPTAPP");
+            //Debug.Log ("TIPPIDITAPPTAPP");
 			TouchScript.Gestures.TapGesture gesture = sender as TouchScript.Gestures.TapGesture;
 	
 			if (float.IsNaN(gesture.ScreenPosition.x) || float.IsNaN(gesture.ScreenPosition.y)) {
@@ -142,7 +131,7 @@ namespace Wb.Companion.Core.Inputs {
 			}
 
 		    if (gesture.ActiveTouches.Count < 2) {
-                this.setPosition(gesture.ScreenPosition, false, false);
+                //this.setPosition(gesture.ScreenPosition, false, false);
             }
         }
 
@@ -155,7 +144,7 @@ namespace Wb.Companion.Core.Inputs {
 			if (float.IsNaN(gesture.ScreenPosition.x) || float.IsNaN(gesture.ScreenPosition.y)) {
 				return;
 			}
-			this.setPosition(gesture.ScreenPosition, true, true);
+            //this.setPosition(gesture.ScreenPosition, true, true);
 		}
 		
 		//-----------------------------------------------------------------------------
@@ -169,9 +158,35 @@ namespace Wb.Companion.Core.Inputs {
 				return;
 			}
 
-	        if (gesture.ActiveTouches.Count < 2) {
-                this.setPosition(gesture.ScreenPosition, true, false);
+
+            if (gesture.ActiveTouches.Count < 2) {
+
+                Vector3 oldPos = Camera.main.transform.localPosition;
+                Vector3 camMovement = gesture.WorldDeltaPosition;
+                camMovement.y = 0;
+                camMovement.x *= 1.5f; // better real feeling on touch screen devices
+
+                oldPos -= camMovement;
+                
+                Vector3 newPos = oldPos;
+
+                this.panMagnitude = gesture.WorldDeltaPosition.magnitude;
+
+                newPos.x = Mathf.Clamp(newPos.x, this.minBounds, this.maxBounds);
+                newPos.y = this.cameraHeight;
+                newPos.z = Mathf.Clamp(newPos.z, this.minBounds, this.maxBounds);
+
+                this.targetPosition = newPos;
+
+
+                // only moving without fancy stuff
+                //this.camMovement = gesture.WorldDeltaPosition;
+                //this.camMovement.y = 1000;
+                //this.camMovement.x *= 1.5f;
+                //Camera.main.transform.localPosition += camMovement;
             }
+
+           
         }
 
         //-----------------------------------------------------------------------------
@@ -187,12 +202,12 @@ namespace Wb.Companion.Core.Inputs {
 			if (gesture.ActiveTouches.Count > 1 && gesture.ActiveTouches.Count < 3) {
 				Debug.Log ("----- Rotation Gesture");
 
-				Debug.Log ("LOCAL SCALE: "  + this.rotateTarget);// this.rotateTarget.transform.rotation);//Vector3 rotationOld = this.getWorldScale(this.rotateTarget.transform);
+                //Debug.Log ("LOCAL SCALE: "  + this.rotateTarget);// this.rotateTarget.transform.rotation);//Vector3 rotationOld = this.getWorldScale(this.rotateTarget.transform);
 
 				// FIXME Fix moving lag on rotation start with Gesture Rotation Threshold
 				float rotationAngle = /*gesture.RotationThreshold - */gesture.DeltaRotation;
 
-				this.rotateTarget.rotation = Quaternion.AngleAxis(rotationAngle, this.rotateTarget.up ) * this.rotateTarget.rotation;
+                //this.rotateTarget.rotation = Quaternion.AngleAxis(rotationAngle, this.rotateTarget.up ) * this.rotateTarget.rotation;
 
 			}
         }
@@ -201,20 +216,20 @@ namespace Wb.Companion.Core.Inputs {
 
         private void setPosition(Vector3 screenPos, bool changePos, bool isCompleted) {
 
-	        this.plane.SetNormalAndPosition(this.translateTarget.up, this.targetPosition);
+            //this.plane.SetNormalAndPosition(this.translateTarget.up, this.targetPosition);
 
-			Ray ray = Camera.main.ScreenPointToRay(screenPos);
+            //Ray ray = Camera.main.ScreenPointToRay(screenPos);
 
-			float hitDistance;
-			this.plane.Raycast(ray, out hitDistance);
+            //float hitDistance;
+            //this.plane.Raycast(ray, out hitDistance);
 	
-	        if (this.plane.Raycast(ray, out hitDistance)) {
+            //if (this.plane.Raycast(ray, out hitDistance)) {
 
-	           	// if (changePos) {
-				//	this.changePosition(this.oldPos - ray.GetPoint(hitDistance), isCompleted);
-	           	// }
-	           	// this.oldPos = ray.GetPoint(hitDistance);
-	        }
+            //    if (changePos) {
+            //        this.changePosition(this.oldPos - ray.GetPoint(hitDistance), isCompleted);
+            //    }
+            //    this.oldPos = ray.GetPoint(hitDistance);
+            //}
         }
 
         //-----------------------------------------------------------------------------
@@ -241,10 +256,10 @@ namespace Wb.Companion.Core.Inputs {
 		
 		private void setZoom(float localDeltaScale) {
 
-			Vector3 pos = this.translateTarget.position;
-			float zoomY = Mathf.Clamp(pos.y * localDeltaScale, this.zoomMin, this.zoomMax);
-			//Debug.Log ("RESULT " + resultY.ToString());
-			this.targetPosition = new Vector3(pos.x, zoomY, pos.z);
+            ////Vector3 pos = this.translateTarget.position;
+            //float zoomY = Mathf.Clamp(newPos.y * localDeltaScale, this.zoomMin, this.zoomMax);
+            ////Debug.Log ("RESULT " + resultY.ToString());
+            //this.targetPosition = new Vector3(newPos.x, zoomY, newPos.z);
 		}
 
 
