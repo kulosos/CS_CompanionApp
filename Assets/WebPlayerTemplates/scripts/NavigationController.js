@@ -34,19 +34,21 @@ function loadPageContent(page, callback){
     // CALLBACK
 	if(callback != undefined && typeof callback == 'function') callback();
 }
-
+// ----------------------------------------------
 function switchGameUI(){
 	console.info("GameUI switched");
 	if(!isGameUIActive){
 		loadGameUI();
+		//showLoadingBar();
 		isGameUIActive = true;
 	}
 	else{
 		unloadGameUI();
+		//showLoadingBar();
 		isGameUIActive = false;
 	}
 }
-
+// ----------------------------------------------
 function toggleMainMenu(){
 	if(!isMainMenuActive){
 		loadMainMenu();
@@ -57,7 +59,16 @@ function toggleMainMenu(){
 		isMainMenuActive = false;
 	}
 }
+// ----------------------------------------------
+function showLoadingBar(){
+	loadPageContent("loadingbar");
+	//unloadGameUI();	
+}
 
+function hideLoadingBar() {
+	//loadGameUI();
+}
+// ----------------------------------------------
 function loadGameUI(){
 	// translate out animation
 	$('.header').animate({ "top": "0px" }, duration );

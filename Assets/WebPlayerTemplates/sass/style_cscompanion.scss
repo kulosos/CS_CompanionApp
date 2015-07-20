@@ -14,7 +14,8 @@ $font-weight-text:		300;
 $font-size-hl1:			22px;
 $font-weight-hl1:		500;
 
-$bg_yellow80:			rgba(254,193,6,08); //#fec106
+$bg_yellow:		   	  	rgba(254,193,6, 1.0); //#fec106
+$bg_yellow80:		   	rgba(254,193,6,0.8); //#fec106
 $bg_darkgray50:			rgba( 20, 20, 20,0.5);
 $bg_darkgray80:			rgba( 20, 20, 20,0.8);
 $bg_gray80:				rgba(100,100,100,0.8);
@@ -136,3 +137,4 @@ body {
 
 @import "_style_cscompanion_start.scss";
 @import "_style_cscompanion_mainmenu.scss";
+@import "_style_cscompanion_loadingbar.scss";

@@ -299,4 +299,29 @@ body {
     margin: 20px 15px 0px 20px;
     background: none; }
 
+/*---------------------------------------*/
+.loadingBarWrapper {
+  position: absolute;
+  background: black;
+  height: 100%;
+  width: 100%;
+  margin: 0 auto; }
+
+.loadingBar {
+  background: #fec106;
+  color: black;
+  width: auto;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  padding: 20px;
+  overflow: hidden; }
+  .loadingBar img {
+    height: 20px;
+    width: 20px;
+    margin: 0px 10px 0px 0px; }
+  .loadingBar span {
+    margin: -10px 0px 0px 0px; }
+
 /*# sourceMappingURL=style_cscompanion.css.map */
