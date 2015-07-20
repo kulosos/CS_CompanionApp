@@ -23,11 +23,15 @@ namespace Wb.Companion.Core.WbAdministration {
         private bool D = true; //DEBUGGING
         public UIManager uiManager;
         public string currentScene;
-        private string DefaultStartScene;
+		private string DefaultStartScene;// = SceneList.RemoteControl;
 
         //---------------------------------------------------------------------
         // MonoBehaviour
         //---------------------------------------------------------------------
+
+		void Awake() {
+
+		}
 
         void Start() {
         }
@@ -60,14 +64,24 @@ namespace Wb.Companion.Core.WbAdministration {
             return sceneList;
         }
 
-        public void setDefaultStartScene(int selectedItem) {
-            this.DefaultStartScene = this.getSceneList()[selectedItem];
+        public void setDefaultStartScene(int scene) {
+            this.DefaultStartScene = this.getSceneList()[scene];
         }
 
         public string getDefaultStartScene() {
             return this.DefaultStartScene;
         }
 
+		public int getDefaultStartSceneInt(){
+			int sceneId = 0;
+	
+			for(int i = 0; i < this.getSceneList().Length; i++){
+				if(this.getDefaultStartScene().Equals(this.getSceneList()[i])){
+					sceneId = i;
+				}
+			}
+			return sceneId;
+		}
 
         public void setCurrentScene(string scene) {
             this.currentScene = scene;

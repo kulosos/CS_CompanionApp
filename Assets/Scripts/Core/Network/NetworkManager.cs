@@ -135,7 +135,7 @@ namespace Wb.Companion.Core.WbNetwork {
 			Debug.Log("Server connection successfully established.");
             //this.uiManager.switchGameUI();
            
-			this.sceneManager.loadScene("b");
+			this.sceneManager.loadScene(this.sceneManager.getDefaultStartScene());
 		}
 
 		// Call on the client
@@ -160,7 +160,7 @@ namespace Wb.Companion.Core.WbNetwork {
 			this.uiManager.setConnectionErrorMsg("Failed to establish server connection");
             this.uiManager.setConnectionLoadingBar();
             if(D){
-                this.sceneManager.loadScene(SceneList.Map);
+                this.sceneManager.loadScene(this.sceneManager.getDefaultStartScene());
                 //this.uiManager.loadGameUI();
             }
 		}

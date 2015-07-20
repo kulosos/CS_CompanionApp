@@ -1,11 +1,10 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/NetworkManager.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Core/Administration/SceneManager.cs">
     <Files>
-      <File FileName="Assets/Scripts/UI/UIManager.cs" Line="31" Column="46" />
-      <File FileName="Assets/Scripts/UI/UIWrapper.cs" Line="18" Column="31" />
-      <File FileName="Assets/Scripts/NetworkManager.cs" Line="134" Column="61" />
-      <File FileName="Assets/Scripts/Core/Inputs/InputManager.cs" Line="15" Column="35" />
+      <File FileName="Assets/Scripts/Core/Administration/SceneManager.cs" Line="33" Column="4" />
+      <File FileName="Assets/Scripts/Editor/AdminstrationEditor.cs" Line="32" Column="4" />
+      <File FileName="Assets/Scripts/Core/Network/NetworkManager.cs" Line="163" Column="85" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
