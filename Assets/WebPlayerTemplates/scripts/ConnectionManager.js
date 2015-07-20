@@ -19,6 +19,7 @@ function initConnectionMananger() {
 function connect(){
 	
 	resetInputError();
+	setConnectionLoadingBar();
 	
 	connection.ip = $("#content").find('#ipAdress').val(), 
 	connection.port = $("#content").find('#port').val();
@@ -59,4 +60,9 @@ function setInputError(msg){
 function resetInputError(){
 	$("#content").find(".inputError").css("visibility", "hidden");
 	$("#content").find(".inputError").text("");
+}
+
+function setConnectionLoadingBar(){
+	$("#content").find(".btnConnectText").toggleClass("hide");
+	$("#content").find(".connectionLoadingBar").toggleClass("hide");
 }

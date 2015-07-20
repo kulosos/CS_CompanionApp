@@ -15,6 +15,7 @@ var duration = 500;
 
 var isGameUIActive = false;
 var isMainMenuActive = false;
+var isLoading = false;
 
 function initNavigation() {
 
@@ -36,14 +37,19 @@ function loadPageContent(page, callback){
 }
 // ----------------------------------------------
 function switchGameUI(){
-	console.info("GameUI switched");
+	//console.info("GameUI switched");
+	
+	if(isLoading){
+		
+	}
+	
 	if(!isGameUIActive){
-		loadGameUI();
+		//loadGameUI();
 		//showLoadingBar();
 		isGameUIActive = true;
 	}
 	else{
-		unloadGameUI();
+		//unloadGameUI();
 		//showLoadingBar();
 		isGameUIActive = false;
 	}
@@ -66,6 +72,8 @@ function showLoadingBar(){
 }
 
 function hideLoadingBar() {
+	console.info("hideLoadingBar");
+	$("#content").find(".loadingBarWrapper").remove();
 	//loadGameUI();
 }
 // ----------------------------------------------
@@ -73,7 +81,7 @@ function loadGameUI(){
 	// translate out animation
 	$('.header').animate({ "top": "0px" }, duration );
 	$('#startpage .outerWrapper').animate({ "top": docHeight + "px"}, duration, function(){
-		$("#startpage").remove();
+	$("#startpage").remove();
 	});
 	$('.footerLogoFixConSim').animate({ "bottom": "-"+$(".footerLogoFixConSim").css("height") }, duration);
 	$('.footer').animate({ "bottom": "-"+$(".footer").css("height") }, duration);
@@ -153,6 +161,12 @@ function setEventListeners(page){
 
 function bindMenuButtons(){
 	$("body").find("#menuIdBackToStart").bind( "click", function() {
-			switchGameUI();
+		unloadGameUI();
 	});
+	
+	$("body").find("#menuIdRemoteControl").bind( "click", function() {
+		
+	});
+	
+	
 }

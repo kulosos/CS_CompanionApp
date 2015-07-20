@@ -135,6 +135,10 @@ body {
 	height:20%;
 }
 
+.hide {
+	display: none;
+}
+
 @import "_style_cscompanion_start.scss";
 @import "_style_cscompanion_mainmenu.scss";
 @import "_style_cscompanion_loadingbar.scss";

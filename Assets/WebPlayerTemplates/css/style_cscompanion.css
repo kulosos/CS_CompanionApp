@@ -102,6 +102,10 @@ body {
   right: 20px;
   bottom: 0px;
   height: 20%; }
+  
+.hide {
+	display: none;
+}
 
 /* --------------------------------------
 	STARTPAGE
@@ -249,6 +253,12 @@ body {
     text-align: center;
     margin: 10px 0px 0px 0px;
     padding: 10px 0px 10px 0px; }
+    
+    #startpage .connectionLoadingBar{
+		height:16px;
+		width:16px;
+	   }
+    
 
 /* --------------------------------------
 	MAIN MENU

@@ -19,15 +19,16 @@ var globals = {
 
 function initDataBinding(){
 	
+	// Bindings, triggered by Unity for UI
 	engine.on("Ready", function(){});
-	
 	engine.on("switchGameUI", switchGameUI);
+	engine.on("loadGameUI", loadGameUI);
+	engine.on("unloadGameUI", unloadGameUI);
+	engine.on("setConnectionLoadingBar", setConnectionLoadingBar);
 	engine.on("setConnectionErrorMsg", setInputError);
 	engine.on("showLoadingBar", showLoadingBar);
 	engine.on("hideLoadingBar", hideLoadingBar);
 }
-
-
 
 //-----------------------------------------------------------------------------
 /* EXAMPLES

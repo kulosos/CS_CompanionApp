@@ -13,7 +13,7 @@ namespace Wb.Companion.Core.WbNetwork {
 		public static NetworkManager instance;
 
 		public int defaultMaxConnecitions = 4;
-		public string defaultip = "127.0.0.1";
+		public string defaultIP = "127.0.0.1";
 		public int defaultPort = 25000;
 		public UIManager uiManager;
 		public SceneManager sceneManager;
@@ -77,8 +77,7 @@ namespace Wb.Companion.Core.WbNetwork {
 
 		//---------------------------------------------------------------------
 
-		public static void connect(string ip, string port, string password){
-
+		public static void connect(string ip, string port, string password){ 
 			int portNum = Convert.ToInt32(port);
 			Network.Connect(ip, portNum, password);
 			Debug.Log ("Connecting to " + ip +":"+ portNum + " - Password: " + password);	
@@ -134,13 +133,15 @@ namespace Wb.Companion.Core.WbNetwork {
 		// Call on the client when server connection successfully established
 		private void OnConnectedToServer() {
 			Debug.Log("Server connection successfully established.");
-			this.uiManager.switchGameUI();
-			this.sceneManager.loadScene(SceneList.Map);
+            //this.uiManager.switchGameUI();
+           
+			this.sceneManager.loadScene("b");
 		}
 
 		// Call on the client
 		private void OnDisconnectedFromServer(){
 			Debug.Log("Server connection disconnected.");
+            this.uiManager.unloadGameUI();
 		}
 
 		// Call on the server when player has successfully connected
@@ -157,8 +158,11 @@ namespace Wb.Companion.Core.WbNetwork {
 		private void OnFailedToConnect() {
 			Debug.Log("Failed to establish server connection.");
 			this.uiManager.setConnectionErrorMsg("Failed to establish server connection");
-            this.sceneManager.loadScene(SceneList.Map);
-
+            this.uiManager.setConnectionLoadingBar();
+            if(D){
+                this.sceneManager.loadScene(SceneList.Map);
+                //this.uiManager.loadGameUI();
+            }
 		}
 
 	}

@@ -44,10 +44,24 @@ namespace Wb.Companion.Core.UI {
 		// Bind Methods to UI 
 		//-----------------------------------------------------------------------------
 
+        // UI ELEMENTS
 		public void switchGameUI(){
 			this.coherentUiView.View.TriggerEvent("switchGameUI");
 		}
 
+        public void loadGameUI() {
+            this.coherentUiView.View.TriggerEvent("loadGameUI");
+        }
+
+        public void unloadGameUI() {
+            this.coherentUiView.View.TriggerEvent("unloadGameUI");
+        }
+
+        public void setConnectionLoadingBar() {
+            this.coherentUiView.View.TriggerEvent("setConnectionLoadingBar");
+        }
+
+        // CONNECTION
 		public void setConnectionErrorMsg(string obj){
 			this.coherentUiView.View.TriggerEvent("setConnectionErrorMsg", obj);
 		}

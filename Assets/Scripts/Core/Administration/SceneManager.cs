@@ -7,47 +7,74 @@ using System;
 
 namespace Wb.Companion.Core.WbAdministration {
 
-    //-----------------------------------------------------------------------------
+    //-------------------------------------------------------------------------
 
     public static class SceneList
     {
         public static string Main = "00_Main";
         public static string Map = "01_Map";
+        public static string RemoteControl = "02_RemoteControl";
     }
 
-    //-----------------------------------------------------------------------------
+    //-------------------------------------------------------------------------
 
     public class SceneManager : MonoBehaviour {
 
+        private bool D = true; //DEBUGGING
         public UIManager uiManager;
+        public string currentScene;
+        private string DefaultStartScene;
 
-        //-----------------------------------------------------------------------------
+        //---------------------------------------------------------------------
         // MonoBehaviour
-        //-----------------------------------------------------------------------------
+        //---------------------------------------------------------------------
 
-        // Use this for initialization
         void Start() {
         }
 
-        // Update is called once per frame
         void Update() {
         }
 
-        //-----------------------------------------------------------------------------
+
+        //---------------------------------------------------------------------
 
         public void loadScene(string scene) {
-            // TODO
-            // start loading bar (rotating circle for e.g.)
+            //Debug.Log("sakldgöklsadgösdajgökjsdagökjhsdagök");
             this.uiManager.showLoadingBar();
-            StartCoroutine(LevelLoaded(scene));
+            StartCoroutine(levelLoaded(scene));
         }
 
-        private IEnumerator LevelLoaded(string scene) {
+        private IEnumerator levelLoaded(string scene) {
+            this.uiManager.showLoadingBar();
             yield return Application.LoadLevelAdditiveAsync(scene); ;
-            Debug.Log("Level: " + scene + " was loaded");
-            // TODO
-            // stop loading bar (rotating circle for e.g.)
+            if(D)Debug.Log("Level: " + scene + " was loaded");
             this.uiManager.hideLoadingBar();
+            this.uiManager.loadGameUI();
+            this.setCurrentScene(scene);
+        }
+
+        // SETTER / GETTER ----------------------------------------------------
+
+        public string[] getSceneList() {
+            string [] sceneList = new string[] { SceneList.Map, SceneList.RemoteControl };
+            return sceneList;
+        }
+
+        public void setDefaultStartScene(int selectedItem) {
+            this.DefaultStartScene = this.getSceneList()[selectedItem];
+        }
+
+        public string getDefaultStartScene() {
+            return this.DefaultStartScene;
+        }
+
+
+        public void setCurrentScene(string scene) {
+            this.currentScene = scene;
+        }
+
+        public string getCurrentScene() {
+            return this.currentScene;
         }
     }
 
