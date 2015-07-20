@@ -202,7 +202,7 @@ namespace Wb.Companion.Core.Inputs {
 				//Debug.Log ("LOCAL SCALE: "  + this.rotateTarget);// this.rotateTarget.transform.rotation);//Vector3 rotationOld = this.getWorldScale(this.rotateTarget.transform);
 
 				// FIXME Fix moving lag on rotation start with Gesture Rotation Threshold
-				float rotationAngle = /*gesture.RotationThreshold - */gesture.DeltaRotation;
+                //float rotationAngle = /*gesture.RotationThreshold - */gesture.DeltaRotation;
 
 				//this.rotateTarget.rotation = Quaternion.AngleAxis(rotationAngle, this.rotateTarget.up ) * this.rotateTarget.rotation;
 

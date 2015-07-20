@@ -52,6 +52,14 @@ namespace Wb.Companion.Core.UI {
 			this.coherentUiView.View.TriggerEvent("setConnectionErrorMsg", obj);
 		}
 
+        public void showLoadingBar() {
+            this.coherentUiView.View.TriggerEvent("showLoadingBar");
+        }
+
+        public void hideLoadingBar() {
+            this.coherentUiView.View.TriggerEvent("hideLoadingBar");
+        }
+
         //-----------------------------------------------------------------------------
 
 

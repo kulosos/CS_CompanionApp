@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using Wb.Companion.Core.WbNetwork;
+using Wb.Companion.Core.UI;
 using Wb.Companion;
 using System;
 
@@ -18,6 +19,8 @@ namespace Wb.Companion.Core.WbAdministration {
 
     public class SceneManager : MonoBehaviour {
 
+        public UIManager uiManager;
+
         //-----------------------------------------------------------------------------
         // MonoBehaviour
         //-----------------------------------------------------------------------------
@@ -33,7 +36,18 @@ namespace Wb.Companion.Core.WbAdministration {
         //-----------------------------------------------------------------------------
 
         public void loadScene(string scene) {
-            Application.LoadLevelAdditive(scene);
+            // TODO
+            // start loading bar (rotating circle for e.g.)
+            this.uiManager.showLoadingBar();
+            StartCoroutine(LevelLoaded(scene));
+        }
+
+        private IEnumerator LevelLoaded(string scene) {
+            yield return Application.LoadLevelAdditiveAsync(scene); ;
+            Debug.Log("Level: " + scene + " was loaded");
+            // TODO
+            // stop loading bar (rotating circle for e.g.)
+            this.uiManager.hideLoadingBar();
         }
     }
 
