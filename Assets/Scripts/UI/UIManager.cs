@@ -61,21 +61,24 @@ namespace Wb.Companion.Core.UI {
             this.coherentUiView.View.TriggerEvent("setConnectionLoadingBar");
         }
 
+        public void unloadMainMenu(string setMenuInactive) {
+            this.coherentUiView.View.TriggerEvent("unloadMainMenu", setMenuInactive);
+        }
+
         // CONNECTION
 		public void setConnectionErrorMsg(string obj){
 			this.coherentUiView.View.TriggerEvent("setConnectionErrorMsg", obj);
 		}
 
-        public void showLoadingBar() {
-            this.coherentUiView.View.TriggerEvent("showLoadingBar");
+        public void showLoadingScreen() {
+            this.coherentUiView.View.TriggerEvent("showLoadingScreen");
         }
 
-        public void hideLoadingBar() {
-            this.coherentUiView.View.TriggerEvent("hideLoadingBar");
+        public void hideLoadingScreen() {
+            this.coherentUiView.View.TriggerEvent("hideLoadingScreen");
         }
 
         //-----------------------------------------------------------------------------
-
 
 	}
 }

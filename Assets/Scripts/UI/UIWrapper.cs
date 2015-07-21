@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using Wb.Companion.Core.WbNetwork;
+using Wb.Companion.Core.WbAdministration;
 using Coherent.UI.Binding;
 
 //-----------------------------------------------------------------------------
@@ -20,6 +21,7 @@ namespace Wb.Companion.Core.UI {
 
 		private CoherentUIView coherentUiView;
 		public UIManager uiManager;
+        public SceneManager sceneManager;
 
 		//private InputBehavior inputBehavior = InputBehavior.CoherentUI_Unity3D;
 		
@@ -40,24 +42,25 @@ namespace Wb.Companion.Core.UI {
 
 			Debug.Log ("init bind methods");
 
-			// Example of binding JavaScript to UNITY with RETURN
-			// From Unity to JavaScript
-			//this.coherentUiView.View.BindCall("switchGameUI", new Action<string>(this.uiManager.ExampleTriggerToUI));
+            /*
+			//Example of binding JavaScript to UNITY with RETURN
+			//From Unity to JavaScript
+			this.coherentUiView.View.BindCall("switchGameUI", new Action<string>(this.uiManager.ExampleTriggerToUI));
 
+			this.coherentUiView.View.BindCall("functionName", new Func<string, string>(this.LogWithReturn));
 
-			//this.coherentUiView.View.BindCall("functionName", new Func<string, string>(this.LogWithReturn));
+			//Example of binding JavaScript to UNITY with RETURN
+			this.coherentUiView.View.BindCall("getConnectionParameter", new Func<string, string>(this.LogWithReturn));
 
-			
-			// Example of binding JavaScript to UNITY with RETURN
-			//this.coherentUiView.View.BindCall("getConnectionParameter", new Func<string, string>(this.LogWithReturn));
+			//Example of binding JavaScript to UNITY with Return Parameter
+					
+			this.coherentUiView.View.RegisterForEvent("debugInfo", new Action<string>( this.printDebugInfo ));
+            */
 
-			// Example of binding JavaScript to UNITY with Return Parameter
-			// From JavaScript to Unity
-			this.coherentUiView.View.RegisterForEvent("connect", new Action<string, string, string>(NetworkManager.connect));
-			this.coherentUiView.View.RegisterForEvent("disconnect", new Action(NetworkManager.disconnect));
-
-			//this.coherentUiView.View.RegisterForEvent("debugInfo", new Action<string>( this.printDebugInfo ));
-
+            //From JavaScript to Unity
+            this.coherentUiView.View.RegisterForEvent("connect", new Action<string, string, string>(NetworkManager.connect));
+            this.coherentUiView.View.RegisterForEvent("disconnect", new Action(NetworkManager.disconnect));
+            this.coherentUiView.View.RegisterForEvent("loadScene", new Action<string>(this.sceneManager.loadScene));
 		}
 
 		//-----------------------------------------------------------------------------

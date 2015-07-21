@@ -19,8 +19,6 @@ namespace Wb.Companion.WbEditor {
         public void Awake() {
             this.editorTarget = ((SceneManager)target);
             this.sceneList = this.editorTarget.getSceneList();
-
-			this.editorTarget.setDefaultStartScene(this.selectedItem);
 			this.selectedItem = this.editorTarget.getDefaultStartSceneInt();
         }
 
@@ -30,10 +28,14 @@ namespace Wb.Companion.WbEditor {
 
             DrawDefaultInspector();
 
-			this.selectedItem = EditorGUILayout.Popup("Default Start Scene", this.selectedItem, sceneList);
-            this.editorTarget.setDefaultStartScene(this.selectedItem);
 
-           
+            EditorGUI.BeginChangeCheck();
+
+			this.selectedItem = EditorGUILayout.Popup("Default Start Scene", this.selectedItem, sceneList);
+            if (EditorGUI.EndChangeCheck()) {
+                this.editorTarget.setDefaultStartScene(this.selectedItem);
+            }
+
         }
 
     }

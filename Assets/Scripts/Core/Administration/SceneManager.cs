@@ -23,15 +23,13 @@ namespace Wb.Companion.Core.WbAdministration {
         private bool D = true; //DEBUGGING
         public UIManager uiManager;
         public string currentScene;
-		private string DefaultStartScene;// = SceneList.RemoteControl;
+
+        [SerializeField]
+		private string DefaultStartScene;
 
         //---------------------------------------------------------------------
         // MonoBehaviour
         //---------------------------------------------------------------------
-
-		void Awake() {
-
-		}
 
         void Start() {
         }
@@ -39,20 +37,29 @@ namespace Wb.Companion.Core.WbAdministration {
         void Update() {
         }
 
-
         //---------------------------------------------------------------------
 
         public void loadScene(string scene) {
-            //Debug.Log("sakldgöklsadgösdajgökjsdagökjhsdagök");
-            this.uiManager.showLoadingBar();
-            StartCoroutine(levelLoaded(scene));
+
+            if (!this.currentScene.Equals(scene)) {
+
+                this.uiManager.showLoadingScreen();
+
+                GameObject sceneData = GameObject.Find("SceneData");
+                if (sceneData != null) {
+                    Destroy(sceneData);
+                }
+                              
+                StartCoroutine(levelLoaded(scene));
+            } else {
+                this.uiManager.unloadMainMenu("true");
+            }
         }
 
         private IEnumerator levelLoaded(string scene) {
-            this.uiManager.showLoadingBar();
-            yield return Application.LoadLevelAdditiveAsync(scene); ;
+            yield return Application.LoadLevelAdditiveAsync(scene);
             if(D)Debug.Log("Level: " + scene + " was loaded");
-            this.uiManager.hideLoadingBar();
+            this.uiManager.hideLoadingScreen();
             this.uiManager.loadGameUI();
             this.setCurrentScene(scene);
         }
@@ -60,7 +67,7 @@ namespace Wb.Companion.Core.WbAdministration {
         // SETTER / GETTER ----------------------------------------------------
 
         public string[] getSceneList() {
-            string [] sceneList = new string[] { SceneList.Map, SceneList.RemoteControl };
+            string[] sceneList = new string[] { SceneList.Map, SceneList.RemoteControl };
             return sceneList;
         }
 

@@ -16,6 +16,7 @@ var duration = 500;
 var isGameUIActive = false;
 var isMainMenuActive = false;
 var isLoading = false;
+var headerMenuListener = false;
 
 function initNavigation() {
 
@@ -61,17 +62,17 @@ function toggleMainMenu(){
 		isMainMenuActive = true;
 	}
 	else{
-		unloadMainMenu();		
+		unloadMainMenu(false);		
 		isMainMenuActive = false;
 	}
 }
 // ----------------------------------------------
-function showLoadingBar(){
+function showLoadingScreen(){
 	loadPageContent("loadingbar");
 	//unloadGameUI();	
 }
 
-function hideLoadingBar() {
+function hideLoadingScreen() {
 	console.info("hideLoadingBar");
 	$("#content").find(".loadingBarWrapper").remove();
 	//loadGameUI();
@@ -81,21 +82,25 @@ function loadGameUI(){
 	// translate out animation
 	$('.header').animate({ "top": "0px" }, duration );
 	$('#startpage .outerWrapper').animate({ "top": docHeight + "px"}, duration, function(){
-	$("#startpage").remove();
+		$("#startpage").remove();
 	});
 	$('.footerLogoFixConSim').animate({ "bottom": "-"+$(".footerLogoFixConSim").css("height") }, duration);
-	$('.footer').animate({ "bottom": "-"+$(".footer").css("height") }, duration);
+	$('.footer').animate({ "bottom": "-"+$(".footer").css("height") }, duration, function(){
+		$('.footerLogoFixConSim').hide();
+		$('.footer').hide();
+	});
 }
 
 function unloadGameUI(){
-	unloadMainMenu(function(){
+	unloadMainMenu(false, function(){
 		loadPageContent("start", function(){
 			$('#startpage .outerWrapper').css("top", docHeight + "px");
-			
 			$('.header').animate({ "top": $(".header").css("height")+"px" }, duration, function(){
 				// translate in animation
 				$('.header').animate({ "top": "0px" }, duration);
 				$('#startpage .outerWrapper').animate({ "top": "0px"}, duration);
+				$('.footerLogoFixConSim').show();
+				$('.footer').show();
 				$('.footerLogoFixConSim').animate({ "bottom": "0px" }, duration);
 				$('.footer').animate({ "bottom": "0px"}, duration);
 			});
@@ -125,24 +130,34 @@ function loadMainMenu(callback){
 	});
 }
 
-function unloadMainMenu(callback){
+function unloadMainMenu(setMenuInactive, callback){
 	var menuItemWidth = parseInt($("#mainmenu").css("width"));
 		
 	$('#mainmenu').animate({ "right": (menuItemWidth * -1)+"px" }, duration, function(){
 		$("#mainmenu").remove();
+		
+			
 		// CALLBACK
 		if(callback != undefined && typeof callback == 'function') callback();
 	});
+	
+	if(setMenuInactive){
+			isMainMenuActive = false;
+		}
 }
 
 function setEventListeners(page){
 	
 	if(page == "start"){
-		mainMenuBtn = document.getElementById("headerMenuBtn");
-		if(mainMenuBtn != null){
-			mainMenuBtn.addEventListener("click", function() {
-				toggleMainMenu();
-			});
+		
+		if(!headerMenuListener){
+			mainMenuBtn = document.getElementById("headerMenuBtn");
+			if(mainMenuBtn != null){
+				mainMenuBtn.addEventListener("click", function() {
+					toggleMainMenu();
+				});
+			}
+			headerMenuListener = true;
 		}
 		
 		$( "#connectionInput" ).submit(function(event) {
@@ -164,8 +179,17 @@ function bindMenuButtons(){
 		unloadGameUI();
 	});
 	
-	$("body").find("#menuIdRemoteControl").bind( "click", function() {
+	$("body").find("#menuIdMap").bind( "click", function() {
+		unloadMainMenu(true, function(){
+			engine.trigger("loadScene", "01_Map");
+		});
 		
+	});
+	
+	$("body").find("#menuIdRemoteControl").bind( "click", function() {
+		unloadMainMenu(true, function(){
+			engine.trigger("loadScene", "02_RemoteControl");
+		});
 	});
 	
 	

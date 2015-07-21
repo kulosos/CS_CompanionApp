@@ -86,7 +86,7 @@ namespace Wb.Companion.Core.WbNetwork {
 		//---------------------------------------------------------------------
 		
 		public static void disconnect(){
-			Debug.Log ("Disconnecting ....");
+			Debug.Log ("Disconnecting ...");
 			if(Network.connections.Length > 0){
 				Network.Disconnect();
 				//MasterServer.UnregisterHost();
@@ -94,7 +94,6 @@ namespace Wb.Companion.Core.WbNetwork {
 				Debug.Log ("There is no connection to disconnect");
 			}
 		}
-
 
 		//---------------------------------------------------------------------
 
@@ -127,7 +126,6 @@ namespace Wb.Companion.Core.WbNetwork {
 			}
 		}
  
-
 		//---------------------------------------------------------------------
 
 		// Call on the client when server connection successfully established

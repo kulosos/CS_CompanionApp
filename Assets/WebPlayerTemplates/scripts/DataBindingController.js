@@ -24,10 +24,12 @@ function initDataBinding(){
 	engine.on("switchGameUI", switchGameUI);
 	engine.on("loadGameUI", loadGameUI);
 	engine.on("unloadGameUI", unloadGameUI);
+	engine.on("unloadMainMenu", unloadMainMenu);
 	engine.on("setConnectionLoadingBar", setConnectionLoadingBar);
+	engine.on("showLoadingScreen", showLoadingScreen);
+	engine.on("hideLoadingScreen", hideLoadingScreen);
 	engine.on("setConnectionErrorMsg", setInputError);
-	engine.on("showLoadingBar", showLoadingBar);
-	engine.on("hideLoadingBar", hideLoadingBar);
+	
 }
 
 //-----------------------------------------------------------------------------
