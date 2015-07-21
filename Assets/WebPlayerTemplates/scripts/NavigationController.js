@@ -31,10 +31,9 @@ function loadPageContent(page, callback){
 	var filepath = "./content/" + page + ".html";
 	$("#content").load(filepath, function(){
 		setEventListeners(page);
+		// CALLBACK
+		if(callback != undefined && typeof callback == 'function') callback();
 	});
-	
-    // CALLBACK
-	if(callback != undefined && typeof callback == 'function') callback();
 }
 // ----------------------------------------------
 function switchGameUI(){
@@ -109,20 +108,21 @@ function unloadGameUI(){
 }
 
 function loadMainMenu(callback){
-
-	console.info("load main menu");
-
+	
 	loadPageContent("menu", function(){
-
+		
+		$("#mainmenu").hide;
 		$("#mainmenu").css("top", $(".header").css("height"));
 
 		var headerHeight =  parseInt($(".header").css("height")) + 3;
-		var owHeight = docHeight - headerHeight ;
+		var owHeight = docHeight - headerHeight;
 		var menuItemWidth = parseInt($("#mainmenu").css("width"))*-1;
-		
+
 		$("#mainmenu").css("height", owHeight+"px");
 		$("#mainmenu .outerWrapper").css("height", owHeight+"px");
 		$("#mainmenu").css("right", menuItemWidth);
+		
+		$("#mainmenu").show;
 		$('#mainmenu').animate({ "right": "2px" }, duration, function() {
 			// CALLBACK
 			if(callback != undefined && typeof callback == 'function') callback();
@@ -132,18 +132,16 @@ function loadMainMenu(callback){
 
 function unloadMainMenu(setMenuInactive, callback){
 	var menuItemWidth = parseInt($("#mainmenu").css("width"));
-		
 	$('#mainmenu').animate({ "right": (menuItemWidth * -1)+"px" }, duration, function(){
 		$("#mainmenu").remove();
 		
-			
 		// CALLBACK
 		if(callback != undefined && typeof callback == 'function') callback();
 	});
 	
 	if(setMenuInactive){
-			isMainMenuActive = false;
-		}
+		isMainMenuActive = false;
+	}
 }
 
 function setEventListeners(page){
@@ -176,14 +174,15 @@ function setEventListeners(page){
 
 function bindMenuButtons(){
 	$("body").find("#menuIdBackToStart").bind( "click", function() {
-		unloadGameUI();
+		unloadMainMenu(true, function(){
+			unloadGameUI();
+		});
 	});
 	
 	$("body").find("#menuIdMap").bind( "click", function() {
 		unloadMainMenu(true, function(){
 			engine.trigger("loadScene", "01_Map");
 		});
-		
 	});
 	
 	$("body").find("#menuIdRemoteControl").bind( "click", function() {
@@ -191,6 +190,5 @@ function bindMenuButtons(){
 			engine.trigger("loadScene", "02_RemoteControl");
 		});
 	});
-	
 	
 }
