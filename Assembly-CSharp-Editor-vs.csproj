@@ -157,13 +157,13 @@
  <HintPath>D:/Projekte/BauSimulator2015_CompanionApp/GitHubProject/CS_CompanionApp/Assets/Libs/TouchScript/Plugins/TouchScript.Windows.dll</HintPath>
  </Reference>
  <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
- <HintPath>D:/Projekte/BauSimulator2015_CompanionApp/GitHubProject/CS_CompanionApp/Assets/Libs/UnityVS/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
+ <HintPath>D:/Projekte/BauSimulator2015_CompanionApp/GitHubProject/CS_CompanionApp/Assets/UnityVS/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
  </Reference>
  <Reference Include="SyntaxTree.VisualStudio.Unity.Messaging">
- <HintPath>D:/Projekte/BauSimulator2015_CompanionApp/GitHubProject/CS_CompanionApp/Assets/Libs/UnityVS/Editor/SyntaxTree.VisualStudio.Unity.Messaging.dll</HintPath>
+ <HintPath>D:/Projekte/BauSimulator2015_CompanionApp/GitHubProject/CS_CompanionApp/Assets/UnityVS/Editor/SyntaxTree.VisualStudio.Unity.Messaging.dll</HintPath>
  </Reference>
  <Reference Include="UnityVS.VersionSpecific">
- <HintPath>D:/Projekte/BauSimulator2015_CompanionApp/GitHubProject/CS_CompanionApp/Assets/Libs/UnityVS/Editor/UnityVS.VersionSpecific.dll</HintPath>
+ <HintPath>D:/Projekte/BauSimulator2015_CompanionApp/GitHubProject/CS_CompanionApp/Assets/UnityVS/Editor/UnityVS.VersionSpecific.dll</HintPath>
  </Reference>
  <Reference Include="CoherentUIMobileNet">
  <HintPath>D:/Projekte/BauSimulator2015_CompanionApp/GitHubProject/CS_CompanionApp/Assets/Plugins/CoherentUIMobileNet.dll</HintPath>

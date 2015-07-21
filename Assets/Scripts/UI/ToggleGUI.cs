@@ -1,23 +1,29 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.EventSystems;
 
-public class ToggleGUI : MonoBehaviour {
+public class ToggleGUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler  {
 
 	private bool isActive = true;
+    bool pressed = false;
+    int i = 0;
+
 	
 	// --------------------------------------------------------------------
 
-	void OnGUI() {
+    void Update() {
+        if (pressed) {
+            i += 1;
+            Debug.Log(i);
+        }
+    }
 
-		if (GUI.Button(new Rect(5, 5, 160, 50), "Toggle UI")){
-			if(isActive){
-				gameObject.SetActive(false);
-				this.isActive = false;
-			}else{
-				gameObject.SetActive(true);
-				this.isActive = true;
-			}
-		}
-	}
+    public void OnPointerDown(PointerEventData eventData){
+        pressed = true;
+    }
+
+    public void OnPointerUp(PointerEventData eventData) {
+        pressed = false;
+    }
 
 }
