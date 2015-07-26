@@ -43,7 +43,7 @@ namespace Wb.Companion.Core.WbAdministration {
 
             if (!this.currentScene.Equals(scene)) {
 
-                this.uiManager.showLoadingScreen();
+                //this.uiManager.showLoadingScreen();
 
                 GameObject sceneData = GameObject.Find("SceneData");
                 if (sceneData != null) {

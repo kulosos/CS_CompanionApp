@@ -14,8 +14,7 @@ body {
   font: 100% Helvetica, sans-serif;
   color: #333;
   font-size: 18px;
-  font-weight: 300;
-  background-color: rgba(255, 0, 0, 0.1); }
+  font-weight: 300; }
 
 .header {
   position: fixed;
@@ -102,10 +101,9 @@ body {
   right: 20px;
   bottom: 0px;
   height: 20%; }
-  
+
 .hide {
-	display: none;
-}
+  display: none; }
 
 /* --------------------------------------
 	STARTPAGE
@@ -253,12 +251,9 @@ body {
     text-align: center;
     margin: 10px 0px 0px 0px;
     padding: 10px 0px 10px 0px; }
-    
-    #startpage .connectionLoadingBar{
-		height:16px;
-		width:16px;
-	   }
-    
+  #startpage .connectionLoadingBar {
+    height: 16px;
+    width: 16px; }
 
 /* --------------------------------------
 	MAIN MENU

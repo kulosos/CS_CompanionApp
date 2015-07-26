@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.EventSystems;
+using Wb.Companion.Core.WbNetwork;
 
 public class ToggleGUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler  {
 
-	private bool isActive = true;
+	//private bool isActive = true;
     bool pressed = false;
     int i = 0;
 
@@ -14,7 +15,8 @@ public class ToggleGUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler  
     void Update() {
         if (pressed) {
             i += 1;
-            Debug.Log(i);
+           // Debug.Log(i);
+			NetworkManager.getInstance().holdFire("fire " + i.ToString());
         }
     }
 

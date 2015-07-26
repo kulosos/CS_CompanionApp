@@ -160,7 +160,7 @@ function setEventListeners(page){
 		
 		$( "#connectionInput" ).submit(function(event) {
 		  connect();
-		  if(D)switchGameUI();
+		  //if(D)switchGameUI();
 		  event.preventDefault();
 		});
 		return;

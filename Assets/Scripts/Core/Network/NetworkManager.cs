@@ -18,6 +18,11 @@ namespace Wb.Companion.Core.WbNetwork {
 		public UIManager uiManager;
 		public SceneManager sceneManager;
 
+		public Transform cubePrefab;
+		public NetworkView nView;
+		public bool lauchServerOnStart = false;
+
+
 		//---------------------------------------------------------------------
 		
 		public void Awake() {
@@ -33,36 +38,65 @@ namespace Wb.Companion.Core.WbNetwork {
 		// Use this for initialization
 		void Start() {
 			if(D)Network.logLevel = NetworkLogLevel.Informational;
+			nView = GetComponent<NetworkView>();
+
+			if(lauchServerOnStart){
+				NetworkManager.launchServer("4", "25000", "pw");
+			}
 		}
 
 		// Update is called once per frame
 		void Update() {
 		}
+	
+		//---------------------------------------------------------------------
+
+		public void spawner(){
+			NetworkViewID viewID = Network.AllocateViewID();
+			nView.RPC("SpawnBox", RPCMode.AllBuffered, viewID, transform.position);
+		}
+
+		public void rpcBtn(string str){
+			NetworkViewID viewID = Network.AllocateViewID();
+			nView.RPC("rpcTest", RPCMode.AllBuffered, "this is da shit from the method which is calling the real rpc test method");
+		}
+
+		public void holdFire(string txt){
+			NetworkViewID viewID = Network.AllocateViewID();
+			nView.RPC("rpcTest", RPCMode.AllBuffered, txt);
+		}
+
+		public void disconnectBtn(){
+			NetworkManager.disconnect();
+		}
+
+		[RPC]
+		public void SpawnBox(NetworkViewID viewID, Vector3 location) {
+			Transform clone;
+			clone = Instantiate(cubePrefab, location, Quaternion.identity) as Transform as Transform;
+			NetworkView nView;
+			nView = clone.GetComponent<NetworkView>();
+			nView.viewID = viewID;
+			Debug.Log ("Spawn a new one");
+		}
+
+		public void connectionInfoBtn(){
+			NetworkManager.connectionInfo();
+		}
 
 		//---------------------------------------------------------------------
 
-		//void OnGUI() {
 
-		//    if (GUI.Button(new Rect(0, 5, 150, 50), "launch Server")){
-		//        NetworkManager.launchServer("4", "25000", "pw");
-		//    }
-
-		//    if (GUI.Button(new Rect(170, 5, 150, 50), "connect")) {
-		//       Network.Connect(this.defaultip, this.defaultPort);
-		//    }
-
-		//    if (GUI.Button(new Rect(330, 5, 150, 50), "disconnect")) {
-		//        NetworkManager.disconnect();
-		//    }
-
-		//    if (GUI.Button(new Rect(490, 5, 150, 50), "info")) {
-		//        NetworkManager.connectionInfo();
-		//    }
-			
-		//}
-
+		[RPC]
+		public void rpcTest(string txt) {
+			Debug.Log(txt);
+		}
 
 		//---------------------------------------------------------------------
+
+		public void launchServerBtn(){
+			NetworkManager.launchServer("4", "25000", "pw");
+		}
 
 		public static void launchServer(string maxConnections, string listenport, string password) {
 			Debug.Log("Init Server");
@@ -162,6 +196,11 @@ namespace Wb.Companion.Core.WbNetwork {
                 //this.uiManager.loadGameUI();
             }
 		}
+
+		// -----------------------------------------------------------------
+
+
+
 
 	}
 }
