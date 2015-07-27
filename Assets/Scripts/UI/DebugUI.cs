@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine.EventSystems;
 using Wb.Companion.Core.WbNetwork;
 
-public class ToggleGUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler  {
+public class DebugUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler  {
 
 	//private bool isActive = true;
     bool pressed = false;
