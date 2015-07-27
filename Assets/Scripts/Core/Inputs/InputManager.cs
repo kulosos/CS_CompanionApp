@@ -11,12 +11,18 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
 using Wb.Companion.Core;
+using Wb.Companion.Core.WbNetwork;
 
 namespace Wb.Companion.Core.Inputs {
 
     //-------------------------------------------------------------------------
 
     public class InputManager : MonoBehaviour {
+
+        public enum TiltAxis {
+            forward = 0,
+            sideways = 1
+        }
 
 		public static InputManager instance;
 
@@ -29,6 +35,12 @@ namespace Wb.Companion.Core.Inputs {
 		public System.Action<Vector2> OnTouchSinglePan;
 		public System.Action<Vector2> OnTouchDoublePan;
 
+        // TiltInput
+        public float forwardCenterAngleOffset = 0f;
+        public float sidewaysCenterAngleOffset = 0f;
+        public float forwardFullTiltAngle = 42f;
+        public float sidewaysFullTiltAngle = 42f;
+
 		//---------------------------------------------------------------------
 
 		public void Awake() {
@@ -38,8 +50,6 @@ namespace Wb.Companion.Core.Inputs {
 		public static InputManager getInstance(){
 			return InputManager.instance;
 		}
-
-        //---------------------------------------------------------------------
 
         public void Start() {
 
@@ -51,6 +61,15 @@ namespace Wb.Companion.Core.Inputs {
 			this.rotateGesture.Rotated += CameraTransform.getInstance().rotateHandler;
 			this.releaseGesture.Released += CameraTransform.getInstance().releaseHandler;
 
+        }
+
+        void Update() {
+
+            Debug.Log(CalcAxisValue(TiltAxis.sideways));
+
+            // Tilt Input
+            NetworkManager.getInstance().sendRPCTiltInput(CalcAxisValue(TiltAxis.sideways));
+           
         }
 
         //---------------------------------------------------------------------
@@ -111,8 +130,33 @@ namespace Wb.Companion.Core.Inputs {
 			
 		}
 
-	
+        // --------------------------------------------------------------------
+        // Tilt Input
+        // --------------------------------------------------------------------
 
+        private float ForwardTiltAngle() {
+            return Mathf.Atan2(Input.acceleration.z, -Input.acceleration.y) * Mathf.Rad2Deg + this.forwardCenterAngleOffset;
+        }
+
+        //-----------------------------------------------------------------------------
+        /// <summary>Tilt in angle around y-Axis</summary>
+        private float SideWaysTiltAngle() {
+            return Mathf.Atan2(Input.acceleration.x, -Input.acceleration.y) * Mathf.Rad2Deg + this.sidewaysCenterAngleOffset;
+        }
+
+        //-----------------------------------------------------------------------------
+
+        public float CalcAxisValue(TiltAxis axis) {
+
+        #if UNITY_EDITOR
+            // Axes return strange default values in Editor
+            if (Input.acceleration == Vector3.zero) { return 0f; }
+        #endif
+
+            float angle = axis == TiltAxis.forward ? this.ForwardTiltAngle() : this.SideWaysTiltAngle();
+            float fullTiltAngle = axis == TiltAxis.forward ? this.forwardFullTiltAngle : this.sidewaysFullTiltAngle;
+            return Mathf.InverseLerp(-fullTiltAngle, fullTiltAngle, angle) * 2 - 1;
+        }
 
 	}
 }

@@ -61,9 +61,9 @@ namespace Wb.Companion.Core.WbNetwork {
 			nView.RPC("rpcTest", RPCMode.AllBuffered, "this is da shit from the method which is calling the real rpc test method");
 		}
 
-		public void holdFire(string txt){
-			NetworkViewID viewID = Network.AllocateViewID();
-			nView.RPC("rpcTest", RPCMode.AllBuffered, txt);
+		public void holdFire(string txt, bool active){
+            //NetworkViewID viewID = Network.AllocateViewID();
+			nView.RPC("rpcTest", RPCMode.AllBuffered, txt, active);
 		}
 
 		public void disconnectBtn(){
@@ -82,15 +82,12 @@ namespace Wb.Companion.Core.WbNetwork {
         // Remote Procedure Calls
         //---------------------------------------------------------------------
 
-        //[RPC]
-        //public void SpawnBox(NetworkViewID viewID, Vector3 location) {
-        //    Transform clone;
-        //    clone = Instantiate(cubePrefab, location, Quaternion.identity) as Transform as Transform;
-        //    NetworkView nView;
-        //    nView = clone.GetComponent<NetworkView>();
-        //    nView.viewID = viewID;
-        //    Debug.Log("Spawn a new one");
-        //}
+        public void sendRPCTiltInput(float value) {
+
+            nView.RPC("tiltInput", RPCMode.AllBuffered, value);
+
+   
+        }
 
         //[RPC]
         //public void rpcTest(string txt) {
