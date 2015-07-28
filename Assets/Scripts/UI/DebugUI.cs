@@ -17,17 +17,17 @@ public class DebugUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler  {
 
 		if(accelerateBtn){
 			if (pressed && InputManager.getInstance().activeConnection) {
-				NetworkManager.getInstance().holdFire("accelerate", 1.0f);
+				WbCompRPCWrapper.getInstance().holdFire("accelerate", 1.0f);
 			} else{
-				NetworkManager.getInstance().holdFire("accerlerate", 0.0f);
+                WbCompRPCWrapper.getInstance().holdFire("accerlerate", 0.0f);
 			}
 		}
 
 		if(brakeBtn){
 			if (pressed && InputManager.getInstance().activeConnection) {
-				NetworkManager.getInstance().holdFire("brake", 1.0f);
+                WbCompRPCWrapper.getInstance().holdFire("brake", 1.0f);
 			} else{
-				NetworkManager.getInstance().holdFire("brake", 0.0f);
+                WbCompRPCWrapper.getInstance().holdFire("brake", 0.0f);
 			}
 		}
 	}

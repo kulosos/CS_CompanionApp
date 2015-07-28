@@ -9,8 +9,6 @@ namespace Wb.Companion.Core.WbNetwork {
 
 	public class NetworkManager : MonoBehaviour {
 
-		private bool D = true; //DEBUGGING
-
 		public static NetworkManager instance;
 
 		public int defaultMaxConnecitions = 4;
@@ -18,10 +16,10 @@ namespace Wb.Companion.Core.WbNetwork {
 		public int defaultPort = 25000;
 		public UIManager uiManager;
 		public SceneManager sceneManager;
+		public NetworkView networkView;
 
-		public Transform cubePrefab;
-		public NetworkView nView;
 		public bool lauchServerOnStart = false;
+        public bool debugging = true;
 
 
 		//---------------------------------------------------------------------
@@ -35,66 +33,25 @@ namespace Wb.Companion.Core.WbNetwork {
 		}
 		
 		//---------------------------------------------------------------------
-	
-		// Use this for initialization
+
 		void Start() {
-			if(D)Network.logLevel = NetworkLogLevel.Off;
-			nView = GetComponent<NetworkView>();
+
+            // Set Network Log Level for Information
+            if(!debugging)Network.logLevel = NetworkLogLevel.Off;
+			if(debugging)Network.logLevel = NetworkLogLevel.Informational;
+
+			this.networkView = GetComponent<NetworkView>();
 
 			if(lauchServerOnStart){
 				NetworkManager.launchServer("4", "25000", "pw");
 			}
 		}
 
-		// Update is called once per frame
 		void Update() {
 		}
 	
 		//---------------------------------------------------------------------
 
-		public void rpcBtn(string str){
-			NetworkViewID viewID = Network.AllocateViewID();
-			nView.RPC("rpcTest", RPCMode.AllBuffered, str, 1234.56f);
-		}
-
-		public void holdFire(string input, float value){
-            //NetworkViewID viewID = Network.AllocateViewID();
-			nView.RPC("throttleInput", RPCMode.AllBuffered, input, value);
-		}
-
-		public void disconnectBtn(){
-			NetworkManager.disconnect();
-		}
-
-        public void launchServerBtn() {
-            NetworkManager.launchServer("4", "25000", "pw");
-        }
-
-		public void connectionInfoBtn(){
-			NetworkManager.connectionInfo();
-		}
-
-		//---------------------------------------------------------------------
-        // Remote Procedure Calls
-        //---------------------------------------------------------------------
-
-        public void sendRPCTiltInput(float value) {
-            nView.RPC("tiltInput", RPCMode.AllBuffered, value);
-        }
-
-        [RPC]
-        public void throttleInput(string txt, float value) {
-            //Debug.Log(txt);
-        }
-
-		[RPC]
-		public void tiltInput(float value){
-			//Debug.Log ("TiltInput: " + value);
-		}
-
-		//---------------------------------------------------------------------
-
-		
 		public static void launchServer(string maxConnections, string listenport, string password) {
 			Debug.Log("Init Server");
 			Network.incomingPassword = password;
@@ -152,8 +109,7 @@ namespace Wb.Companion.Core.WbNetwork {
 
 			}else{
 				Debug.Log ("No open network connections.");
-				//                Debug.Log ("LastPing: " + Network.GetLastPing().ToString());
-				//                Debug.Log ("Connections: " + Network.;
+				//Debug.Log ("LastPing: " + Network.GetLastPing().ToString());
 			}
 		}
  
@@ -190,16 +146,13 @@ namespace Wb.Companion.Core.WbNetwork {
 			Debug.Log("Failed to establish server connection.");
 			this.uiManager.setConnectionErrorMsg("Failed to establish server connection");
             this.uiManager.setConnectionLoadingBar();
-            if(D){
+
+            // TODO: this is only for debugging purposes
+            if(debugging){
                 this.sceneManager.loadScene(this.sceneManager.getDefaultStartScene());
                 //this.uiManager.loadGameUI();
             }
 		}
-
-		// -----------------------------------------------------------------
-
-
-
 
 	}
 }

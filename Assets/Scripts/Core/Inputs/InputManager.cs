@@ -67,13 +67,6 @@ namespace Wb.Companion.Core.Inputs {
         }
 
         void Update() {
-
-            // Tilt Input
-			if(InputManager.getInstance().activeConnection && InputManager.getInstance().activeTiltInput){
-				float tiltValue = CalcAxisValue(TiltAxis.sideways);
-				Debug.Log(tiltValue);
-				NetworkManager.getInstance().sendRPCTiltInput(tiltValue);
-			}
             
         }
 
