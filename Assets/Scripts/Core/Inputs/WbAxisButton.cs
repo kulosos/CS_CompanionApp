@@ -31,8 +31,9 @@ namespace Wb.Companion.Core.Inputs {
         [SerializeField]
         private float responseSpeed = 3;
 
+        [SerializeField]
         private bool isPressed = false;
-
+        [SerializeField]
         private float value = 0;
         
 		//-----------------------------------------------------------------------------
@@ -54,7 +55,7 @@ namespace Wb.Companion.Core.Inputs {
 
             if (this.isPressed) {
                 value = Mathf.MoveTowards(value, this.targetValue, this.responseSpeed * Time.deltaTime);
-                WbCompRPCWrapper.getInstance().setRPCTiltInput(value);
+                WbCompRPCWrapper.getInstance().setThrottle(this.axisName, value);
 
                 //WbInputManager.VirtualInput.SetAxisValue(this.axisName, Mathf.MoveTowards(WbInputManager.VirtualInput.GetAxis(this.axisName), this.targetValue, this.responseSpeed * Time.deltaTime));
             }
@@ -75,7 +76,7 @@ namespace Wb.Companion.Core.Inputs {
 
             this.isPressed = false;
             this.value = 0f;
-            WbCompRPCWrapper.getInstance().setRPCTiltInput(value);
+            WbCompRPCWrapper.getInstance().setThrottle(this.axisName, value);
 
             //WbInputManager.VirtualInput.SetAxisValue(this.axisName, 0f);
         }

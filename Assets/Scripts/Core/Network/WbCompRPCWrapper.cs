@@ -29,13 +29,6 @@ namespace Wb.Companion.Core.WbNetwork {
 
         void Update() {
 
-            // Tilt Input
-            if (InputManager.getInstance().activeConnection && InputManager.getInstance().activeTiltInput) {
-                float tiltValue = InputManager.getInstance().CalcAxisValue(InputManager.TiltAxis.sideways);
-                //Debug.Log(tiltValue);
-                //sendRPCTiltInput(tiltValue);
-            }
-
         }
 
         // ------------------------------------------------------------------------
@@ -53,6 +46,8 @@ namespace Wb.Companion.Core.WbNetwork {
         }
 
         //---------------------------------------------------------------------
+        // Set Methods
+        //---------------------------------------------------------------------
 
         public void setThrottle(string input, float value) {
             //NetworkViewID viewID = Network.AllocateViewID();
@@ -67,13 +62,14 @@ namespace Wb.Companion.Core.WbNetwork {
             networkView.RPC("setRPCGetIntoVehicle", RPCMode.AllBuffered, input);
         }
 
+        public void setTiltInput(float value) {
+            //Debug.Log(tiltValue);
+            networkView.RPC("tiltInput", RPCMode.AllBuffered, value);
+        }
+
         //---------------------------------------------------------------------
         // Remote Procedure Calls
         //---------------------------------------------------------------------
-
-        //public void sendRPCTiltInput(float value) {
-        //    networkView.RPC("tiltInput", RPCMode.AllBuffered, value);
-        //}
 
         [RPC]
         public void setRPCThrottleInput(string txt, float value) {

@@ -14,6 +14,7 @@ namespace Wb.Companion.Core.WbNetwork {
 		public int defaultMaxConnecitions = 4;
 		public string defaultIP = "127.0.0.1";
 		public int defaultPort = 25000;
+        public string defaultPassword = "pw";
 		public UIManager uiManager;
 		public SceneManager sceneManager;
 		public NetworkView networkView;
@@ -37,13 +38,16 @@ namespace Wb.Companion.Core.WbNetwork {
 		void Start() {
 
             // Set Network Log Level for Information
-            if(!debugging)Network.logLevel = NetworkLogLevel.Off;
-			if(debugging)Network.logLevel = NetworkLogLevel.Informational;
+            if (debugging) {
+                Network.logLevel = NetworkLogLevel.Informational;
+            } else {
+                Network.logLevel = NetworkLogLevel.Off;
+            }
 
 			this.networkView = GetComponent<NetworkView>();
 
 			if(lauchServerOnStart){
-				NetworkManager.launchServer("4", "25000", "pw");
+				NetworkManager.launchServer(NetworkManager.getInstance().defaultMaxConnecitions.ToString(), NetworkManager.getInstance().defaultPort.ToString(), NetworkManager.getInstance().defaultPassword);
 			}
 		}
 
