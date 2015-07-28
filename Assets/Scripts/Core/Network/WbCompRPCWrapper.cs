@@ -8,6 +8,7 @@ namespace Wb.Companion.Core.WbNetwork {
 
         public static WbCompRPCWrapper instance;
         public NetworkView networkView;
+		public bool debugging = false;
 
         // ------------------------------------------------------------------------
 
@@ -51,7 +52,7 @@ namespace Wb.Companion.Core.WbNetwork {
 
         public void setThrottle(string input, float value) {
             //NetworkViewID viewID = Network.AllocateViewID();
-            networkView.RPC("setThrottleInput", RPCMode.AllBuffered, input, value);
+			networkView.RPC("setRPCThrottleInput", RPCMode.AllBuffered, input, value);
         }
 
         public void setNextCamera(string input) {
@@ -63,8 +64,8 @@ namespace Wb.Companion.Core.WbNetwork {
         }
 
         public void setTiltInput(float value) {
-            //Debug.Log(tiltValue);
-            networkView.RPC("tiltInput", RPCMode.AllBuffered, value);
+            if(debugging)Debug.Log(value);
+			networkView.RPC("setRPCTiltInput", RPCMode.AllBuffered, value);
         }
 
         //---------------------------------------------------------------------
