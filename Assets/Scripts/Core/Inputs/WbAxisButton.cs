@@ -13,6 +13,7 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using Wb.Companion.Core.WbNetwork;
 
 //-----------------------------------------------------------------------------
 namespace Wb.Companion.Core.Inputs {
@@ -31,6 +32,8 @@ namespace Wb.Companion.Core.Inputs {
         private float responseSpeed = 3;
 
         private bool isPressed = false;
+
+        private float value = 0;
         
 		//-----------------------------------------------------------------------------
 		// Properties
@@ -50,6 +53,9 @@ namespace Wb.Companion.Core.Inputs {
         public void Update() {
 
             if (this.isPressed) {
+                value = Mathf.MoveTowards(value, this.targetValue, this.responseSpeed * Time.deltaTime);
+                WbCompRPCWrapper.getInstance().setRPCTiltInput(value);
+
                 //WbInputManager.VirtualInput.SetAxisValue(this.axisName, Mathf.MoveTowards(WbInputManager.VirtualInput.GetAxis(this.axisName), this.targetValue, this.responseSpeed * Time.deltaTime));
             }
         }
@@ -60,7 +66,6 @@ namespace Wb.Companion.Core.Inputs {
 
         public void OnPointerDown(PointerEventData eventData) {
 
-
             this.isPressed = true;
         }
 
@@ -69,6 +74,9 @@ namespace Wb.Companion.Core.Inputs {
         public void OnPointerUp(PointerEventData eventData) {
 
             this.isPressed = false;
+            this.value = 0f;
+            WbCompRPCWrapper.getInstance().setRPCTiltInput(value);
+
             //WbInputManager.VirtualInput.SetAxisValue(this.axisName, 0f);
         }
     }	
