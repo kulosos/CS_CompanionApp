@@ -41,6 +41,9 @@ namespace Wb.Companion.Core.Inputs {
         public float forwardFullTiltAngle = 42f;
         public float sidewaysFullTiltAngle = 42f;
 
+		public bool activeConnection = false;
+		public bool activeTiltInput = false;
+
 		//---------------------------------------------------------------------
 
 		public void Awake() {
@@ -65,11 +68,13 @@ namespace Wb.Companion.Core.Inputs {
 
         void Update() {
 
-            Debug.Log(CalcAxisValue(TiltAxis.sideways));
-
             // Tilt Input
-            NetworkManager.getInstance().sendRPCTiltInput(CalcAxisValue(TiltAxis.sideways));
-           
+			if(InputManager.getInstance().activeConnection && InputManager.getInstance().activeTiltInput){
+				float tiltValue = CalcAxisValue(TiltAxis.sideways);
+				Debug.Log(tiltValue);
+				NetworkManager.getInstance().sendRPCTiltInput(tiltValue);
+			}
+            
         }
 
         //---------------------------------------------------------------------
@@ -158,5 +163,15 @@ namespace Wb.Companion.Core.Inputs {
             return Mathf.InverseLerp(-fullTiltAngle, fullTiltAngle, angle) * 2 - 1;
         }
 
+		// ----------------------------------------------------------------------------
+
+		public void toggleTiltInput(){
+			if(InputManager.getInstance().activeTiltInput){
+				InputManager.getInstance().activeTiltInput = false;
+			}else{
+				InputManager.getInstance().activeTiltInput = true;
+			}
+			 
+		}
 	}
 }

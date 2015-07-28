@@ -3,6 +3,7 @@ using System.Collections;
 using Wb.Companion.Core.WbNetwork;
 using Wb.Companion.Core.UI;
 using Wb.Companion;
+using Wb.Companion.Core.Inputs;
 using System;
 
 namespace Wb.Companion.Core.WbAdministration {
@@ -62,6 +63,12 @@ namespace Wb.Companion.Core.WbAdministration {
             this.uiManager.hideLoadingScreen();
             this.uiManager.loadGameUI();
             this.setCurrentScene(scene);
+			if(scene.Equals(SceneList.RemoteControl)){
+				InputManager.getInstance().activeTiltInput = true;
+			}else{
+				InputManager.getInstance().activeTiltInput = false;
+			}
+
         }
 
         // SETTER / GETTER ----------------------------------------------------

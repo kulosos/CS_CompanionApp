@@ -2,6 +2,7 @@
 using System.Collections;
 using Wb.Companion.Core.UI;
 using Wb.Companion.Core.WbAdministration;
+using Wb.Companion.Core.Inputs;
 using System;
 
 namespace Wb.Companion.Core.WbNetwork {
@@ -37,7 +38,7 @@ namespace Wb.Companion.Core.WbNetwork {
 	
 		// Use this for initialization
 		void Start() {
-			if(D)Network.logLevel = NetworkLogLevel.Informational;
+			if(D)Network.logLevel = NetworkLogLevel.Off;
 			nView = GetComponent<NetworkView>();
 
 			if(lauchServerOnStart){
@@ -51,19 +52,14 @@ namespace Wb.Companion.Core.WbNetwork {
 	
 		//---------------------------------------------------------------------
 
-		public void spawner(){
-			NetworkViewID viewID = Network.AllocateViewID();
-			nView.RPC("SpawnBox", RPCMode.AllBuffered, viewID, transform.position);
-		}
-
 		public void rpcBtn(string str){
 			NetworkViewID viewID = Network.AllocateViewID();
-			nView.RPC("rpcTest", RPCMode.AllBuffered, "this is da shit from the method which is calling the real rpc test method");
+			nView.RPC("rpcTest", RPCMode.AllBuffered, str, 1234.56f);
 		}
 
-		public void holdFire(string txt, bool active){
+		public void holdFire(string input, float value){
             //NetworkViewID viewID = Network.AllocateViewID();
-			nView.RPC("rpcTest", RPCMode.AllBuffered, txt, active);
+			nView.RPC("throttleInput", RPCMode.AllBuffered, input, value);
 		}
 
 		public void disconnectBtn(){
@@ -83,16 +79,18 @@ namespace Wb.Companion.Core.WbNetwork {
         //---------------------------------------------------------------------
 
         public void sendRPCTiltInput(float value) {
-
             nView.RPC("tiltInput", RPCMode.AllBuffered, value);
-
-   
         }
 
-        //[RPC]
-        //public void rpcTest(string txt) {
-        //    Debug.Log(txt);
-        //}
+        [RPC]
+        public void throttleInput(string txt, float value) {
+            //Debug.Log(txt);
+        }
+
+		[RPC]
+		public void tiltInput(float value){
+			//Debug.Log ("TiltInput: " + value);
+		}
 
 		//---------------------------------------------------------------------
 
@@ -167,6 +165,7 @@ namespace Wb.Companion.Core.WbNetwork {
             //this.uiManager.switchGameUI();
            
 			this.sceneManager.loadScene(this.sceneManager.getDefaultStartScene());
+			InputManager.getInstance().activeConnection = true;
 		}
 
 		// Call on the client
@@ -183,6 +182,7 @@ namespace Wb.Companion.Core.WbNetwork {
 		// Call on the server when a player is disconnected
 		private void OnPlayerDisconnected(){
 			Debug.Log("A player has diconnected from server.");
+			InputManager.getInstance().activeConnection = false;
 		}
 
 		// Called on client
