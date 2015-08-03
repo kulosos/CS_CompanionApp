@@ -18,9 +18,10 @@ public class VehicleInstruments : MonoBehaviour {
 		//---------------------------------------------------------------------
 
 		public Transform gameObject;
-		[SerializeField]
-		private vehicleInstrumentType instrumentType;
+		public vehicleInstrumentType instrumentType;
 		public bool isActive = true;
+		public float maxMajorInstrumentRotation = 220f;
+		public float maxMinorInstrumentRotation = 90f;
 
 		void Awake() {
 			this.gameObject = GetComponent<VehicleInstruments>().transform;
@@ -31,19 +32,19 @@ public class VehicleInstruments : MonoBehaviour {
 		//---------------------------------------------------------------------
 
 		void Start () {
-		
+			this.setInstrumentOnce();
 		}
 
 		void Update () {
 
 			if(NetworkManager.getInstance().isActiveConnection && this.isActive){
-				this.setInstruments();
+				this.setInstrumentsOnUpdate();
 			}
 		}
 
 		//---------------------------------------------------------------------
 
-		public void setInstruments(){
+		public void setInstrumentsOnUpdate(){
 
 			float rpm = WbCompRPCWrapper.getInstance().getCurrentRPM();
 			float speed = WbCompRPCWrapper.getInstance().getCurrentSpeed();
@@ -51,39 +52,38 @@ public class VehicleInstruments : MonoBehaviour {
 			speed = 88f;
 
 			if(instrumentType == vehicleInstrumentType.RPM){
-				float rpmAngle = Mathf.Lerp(0, 220, Mathf.InverseLerp(0, 3500, rpm));
+				float rpmAngle = Mathf.Lerp(0, maxMajorInstrumentRotation, Mathf.InverseLerp(0, 3500, rpm));
 				Quaternion rotation = Quaternion.Euler(0f, 0f, rpmAngle);
 				gameObject.transform.localRotation = rotation;
 			}
 			if(instrumentType == vehicleInstrumentType.Speed){
-				float speedAngle = Mathf.Lerp(0, 220, Mathf.InverseLerp(0, 100, speed));
+				float speedAngle = Mathf.Lerp(0, maxMajorInstrumentRotation, Mathf.InverseLerp(0, 100, speed));
 				Quaternion rotation = Quaternion.Euler(0f, 0f, speedAngle);
 				gameObject.transform.localRotation = rotation;
 			}
 		}
 
-		//---SETTER / GETTER --------------------------------------------------
+		//---------------------------------------------------------------------
 
-		public vehicleInstrumentType getVehicleInstrumentType(){
-			return instrumentType;
+		public void setInstrumentOnce(){
+			
+			if(instrumentType == vehicleInstrumentType.Fuel){
+				Quaternion rotation = Quaternion.Euler(0f, 0f, Random.Range(30f, 80f));
+				gameObject.transform.localRotation = rotation;
+			}
+			
+			if(instrumentType == vehicleInstrumentType.BrakePressure){
+				Quaternion rotation = Quaternion.Euler(0f, 0f, Random.Range(50f, 75f));
+				gameObject.transform.localRotation = rotation;
+			}
+			
+			if(instrumentType == vehicleInstrumentType.Temperature){
+				Quaternion rotation = Quaternion.Euler(0f, 0f, Random.Range(40f, 50f));
+				gameObject.transform.localRotation = rotation;
+			}
 		}
-		/*
-		public int getVehicleInstrumentTypeInt(){
 
-			if(this.instrumentType == vehicleInstrumentType.Speed) return 0;
-			if(this.instrumentType == vehicleInstrumentType.RPM) return 1;
 
-			return -1;
-		}*/
-
-		public void setVehicleInstrumentType(vehicleInstrumentType type){
-			this.instrumentType = type;
-		}
-		/*
-		public void setVehicleInstrumentTypeInt(int type){
-			if(type == 0) this.instrumentType = vehicleInstrumentType.Speed;
-			if(type == 1) this.instrumentType = vehicleInstrumentType.RPM;
-		}*/
 	}
 
 }

@@ -22,7 +22,7 @@ namespace Wb.Companion.WbEditor {
 														VehicleInstruments.vehicleInstrumentType.Fuel.ToString(),
 														VehicleInstruments.vehicleInstrumentType.Temperature.ToString(),
 														VehicleInstruments.vehicleInstrumentType.BrakePressure.ToString()  };
-			this.selectedItem = (int)this.editorTarget.getVehicleInstrumentType();
+			this.selectedItem = (int)this.editorTarget.instrumentType;
         }
 
         //---------------------------------------------------------------------
@@ -30,14 +30,14 @@ namespace Wb.Companion.WbEditor {
         public override void OnInspectorGUI() {
 
             DrawDefaultInspector();
-
+			/*
             EditorGUI.BeginChangeCheck();	
 
 			this.selectedItem = EditorGUILayout.Popup("Vehicle Instrument Type", this.selectedItem, this.vehicleInstrumentType);
             if (EditorGUI.EndChangeCheck()) {	
-               this.editorTarget.setVehicleInstrumentType((VehicleInstruments.vehicleInstrumentType)this.selectedItem);
+               this.editorTarget.instrumentType = ((VehicleInstruments.vehicleInstrumentType)this.selectedItem);
             }
-
+			*/
         }
 
 
