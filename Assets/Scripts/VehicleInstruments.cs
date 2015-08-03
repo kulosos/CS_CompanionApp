@@ -1,4 +1,10 @@
-﻿using UnityEngine;
+﻿/* 
+ * @brief VehicleInstruments
+ * @autor Oliver Kulas (oli@weltenbauer-se.com)
+ * @date Aug 2015
+ */
+
+using UnityEngine;
 using System.Collections;
 using Wb.Companion.Core.WbNetwork;
 
@@ -19,9 +25,11 @@ public class VehicleInstruments : MonoBehaviour {
 
 		public Transform gameObject;
 		public vehicleInstrumentType instrumentType;
+		public float maxRotation = 220f;
+		public float dampingFactor = 1.0f;
 		public bool isActive = true;
-		public float maxMajorInstrumentRotation = 220f;
-		public float maxMinorInstrumentRotation = 90f;
+		public bool setOnlyOnce = false;
+
 
 		void Awake() {
 			this.gameObject = GetComponent<VehicleInstruments>().transform;
@@ -32,13 +40,17 @@ public class VehicleInstruments : MonoBehaviour {
 		//---------------------------------------------------------------------
 
 		void Start () {
-			this.setInstrumentOnce();
+
 		}
 
 		void Update () {
 
+
+
 			if(NetworkManager.getInstance().isActiveConnection && this.isActive){
 				this.setInstrumentsOnUpdate();
+
+
 			}
 		}
 
@@ -48,42 +60,57 @@ public class VehicleInstruments : MonoBehaviour {
 
 			float rpm = WbCompRPCWrapper.getInstance().getCurrentRPM();
 			float speed = WbCompRPCWrapper.getInstance().getCurrentSpeed();
-			rpm = 2500f;
-			speed = 88f;
+
+			rpm = Random.Range (1800f, 2000f);
+			speed = Random.Range (40f, 50f);
 
 			if(instrumentType == vehicleInstrumentType.RPM){
-				float rpmAngle = Mathf.Lerp(0, maxMajorInstrumentRotation, Mathf.InverseLerp(0, 3500, rpm));
-				Quaternion rotation = Quaternion.Euler(0f, 0f, rpmAngle);
-				gameObject.transform.localRotation = rotation;
+				Quaternion prevRotation = gameObject.transform.localRotation;
+				float rpmAngle = Mathf.Lerp(0, maxRotation, Mathf.InverseLerp(0, 3500, rpm));
+				Quaternion targetRotation = Quaternion.Euler(0f, 0f, rpmAngle);
+				gameObject.transform.localRotation = Quaternion.Lerp(prevRotation, targetRotation, Time.deltaTime * this.dampingFactor);
+
 			}
 			if(instrumentType == vehicleInstrumentType.Speed){
-				float speedAngle = Mathf.Lerp(0, maxMajorInstrumentRotation, Mathf.InverseLerp(0, 100, speed));
-				Quaternion rotation = Quaternion.Euler(0f, 0f, speedAngle);
-				gameObject.transform.localRotation = rotation;
+				Quaternion prevRotation = gameObject.transform.localRotation;
+				float speedAngle = Mathf.Lerp(0, maxRotation, Mathf.InverseLerp(0, 100, speed));
+				Quaternion targetRotation = Quaternion.Euler(0f, 0f, speedAngle);
+				gameObject.transform.localRotation = Quaternion.Lerp(prevRotation, targetRotation, Time.deltaTime * this.dampingFactor);
+			}
+
+			if(instrumentType == vehicleInstrumentType.Fuel){
+				float zValue = 55f;
+				Quaternion prevRotation = gameObject.transform.localRotation;
+				Quaternion targetRotation = Quaternion.Euler(0f, 0f, zValue);
+				gameObject.transform.localRotation = Quaternion.Lerp(prevRotation, targetRotation, Time.deltaTime * this.dampingFactor);
+				Debug.Log ("prevRotation " + prevRotation.z.ToString());
+				if(this.setOnlyOnce && prevRotation.z > targetRotation.z-(targetRotation.z*0.1)) this.isActive = false;
+			}
+			
+			if(instrumentType == vehicleInstrumentType.BrakePressure){
+				float zValue = 70f;
+				Quaternion prevRotation = gameObject.transform.localRotation;
+				Quaternion targetRotation = Quaternion.Euler(0f, 0f, zValue);
+				gameObject.transform.localRotation = Quaternion.Lerp(prevRotation, targetRotation, Time.deltaTime * this.dampingFactor);
+				if(this.setOnlyOnce && prevRotation.z > targetRotation.z-(targetRotation.z*0.1)) this.isActive = false;
+			}
+			
+			if(instrumentType == vehicleInstrumentType.Temperature){
+				float zValue = 48f;
+				Quaternion prevRotation = gameObject.transform.localRotation;
+				Quaternion targetRotation = Quaternion.Euler(0f, 0f, zValue);
+				gameObject.transform.localRotation = Quaternion.Lerp(prevRotation, targetRotation, Time.deltaTime * this.dampingFactor);
+				if(this.setOnlyOnce && prevRotation.z > targetRotation.z-(targetRotation.z*0.1)) this.isActive = false;
 			}
 		}
 
 		//---------------------------------------------------------------------
 
 		public void setInstrumentOnce(){
-			
-			if(instrumentType == vehicleInstrumentType.Fuel){
-				Quaternion rotation = Quaternion.Euler(0f, 0f, Random.Range(30f, 80f));
-				gameObject.transform.localRotation = rotation;
-			}
-			
-			if(instrumentType == vehicleInstrumentType.BrakePressure){
-				Quaternion rotation = Quaternion.Euler(0f, 0f, Random.Range(50f, 75f));
-				gameObject.transform.localRotation = rotation;
-			}
-			
-			if(instrumentType == vehicleInstrumentType.Temperature){
-				Quaternion rotation = Quaternion.Euler(0f, 0f, Random.Range(40f, 50f));
-				gameObject.transform.localRotation = rotation;
-			}
+		
+
+
 		}
-
-
 	}
 
 }
