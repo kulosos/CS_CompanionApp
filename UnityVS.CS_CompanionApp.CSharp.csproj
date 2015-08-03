@@ -78,7 +78,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\CameraController2.cs" />
-    <Compile Include="Assets\Scripts\CameraTransform.cs" />
+    <Compile Include="Assets\Scripts\CameraManager.cs" />
     <Compile Include="Assets\Scripts\Core\Administration\SceneManager.cs" />
     <Compile Include="Assets\Scripts\Core\Inputs\InputManager.cs" />
     <Compile Include="Assets\Scripts\Core\Inputs\WbAxisButton.cs" />

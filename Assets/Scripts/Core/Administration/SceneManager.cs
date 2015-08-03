@@ -69,6 +69,10 @@ namespace Wb.Companion.Core.WbAdministration {
 				InputManager.getInstance().activeTiltInput = false;
 			}
 
+			CameraManager.getInstance().setInitialCameraOnSceneLoading(scene);
+
+
+
         }
 
         // SETTER / GETTER ----------------------------------------------------
@@ -104,6 +108,7 @@ namespace Wb.Companion.Core.WbAdministration {
         public string getCurrentScene() {
             return this.currentScene;
         }
+
     }
 
 }
