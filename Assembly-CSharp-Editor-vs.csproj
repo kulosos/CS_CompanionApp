@@ -55,7 +55,8 @@
      <Compile Include="Assets\Libs\CoherentUI\Editor\CoherentUI\CoherentViewEditor.cs" />
      <Compile Include="Assets\Libs\CoherentUI\Editor\CoherentUI\IOSPostProcessor.cs" />
      <Compile Include="Assets\Libs\CoherentUI\Editor\CoherentUI\MobileSurfaceViewEditor.cs" />
-     <Compile Include="Assets\Scripts\Editor\AdminstrationEditor.cs" />
+     <Compile Include="Assets\Scripts\Editor\SceneManagerEditorGUI.cs" />
+     <Compile Include="Assets\Scripts\Editor\VehicleInstrumentsEditorGUI.cs" />
      <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\_Antialiasing\FXAAPreset2.shader" />
      <None Include="Assets\Shader\Terrain.shader" />
      <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\_BloomAndFlares\MobileBlur.shader" />

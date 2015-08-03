@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using Wb.Companion.Core.WbNetwork;
 using Wb.Companion.Core.UI;
@@ -64,9 +64,9 @@ namespace Wb.Companion.Core.WbAdministration {
             this.uiManager.loadGameUI();
             this.setCurrentScene(scene);
 			if(scene.Equals(SceneList.RemoteControl)){
-				InputManager.getInstance().activeTiltInput = true;
+				InputManager.getInstance().isActiveTiltInput = true;
 			}else{
-				InputManager.getInstance().activeTiltInput = false;
+				InputManager.getInstance().isActiveTiltInput = false;
 			}
 
 			CameraManager.getInstance().setInitialCameraOnSceneLoading(scene);

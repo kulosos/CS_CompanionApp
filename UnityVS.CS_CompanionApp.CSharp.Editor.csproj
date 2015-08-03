@@ -111,7 +111,8 @@
     <Compile Include="Assets\Libs\CoherentUI\Editor\CoherentUI\CoherentViewEditor.cs" />
     <Compile Include="Assets\Libs\CoherentUI\Editor\CoherentUI\IOSPostProcessor.cs" />
     <Compile Include="Assets\Libs\CoherentUI\Editor\CoherentUI\MobileSurfaceViewEditor.cs" />
-    <Compile Include="Assets\Scripts\Editor\AdminstrationEditor.cs" />
+    <Compile Include="Assets\Scripts\Editor\SceneManagerEditorGUI.cs" />
+    <Compile Include="Assets\Scripts\Editor\VehicleInstrumentsEditorGUI.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Libs\CoherentUI\Copyright.txt" />

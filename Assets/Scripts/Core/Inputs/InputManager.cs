@@ -41,8 +41,7 @@ namespace Wb.Companion.Core.Inputs {
         public float forwardFullTiltAngle = 42f;
         public float sidewaysFullTiltAngle = 42f;
 
-		public bool activeConnection = false;
-		public bool activeTiltInput = false;
+		public bool isActiveTiltInput = false;
 
 		//---------------------------------------------------------------------
 
@@ -69,7 +68,7 @@ namespace Wb.Companion.Core.Inputs {
         void Update() {
 
             // Tilt Input
-            if (InputManager.getInstance().activeConnection && InputManager.getInstance().activeTiltInput) {
+            if (NetworkManager.getInstance().isActiveConnection && InputManager.getInstance().isActiveTiltInput) {
                 float tiltValue = InputManager.getInstance().CalcAxisValue(InputManager.TiltAxis.sideways);
                 WbCompRPCWrapper.getInstance().setTiltInput(tiltValue);
             }
@@ -165,10 +164,10 @@ namespace Wb.Companion.Core.Inputs {
 		// ----------------------------------------------------------------------------
 
 		public void toggleTiltInput(){
-			if(InputManager.getInstance().activeTiltInput){
-				InputManager.getInstance().activeTiltInput = false;
+			if(InputManager.getInstance().isActiveTiltInput){
+				InputManager.getInstance().isActiveTiltInput = false;
 			}else{
-				InputManager.getInstance().activeTiltInput = true;
+				InputManager.getInstance().isActiveTiltInput = true;
 			}
 			 
 		}

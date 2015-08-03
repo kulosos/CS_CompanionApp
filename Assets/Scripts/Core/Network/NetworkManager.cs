@@ -19,6 +19,7 @@ namespace Wb.Companion.Core.WbNetwork {
 		public SceneManager sceneManager;
 		public NetworkView networkView;
 
+		public bool isActiveConnection = false;
 		public bool lauchServerOnStart = false;
         public bool debugging = true;
 
@@ -125,13 +126,14 @@ namespace Wb.Companion.Core.WbNetwork {
             //this.uiManager.switchGameUI();
            
 			this.sceneManager.loadScene(this.sceneManager.getDefaultStartScene());
-			InputManager.getInstance().activeConnection = true;
+			NetworkManager.getInstance().isActiveConnection = true;
 		}
 
 		// Call on the client
 		private void OnDisconnectedFromServer(){
 			Debug.Log("Server connection disconnected.");
             this.uiManager.unloadGameUI();
+			NetworkManager.getInstance().isActiveConnection = false;
 		}
 
 		// Call on the server when player has successfully connected
@@ -142,7 +144,7 @@ namespace Wb.Companion.Core.WbNetwork {
 		// Call on the server when a player is disconnected
 		private void OnPlayerDisconnected(){
 			Debug.Log("A player has diconnected from server.");
-			InputManager.getInstance().activeConnection = false;
+			NetworkManager.getInstance().isActiveConnection = false;
 		}
 
 		// Called on client

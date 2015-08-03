@@ -10,6 +10,9 @@ namespace Wb.Companion.Core.WbNetwork {
         public NetworkView networkView;
 		public bool debugging = false;
 
+		private float currentSpeed; 
+		private float currentRPM;
+
         // ------------------------------------------------------------------------
 
         public static WbCompRPCWrapper getInstance() {
@@ -64,13 +67,15 @@ namespace Wb.Companion.Core.WbNetwork {
         }
 
         public void setTiltInput(float value) {
-            if(debugging)Debug.Log(value);
+            //if(debugging)Debug.Log(value);
 			networkView.RPC("setRPCTiltInput", RPCMode.AllBuffered, value);
         }
 
         //---------------------------------------------------------------------
         // Remote Procedure Calls
         //---------------------------------------------------------------------
+		// OUT GOING RPCs
+		//---------------------------------------------------------------------
 
         [RPC]
         public void setRPCThrottleInput(string txt, float value) {
@@ -91,6 +96,34 @@ namespace Wb.Companion.Core.WbNetwork {
         public void setRPCTiltInput(float value) {
             //Debug.Log ("TiltInput: " + value);
         }
+
+		//---------------------------------------------------------------------
+		// INCOMING RPCs
+		//---------------------------------------------------------------------
+
+		[RPC]
+		public void setRPCVehicleRPM(float value){
+			if(debugging)Debug.Log ("CurrentVehicleRPM Value: " + value);
+			currentRPM = value;
+		}
+
+		[RPC]
+		public void setRPCVehicleSpeed(float value){
+			if(debugging)Debug.Log ("CurrentVehicleSpeed Value: " + value);
+			currentSpeed = value;
+		}
+
+
+		//------ SETTER / GETTER ---------------------------------------------
+
+		public float getCurrentRPM(){
+			return currentRPM;
+		}
+
+		public float getCurrentSpeed(){
+			return currentSpeed;
+		}
+	
     }
 
 }

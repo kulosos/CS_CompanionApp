@@ -16,7 +16,7 @@ public class DebugUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler  {
 	void Update() {
 
 		if(accelerateBtn){
-			if (pressed && InputManager.getInstance().activeConnection) {
+			if (pressed && NetworkManager.getInstance().isActiveConnection) {
 				WbCompRPCWrapper.getInstance().setThrottle("accelerate", 1.0f);
 			} else{
                 WbCompRPCWrapper.getInstance().setThrottle("accerlerate", 0.0f);
@@ -24,7 +24,7 @@ public class DebugUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler  {
 		}
 
 		if(brakeBtn){
-			if (pressed && InputManager.getInstance().activeConnection) {
+			if (pressed && NetworkManager.getInstance().isActiveConnection) {
                 WbCompRPCWrapper.getInstance().setThrottle("brake", 1.0f);
 			} else{
                 WbCompRPCWrapper.getInstance().setThrottle("brake", 0.0f);

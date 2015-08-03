@@ -107,6 +107,7 @@
     <Compile Include="Assets\Scripts\UI\DebugUI.cs" />
     <Compile Include="Assets\Scripts\UI\UIManager.cs" />
     <Compile Include="Assets\Scripts\UI\UIWrapper.cs" />
+    <Compile Include="Assets\Scripts\VehicleInstruments.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Libs\CoherentUI\Copyright.txt" />

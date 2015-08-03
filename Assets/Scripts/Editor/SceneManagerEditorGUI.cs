@@ -8,7 +8,7 @@ using Wb.Companion.Core.UI;
 namespace Wb.Companion.WbEditor {
 
     [CustomEditor(typeof(SceneManager))]
-    public class AdminstrationEditor : Editor {
+    public class SceneManagerEditorGUI : Editor {
 
         private SceneManager editorTarget;
         private string[] sceneList;
