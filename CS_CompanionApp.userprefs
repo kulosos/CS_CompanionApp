@@ -1,12 +1,11 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/VehicleInstruments.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Core/Inputs/InputManager.cs">
     <Files>
-      <File FileName="Assets/Scripts/Core/Network/NetworkManager.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Core/Inputs/InputManager.cs" Line="16" Column="1" />
-      <File FileName="Assets/Scripts/Core/Network/WbCompRPCWrapper.cs" Line="112" Column="4" />
-      <File FileName="Assets/Scripts/Editor/VehicleInstrumentsEditorGUI.cs" Line="40" Column="4" />
-      <File FileName="Assets/Scripts/VehicleInstruments.cs" Line="58" Column="51" />
+      <File FileName="Assets/Scripts/Core/Network/NetworkManager.cs" Line="156" Column="57" />
+      <File FileName="Assets/Scripts/Core/Inputs/InputManager.cs" Line="201" Column="4" />
+      <File FileName="Assets/Scripts/Core/Network/WbCompRPCWrapper.cs" Line="69" Column="21" />
+      <File FileName="Assets/Scripts/VehicleInstruments.cs" Line="63" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

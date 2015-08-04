@@ -8,6 +8,7 @@ namespace Wb.Companion.Core.WbNetwork {
 
         public static WbCompRPCWrapper instance;
         public NetworkView networkView;
+
 		public bool debugging = false;
 
 		private float currentSpeed; 
@@ -55,20 +56,20 @@ namespace Wb.Companion.Core.WbNetwork {
 
         public void setThrottle(string input, float value) {
             //NetworkViewID viewID = Network.AllocateViewID();
-			networkView.RPC("setRPCThrottleInput", RPCMode.AllBuffered, input, value);
+			networkView.RPC("setRPCThrottleInput", RPCMode.Server, input, value);
         }
 
         public void setNextCamera(string input) {
-            networkView.RPC("setRPCNextCamera", RPCMode.AllBuffered, input);
+			networkView.RPC("setRPCNextCamera", RPCMode.Server, input);
         }
 
         public void setGetIntoVehicle(string input) {
-            networkView.RPC("setRPCGetIntoVehicle", RPCMode.AllBuffered, input);
+			networkView.RPC("setRPCGetIntoVehicle", RPCMode.Server, input);
         }
 
         public void setTiltInput(float value) {
             //if(debugging)Debug.Log(value);
-			networkView.RPC("setRPCTiltInput", RPCMode.AllBuffered, value);
+			networkView.RPC("setRPCTiltInput", RPCMode.Server, value);
         }
 
         //---------------------------------------------------------------------
@@ -103,13 +104,13 @@ namespace Wb.Companion.Core.WbNetwork {
 
 		[RPC]
 		public void setRPCVehicleRPM(float value){
-			if(debugging)Debug.Log ("CurrentVehicleRPM Value: " + value);
+			//if(debugging)Debug.Log ("CurrentVehicleRPM Value: " + value);
 			currentRPM = value;
 		}
 
 		[RPC]
 		public void setRPCVehicleSpeed(float value){
-			if(debugging)Debug.Log ("CurrentVehicleSpeed Value: " + value);
+			//if(debugging)Debug.Log ("CurrentVehicleSpeed Value: " + value);
 			currentSpeed = value;
 		}
 

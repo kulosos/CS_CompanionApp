@@ -61,9 +61,6 @@ public class VehicleInstruments : MonoBehaviour {
 			float rpm = WbCompRPCWrapper.getInstance().getCurrentRPM();
 			float speed = WbCompRPCWrapper.getInstance().getCurrentSpeed();
 
-			rpm = Random.Range (1800f, 2000f);
-			speed = Random.Range (40f, 50f);
-
 			if(instrumentType == vehicleInstrumentType.RPM){
 				Quaternion prevRotation = gameObject.transform.localRotation;
 				float rpmAngle = Mathf.Lerp(0, maxRotation, Mathf.InverseLerp(0, 3500, rpm));
@@ -83,7 +80,6 @@ public class VehicleInstruments : MonoBehaviour {
 				Quaternion prevRotation = gameObject.transform.localRotation;
 				Quaternion targetRotation = Quaternion.Euler(0f, 0f, zValue);
 				gameObject.transform.localRotation = Quaternion.Lerp(prevRotation, targetRotation, Time.deltaTime * this.dampingFactor);
-				Debug.Log ("prevRotation " + prevRotation.z.ToString());
 				if(this.setOnlyOnce && prevRotation.z > targetRotation.z-(targetRotation.z*0.1)) this.isActive = false;
 			}
 			

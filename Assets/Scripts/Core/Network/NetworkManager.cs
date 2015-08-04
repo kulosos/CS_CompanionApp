@@ -20,7 +20,6 @@ namespace Wb.Companion.Core.WbNetwork {
 		public NetworkView networkView;
 
 		public bool isActiveConnection = false;
-		public bool lauchServerOnStart = false;
         public bool debugging = true;
 
 
@@ -46,10 +45,6 @@ namespace Wb.Companion.Core.WbNetwork {
             }
 
 			this.networkView = GetComponent<NetworkView>();
-
-			if(lauchServerOnStart){
-				NetworkManager.launchServer(NetworkManager.getInstance().defaultMaxConnecitions.ToString(), NetworkManager.getInstance().defaultPort.ToString(), NetworkManager.getInstance().defaultPassword);
-			}
 		}
 
 		void Update() {

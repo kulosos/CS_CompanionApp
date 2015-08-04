@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Collections;
 using Wb.Companion.Core;
 using Wb.Companion.Core.WbNetwork;
+using UnityEngine.UI;
 
 namespace Wb.Companion.Core.Inputs {
 
@@ -40,8 +41,13 @@ namespace Wb.Companion.Core.Inputs {
         public float sidewaysCenterAngleOffset = 0f;
         public float forwardFullTiltAngle = 42f;
         public float sidewaysFullTiltAngle = 42f;
+		public float tiltSteeringDamping = 1.0f;
 
 		public bool isActiveTiltInput = false;
+
+		private float currentTiltValue = 0.0f;
+		public Text labelSliderTiltValue;
+		public Text labelSliderTiltDamping;
 
 		//---------------------------------------------------------------------
 
@@ -69,8 +75,7 @@ namespace Wb.Companion.Core.Inputs {
 
             // Tilt Input
             if (NetworkManager.getInstance().isActiveConnection && InputManager.getInstance().isActiveTiltInput) {
-                float tiltValue = InputManager.getInstance().CalcAxisValue(InputManager.TiltAxis.sideways);
-                WbCompRPCWrapper.getInstance().setTiltInput(tiltValue);
+                WbCompRPCWrapper.getInstance().setTiltInput(this.getSmoothAxisValues());
             }
 
         }
@@ -161,6 +166,16 @@ namespace Wb.Companion.Core.Inputs {
             return Mathf.InverseLerp(-fullTiltAngle, fullTiltAngle, angle) * 2 - 1;
         }
 
+		//-----------------------------------------------------------------------------
+
+		public float getSmoothAxisValues(){
+
+			float targetTiltValue = InputManager.getInstance().CalcAxisValue(InputManager.TiltAxis.sideways);
+			float targetValue = Mathf.Lerp(this.currentTiltValue, targetTiltValue, Time.deltaTime * tiltSteeringDamping);
+			this.currentTiltValue = targetTiltValue;
+			return targetValue;
+		}
+
 		// ----------------------------------------------------------------------------
 
 		public void toggleTiltInput(){
@@ -169,7 +184,30 @@ namespace Wb.Companion.Core.Inputs {
 			}else{
 				InputManager.getInstance().isActiveTiltInput = true;
 			}
-			 
+		}
+
+		// ----------------------------------------------------------------------------
+
+		public void setMaxTiltAngle(float tiltAngle){
+			sidewaysFullTiltAngle = tiltAngle;
+
+			labelSliderTiltValue.text = tiltAngle.ToString();
+		}
+
+		public float getMaxTiltAngleSideways(){
+			return sidewaysFullTiltAngle;
+		}
+
+		// ----------------------------------------------------------------------------
+
+		public void setTiltSteeringDamping(float damping){
+			tiltSteeringDamping = damping;
+
+			labelSliderTiltDamping.text = damping.ToString();
+		}
+		
+		public float getTiltSteeringDamping(){
+			return tiltSteeringDamping;
 		}
 
 	}
