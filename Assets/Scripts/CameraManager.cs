@@ -97,6 +97,8 @@ namespace Wb.Companion.Core.Inputs {
 
 				toggleOrthogonalCamera(false);
 				this.isMapCameraActive = true;
+                this.minBounds = -1500f;
+                this.maxBounds = 1500f;
 			}
 
 			// REMOTE CONTROL SCENE
@@ -111,7 +113,23 @@ namespace Wb.Companion.Core.Inputs {
 				toggleOrthogonalCamera(true);
 				this.isMapCameraActive = false;
 			}
-		}
+
+            // REMOTE CONTROL CRANE SCENE
+            if (scene.Equals(SceneList.RemoteControlCrane))
+            {
+                Camera.main.transform.localPosition = new Vector3(0f, 200f, -0.2f);
+
+                Quaternion rotation = Quaternion.Euler(90f, 180f, 0f);
+                Camera.main.transform.rotation = rotation;
+
+                Camera.main.orthographicSize = 1.25f;
+
+                toggleOrthogonalCamera(true);
+                this.isMapCameraActive = true;
+                this.minBounds = -1f;
+                this.maxBounds = 0.5f;
+            }
+        }
 
 
 		public void tapHandler(object sender, EventArgs e) {

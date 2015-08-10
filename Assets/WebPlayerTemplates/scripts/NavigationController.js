@@ -185,9 +185,15 @@ function bindMenuButtons(){
 		});
 	});
 	
-	$("body").find("#menuIdRemoteControl").bind( "click", function() {
+	$("body").find("#menuIdRemoteControlDriving").bind( "click", function() {
 		unloadMainMenu(true, function(){
-			engine.trigger("loadScene", "02_RemoteControl");
+			engine.trigger("loadScene", "02_RemoteControl_Driving");
+		});
+	});
+	
+	$("body").find("#menuIdRemoteControlCrane").bind( "click", function() {
+		unloadMainMenu(true, function(){
+			engine.trigger("loadScene", "03_RemoteControl_Crane");
 		});
 	});
 	

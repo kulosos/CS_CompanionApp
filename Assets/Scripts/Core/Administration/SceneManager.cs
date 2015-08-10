@@ -14,7 +14,8 @@ namespace Wb.Companion.Core.WbAdministration {
     {
         public static string Main = "00_Main";
         public static string Map = "01_Map";
-        public static string RemoteControl = "02_RemoteControl";
+        public static string RemoteControl = "02_RemoteControl_Driving";
+        public static string RemoteControlCrane = "03_RemoteControl_Crane";
     }
 
     //-------------------------------------------------------------------------
@@ -71,14 +72,12 @@ namespace Wb.Companion.Core.WbAdministration {
 
 			CameraManager.getInstance().setInitialCameraOnSceneLoading(scene);
 
-
-
         }
 
         // SETTER / GETTER ----------------------------------------------------
 
         public string[] getSceneList() {
-            string[] sceneList = new string[] { SceneList.Map, SceneList.RemoteControl };
+            string[] sceneList = new string[] { SceneList.Map, SceneList.RemoteControl, SceneList.RemoteControlCrane };
             return sceneList;
         }
 
