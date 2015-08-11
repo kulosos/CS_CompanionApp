@@ -15,10 +15,23 @@ using System.Collections;
 using Wb.Companion.Core;
 using Wb.Companion.Core.WbNetwork;
 using UnityEngine.UI;
+using Wb.Companion.Core.Inputs;
+using Wb.Companion.Core.Game;
+using System.Collections.Generic;
+using Wb.Companion.Core.WbAdministration;
+
 
 //-----------------------------------------------------------------------------
 
-namespace Wb.Companion.Core.Inputs {
+namespace Wb.Companion.Core.UI {
+
+    // ENUM TYPES -------------------------------------------------------------
+
+    public enum WbUIAxisOption {
+        Both,
+        OnlyHorizontal,
+        OnlyVertical
+    }
 
     public enum thumbstickType {
         Left = 0,
@@ -26,14 +39,13 @@ namespace Wb.Companion.Core.Inputs {
         Right = 2
     };
 
+    //-------------------------------------------------------------------------
+
     public class WbUIThumbstick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IDragHandler {
 
-        //-----------------------------------------------------------------------------
+        //---------------------------------------------------------------------
         // Member
-        //-----------------------------------------------------------------------------
-
-        private Camera uiCamera;
-        public thumbstickType thumbstickType;
+        //---------------------------------------------------------------------
 
         [SerializeField]
         private int movementRange = 100;
@@ -69,13 +81,17 @@ namespace Wb.Companion.Core.Inputs {
         private bool useX;
         private bool useY;
 
-        //-----------------------------------------------------------------------------
+        //---------------------------------------------------------------------
         // Properties
-        //-----------------------------------------------------------------------------
+        //---------------------------------------------------------------------
 
-        //-----------------------------------------------------------------------------
+        private Camera uiCamera;
+        public thumbstickType thumbstickType;
+        //private List<WbUIThumbstick> thumbsticks = new List<WbUIThumbstick>();
+
+        //---------------------------------------------------------------------
         // MonoBehaviour
-        //-----------------------------------------------------------------------------
+        //---------------------------------------------------------------------
 
         void Start() {
 
@@ -86,36 +102,6 @@ namespace Wb.Companion.Core.Inputs {
                 if (cam.gameObject.layer == 5) {  // Layer 5 == UI
                     this.uiCamera = cam;
                 }
-            } 
-
-
-        }
-
-        public void Init() {
-
-            if (this.indicator == null) {
-
-                Debug.LogError("No Indicator set for Thumbstick :(  Why are you doing this?");
-                Destroy(this.gameObject);
-                return;
-            }
-
-            this.startPos = this.indicator.rectTransform.anchoredPosition;
-
-            this.useX = (this.axisToUse == WbUIAxisOption.Both || this.axisToUse == WbUIAxisOption.OnlyHorizontal);
-            this.useY = (this.axisToUse == WbUIAxisOption.Both || this.axisToUse == WbUIAxisOption.OnlyVertical);
-
-            this.SetIconsActive(false);
-
-            // Create Virtual Axis
-            if (this.useX) {
-                // TODO
-                //WbInputManager.VirtualInput.RegisterAxis(new WbVirtualAxis(this.horizontalAxisName));
-            }
-
-            if (this.useY) {
-                // TODO
-                //WbInputManager.VirtualInput.RegisterAxis(new WbVirtualAxis(this.verticalAxisName));
             }
         }
 
@@ -152,7 +138,6 @@ namespace Wb.Companion.Core.Inputs {
         private void UpdateIndicator(PointerEventData data) {
 
             Vector2 pos;
-            //RectTransformUtility.ScreenPointToLocalPointInRectangle(this.wrapperRect, data.position, Wb.Camera.WbCameraManager.UICamera, out pos)
             RectTransformUtility.ScreenPointToLocalPointInRectangle(this.wrapperRect, data.position, this.uiCamera, out pos);
 
             if (this.useX) {
@@ -179,15 +164,7 @@ namespace Wb.Companion.Core.Inputs {
             delta.x = -delta.x;
             delta.y = -delta.y;
             delta /= this.movementRange;
-
-            if (this.useX) {
-                // TODO
-                //WbInputManager.VirtualInput.SetAxisValue(this.horizontalAxisName, delta.x);
-            }
-            if (this.useY) {
-                // TODO
-                //WbInputManager.VirtualInput.SetAxisValue(this.verticalAxisName, delta.y);
-            }
+            
             this.SimulateHover(delta);
         }
 
@@ -230,11 +207,6 @@ namespace Wb.Companion.Core.Inputs {
         }
     }
 
-    //-----------------------------------------------------------------------------
 
-    public enum WbUIAxisOption {
-        Both,
-        OnlyHorizontal,
-        OnlyVertical
-    }
+
 }

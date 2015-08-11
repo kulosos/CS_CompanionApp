@@ -77,14 +77,18 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\CameraController2.cs" />
-    <Compile Include="Assets\Scripts\CameraManager.cs" />
     <Compile Include="Assets\Scripts\Core\Administration\SceneManager.cs" />
+    <Compile Include="Assets\Scripts\Core\Camera\CameraManager.cs" />
     <Compile Include="Assets\Scripts\Core\Inputs\InputManager.cs" />
     <Compile Include="Assets\Scripts\Core\Inputs\WbAxisButton.cs" />
-    <Compile Include="Assets\Scripts\Core\Inputs\WbUIThumbstick.cs" />
     <Compile Include="Assets\Scripts\Core\Network\NetworkManager.cs" />
     <Compile Include="Assets\Scripts\Core\Network\WbCompRPCWrapper.cs" />
+    <Compile Include="Assets\Scripts\Core\UI\DebugUI.cs" />
+    <Compile Include="Assets\Scripts\Core\UI\UIManager.cs" />
+    <Compile Include="Assets\Scripts\Core\UI\UIWrapper.cs" />
+    <Compile Include="Assets\Scripts\Core\UI\WbUIThumbstick.cs" />
+    <Compile Include="Assets\Scripts\Game\VehicleInstruments.cs" />
+    <Compile Include="Assets\Scripts\Game\Wb3DThumbstick.cs" />
     <Compile Include="Assets\Scripts\Image Effects\Blur.cs" />
     <Compile Include="Assets\Scripts\Image Effects\BlurEffect.cs" />
     <Compile Include="Assets\Scripts\Image Effects\ColorCorrectionEffect.cs" />
@@ -105,10 +109,6 @@
     <Compile Include="Assets\Scripts\Image Effects\Vignetting.cs" />
     <Compile Include="Assets\Scripts\Image Effects\VortexEffect.cs" />
     <Compile Include="Assets\Scripts\Tap_Breaker.cs" />
-    <Compile Include="Assets\Scripts\UI\DebugUI.cs" />
-    <Compile Include="Assets\Scripts\UI\UIManager.cs" />
-    <Compile Include="Assets\Scripts\UI\UIWrapper.cs" />
-    <Compile Include="Assets\Scripts\VehicleInstruments.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Libs\CoherentUI\Copyright.txt" />

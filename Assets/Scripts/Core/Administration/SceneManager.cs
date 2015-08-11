@@ -6,6 +6,8 @@ using Wb.Companion;
 using Wb.Companion.Core.WbNetwork;
 using Wb.Companion.Core.UI;
 using Wb.Companion.Core.Inputs;
+using Wb.Companion.Core.WbCamera;
+using Wb.Companion.Core.Game;
 
 namespace Wb.Companion.Core.WbAdministration {
 
@@ -23,37 +25,44 @@ namespace Wb.Companion.Core.WbAdministration {
 
     public class SceneManager : MonoBehaviour {
 
+        public static SceneManager instance;
+
         private bool debugging = true;
         public UIManager uiManager;
         public string currentScene;
         [SerializeField]
 		private string DefaultStartScene;
-        private List<WbUIThumbstick> thumbsticks = new List<WbUIThumbstick>();
+        //private List<WbUIThumbstick> thumbsticks = new List<WbUIThumbstick>();
 
         //---------------------------------------------------------------------
         // MonoBehaviour
         //---------------------------------------------------------------------
 
+        public void Awake() {
+            SceneManager.instance = this;
+        }
+
         void Start() {
 
-            // Get all Thumbsticks
-            WbUIThumbstick[] sticks = WbUIThumbstick.FindObjectsOfType(typeof(WbUIThumbstick)) as WbUIThumbstick[];
-            foreach (WbUIThumbstick stick in sticks) {
-                this.thumbsticks.Add(stick);
-            }
-            Debug.Log("ts count: " + this.thumbsticks.Count);
+            
         }
 
         void Update() {
+        }
+
+        //--- SINGLETON -------------------------------------------------------
+
+        public static SceneManager getInstance() {
+            return SceneManager.instance;
         }
 
         //---------------------------------------------------------------------
 
         public void loadScene(string scene) {
 
-            if (!this.currentScene.Equals(scene)) {
+            if (!SceneManager.getInstance().currentScene.Equals(scene)) {
 
-                //this.uiManager.showLoadingScreen();
+                //SceneManager.getInstance().uiManager.showLoadingScreen();
 
                 GameObject sceneData = GameObject.Find("SceneData");
                 if (sceneData != null) {
@@ -62,7 +71,7 @@ namespace Wb.Companion.Core.WbAdministration {
                               
                 StartCoroutine(levelLoaded(scene));
             } else {
-                this.uiManager.unloadMainMenu("true");
+                SceneManager.getInstance().uiManager.unloadMainMenu("true");
             }
         }
 
@@ -71,32 +80,18 @@ namespace Wb.Companion.Core.WbAdministration {
         private IEnumerator levelLoaded(string scene) {
             yield return Application.LoadLevelAdditiveAsync(scene);
             if(debugging)Debug.Log("Level: " + scene + " was loaded");
+            
+            // after SceneLoading is complete
             this.uiManager.hideLoadingScreen();
             this.uiManager.loadGameUI();
             this.setCurrentScene(scene);
-            this.initLoadedLevel(scene);
-        }
 
-        //---------------------------------------------------------------------
+            // toggle TiltInput RPC sending (only if it's RemoteControlDriving Scene)
+            InputManager.getInstance().toggleActiveTiltInput(scene);
 
-        private void initLoadedLevel(string scene) {
-
-            // REMOTE CONTROL DRIVING SCENE
-            if (scene.Equals(SceneList.RemoteControlDriving)) {
-                InputManager.getInstance().isActiveTiltInput = true;
-            } else {
-                InputManager.getInstance().isActiveTiltInput = false;
-            }
-
-            // REMOTE CONTROL CRANE SCENE
-            if (scene.Equals(SceneList.RemoteControlCrane)) {
-                foreach (WbUIThumbstick stick in this.thumbsticks) {
-                    stick.gameObject.SetActive(true);
-                }
-            } else {
-                foreach (WbUIThumbstick stick in this.thumbsticks) {
-                    stick.gameObject.SetActive(false);
-                }
+            // get all UI Thumbsticks in scene and toggle them per scene
+            if (this.uiManager.getWbUIThumbsticks().Count > 0) {
+                this.uiManager.toggleUIThumbsticks(scene);
             }
 
             CameraManager.getInstance().setInitialCameraOnSceneLoading(scene);
@@ -110,11 +105,11 @@ namespace Wb.Companion.Core.WbAdministration {
         }
 
         public void setDefaultStartScene(int scene) {
-            this.DefaultStartScene = this.getSceneList()[scene];
+            SceneManager.getInstance().DefaultStartScene = this.getSceneList()[scene];
         }
 
         public string getDefaultStartScene() {
-            return this.DefaultStartScene;
+            return SceneManager.getInstance().DefaultStartScene;
         }
 
 		public int getDefaultStartSceneInt(){

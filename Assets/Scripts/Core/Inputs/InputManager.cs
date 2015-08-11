@@ -13,6 +13,8 @@ using System.Collections;
 using Wb.Companion.Core;
 using Wb.Companion.Core.WbNetwork;
 using UnityEngine.UI;
+using Wb.Companion.Core.WbCamera;
+using  Wb.Companion.Core.WbAdministration;
 
 namespace Wb.Companion.Core.Inputs {
 
@@ -167,6 +169,19 @@ namespace Wb.Companion.Core.Inputs {
         }
 
 		//-----------------------------------------------------------------------------
+
+        public void toggleActiveTiltInput(string scene) {
+
+            // e.g. for RemoteControlDriving Scene
+            if (scene.Equals(SceneList.RemoteControlDriving)) {
+                InputManager.getInstance().isActiveTiltInput = true;
+            } else {
+                InputManager.getInstance().isActiveTiltInput = false;
+            }
+
+        }
+
+        //-----------------------------------------------------------------------------
 
 		public float getSmoothAxisValues(){
 
