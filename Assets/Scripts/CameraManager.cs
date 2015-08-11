@@ -102,7 +102,7 @@ namespace Wb.Companion.Core.Inputs {
 			}
 
 			// REMOTE CONTROL SCENE
-			if(scene.Equals(SceneList.RemoteControl)){
+			if(scene.Equals(SceneList.RemoteControlDriving)){
 				Camera.main.transform.localPosition = new Vector3(0f, 2.6f, 0.15f);
 
 				Quaternion rotation = Quaternion.Euler(0f, 180f, 0f);
@@ -125,9 +125,9 @@ namespace Wb.Companion.Core.Inputs {
                 Camera.main.orthographicSize = 1.25f;
 
                 toggleOrthogonalCamera(true);
-                this.isMapCameraActive = true;
-                this.minBounds = -1f;
-                this.maxBounds = 0.5f;
+                this.isMapCameraActive = false;
+                //this.minBounds = -1f;
+                //this.maxBounds = 0.5f;
             }
         }
 

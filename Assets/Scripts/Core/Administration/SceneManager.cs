@@ -1,10 +1,11 @@
 using UnityEngine;
+using System;
 using System.Collections;
+using System.Collections.Generic;
+using Wb.Companion;
 using Wb.Companion.Core.WbNetwork;
 using Wb.Companion.Core.UI;
-using Wb.Companion;
 using Wb.Companion.Core.Inputs;
-using System;
 
 namespace Wb.Companion.Core.WbAdministration {
 
@@ -14,7 +15,7 @@ namespace Wb.Companion.Core.WbAdministration {
     {
         public static string Main = "00_Main";
         public static string Map = "01_Map";
-        public static string RemoteControl = "02_RemoteControl_Driving";
+        public static string RemoteControlDriving = "02_RemoteControl_Driving";
         public static string RemoteControlCrane = "03_RemoteControl_Crane";
     }
 
@@ -22,18 +23,25 @@ namespace Wb.Companion.Core.WbAdministration {
 
     public class SceneManager : MonoBehaviour {
 
-        private bool D = true; //DEBUGGING
+        private bool debugging = true;
         public UIManager uiManager;
         public string currentScene;
-
         [SerializeField]
 		private string DefaultStartScene;
+        private List<WbUIThumbstick> thumbsticks = new List<WbUIThumbstick>();
 
         //---------------------------------------------------------------------
         // MonoBehaviour
         //---------------------------------------------------------------------
 
         void Start() {
+
+            // Get all Thumbsticks
+            WbUIThumbstick[] sticks = WbUIThumbstick.FindObjectsOfType(typeof(WbUIThumbstick)) as WbUIThumbstick[];
+            foreach (WbUIThumbstick stick in sticks) {
+                this.thumbsticks.Add(stick);
+            }
+            Debug.Log("ts count: " + this.thumbsticks.Count);
         }
 
         void Update() {
@@ -58,26 +66,46 @@ namespace Wb.Companion.Core.WbAdministration {
             }
         }
 
+        //---------------------------------------------------------------------
+
         private IEnumerator levelLoaded(string scene) {
             yield return Application.LoadLevelAdditiveAsync(scene);
-            if(D)Debug.Log("Level: " + scene + " was loaded");
+            if(debugging)Debug.Log("Level: " + scene + " was loaded");
             this.uiManager.hideLoadingScreen();
             this.uiManager.loadGameUI();
             this.setCurrentScene(scene);
-			if(scene.Equals(SceneList.RemoteControl)){
-				InputManager.getInstance().isActiveTiltInput = true;
-			}else{
-				InputManager.getInstance().isActiveTiltInput = false;
-			}
+            this.initLoadedLevel(scene);
+        }
 
-			CameraManager.getInstance().setInitialCameraOnSceneLoading(scene);
+        //---------------------------------------------------------------------
 
+        private void initLoadedLevel(string scene) {
+
+            // REMOTE CONTROL DRIVING SCENE
+            if (scene.Equals(SceneList.RemoteControlDriving)) {
+                InputManager.getInstance().isActiveTiltInput = true;
+            } else {
+                InputManager.getInstance().isActiveTiltInput = false;
+            }
+
+            // REMOTE CONTROL CRANE SCENE
+            if (scene.Equals(SceneList.RemoteControlCrane)) {
+                foreach (WbUIThumbstick stick in this.thumbsticks) {
+                    stick.gameObject.SetActive(true);
+                }
+            } else {
+                foreach (WbUIThumbstick stick in this.thumbsticks) {
+                    stick.gameObject.SetActive(false);
+                }
+            }
+
+            CameraManager.getInstance().setInitialCameraOnSceneLoading(scene);
         }
 
         // SETTER / GETTER ----------------------------------------------------
 
         public string[] getSceneList() {
-            string[] sceneList = new string[] { SceneList.Map, SceneList.RemoteControl, SceneList.RemoteControlCrane };
+            string[] sceneList = new string[] { SceneList.Map, SceneList.RemoteControlDriving, SceneList.RemoteControlCrane };
             return sceneList;
         }
 
