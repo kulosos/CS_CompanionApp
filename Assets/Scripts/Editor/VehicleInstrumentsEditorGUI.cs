@@ -30,14 +30,6 @@ namespace Wb.Companion.WbEditor {
         public override void OnInspectorGUI() {
 
             DrawDefaultInspector();
-			/*
-            EditorGUI.BeginChangeCheck();	
-
-			this.selectedItem = EditorGUILayout.Popup("Vehicle Instrument Type", this.selectedItem, this.vehicleInstrumentType);
-            if (EditorGUI.EndChangeCheck()) {	
-               this.editorTarget.instrumentType = ((VehicleInstruments.vehicleInstrumentType)this.selectedItem);
-            }
-			*/
         }
 
 

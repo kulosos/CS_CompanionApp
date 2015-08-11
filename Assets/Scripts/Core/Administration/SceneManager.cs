@@ -31,7 +31,7 @@ namespace Wb.Companion.Core.WbAdministration {
         public UIManager uiManager;
         public string currentScene;
         [SerializeField]
-		private string DefaultStartScene;
+        private string defaultStartScene;
         //private List<WbUIThumbstick> thumbsticks = new List<WbUIThumbstick>();
 
         //---------------------------------------------------------------------
@@ -104,12 +104,12 @@ namespace Wb.Companion.Core.WbAdministration {
             return sceneList;
         }
 
-        public void setDefaultStartScene(int scene) {
-            SceneManager.getInstance().DefaultStartScene = this.getSceneList()[scene];
+        public void setDefaultStartScene(int sceneId) {
+            this.defaultStartScene = this.getSceneList()[sceneId];
         }
 
         public string getDefaultStartScene() {
-            return SceneManager.getInstance().DefaultStartScene;
+            return this.defaultStartScene;
         }
 
 		public int getDefaultStartSceneInt(){
