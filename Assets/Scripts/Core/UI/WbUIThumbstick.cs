@@ -33,11 +33,18 @@ namespace Wb.Companion.Core.UI {
         OnlyVertical
     }
 
-    public enum thumbstickType {
+    public enum ThumbstickType {
         Left = 0,
         Middle = 1,
         Right = 2
     };
+
+	public enum ThumbstickAxis {
+		UP = 0,
+		DOWN = 1,
+		LEFT = 2,
+		RIGHT = 3
+	};
 
     //-------------------------------------------------------------------------
 
@@ -46,6 +53,12 @@ namespace Wb.Companion.Core.UI {
         //---------------------------------------------------------------------
         // Member
         //---------------------------------------------------------------------
+
+		public Wb3DThumbstick meshThumbstick;
+		private Camera uiCamera;
+		public ThumbstickType thumbstickType;
+		public float resetDamping = 5f;
+		public bool isActive = false;
 
         [SerializeField]
         private int movementRange = 100;
@@ -80,14 +93,8 @@ namespace Wb.Companion.Core.UI {
         private Vector2 startPos;
         private bool useX;
         private bool useY;
+		public bool isReleased = false;
 
-        //---------------------------------------------------------------------
-        // Properties
-        //---------------------------------------------------------------------
-
-        private Camera uiCamera;
-        public thumbstickType thumbstickType;
-        //private List<WbUIThumbstick> thumbsticks = new List<WbUIThumbstick>();
 
         //---------------------------------------------------------------------
         // MonoBehaviour
@@ -105,6 +112,19 @@ namespace Wb.Companion.Core.UI {
             }
         }
 
+		void Update() {
+
+			if(isReleased){
+
+				for(int i = 0; i <= 3; i++){
+					float value = this.meshThumbstick.GetComponent<SkinnedMeshRenderer>().GetBlendShapeWeight(i);
+					this.meshThumbstick.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(i, Mathf.Lerp(value, 0f, Time.deltaTime * this.resetDamping));
+					
+				}
+				//this.isReleased = false;
+			}
+		}
+
         //-----------------------------------------------------------------------------
         // Interface Implementations
         //-----------------------------------------------------------------------------
@@ -114,6 +134,7 @@ namespace Wb.Companion.Core.UI {
             this.indicator.rectTransform.anchoredPosition = new Vector2(0, 0);
             this.SetIconsActive(false);
             this.UpdateAxes(this.indicator.rectTransform.anchoredPosition);
+			this.isReleased = true;
         }
 
         //-----------------------------------------------------------------------------
@@ -129,6 +150,7 @@ namespace Wb.Companion.Core.UI {
         public void OnDrag(PointerEventData data) {
 
             this.UpdateIndicator(data);
+			this.isReleased = false;
         }
 
         //-----------------------------------------------------------------------------
@@ -166,6 +188,35 @@ namespace Wb.Companion.Core.UI {
             delta /= this.movementRange;
             
             this.SimulateHover(delta);
+
+			Debug.Log ("Delta: " + delta);
+
+			// Blendshape Order: 0 = UP, 1 = DOWN, 2 = LEFT, 3 = RIGHT
+			if(delta.y > 0){
+				float bsValue = Mathf.Lerp(0, 100f, Mathf.InverseLerp(0f, 1f, Mathf.Abs(delta.y)));
+				this.meshThumbstick.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(0, bsValue);
+
+				this.meshThumbstick.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(1, 0);
+			}
+			if(delta.y < 0){
+				float bsValue = Mathf.Lerp(0, 100f, Mathf.InverseLerp(0f, 1f, Mathf.Abs(delta.y)));
+				this.meshThumbstick.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(1, bsValue);
+
+				this.meshThumbstick.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(0, 0);
+			}
+			if(delta.x < 0){
+				float bsValue = Mathf.Lerp(0, 100f, Mathf.InverseLerp(0f, 1f, Mathf.Abs(delta.x)));
+				this.meshThumbstick.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(2, bsValue);
+
+				this.meshThumbstick.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(3, 0);
+			}
+			if(delta.x > 0){
+				float bsValue = Mathf.Lerp(0, 100f, Mathf.InverseLerp(0f, 1f, Mathf.Abs(delta.x)));
+				this.meshThumbstick.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(3, bsValue);
+
+				this.meshThumbstick.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(2, 0);
+			}
+
         }
 
         //-----------------------------------------------------------------------------

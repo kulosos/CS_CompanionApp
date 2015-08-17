@@ -11,6 +11,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using Wb.Companion.Core.WbAdministration;
+using Wb.Companion.Core.Game;
 
 #if UNITY_IOS
 using Coherent.UI.Mobile.Binding; // TriggerEvent binding with extra parameter on mobile 

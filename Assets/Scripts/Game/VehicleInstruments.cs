@@ -61,6 +61,9 @@ public class VehicleInstruments : MonoBehaviour {
 			float rpm = WbCompRPCWrapper.getInstance().getCurrentRPM();
 			float speed = WbCompRPCWrapper.getInstance().getCurrentSpeed();
 
+			rpm = 1800f;
+			speed = 80f;
+
 			if(instrumentType == vehicleInstrumentType.RPM){
 				Quaternion prevRotation = gameObject.transform.localRotation;
 				float rpmAngle = Mathf.Lerp(0, maxRotation, Mathf.InverseLerp(0, 3500, rpm));
