@@ -1,0 +1,139 @@
+fileFormatVersion: 2
+guid: 30dbcb0b692776649bc8839fe31d90b5
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: Buildings
+    100002: //RootNode
+    100004: District0005_NonStatic01
+    100006: District0005_NonStatic02
+    100008: District0005_Static1
+    100010: District0005_Static1_MeshPart0
+    100012: District0005_Static1_MeshPart1
+    100014: District0005_Static2
+    100016: District0005_Static2_MeshPart0
+    100018: District0005_Static2_MeshPart1
+    100020: District0005_Static3
+    100022: District0005_Static4
+    100024: District0005_Static5
+    100026: District0005_Static6
+    100028: District0005_Static7
+    100030: District0005_Static8
+    100032: District0005_Static9
+    400000: Buildings
+    400002: //RootNode
+    400004: District0005_NonStatic01
+    400006: District0005_NonStatic02
+    400008: District0005_Static1
+    400010: District0005_Static1_MeshPart0
+    400012: District0005_Static1_MeshPart1
+    400014: District0005_Static2
+    400016: District0005_Static2_MeshPart0
+    400018: District0005_Static2_MeshPart1
+    400020: District0005_Static3
+    400022: District0005_Static4
+    400024: District0005_Static5
+    400026: District0005_Static6
+    400028: District0005_Static7
+    400030: District0005_Static8
+    400032: District0005_Static9
+    2300000: District0005_NonStatic01
+    2300002: District0005_NonStatic02
+    2300004: District0005_Static1_MeshPart0
+    2300006: District0005_Static1_MeshPart1
+    2300008: District0005_Static2_MeshPart0
+    2300010: District0005_Static2_MeshPart1
+    2300012: District0005_Static3
+    2300014: District0005_Static4
+    2300016: District0005_Static5
+    2300018: District0005_Static6
+    2300020: District0005_Static7
+    2300022: District0005_Static8
+    2300024: District0005_Static1
+    2300026: District0005_Static2
+    2300028: District0005_Static9
+    3300000: District0005_NonStatic01
+    3300002: District0005_NonStatic02
+    3300004: District0005_Static1_MeshPart0
+    3300006: District0005_Static1_MeshPart1
+    3300008: District0005_Static2_MeshPart0
+    3300010: District0005_Static2_MeshPart1
+    3300012: District0005_Static3
+    3300014: District0005_Static4
+    3300016: District0005_Static5
+    3300018: District0005_Static6
+    3300020: District0005_Static7
+    3300022: District0005_Static8
+    3300024: District0005_Static1
+    3300026: District0005_Static2
+    3300028: District0005_Static9
+    4300000: District0005_NonStatic01
+    4300002: District0005_NonStatic02
+    4300004: District0005_Static1_MeshPart0
+    4300006: District0005_Static1_MeshPart1
+    4300008: District0005_Static2_MeshPart0
+    4300010: District0005_Static2_MeshPart1
+    4300012: District0005_Static3
+    4300014: District0005_Static4
+    4300016: District0005_Static5
+    4300018: District0005_Static6
+    4300020: District0005_Static7
+    4300022: District0005_Static8
+    4300024: District0005_Static1
+    4300026: District0005_Static2
+    4300028: District0005_Static9
+    9500000: //RootNode
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 

@@ -4,13 +4,29 @@
  ---------------------------------------*/		
 $menuItemHeight:	60px;
 $menuItemWidth: 	250px;
-$menuOuterMargin:	2px;
+$menuOuterMargin:	1px;
 
+$font-stack:    		Helvetica, sans-serif;
+$font-size-text: 		18px;
+$font-weight-text:		300;
+
+$font-size-hl1:			22px;
+$font-weight-hl1:		500;
+
+$bg_yellow80:			rgba(254,193,6,08); //#fec106
+$bg_darkgray50:			rgba( 20, 20, 20,0.5);
+$bg_darkgray80:			rgba( 20, 20, 20,0.8);
+$bg_gray80:				rgba(100,100,100,0.8);
+
+$height_header:			40px;	
+
+ /*---------------------------------------*/
+ 
 #mainmenu {
 
 	position:fixed;
 	z-index: 2000;
-	top: $height_header + $menuOuterMargin;
+	/*top: setted by JS*/
 	right:$menuOuterMargin;
 	width:$menuItemWidth;
 	height:auto;
@@ -30,7 +46,16 @@ $menuOuterMargin:	2px;
 		width: $menuItemWidth;
 		height: $menuItemHeight;
 		margin: 1px 0px 1px 0px;
-		background:$bg_transparent80;
+		background:$bg_darkgray80;
+	}
+	
+	.menuItemWrapper:hover {
+		cursor: pointer;
+		background: $bg_yellow80;
+		color:black;
+		.menuItemIcon img {
+			background: black;
+		}
 	}
 
 	.menuItemIcon img {
@@ -41,7 +66,7 @@ $menuOuterMargin:	2px;
 		width:  $menuItemHeight;
 		height: $menuItemHeight;
 		margin: 0px 0px 0px 0px;
-		background:$bg_transparent50;
+		background:$bg_darkgray50;
 		
 	}
 
@@ -54,5 +79,6 @@ $menuOuterMargin:	2px;
 		margin: 20px 15px 0px 20px;
 		background:none;
 	}
+
 
 }

@@ -1,37 +1,44 @@
-<div id="startpage">
-	<div class="outerWrapper">
-	    <div class="wrapper" >
-	        <div class="innerWrapper">
+<div id="startpage" >
+    <div class="outerWrapper" >
+        <div class="wrapper" >
+            <div class="innerWrapper">
 
-	        	<div class="hlLogo">
-	        		 <img src="img/logos/ConSim2015.png" class="hlLogoImage"  alt=""/>
-	        	</div>
+                <div class="hlLogo">
+                     <img src="img/logos/CompanionApp01.svg" class="hlLogoImage"  alt=""/>
+                </div>
 
-	        	<div class="hlJoinGame">
-            		<span>Choose Game</span>
-            	</div>
+                <div class="hlConnection">
+                    <span>Enter Connection</span>
+                </div>
 
-	            <div class="contentBox" >
-	            	<div class="itemJoinGame" id="game1">
-	            		<span>Computer CD</span>
-	            	</div>
-	            	<div class="itemJoinGame">
-	            		<span>Computer EF</span>
-	            	</div>
-	            	<div class="itemJoinGame">
-	            		<span>Computer XY</span>
-	            	</div>
-	            	<div class="itemJoinGame">
-	            		<span>Computer 12</span>
-	            	</div>
-	            	<div class="itemJoinGame">
-	            		<span>Computer 23</span>
-	            	</div>
-	            	<div class="itemJoinGame">
-	            		<span>Computer 45</span>
-	            	</div>
-	            </div>
-	        </div>
-	    </div>
-	</div>
+                <div class="contentBox" >
+                    
+                    <form id="connectionInput" >
+                        <fieldset>
+                            <!--<label for="ipAdress">IP:PORT</label> -->
+                            <div class="inputrow">
+                                <input type="text" name="input_ip" class="input inputleft" value="192.168.1.100" id="ipAdress" maxlength="15" />
+                                <input type="text" name="input_port" class="input inputright" value="25000" id="port" maxlength="6" />
+                            </div>
+                            
+                            <div class="inputrow">
+                                <label class="imgLabel"><img src="img/icons/icon_lock.svg"></label>
+                                <input type="password" name="input_pw" class="input inputpw" value="pw" id="password" />
+                            </div>
+                            
+                            <button type="submit" name="action" value="1">
+                                
+                                <span class="btnConnectText">Connect</span>
+                                <img src="img/gif/loading.gif" class="connectionLoadingBar hide" />
+                            </button>
+                        
+                            <label class="inputError">ERROR LABEL</label>
+                        </fieldset>
+                    </form>
+                    
+                    
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

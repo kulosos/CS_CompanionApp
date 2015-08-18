@@ -14,59 +14,94 @@ $font-weight-text:		300;
 $font-size-hl1:			22px;
 $font-weight-hl1:		500;
 
-$primary-color: 		#333;
+$bg_yellow:		   	  	rgba(254,193,6, 1.0); //#fec106
+$bg_yellow80:		   	rgba(254,193,6,0.8); //#fec106
+$bg_darkgray50:			rgba( 20, 20, 20,0.5);
+$bg_darkgray80:			rgba( 20, 20, 20,0.8);
+$bg_gray80:				rgba(100,100,100,0.8);
 
-$bg_transparent50:		rgba(43,43,43,0.5);
-$bg_transparent80:		rgba(43,43,43,0.8);
-$bg_div_hover:			red;
+$height_header:			40px;	
 
-$height_header:			60px;	
-
+ /*---------------------------------------*/
 
 * {
-	margin:  0px; 
-}
+  margin: 0px; }
 
 body {
-  	font: 100% $font-stack;
-  	color: $primary-color;
-  	font-size: $font-size-text;  
-	font-weight: $font-weight-text;
-	overflow: hidden;
+  font: 100% Helvetica, sans-serif;
+  color: #333;
+  font-size: 18px;
+  font-weight: 300; 
+  //background-color: rgba(255,0,0,0.1);
 }
 
 .header { 
 	position:fixed; 
-	height: $height_header;  
+	height: $height_header;
 	top:0px; 
 	left:0px; 
 	right:0px; 
 	overflow:hidden; 
-	background-color: $bg_transparent80; 
+	background-color: none; 
+}
+
+.wrapperHeader { 
+	position:static;  
+	 
+	left:50%; 
+	right:50%; 
+	margin-left:-50%;
+	background:none;
+
+}
+
+.headerLeft {
+	position: fixed;
+	z-index:1000;
+	float:left;
+	top:0px;
+	left:0px;
+	height: $height_header;
+	width: 320px;
+	margin:0px;
+	background-color:none;
+
+}
+
+.headerRight {
+	position:fixed;
+	z-index: 1000;
+	float:left;
+	top:0px;
+	right:0px;
+	height: $height_header;
+	width:70%;
+	margin:0px;
+	background-color:$bg_darkgray80;
+
+}
+
+#headerMenuCompLogo{
+	position: relative;
+	left:0px;
+	top:0px;
+	height: $height_header;
+	opacity: 0.7;
+    filter: alpha(opacity=70); 
 }
 
 #headerMenuBtn{
 	position: absolute;
-	right:5px;
-	top:10px;
-	height: 40px;
+	right:0px;
+	top:0px;
+	height: $height_header;
 }
 
 .headerMenuBtn:hover{
 	position: absolute;
 	right:5px;
 	top:10px;
-	height: 40px;
-	background: $bg_div_hover;
-}
-
-.wrapperHeader { 
-	position:fixed;  
-	width:98%; 
-	left:50%; 
-	right:50%; 
-	margin-left:-49%;
-	background:none;
+	height: 100%;
 }
 
 .footer {
@@ -74,21 +109,22 @@ body {
 	z-index:100;
 	left:-$height_header;
 	bottom: 0px;
-	width:220px;
-	height:50px;
-	background: $bg_transparent80;
+	width:180px;
+	height:40px;
+	background: $bg_darkgray80;
 	-webkit-transform: skew(45deg);
 	-moz-transform: skew(45deg);
 	-o-transform: skew(45deg);
 }
 
 .footerLogoFixWB {
-	position: absolute;
+	position: relative;
 	z-index:100;
-	left:-10px;
-	bottom: 0px;
-	width:180px;
-	height:45px;
+	height:30px;
+	margin: 5px 0px 0px 65px;
+	-webkit-transform: skew(-45deg);
+	-moz-transform: skew(-45deg);
+	-o-transform: skew(-45deg);
 }
 
 .footerLogoFixConSim {
@@ -96,9 +132,13 @@ body {
 	z-index:100;
 	right:20px;
 	bottom: 0px;
-	height:120px;
+	height:20%;
+}
+
+.hide {
+	display: none;
 }
 
 @import "_style_cscompanion_start.scss";
-
 @import "_style_cscompanion_mainmenu.scss";
+@import "_style_cscompanion_loadingbar.scss";

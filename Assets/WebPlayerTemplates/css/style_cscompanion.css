@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* --------------------------------------
  	BRIEF:
 	STANDARD STYLE MAIN CSS DOCUMENT
@@ -5,6 +6,7 @@
 	Author: Oliver Kulas
 	Date: April 2015
  ---------------------------------------*/
+/*---------------------------------------*/
 * {
   margin: 0px; }
 
@@ -12,77 +14,109 @@ body {
   font: 100% Helvetica, sans-serif;
   color: #333;
   font-size: 18px;
-  font-weight: 300;
-  overflow: hidden; }
+  font-weight: 300; }
 
 .header {
   position: fixed;
-  height: 60px;
+  height: 40px;
   top: 0px;
   left: 0px;
   right: 0px;
   overflow: hidden;
-  background-color: rgba(43, 43, 43, 0.8); }
+  background-color: none; }
+
+.wrapperHeader {
+  position: static;
+  left: 50%;
+  right: 50%;
+  margin-left: -50%;
+  background: none; }
+
+.headerLeft {
+  position: fixed;
+  z-index: 1000;
+  float: left;
+  top: 0px;
+  left: 0px;
+  height: 40px;
+  width: 320px;
+  margin: 0px;
+  background-color: none; }
+
+.headerRight {
+  position: fixed;
+  z-index: 1000;
+  float: left;
+  top: 0px;
+  right: 0px;
+  height: 40px;
+  width: 70%;
+  margin: 0px;
+  background-color: rgba(20, 20, 20, 0.8); }
+
+#headerMenuCompLogo {
+  position: relative;
+  left: 0px;
+  top: 0px;
+  height: 40px;
+  opacity: 0.7;
+  filter: alpha(opacity=70); }
 
 #headerMenuBtn {
   position: absolute;
-  right: 5px;
-  top: 10px;
+  right: 0px;
+  top: 0px;
   height: 40px; }
 
 .headerMenuBtn:hover {
   position: absolute;
   right: 5px;
   top: 10px;
-  height: 40px;
-  background: red; }
-
-.wrapperHeader {
-  position: fixed;
-  width: 98%;
-  left: 50%;
-  right: 50%;
-  margin-left: -49%;
-  background: none; }
+  height: 100%; }
 
 .footer {
   position: fixed;
   z-index: 100;
-  left: -60px;
+  left: -40px;
   bottom: 0px;
-  width: 220px;
-  height: 50px;
-  background: rgba(43, 43, 43, 0.8);
+  width: 180px;
+  height: 40px;
+  background: rgba(20, 20, 20, 0.8);
   -webkit-transform: skew(45deg);
   -moz-transform: skew(45deg);
   -o-transform: skew(45deg); }
 
 .footerLogoFixWB {
-  position: absolute;
+  position: relative;
   z-index: 100;
-  left: -10px;
-  bottom: 0px;
-  width: 180px;
-  height: 45px; }
+  height: 30px;
+  margin: 5px 0px 0px 65px;
+  -webkit-transform: skew(-45deg);
+  -moz-transform: skew(-45deg);
+  -o-transform: skew(-45deg); }
 
 .footerLogoFixConSim {
   position: absolute;
   z-index: 100;
   right: 20px;
   bottom: 0px;
-  height: 120px; }
+  height: 20%; }
+
+.hide {
+  display: none; }
 
 /* --------------------------------------
 	STARTPAGE
  ---------------------------------------*/
+/* --------------------------------------*/
 #startpage {
-  color: white; }
+  color: white;
+  /* INPUT FIELDS */ }
   #startpage .outerWrapper {
     position: absolute;
     z-index: 50;
     height: 100%;
     width: 100%;
-    vertical-align: middle;
     margin: 0px;
     background: url("../img/bg/bg_conSim_overpaint1.png") no-repeat center center fixed;
     background-size: cover;
@@ -103,57 +137,133 @@ body {
   #startpage .hlLogo {
     z-index: 60;
     position: relative;
-    height: 80px;
     width: 400px;
-    margin: 0px auto 5px auto; }
+    height: auto;
+    margin: 0px auto 0px auto; }
   #startpage .hlLogoImage {
     z-index: 60;
     position: relative;
-    top: -20px;
-    left: 10px;
-    height: 100px; }
-  #startpage .hlJoinGame {
+    width: auto;
+    height: 100%;
+    margin: 0px 0px 0px 0px;
+    opacity: 0.8;
+    filter: alpha(opacity=80);
+    /* For IE8 and earlier */ }
+  #startpage .hlConnection {
     z-index: 60;
     position: relative;
     width: 400px;
-    height: 60px;
-    margin: 0px auto 5px auto;
-    background: rgba(43, 43, 43, 0.5); }
-    #startpage .hlJoinGame span {
+    height: 40px;
+    margin: 0px auto 0px auto;
+    background: rgba(20, 20, 20, 0.8); }
+    #startpage .hlConnection span {
       position: absolute;
-      margin: 20px 0px 0px 30px;
+      margin: 8px 0px 0px 20px;
       font-size: 22px; }
   #startpage .contentBox {
     z-index: 60;
     position: relative;
-    height: 200px;
+    height: 30%;
+    min-height: 80px;
+    max-height: 300px;
     width: 400px;
-    background-color: rgba(43, 43, 43, 0.5);
+    background-color: none;
     margin-left: auto;
     margin-right: auto;
     overflow: auto; }
-  #startpage .itemJoinGame {
-    z-index: 60;
-    position: relative;
-    width: 90%;
+  #startpage #connectionInput {
+    float: left;
+    width: 100%; }
+  #startpage .inputrow {
+    clear: both;
+    float: none;
     height: 40px;
-    margin: 10px auto 10px auto;
-    background: rgba(43, 43, 43, 0.8); }
-    #startpage .itemJoinGame span {
-      position: absolute;
-      margin: 10px 0px 0px 10px;
-      padding-top: 0px; }
-  #startpage .itemJoinGame:hover {
-    background: red; }
+    margin: 4px 0px 0px 0px; }
+  #startpage fieldset {
+    width: 100%;
+    height: auto;
+    outline: none;
+    border: 0;
+    margin: 0;
+    padding: 0; }
+  #startpage input {
+    appearance: none;
+    box-shadow: none;
+    border-radius: none;
+    outline: none;
+    font-family: Helvetica, sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+    border: solid 0px #c9c9c9;
+    background: rgba(20, 20, 20, 0.8);
+    color: white;
+    padding: 10px 20px 10px 20px;
+    -webkit-border-radius: x0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px; }
+  #startpage input:focus {
+    border: solid 0px #969696;
+    background: rgba(150, 150, 150, 0.8); }
+  #startpage .inputleft  {
+    float: left;
+    width: 300px; }
+  #startpage .inputright {
+    float: right;
+    width: 110px; }
+  #startpage .inputpw {
+    float: left;
+    width: 299px;
+    padding-left: 20px; }
+  #startpage .imgLabel {
+    height: 41px;
+    width: 41px;
+    float: left;
+    background: rgba(20, 20, 20, 0.8);
+    padding: 0px 10px 0px 10px; }
+    #startpage .imgLabel img {
+      height: 30px;
+      width: 30px;
+      margin: 5px 5px 5px 5px; }
+  #startpage button {
+    width: 100%;
+    font-family: Helvetica, sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+    appearance: none;
+    box-shadow: none;
+    border-radius: none;
+    outline: none;
+    border: solid 0px #c9c9c9;
+    transition: border 0.3s;
+    background: #fec106;
+    color: black;
+    margin: 10px 0px 0px 0px;
+    padding: 10px; }
+  #startpage .inputError {
+    visibility: hidden;
+    float: left;
+    clear: both;
+    position: relative;
+    width: 400px;
+    height: auto;
+    color: white;
+    background: red;
+    text-align: center;
+    margin: 10px 0px 0px 0px;
+    padding: 10px 0px 10px 0px; }
+  #startpage .connectionLoadingBar {
+    height: 16px;
+    width: 16px; }
 
 /* --------------------------------------
 	MAIN MENU
  ---------------------------------------*/
+/*---------------------------------------*/
 #mainmenu {
   position: fixed;
   z-index: 2000;
-  top: 62px;
-  right: 2px;
+  /*top: setted by JS*/
+  right: 1px;
   width: 250px;
   height: auto;
   overflow: scroll;
@@ -169,7 +279,13 @@ body {
     width: 250px;
     height: 60px;
     margin: 1px 0px 1px 0px;
-    background: rgba(43, 43, 43, 0.8); }
+    background: rgba(20, 20, 20, 0.8); }
+  #mainmenu .menuItemWrapper:hover {
+    cursor: pointer;
+    background: #fec106;
+    color: black; }
+    #mainmenu .menuItemWrapper:hover .menuItemIcon img {
+      background: black; }
   #mainmenu .menuItemIcon img {
     position: relative;
     float: left;
@@ -178,7 +294,7 @@ body {
     width: 60px;
     height: 60px;
     margin: 0px 0px 0px 0px;
-    background: rgba(43, 43, 43, 0.5); }
+    background: rgba(20, 20, 20, 0.5); }
   #mainmenu .menuItemLabel {
     position: relative;
     float: left;
@@ -187,5 +303,30 @@ body {
     max-width: 190px -35px;
     margin: 20px 15px 0px 20px;
     background: none; }
+
+/*---------------------------------------*/
+.loadingBarWrapper {
+  position: absolute;
+  background: black;
+  height: 100%;
+  width: 100%;
+  margin: 0 auto; }
+
+.loadingBar {
+  background: #fec106;
+  color: black;
+  width: auto;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  padding: 20px;
+  overflow: hidden; }
+  .loadingBar img {
+    height: 20px;
+    width: 20px;
+    margin: 0px 10px 0px 0px; }
+  .loadingBar span {
+    margin: -10px 0px 0px 0px; }
 
 /*# sourceMappingURL=style_cscompanion.css.map */

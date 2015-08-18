@@ -1,0 +1,46 @@
+$font-stack:    		Helvetica, sans-serif;
+$font-size-text: 		18px;
+$font-weight-text:	300;
+
+$font-size-hl1:			22px;
+$font-weight-hl1:		500;
+
+$bg_yellow:		   	  rgba(254,193,6, 1.0); //#fec106
+$bg_yellow80:		   	rgba(254,193,6,0.8); //#fec106
+$bg_darkgray50:			rgba( 20, 20, 20,0.5);
+$bg_darkgray80:			rgba( 20, 20, 20,0.8);
+$bg_gray80:			  	rgba(100,100,100,0.8);
+
+$height_header:			40px;	
+ /*---------------------------------------*/
+
+.loadingBarWrapper {
+  position: absolute;
+  background: black;
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.loadingBar  {
+  background: $bg_yellow;
+  color: black;
+  width: auto;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  padding: 20px;
+  overflow: hidden;
+  
+  img{
+    height:20px;
+    width: 20px;
+    margin: 0px 10px 0px 0px;
+  }
+  span{
+    margin: -10px 0px 0px 0px;
+  }
+}
+
+

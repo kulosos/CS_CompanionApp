@@ -7,7 +7,6 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{F45C57BE-022B-BC36-8CF9-DE01EE8EE485}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace></RootNamespace>
     <AssemblyName>Assembly-CSharp-Editor</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -16,24 +15,29 @@
     <TargetFrameworkProfile>Unity Full v3.5</TargetFrameworkProfile>
     <CompilerResponseFile></CompilerResponseFile>
     <UnityProjectType>Editor:5</UnityProjectType>
-    <UnityBuildTarget>Android:13</UnityBuildTarget>
+    <UnityBuildTarget>iPhone:9</UnityBuildTarget>
     <UnityVersion>4.6.4p1</UnityVersion>
+    <RootNamespace></RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>Temp\UnityVS_bin\Debug\</OutputPath>
+    <IntermediateOutputPath>Temp\UnityVS_obj\Debug\</IntermediateOutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DefineConstants>DEBUG;TRACE;UNITY_4_6_4;UNITY_4_6;UNITY_ANDROID;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_IL2CPP;INCLUDE_WP8SUPPORT;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_4_6_FEATURES;INCLUDE_WP_BLUE_SUPPORT;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;UNITY5_SCRIPTING_IN_UNITY4;ENABLE_CACHING;ENABLE_CLOTH;UNITY_ANDROID_API;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_MONO;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_OSX;UNITY_TEAM_LICENSE;UNITY_PRO_LICENSE</DefineConstants>
+    <DefineConstants>DEBUG;TRACE;UNITY_4_6_4;UNITY_4_6;UNITY_IPHONE;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_IL2CPP;INCLUDE_WP8SUPPORT;ENABLE_WWW;ENABLE_IMAGEEFFECTS;UNITY_IPHONE_API;ENABLE_4_6_FEATURES;INCLUDE_WP_BLUE_SUPPORT;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;ENABLE_NETWORK;ENABLE_PHYSICS;UNITY5_SCRIPTING_IN_UNITY4;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_GAMECENTER;UNITY_IOS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_MONO;DEVELOPMENT_BUILD;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_OSX;UNITY_TEAM_LICENSE;UNITY_PRO_LICENSE</DefineConstants>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>Temp\UnityVS_bin\Release\</OutputPath>
+    <IntermediateOutputPath>Temp\UnityVS_obj\Release\</IntermediateOutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DefineConstants>TRACE;UNITY_4_6_4;UNITY_4_6;UNITY_ANDROID;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_IL2CPP;INCLUDE_WP8SUPPORT;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_4_6_FEATURES;INCLUDE_WP_BLUE_SUPPORT;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;UNITY5_SCRIPTING_IN_UNITY4;ENABLE_CACHING;ENABLE_CLOTH;UNITY_ANDROID_API;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_MONO;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_OSX;UNITY_TEAM_LICENSE;UNITY_PRO_LICENSE</DefineConstants>
+    <DefineConstants>TRACE;UNITY_4_6_4;UNITY_4_6;UNITY_IPHONE;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_IL2CPP;INCLUDE_WP8SUPPORT;ENABLE_WWW;ENABLE_IMAGEEFFECTS;UNITY_IPHONE_API;ENABLE_4_6_FEATURES;INCLUDE_WP_BLUE_SUPPORT;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;ENABLE_NETWORK;ENABLE_PHYSICS;UNITY5_SCRIPTING_IN_UNITY4;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_GAMECENTER;UNITY_IOS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_MONO;DEVELOPMENT_BUILD;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_OSX;UNITY_TEAM_LICENSE;UNITY_PRO_LICENSE</DefineConstants>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
@@ -48,6 +52,7 @@
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="UnityEngine.UI">
       <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
@@ -71,13 +76,13 @@
       <HintPath>Assets\Libs\TouchScript\Plugins\TouchScript.Windows.dll</HintPath>
     </Reference>
     <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
-      <HintPath>Assets\Libs\UnityVS\Editor\SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
+      <HintPath>Assets\UnityVS\Editor\SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
     </Reference>
     <Reference Include="SyntaxTree.VisualStudio.Unity.Messaging">
-      <HintPath>Assets\Libs\UnityVS\Editor\SyntaxTree.VisualStudio.Unity.Messaging.dll</HintPath>
+      <HintPath>Assets\UnityVS\Editor\SyntaxTree.VisualStudio.Unity.Messaging.dll</HintPath>
     </Reference>
     <Reference Include="UnityVS.VersionSpecific">
-      <HintPath>Assets\Libs\UnityVS\Editor\UnityVS.VersionSpecific.dll</HintPath>
+      <HintPath>Assets\UnityVS\Editor\UnityVS.VersionSpecific.dll</HintPath>
     </Reference>
     <Reference Include="CoherentUIMobileNet">
       <HintPath>Assets\Plugins\CoherentUIMobileNet.dll</HintPath>
@@ -106,9 +111,89 @@
     <Compile Include="Assets\Libs\CoherentUI\Editor\CoherentUI\CoherentViewEditor.cs" />
     <Compile Include="Assets\Libs\CoherentUI\Editor\CoherentUI\IOSPostProcessor.cs" />
     <Compile Include="Assets\Libs\CoherentUI\Editor\CoherentUI\MobileSurfaceViewEditor.cs" />
+    <Compile Include="Assets\Scripts\Editor\SceneManagerEditorGUI.cs" />
+    <Compile Include="Assets\Scripts\Editor\VehicleInstrumentsEditorGUI.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Libs\CoherentUI\Copyright.txt" />
+    <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\BlendModesOverlay.shader" />
+    <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\BlurEffectConeTaps.shader" />
+    <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\CameraMotionBlur.shader" />
+    <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\CameraMotionBlurDX11.shader" />
+    <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\ChromaticAberrationShader.shader" />
+    <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\ColorCorrection3DLut.shader" />
+    <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\ColorCorrectionCurves.shader" />
+    <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\ColorCorrectionCurvesSimple.shader" />
+    <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\ColorCorrectionEffect.shader" />
+    <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\ColorCorrectionSelective.shader" />
+    <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\Contrast Stretch\Adaptation.shader" />
+    <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\Contrast Stretch\Apply.shader" />
+    <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\Contrast Stretch\Luminance.shader" />
+    <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\Contrast Stretch\MinMaxReduction.shader" />
+    <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\ContrastComposite.shader" />
+    <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\ConvertDepth.shader" />
+    <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\CreaseApply.shader" />
+    <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\EdgeDetectNormals.shader" />
+    <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\FisheyeShader.shader" />
+    <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\GlobalFog.shader" />
+    <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\GlowCompose.shader" />
+    <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\GlowConeTap.shader" />
+    <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\GlowEffectDownsample.shader" />
+    <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\GrayscaleEffect.shader" />
+    <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\MotionBlur.shader" />
+    <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\MotionBlurClear.shader" />
+    <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\NoiseAndGrain.shader" />
+    <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\NoiseAndGrainDX11.shader" />
+    <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\NoiseEffectShaderRGB.shader" />
+    <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\NoiseEffectShaderYUV.shader" />
+    <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\PrepareSunShaftsBlur.shader" />
+    <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\RadialBlur.shader" />
+    <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\SSAOShader.shader" />
+    <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\ScreenSpaceAmbientObscurance.shader" />
+    <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\SepiaToneEffect.shader" />
+    <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\ShowAlphaChannel.shader" />
+    <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\SimpleClear.shader" />
+    <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\SunShaftsComposite.shader" />
+    <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\Tonemapper.shader" />
+    <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\TwirlEffect.shader" />
+    <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\VignettingShader.shader" />
+    <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\VortexEffect.shader" />
+    <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\_Antialiasing\DLAA.shader" />
+    <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\_Antialiasing\FXAA2.shader" />
+    <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\_Antialiasing\FXAA3Console.shader" />
+    <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\_Antialiasing\FXAAPreset2.shader" />
+    <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\_Antialiasing\FXAAPreset3.shader" />
+    <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\_Antialiasing\NFAA.shader" />
+    <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\_Antialiasing\SSAA.shader" />
+    <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\_BloomAndFlares\Blend.shader" />
+    <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\_BloomAndFlares\BlendForBloom.shader" />
+    <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\_BloomAndFlares\BlendOneOne.shader" />
+    <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\_BloomAndFlares\BlurAndFlares.shader" />
+    <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\_BloomAndFlares\BrightPassFilter.shader" />
+    <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\_BloomAndFlares\BrightPassFilter2.shader" />
+    <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\_BloomAndFlares\LensFlareCreate.shader" />
+    <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\_BloomAndFlares\MobileBloom.shader" />
+    <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\_BloomAndFlares\MobileBlur.shader" />
+    <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\_BloomAndFlares\MultiPassHollywoodFlares.shader" />
+    <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\_BloomAndFlares\SeparableBlurPlus.shader" />
+    <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\_BloomAndFlares\VignetteShader.shader" />
+    <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\_DepthOfField\Bokeh34.shader" />
+    <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\_DepthOfField\DepthOfField34.shader" />
+    <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\_DepthOfField\DepthOfFieldDX11.shader" />
+    <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\_DepthOfField\DepthOfFieldScatter.shader" />
+    <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\_DepthOfField\SeparableBlur.shader" />
+    <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\_DepthOfField\SeparableWeightedBlurDof34.shader" />
+    <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\_DepthOfField\TiltShiftHdrLensBlur.shader" />
+    <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\frag_ao.cginc" />
+    <None Include="Assets\Shader\DebugDraw.shader" />
+    <None Include="Assets\Shader\Mobile\WbFakeMobileGlass.shader" />
+    <None Include="Assets\Shader\Mobile\WbMobileColoredVertexLit.shader" />
+    <None Include="Assets\Shader\Mobile\WbMobileDiffuseVertexColorSelectNoLightmap.shader" />
+    <None Include="Assets\Shader\Mobile\WbMobileStreets.shader" />
+    <None Include="Assets\Shader\Mobile\WbShaderInclude.cginc" />
+    <None Include="Assets\Shader\Terrain.shader" />
+    <None Include="Assets\Shader\VertexBlend3.shader" />
+    <None Include="Assets\Shader\VertexMultiply.shader" />
     <None Include="Assets\Standard Assets\Shaders\CoherentUI\DiffuseIgnoreZ.shader" />
     <None Include="Assets\Standard Assets\Shaders\CoherentUI\TransparentDiffuseIgnoreZ.shader" />
     <None Include="Assets\WebPlayerTemplates\sass\SASS_Services.txt" />

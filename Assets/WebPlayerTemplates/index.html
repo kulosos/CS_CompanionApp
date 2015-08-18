@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" >
+<html xmlns="http://www.w3.org/1999/xhtml" class="coui-noinput" >
 <head>
 
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -7,43 +7,48 @@
         
         <link rel="stylesheet" type="text/css" href="css/style_cscompanion.css">
 
-        <!--
-        <link href='http://fonts.googleapis.com/css?family=Roboto:100,300' rel='stylesheet' type='text/css'>
-    	<link href='http://fonts.googleapis.com/css?family=Oswald:300,400,700' rel='stylesheet' type='text/css'>
-        <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900' rel='stylesheet' type='text/css'>
-        <link href='http://fonts.googleapis.com/css?family=Muli:300,400' rel='stylesheet' type='text/css'>-->
-
         <script type='text/javascript' src='scripts/jquery-1.11.1.min.js'></script>
-
         <script type='text/javascript' src='scripts/coherent.js'></script>
-        <script type='text/javascript' src='scripts/dataBinding.js'></script>
 
-        <script type='text/javascript' src='scripts/blurjs/blur.min.js'></script>
-        <script type='text/javascript' src='scripts/blurElements.js'></script>
-
-        <script type='text/javascript' src='scripts/navigation.js'></script>
-
-
-		<script type='text/javascript' src='scripts/layoutElements.js'></script>
+        <script type='text/javascript' src='scripts/DataBindingController.js'></script>
+        <script type='text/javascript' src='scripts/NavigationController.js'></script>
+		<script type='text/javascript' src='scripts/LayoutController.js'></script>
+        <script type='text/javascript' src='scripts/ConnectionManager.js'></script>
+        <script type='text/javascript' src='scripts/LoadingBar.js'></script>
+        
+        <script type='text/javascript' src='scripts/MainController.js'></script>
+        
         
 </head>
 
 
-<body>
+<body class="coui-noinput" >
 
-    <header class="header"> 
-        <div class="wrapperHeader">
-             <img src="img/icons/icon_menu_stripes_white.svg" id="headerMenuBtn" alt=""/>
+    <header class="header coui-noinput" > 
+
+
+        <div class="wrapperHeader coui-noinput">
+
+            <div class="headerLeft coui-noinput"> 
+                 <img src="img/logos/CompanionApp01_headerLogo.svg" id="headerMenuCompLogo" class="coui-noinput" alt=""/>
+            </div>
+                 
+            <div class="headerRight coui-noinput">
+                <img src="img/icons/icon_menu_stripesRounded_white.svg" id="headerMenuBtn"  alt=""/>
+            </div>
            
         </div>
     </header>
+    
+    
+    <div id="content" class="coui-noinput" > 
 
+    </div>
 
-    <div id="content"> </div>
+    <div class="footer"> 
+        <img src="img/logos/wbLogo_wSpace_white.svg" class="footerLogoFixWB" alt=""/>
+    </div>
 
-    <div class="footer"> </div>
-
-    <img src="img/logos/wbLogo_white.svg" class="footerLogoFixWB" alt=""/>
 
     <img src="img/logos/ConSim2015.png" class="footerLogoFixConSim" alt=""/>
     
