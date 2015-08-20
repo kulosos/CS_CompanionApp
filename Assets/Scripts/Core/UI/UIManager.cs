@@ -37,7 +37,8 @@ namespace Wb.Companion.Core.UI {
 		public UIWrapper uiWrapper;
 		public bool debugging = false;
 
-        private List<WbUIThumbstick> thumbsticks = new List<WbUIThumbstick>();
+        private List<WbUIThumbstick> uiThumbsticks = new List<WbUIThumbstick>();
+		private List<Wb3DThumbstick> meshThumbsticks;
 
 		//-----------------------------------------------------------------------------
 		// MonoBehaviour
@@ -52,10 +53,10 @@ namespace Wb.Companion.Core.UI {
         
         // Get all Thumbsticks in scene
         private void initWbUIThumbstickList() {
-            this.thumbsticks.Clear();
+            this.uiThumbsticks.Clear();
             WbUIThumbstick[] sticks = WbUIThumbstick.FindObjectsOfType(typeof(WbUIThumbstick)) as WbUIThumbstick[];
             foreach (WbUIThumbstick stick in sticks) {
-                this.thumbsticks.Add(stick);
+                this.uiThumbsticks.Add(stick);
             }
         }
 
@@ -63,12 +64,23 @@ namespace Wb.Companion.Core.UI {
 
         // toggle Thumbsticks in scene (e.g. RemoteControlCraneScene)
         public void toggleUIThumbsticks(string scene) {
+			Debug.Log ("1 - :.:.:.:.:.:.:.:.:.:.:.:.:.:.:.:.:.:.: - " + scene);
             if (scene.Equals(SceneList.RemoteControlCrane)) {
-                foreach (WbUIThumbstick stick in this.thumbsticks) {
-                    stick.gameObject.SetActive(true);
+				Debug.Log ("2 - :.:.:.:.:.:.:.:.:.:.:.:.:.:.:.:.:.:.:");
+                foreach (WbUIThumbstick uiStick in this.uiThumbsticks) {
+                    uiStick.gameObject.SetActive(true);
+
+					foreach(Wb3DThumbstick meshStick in this.meshThumbsticks){
+						if(meshStick.thumbstickType.Equals(uiStick.thumbstickType)){
+							uiStick.transform.position = meshStick.UIThumbstickLocator.transform.position; 
+						}
+					}
                 }
+
+
+
             } else {
-                foreach (WbUIThumbstick stick in this.thumbsticks) {
+                foreach (WbUIThumbstick stick in this.uiThumbsticks) {
                     stick.gameObject.SetActive(false);
                 }
             }
@@ -77,7 +89,7 @@ namespace Wb.Companion.Core.UI {
         //-----------------------------------------------------------------------------
 
         public List<WbUIThumbstick> getWbUIThumbsticks() {
-            return this.thumbsticks;
+            return this.uiThumbsticks;
         }
 
 		//-----------------------------------------------------------------------------
@@ -119,6 +131,10 @@ namespace Wb.Companion.Core.UI {
         }
 
         //-----------------------------------------------------------------------------
+
+		public void set3DThumbstickList(List<Wb3DThumbstick> meshThumbsticks){
+			this.meshThumbsticks = meshThumbsticks;
+		}
 
 	}
 }

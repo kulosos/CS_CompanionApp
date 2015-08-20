@@ -114,12 +114,11 @@ namespace Wb.Companion.Core.UI {
 
 		void Update() {
 
+			// snap back to default thumbstick position
 			if(isReleased){
-
 				for(int i = 0; i <= 3; i++){
 					float value = this.meshThumbstick.GetComponent<SkinnedMeshRenderer>().GetBlendShapeWeight(i);
 					this.meshThumbstick.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(i, Mathf.Lerp(value, 0f, Time.deltaTime * this.resetDamping));
-					
 				}
 				//this.isReleased = false;
 			}
@@ -256,6 +255,14 @@ namespace Wb.Companion.Core.UI {
                 this.iconBottom.color = delta.y < -this.iconHoverValue ? this.iconHoverColor : this.iconStartColor;
             }
         }
+
+		//-----------------------------------------------------------------------------
+		
+		public void setPosition(Vector3 position){
+
+
+			this.transform.position = position;
+		}
     }
 
 

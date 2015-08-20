@@ -68,7 +68,9 @@ namespace Wb.Companion.Core.WbAdministration {
                 if (sceneData != null) {
                     Destroy(sceneData);
                 }
-                              
+
+				this.setCurrentScene(scene);
+
                 StartCoroutine(levelLoaded(scene));
             } else {
                 SceneManager.getInstance().uiManager.unloadMainMenu("true");
@@ -84,15 +86,10 @@ namespace Wb.Companion.Core.WbAdministration {
             // after SceneLoading is complete
             this.uiManager.hideLoadingScreen();
             this.uiManager.loadGameUI();
-            this.setCurrentScene(scene);
+            //this.setCurrentScene(scene);
 
             // toggle TiltInput RPC sending (only if it's RemoteControlDriving Scene)
             InputManager.getInstance().toggleActiveTiltInput(scene);
-
-            // get all UI Thumbsticks in scene and toggle them per scene
-            if (this.uiManager.getWbUIThumbsticks().Count > 0) {
-                this.uiManager.toggleUIThumbsticks(scene);
-            }
 
             CameraManager.getInstance().setInitialCameraOnSceneLoading(scene);
         }
