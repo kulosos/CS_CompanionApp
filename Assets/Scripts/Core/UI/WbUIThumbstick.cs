@@ -188,32 +188,67 @@ namespace Wb.Companion.Core.UI {
             
             this.SimulateHover(delta);
 
-			Debug.Log ("Delta: " + delta);
+            //Debug.Log ("Delta: " + delta);
 
 			// Blendshape Order: 0 = UP, 1 = DOWN, 2 = LEFT, 3 = RIGHT
+
+            // Thumbstick UP
 			if(delta.y > 0){
-				float bsValue = Mathf.Lerp(0, 100f, Mathf.InverseLerp(0f, 1f, Mathf.Abs(delta.y)));
-				this.meshThumbstick.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(0, bsValue);
-
+				float blendshapeValue = Mathf.Lerp(0, 100f, Mathf.InverseLerp(0f, 1f, Mathf.Abs(delta.y)));
+				this.meshThumbstick.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(0, blendshapeValue);
 				this.meshThumbstick.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(1, 0);
+                
+                // send input key for vehicle interaction
+                if(this.thumbstickType.Equals(ThumbstickType.Left)){
+                    WbCompRPCWrapper.getInstance().setVehicleInput("boom01-up", Mathf.Clamp01(delta.y));
+                }
+                if(this.thumbstickType.Equals(ThumbstickType.Right)){
+                    WbCompRPCWrapper.getInstance().setVehicleInput("wbtruckCrane-rope-up", Mathf.Clamp01(delta.y));
+                }
 			}
+            // Thumbstick DOWN
 			if(delta.y < 0){
-				float bsValue = Mathf.Lerp(0, 100f, Mathf.InverseLerp(0f, 1f, Mathf.Abs(delta.y)));
-				this.meshThumbstick.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(1, bsValue);
-
-				this.meshThumbstick.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(0, 0);
+				float blendshapeValue = Mathf.Lerp(0, 100f, Mathf.InverseLerp(0f, 1f, Mathf.Abs(delta.y)));
+				this.meshThumbstick.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(1, blendshapeValue);
+                this.meshThumbstick.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(0, 0);
+                
+                // send input key for vehicle interaction
+                if (this.thumbstickType.Equals(ThumbstickType.Left)) {
+                    WbCompRPCWrapper.getInstance().setVehicleInput("boom01-down", Mathf.Clamp01(Mathf.Abs(delta.y)));
+                }
+                if (this.thumbstickType.Equals(ThumbstickType.Right)) {
+                    WbCompRPCWrapper.getInstance().setVehicleInput("wbtruckCrane-rope-down", Mathf.Clamp01(Mathf.Abs(delta.y)));
+                }
 			}
+
+            // Thumbstick LEFT
 			if(delta.x < 0){
-				float bsValue = Mathf.Lerp(0, 100f, Mathf.InverseLerp(0f, 1f, Mathf.Abs(delta.x)));
-				this.meshThumbstick.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(2, bsValue);
-
+				float blendshapeValue = Mathf.Lerp(0, 100f, Mathf.InverseLerp(0f, 1f, Mathf.Abs(delta.x)));
+				this.meshThumbstick.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(2, blendshapeValue);
 				this.meshThumbstick.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(3, 0);
-			}
-			if(delta.x > 0){
-				float bsValue = Mathf.Lerp(0, 100f, Mathf.InverseLerp(0f, 1f, Mathf.Abs(delta.x)));
-				this.meshThumbstick.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(3, bsValue);
 
+                // send input key for vehicle interaction
+                if (this.thumbstickType.Equals(ThumbstickType.Left)) {
+                    WbCompRPCWrapper.getInstance().setVehicleInput("boomMainLeft", Mathf.Clamp01(delta.y));
+                }
+                if (this.thumbstickType.Equals(ThumbstickType.Right)) {
+                    WbCompRPCWrapper.getInstance().setVehicleInput("boom02-03-04-05-06-forward", Mathf.Clamp01(delta.y));
+                }
+			}
+
+            // Thumbstick RIGHT
+			if(delta.x > 0){
+				float blendshapeValue = Mathf.Lerp(0, 100f, Mathf.InverseLerp(0f, 1f, Mathf.Abs(delta.x)));
+				this.meshThumbstick.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(3, blendshapeValue);
 				this.meshThumbstick.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(2, 0);
+
+                // send input key for vehicle interaction
+                if (this.thumbstickType.Equals(ThumbstickType.Left)) {
+                    WbCompRPCWrapper.getInstance().setVehicleInput("boomMainRight", Mathf.Clamp01(delta.y));
+                }
+                if (this.thumbstickType.Equals(ThumbstickType.Right)) {
+                    WbCompRPCWrapper.getInstance().setVehicleInput("boom02-03-04-05-06-backward", Mathf.Clamp01(delta.y));
+                }
 			}
 
         }
@@ -256,13 +291,6 @@ namespace Wb.Companion.Core.UI {
             }
         }
 
-		//-----------------------------------------------------------------------------
-		
-		public void setPosition(Vector3 position){
-
-
-			this.transform.position = position;
-		}
     }
 
 

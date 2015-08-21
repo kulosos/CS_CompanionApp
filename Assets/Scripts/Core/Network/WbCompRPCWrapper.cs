@@ -63,8 +63,8 @@ namespace Wb.Companion.Core.WbNetwork {
 			networkView.RPC("setRPCNextCamera", RPCMode.Server, input);
         }
 
-        public void setGetIntoVehicle(string input) {
-			networkView.RPC("setRPCGetIntoVehicle", RPCMode.Server, input);
+        public void setVehicleInput(string inputkey, float value) {
+            networkView.RPC("setRPCVehicleInput", RPCMode.Server, inputkey, value);
         }
 
         public void setTiltInput(float value) {

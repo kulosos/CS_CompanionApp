@@ -64,21 +64,18 @@ namespace Wb.Companion.Core.UI {
 
         // toggle Thumbsticks in scene (e.g. RemoteControlCraneScene)
         public void toggleUIThumbsticks(string scene) {
-			Debug.Log ("1 - :.:.:.:.:.:.:.:.:.:.:.:.:.:.:.:.:.:.: - " + scene);
             if (scene.Equals(SceneList.RemoteControlCrane)) {
-				Debug.Log ("2 - :.:.:.:.:.:.:.:.:.:.:.:.:.:.:.:.:.:.:");
                 foreach (WbUIThumbstick uiStick in this.uiThumbsticks) {
                     uiStick.gameObject.SetActive(true);
 
 					foreach(Wb3DThumbstick meshStick in this.meshThumbsticks){
 						if(meshStick.thumbstickType.Equals(uiStick.thumbstickType)){
-							uiStick.transform.position = meshStick.UIThumbstickLocator.transform.position; 
+                            uiStick.transform.position = new Vector3(meshStick.UIThumbstickLocator.transform.position.x,
+                                                                     meshStick.UIThumbstickLocator.transform.position.y,
+                                                                     uiStick.transform.position.z);
 						}
 					}
                 }
-
-
-
             } else {
                 foreach (WbUIThumbstick stick in this.uiThumbsticks) {
                     stick.gameObject.SetActive(false);

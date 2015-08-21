@@ -104,9 +104,9 @@ namespace Wb.Companion.Core.WbCamera {
 
 			// REMOTE CONTROL SCENE
 			if(scene.Equals(SceneList.RemoteControlDriving)){
-				Camera.main.transform.localPosition = new Vector3(0f, 2.6f, 0.15f);
+				Camera.main.transform.localPosition = new Vector3(0f, 0f, 5f);
 
-				Quaternion rotation = Quaternion.Euler(0f, 180f, 0f);
+				Quaternion rotation = Quaternion.Euler(90f, 180f, 0f);
 				Camera.main.transform.rotation = rotation;
 
 				Camera.main.orthographicSize = 2.6f;
@@ -118,12 +118,12 @@ namespace Wb.Companion.Core.WbCamera {
             // REMOTE CONTROL CRANE SCENE
             if (scene.Equals(SceneList.RemoteControlCrane))
             {
-                Camera.main.transform.localPosition = new Vector3(0f, 200f, -0.2f);
+                Camera.main.transform.localPosition = new Vector3(0f, 0f, 0f);
 
-                Quaternion rotation = Quaternion.Euler(90f, 180f, 0f);
+                Quaternion rotation = Quaternion.Euler(0f, 0f, 0f);
                 Camera.main.transform.rotation = rotation;
 
-                Camera.main.orthographicSize = 1.25f;
+                Camera.main.orthographicSize = 1.28f;
 
                 toggleOrthogonalCamera(true);
                 this.isMapCameraActive = false;
