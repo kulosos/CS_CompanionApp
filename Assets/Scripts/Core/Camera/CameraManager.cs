@@ -102,7 +102,7 @@ namespace Wb.Companion.Core.WbCamera {
                 this.maxBounds = 1500f;
 			}
 
-			// REMOTE CONTROL SCENE
+			// REMOTE CONTROL DRIVING SCENE
 			if(scene.Equals(SceneList.RemoteControlDriving)){
 				Camera.main.transform.localPosition = new Vector3(0f, 2.6f, 5f);
 

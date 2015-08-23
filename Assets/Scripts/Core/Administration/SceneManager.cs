@@ -91,7 +91,11 @@ namespace Wb.Companion.Core.WbAdministration {
             // toggle TiltInput RPC sending (only if it's RemoteControlDriving Scene)
             InputManager.getInstance().toggleActiveTiltInput(scene);
 
+            this.uiManager.initUIElementsPerScene(scene);
+
             CameraManager.getInstance().setInitialCameraOnSceneLoading(scene);
+
+            
         }
 
         // SETTER / GETTER ----------------------------------------------------
@@ -110,8 +114,9 @@ namespace Wb.Companion.Core.WbAdministration {
         }
 
 		public int getDefaultStartSceneInt(){
-			int sceneId = 0;
-	
+
+            int sceneId = 0;
+
 			for(int i = 0; i < this.getSceneList().Length; i++){
 				if(this.getDefaultStartScene().Equals(this.getSceneList()[i])){
 					sceneId = i;
@@ -119,6 +124,16 @@ namespace Wb.Companion.Core.WbAdministration {
 			}
 			return sceneId;
 		}
+
+        public int getSceneId(string scene){
+            int sceneId = 0;
+            for (int i = 0; i < this.getSceneList().Length; i++) {
+                if (scene.Equals(this.getSceneList()[i])) {
+                    sceneId = i;
+                }
+            }
+            return sceneId;
+        }
 
         public void setCurrentScene(string scene) {
             this.currentScene = scene;

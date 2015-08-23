@@ -1,8 +1,8 @@
 /*
- * brief	
- * author	Benedikt Niesen (benedikt@weltenbauer-se.com)
+ * brief	Central control unit of UI
+ * author	Oliver Kulas (oli@weltenbauer-se.com)
  * company	weltenbauer. Software Entwicklung GmbH
- * date		March 2015
+ * date		June 2015
  */
 
 //-----------------------------------------------------------------------------
@@ -62,7 +62,22 @@ namespace Wb.Companion.Core.UI {
 
         //-----------------------------------------------------------------------------
 
-        // toggle Thumbsticks in scene (e.g. RemoteControlCraneScene)
+        public void initUIElementsPerScene(string scene){
+ 
+            // get all UIElements in scene and toggle them accordingly
+            UIElement[] uiElements = UIElement.FindObjectsOfType(typeof(UIElement)) as UIElement[];
+            foreach (UIElement uie in uiElements) {
+                if (SceneManager.getInstance().getSceneId(scene) == (int)uie.uiElementMember) {
+                    uie.gameObject.SetActive(true);
+                } else {
+                    uie.gameObject.SetActive(false);
+                } 
+            }
+        }
+
+        //-----------------------------------------------------------------------------
+
+        // setPosition and toggle Thumbsticks in scene (e.g. RemoteControlCraneScene)
         public void toggleUIThumbsticks(string scene) {
             if (scene.Equals(SceneList.RemoteControlCrane)) {
                 foreach (WbUIThumbstick uiStick in this.uiThumbsticks) {

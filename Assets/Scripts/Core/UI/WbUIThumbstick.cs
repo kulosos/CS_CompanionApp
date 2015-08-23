@@ -116,9 +116,11 @@ namespace Wb.Companion.Core.UI {
 
 			// snap back to default thumbstick position
 			if(isReleased){
-				for(int i = 0; i <= 3; i++){
-					float value = this.meshThumbstick.GetComponent<SkinnedMeshRenderer>().GetBlendShapeWeight(i);
-					this.meshThumbstick.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(i, Mathf.Lerp(value, 0f, Time.deltaTime * this.resetDamping));
+                for (int i = 0; i <= 3; i++) {
+                    if (this.meshThumbstick != null) { 
+                        float value = this.meshThumbstick.GetComponent<SkinnedMeshRenderer>().GetBlendShapeWeight(i);
+                        this.meshThumbstick.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(i, Mathf.Lerp(value, 0f, Time.deltaTime * this.resetDamping));
+                    }
 				}
 				//this.isReleased = false;
 			}
