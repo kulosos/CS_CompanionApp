@@ -224,6 +224,5 @@ namespace Wb.Companion.Core.Inputs {
 		public float getTiltSteeringDamping(){
 			return tiltSteeringDamping;
 		}
-
 	}
 }

@@ -40,17 +40,12 @@ public class VehicleInstruments : MonoBehaviour {
 		//---------------------------------------------------------------------
 
 		void Start () {
-
 		}
 
 		void Update () {
 
-
-
 			if(NetworkManager.getInstance().isActiveConnection && this.isActive){
 				this.setInstrumentsOnUpdate();
-
-
 			}
 		}
 
@@ -61,8 +56,8 @@ public class VehicleInstruments : MonoBehaviour {
 			float rpm = WbCompRPCWrapper.getInstance().getCurrentRPM();
 			float speed = WbCompRPCWrapper.getInstance().getCurrentSpeed();
 
-			rpm = 1800f;
-			speed = 80f;
+			//rpm = 1800f;
+			//speed = 80f;
 
 			if(instrumentType == vehicleInstrumentType.RPM){
 				Quaternion prevRotation = gameObject.transform.localRotation;

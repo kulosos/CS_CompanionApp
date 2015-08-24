@@ -89,7 +89,7 @@ namespace Wb.Companion.Core.WbNetwork {
         }
 
         [RPC]
-        public void setRPCGetIntoVehicle(string txt) {
+		public void setRPCVehicleInput(string inputkey, float value) {
             //Debug.Log(txt);
         }
 
