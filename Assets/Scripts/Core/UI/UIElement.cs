@@ -20,7 +20,6 @@ namespace Wb.Companion.Core.UI
 
         public UIElementMembership uiElementMember;
 
-
         // --------------------------------------------------------------------
         // Mono Behaviour
         // --------------------------------------------------------------------

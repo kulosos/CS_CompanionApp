@@ -74,7 +74,15 @@ namespace Wb.Companion.Core.UI {
         private bool useY;
 		public bool isReleased = false;
 
+		// debugging
 		public bool debugging = false;
+		private DebugUI[] debugUIElements;
+
+		public Text DebugLabelThumbstickUp;
+		public Text DebugLabelThumbstickDown;
+		public Text DebugLabelThumbstickLeft;
+		public Text DebugLabelThumbstickRight;
+
 
         //---------------------------------------------------------------------
         // MonoBehaviour
@@ -90,6 +98,14 @@ namespace Wb.Companion.Core.UI {
                     this.uiCamera = cam;
                 }
             }
+
+			// Toggle and init Debug Labels for Thumbsticks
+			this.DebugLabelThumbstickUp.gameObject.SetActive(this.debugging);
+			this.DebugLabelThumbstickDown.gameObject.SetActive(this.debugging);
+			this.DebugLabelThumbstickLeft.gameObject.SetActive(this.debugging);
+			this.DebugLabelThumbstickRight.gameObject.SetActive(this.debugging);
+
+			this.debugUIElements = DebugUI.FindObjectsOfType(typeof(DebugUI)) as DebugUI[];
         }
 
 		void Update() {
@@ -163,7 +179,7 @@ namespace Wb.Companion.Core.UI {
             
             this.SimulateHover(delta);
 
-            Debug.Log ("Delta (x/y): " + delta);
+            //Debug.Log ("Delta (x/y): " + delta);
 
 			this.updateInputValues(delta);
         }
@@ -189,7 +205,10 @@ namespace Wb.Companion.Core.UI {
 				if(this.thumbstickType.Equals(ThumbstickType.Right)){
 					WbCompRPCWrapper.getInstance().setVehicleInput(InputKeys.TRUCKCRANE_ROPE_UP, Mathf.Clamp01(delta.y));
 				}
+				// debugging
+				this.updateThumbstickDebugUI(ThumbstickAxis.UP, Mathf.Clamp01(delta.y));
 			}
+
 			// Thumbstick DOWN / Y-AXIS
 			if(delta.y < 0 && Mathf.Abs(delta.y) > this.inputThreshold){
 				float blendshapeValue = Mathf.Lerp(0, 100f, Mathf.InverseLerp(0f, 1f, Mathf.Abs(delta.y)));
@@ -203,6 +222,8 @@ namespace Wb.Companion.Core.UI {
 				if (this.thumbstickType.Equals(ThumbstickType.Right)) {
 					WbCompRPCWrapper.getInstance().setVehicleInput(InputKeys.TRUCKCRANE_ROPE_DOWN, Mathf.Clamp01(Mathf.Abs(delta.y)));
 				}
+				// debugging
+				this.updateThumbstickDebugUI(ThumbstickAxis.DOWN, Mathf.Clamp01(Mathf.Abs(delta.y)));
 			}
 
 			// Thumbstick RESET Y-AXIS
@@ -217,6 +238,9 @@ namespace Wb.Companion.Core.UI {
 					WbCompRPCWrapper.getInstance().setVehicleInput(InputKeys.TRUCKCRANE_ROPE_UP, 0f);
 					WbCompRPCWrapper.getInstance().setVehicleInput(InputKeys.TRUCKCRANE_ROPE_DOWN, 0f);
 				}
+				// debugging
+				this.updateThumbstickDebugUI(ThumbstickAxis.UP, delta.y);
+				this.updateThumbstickDebugUI(ThumbstickAxis.DOWN, delta.y);
 			}
 
 			// ----------------------------------------
@@ -229,13 +253,15 @@ namespace Wb.Companion.Core.UI {
 				
 				// send input key for vehicle interaction
 				if (this.thumbstickType.Equals(ThumbstickType.Left)) {
-					WbCompRPCWrapper.getInstance().setVehicleInput(InputKeys.TRUCKCRANE_BOOM_MAIN_LEFT, Mathf.Clamp01(delta.y));
+					WbCompRPCWrapper.getInstance().setVehicleInput(InputKeys.TRUCKCRANE_BOOM_MAIN_LEFT,  Mathf.Clamp01(Mathf.Abs(delta.x)));
 				}
 				if (this.thumbstickType.Equals(ThumbstickType.Right)) {
-					WbCompRPCWrapper.getInstance().setVehicleInput(InputKeys.TRUCKCRANE_BOOM_FORWARD, Mathf.Clamp01(delta.y));
+					WbCompRPCWrapper.getInstance().setVehicleInput(InputKeys.TRUCKCRANE_BOOM_FORWARD,  Mathf.Clamp01(Mathf.Abs(delta.x)));
 				}
+				// debugging
+				this.updateThumbstickDebugUI(ThumbstickAxis.LEFT, Mathf.Clamp01(Mathf.Abs(delta.x)));
 			}
-			
+
 			// Thumbstick RIGHT / X-AXIS
 			if(delta.x > 0 && delta.x > this.inputThreshold){
 				float blendshapeValue = Mathf.Lerp(0, 100f, Mathf.InverseLerp(0f, 1f, Mathf.Abs(delta.x)));
@@ -244,11 +270,13 @@ namespace Wb.Companion.Core.UI {
 				
 				// send input key for vehicle interaction
 				if (this.thumbstickType.Equals(ThumbstickType.Left)) {
-					WbCompRPCWrapper.getInstance().setVehicleInput(InputKeys.TRUCKCRANE_BOOM_MAIN_RIGHT, Mathf.Clamp01(delta.y));
+					WbCompRPCWrapper.getInstance().setVehicleInput(InputKeys.TRUCKCRANE_BOOM_MAIN_RIGHT, Mathf.Clamp01(delta.x));
 				}
 				if (this.thumbstickType.Equals(ThumbstickType.Right)) {
-					WbCompRPCWrapper.getInstance().setVehicleInput(InputKeys.TRUCKCRANE_BOOM_BACKWARD, Mathf.Clamp01(delta.y));
+					WbCompRPCWrapper.getInstance().setVehicleInput(InputKeys.TRUCKCRANE_BOOM_BACKWARD, Mathf.Clamp01(delta.x));
 				}
+				// debugging
+				this.updateThumbstickDebugUI(ThumbstickAxis.RIGHT, Mathf.Clamp01(delta.x));
 			}
 
 			// Thumbstick RESET X-AXIS
@@ -263,6 +291,9 @@ namespace Wb.Companion.Core.UI {
 					WbCompRPCWrapper.getInstance().setVehicleInput(InputKeys.TRUCKCRANE_BOOM_FORWARD, 0f);
 					WbCompRPCWrapper.getInstance().setVehicleInput(InputKeys.TRUCKCRANE_BOOM_BACKWARD, 0f);
 				}
+				// debugging
+				this.updateThumbstickDebugUI(ThumbstickAxis.LEFT, delta.x);
+				this.updateThumbstickDebugUI(ThumbstickAxis.RIGHT, delta.x);
 			}
 		}
 
@@ -278,7 +309,7 @@ namespace Wb.Companion.Core.UI {
 					
 					if(value > this.inputThreshold){
 						this.meshThumbstick.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(i, Mathf.Lerp(value, 0f, Time.deltaTime * this.resetDamping));
-						
+						/*
 						if(debugging){
 							if(this.meshThumbstick.thumbstickType.Equals(ThumbstickType.Left)){
 								Debug.Log ("ThumbstickLeft BlendShapeWeight "+i+": " + this.meshThumbstick.GetComponent<SkinnedMeshRenderer>().GetBlendShapeWeight(i));
@@ -286,7 +317,7 @@ namespace Wb.Companion.Core.UI {
 							if(this.meshThumbstick.thumbstickType.Equals(ThumbstickType.Right)){
 								Debug.Log ("ThumbstickRight BlendShapeWeight "+i+": " + this.meshThumbstick.GetComponent<SkinnedMeshRenderer>().GetBlendShapeWeight(i));
 							}
-						}
+						}*/
 					}
 				}
 			}
@@ -329,6 +360,30 @@ namespace Wb.Companion.Core.UI {
                 this.iconBottom.color = delta.y < -this.iconHoverValue ? this.iconHoverColor : this.iconStartColor;
             }
         }
+
+		// ----------------------------------------------------------------------------
+
+		private void updateThumbstickDebugUI(ThumbstickAxis stickaxis, float value){
+		
+			foreach(DebugUI element in this.debugUIElements){
+
+				if(this.thumbstickType.Equals(element.thumbstickType) && stickaxis.Equals(ThumbstickAxis.UP)){
+					this.DebugLabelThumbstickUp.text = value.ToString();
+				}
+
+				if(this.thumbstickType.Equals(element.thumbstickType) && stickaxis.Equals(ThumbstickAxis.DOWN)){
+					this.DebugLabelThumbstickDown.text = value.ToString();
+				}
+
+				if(this.thumbstickType.Equals(element.thumbstickType) && stickaxis.Equals(ThumbstickAxis.LEFT)){
+					this.DebugLabelThumbstickLeft.text = value.ToString();
+				}
+
+				if(this.thumbstickType.Equals(element.thumbstickType) && stickaxis.Equals(ThumbstickAxis.RIGHT)){
+					this.DebugLabelThumbstickRight.text = value.ToString();
+				}
+			}
+		}
 
     }
 
