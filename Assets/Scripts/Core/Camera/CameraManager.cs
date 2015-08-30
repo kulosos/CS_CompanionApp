@@ -13,6 +13,7 @@ namespace Wb.Companion.Core.WbCamera {
 
 		private static CameraManager instance;
 
+		private Camera uiCamera;
 		public bool isMapCameraActive = true;
 
 		public Plane plane = new Plane();
@@ -28,6 +29,7 @@ namespace Wb.Companion.Core.WbCamera {
 		private Vector3 targetPosition = Vector3.zero;
 		private float panMagnitude;
 
+
 		// ----------------------------------------------------------------------------
 
 		public static CameraManager getInstance(){
@@ -40,6 +42,14 @@ namespace Wb.Companion.Core.WbCamera {
 
 		private void Awake() {
 			CameraManager.instance = this;
+
+			Camera[] cameras = Camera.FindObjectsOfType(typeof(Camera)) as Camera[];
+			foreach (Camera cam in cameras)
+			{
+				if (cam.gameObject.layer == 5) {  // Layer 5 == UI
+					this.uiCamera = cam;
+				}
+			}
 
 		}
 
@@ -118,12 +128,13 @@ namespace Wb.Companion.Core.WbCamera {
             // REMOTE CONTROL CRANE SCENE
             if (scene.Equals(SceneList.RemoteControlCrane))
             {
-                Camera.main.transform.localPosition = new Vector3(0f, 0f, 0f);
+                //Camera.main.transform.localPosition = new Vector3(0f, 0f, 0f);
+				uiCamera.transform.localPosition = new Vector3(0f, 0f, 0f);
 
                 Quaternion rotation = Quaternion.Euler(0f, 0f, 0f);
                 Camera.main.transform.rotation = rotation;
 
-                Camera.main.orthographicSize = 1.28f;
+                //uiCamera.orthographicSize = 1.28f;
 
                 toggleOrthogonalCamera(true);
                 this.isMapCameraActive = false;
