@@ -19,6 +19,7 @@ namespace Wb.Companion.Core.WbAdministration {
         public static string Map = "01_Map";
         public static string RemoteControlDriving = "02_RemoteControl_Driving";
         public static string RemoteControlCrane = "03_RemoteControl_Crane";
+		public static string BackViewCamera = "04_BackViewCamera";
     }
 
     //-------------------------------------------------------------------------
@@ -101,7 +102,12 @@ namespace Wb.Companion.Core.WbAdministration {
         // SETTER / GETTER ----------------------------------------------------
 
         public string[] getSceneList() {
-            string[] sceneList = new string[] { SceneList.Map, SceneList.RemoteControlDriving, SceneList.RemoteControlCrane };
+            string[] sceneList = new string[] { 
+				SceneList.Map, 
+				SceneList.RemoteControlDriving, 
+				SceneList.RemoteControlCrane, 
+				SceneList.BackViewCamera 
+			};
             return sceneList;
         }
 

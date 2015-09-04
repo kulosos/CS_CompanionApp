@@ -14,6 +14,9 @@ namespace Wb.Companion.Core.WbNetwork {
 		private float currentSpeed; 
 		private float currentRPM;
 
+		private string backViewCameraFrameBase64;
+		private byte[] backViewCameraFrameByteArray;
+
         // ------------------------------------------------------------------------
 
         public static WbCompRPCWrapper getInstance() {
@@ -114,6 +117,11 @@ namespace Wb.Companion.Core.WbNetwork {
 			currentSpeed = value;
 		}
 
+		[RPC]
+		public void sendRPCbroadcastCamera(string imgData){
+			backViewCameraFrameBase64 = imgData;
+		}
+
 
 		//------ SETTER / GETTER ---------------------------------------------
 
@@ -123,6 +131,10 @@ namespace Wb.Companion.Core.WbNetwork {
 
 		public float getCurrentSpeed(){
 			return currentSpeed;
+		}
+
+		public string getBackViewCameraFrameAsB64String(){
+			return backViewCameraFrameBase64;
 		}
 	
     }
