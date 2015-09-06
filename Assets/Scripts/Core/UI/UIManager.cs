@@ -8,7 +8,6 @@
 //-----------------------------------------------------------------------------
 
 using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 using Wb.Companion.Core.WbAdministration;
 using Wb.Companion.Core.Game;
@@ -40,6 +39,8 @@ namespace Wb.Companion.Core.UI {
         private List<WbUIThumbstick> uiThumbsticks = new List<WbUIThumbstick>();
 		private List<Wb3DThumbstick> meshThumbsticks;
 
+        private UIElement[] uiElements;
+
 		//-----------------------------------------------------------------------------
 		// MonoBehaviour
 		//-----------------------------------------------------------------------------
@@ -47,7 +48,10 @@ namespace Wb.Companion.Core.UI {
 		public void Start() {
 			this.coherentUiView.ReceivesInput = true;
             this.initWbUIThumbstickList();
-		}
+
+            // get all uiElements for toggeling on and off
+            this.uiElements = UIElement.FindObjectsOfType(typeof(UIElement)) as UIElement[];
+        }
 
         //-----------------------------------------------------------------------------
         
@@ -63,10 +67,10 @@ namespace Wb.Companion.Core.UI {
         //-----------------------------------------------------------------------------
 
         public void initUIElementsPerScene(string scene){
- 
-            // get all UIElements in scene and toggle them accordingly
-            UIElement[] uiElements = UIElement.FindObjectsOfType(typeof(UIElement)) as UIElement[];
-            foreach (UIElement uie in uiElements) {
+
+            // toggeling UIElements on and off accordingly to scene
+            foreach (UIElement uie in this.uiElements) {
+
                 if (SceneManager.getInstance().getSceneId(scene) == (int)uie.uiElementMember) {
                     uie.gameObject.SetActive(true);
                 } else {

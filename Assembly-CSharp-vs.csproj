@@ -61,7 +61,7 @@
      <Compile Include="Assets\Scripts\Game\BackViewCamera.cs" />
      <Compile Include="Assets\Scripts\Game\VehicleInstruments.cs" />
      <Compile Include="Assets\Scripts\Game\Wb3DThumbstick.cs" />
-     <Compile Include="Assets\Scripts\Game\WbCompBillboard.cs" />
+     <Compile Include="Assets\Scripts\Game\WbCompMapMarker.cs" />
      <Compile Include="Assets\Scripts\Image Effects\Blur.cs" />
      <Compile Include="Assets\Scripts\Image Effects\BlurEffect.cs" />
      <Compile Include="Assets\Scripts\Image Effects\ColorCorrectionEffect.cs" />

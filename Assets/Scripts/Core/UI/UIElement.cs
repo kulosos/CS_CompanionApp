@@ -12,8 +12,10 @@ namespace Wb.Companion.Core.UI
     {
         Map = 0,
         RemoteControl_Driving = 1,
-        RemoteControl_Crane = 2
+        RemoteControl_Crane = 2,
+        BackViewCamera = 3
     }
+
 
     public class UIElement : MonoBehaviour
     {
