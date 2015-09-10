@@ -1,4 +1,11 @@
-﻿using UnityEngine;
+﻿/**
+* @brief		Network Management (RPCs, NetworkView, LAN)
+* @author		Oliver Kulas (oli@weltenbauer-se.com)
+* @date			May 2015
+*/
+//-----------------------------------------------------------------------------
+
+using UnityEngine;
 using System.Collections;
 using Wb.Companion.Core.UI;
 using Wb.Companion.Core.WbAdministration;

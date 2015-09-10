@@ -1,4 +1,11 @@
-﻿using UnityEngine;
+﻿/**
+* @brief		Central UI Wrapper for Coherent UI Inputs
+* @author		Oliver Kulas (oli@weltenbauer-se.com)
+* @date			April 2015
+*/
+//-----------------------------------------------------------------------------
+
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System;

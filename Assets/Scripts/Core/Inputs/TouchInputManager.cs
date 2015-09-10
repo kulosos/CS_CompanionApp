@@ -1,4 +1,11 @@
-﻿using UnityEngine;
+﻿/**
+* @brief		TouchInputManager (TouchInput behaviour in Companion App)
+* @author		Oliver Kulas (oli@weltenbauer-se.com)
+* @date			September 2015
+*/
+//-----------------------------------------------------------------------------
+
+using UnityEngine;
 using System.Collections;
 using System;
 using Wb.Companion.Core;
@@ -7,30 +14,30 @@ using Wb.Companion.Core.Inputs;
 
 namespace Wb.Companion.Core.WbCamera {
 
-    //-----------------------------------------------------------------------------
+    //-------------------------------------------------------------------------
 
     public class TouchInputManager : MonoBehaviour {
 
         private static TouchInputManager instance;
 
+        public TouchScript.Gestures.TapGesture tapGesture;
         public TouchScript.Gestures.PanGesture panGesture;
         public TouchScript.Gestures.ScaleGesture scaleGesture;
-        public TouchScript.Gestures.TapGesture tapGesture;
         public TouchScript.Gestures.RotateGesture rotateGesture;
         public TouchScript.Gestures.ReleaseGesture releaseGesture;
 
         public System.Action<Vector2> OnTouchSinglePan;
         public System.Action<Vector2> OnTouchDoublePan;
 
-        // ----------------------------------------------------------------------------
+        //---------------------------------------------------------------------
 
         public static TouchInputManager getInstance() {
             return TouchInputManager.instance;
         }
 
-        //-----------------------------------------------------------------------------
+        //---------------------------------------------------------------------
         // MonoBehaviour
-        //-----------------------------------------------------------------------------
+        //---------------------------------------------------------------------
 
         private void Awake() {
             TouchInputManager.instance = this;
@@ -40,11 +47,11 @@ namespace Wb.Companion.Core.WbCamera {
 
         private void OnEnable() {
             if (CameraManager.getInstance().isMapCameraActive) {
+                if (GetComponent<TouchScript.Gestures.TapGesture>() != null) GetComponent<TouchScript.Gestures.TapGesture>().Tapped += tapHandler;
                 if (GetComponent<TouchScript.Gestures.PanGesture>() != null) GetComponent<TouchScript.Gestures.PanGesture>().Panned += panHandler;
                 if (GetComponent<TouchScript.Gestures.PanGesture>() != null) GetComponent<TouchScript.Gestures.PanGesture>().PanStarted += panStartedHandler;
-                if (GetComponent<TouchScript.Gestures.RotateGesture>() != null) GetComponent<TouchScript.Gestures.RotateGesture>().Rotated += rotateHandler;
-                if (GetComponent<TouchScript.Gestures.TapGesture>() != null) GetComponent<TouchScript.Gestures.TapGesture>().Tapped += tapHandler;
                 if (GetComponent<TouchScript.Gestures.ScaleGesture>() != null) GetComponent<TouchScript.Gestures.ScaleGesture>().Scaled += scaleHandler;
+                if (GetComponent<TouchScript.Gestures.RotateGesture>() != null) GetComponent<TouchScript.Gestures.RotateGesture>().Rotated += rotateHandler;
                 if (GetComponent<TouchScript.Gestures.ReleaseGesture>() != null) GetComponent<TouchScript.Gestures.ReleaseGesture>().Released += releaseHandler;
             }
         }
@@ -54,9 +61,9 @@ namespace Wb.Companion.Core.WbCamera {
         private void Start() {
 
             this.tapGesture.Tapped += TouchInputManager.getInstance().tapHandler;
-            this.scaleGesture.Scaled += TouchInputManager.getInstance().scaleHandler;
             this.panGesture.Panned += TouchInputManager.getInstance().panStartedHandler;
             this.panGesture.PanCompleted += TouchInputManager.getInstance().panCompletedHandler;
+            this.scaleGesture.Scaled += TouchInputManager.getInstance().scaleHandler;
             this.rotateGesture.Rotated += TouchInputManager.getInstance().rotateHandler;
             this.releaseGesture.Released += TouchInputManager.getInstance().releaseHandler;
         }
@@ -65,98 +72,56 @@ namespace Wb.Companion.Core.WbCamera {
 
         private void OnDisable() {
             if (CameraManager.getInstance().isMapCameraActive) {
+                if (GetComponent<TouchScript.Gestures.TapGesture>() != null) GetComponent<TouchScript.Gestures.TapGesture>().Tapped -= tapHandler;
                 if (GetComponent<TouchScript.Gestures.PanGesture>() != null) GetComponent<TouchScript.Gestures.PanGesture>().Panned -= panHandler;
                 if (GetComponent<TouchScript.Gestures.PanGesture>() != null) GetComponent<TouchScript.Gestures.PanGesture>().PanStarted -= panStartedHandler;
-                if (GetComponent<TouchScript.Gestures.RotateGesture>() != null) GetComponent<TouchScript.Gestures.RotateGesture>().Rotated -= rotateHandler;
-                if (GetComponent<TouchScript.Gestures.TapGesture>() != null) GetComponent<TouchScript.Gestures.TapGesture>().Tapped -= tapHandler;
                 if (GetComponent<TouchScript.Gestures.ScaleGesture>() != null) GetComponent<TouchScript.Gestures.ScaleGesture>().Scaled -= scaleHandler;
+                if (GetComponent<TouchScript.Gestures.RotateGesture>() != null) GetComponent<TouchScript.Gestures.RotateGesture>().Rotated -= rotateHandler;
                 if (GetComponent<TouchScript.Gestures.ReleaseGesture>() != null) GetComponent<TouchScript.Gestures.ReleaseGesture>().Released -= releaseHandler;
             }
         }
 
         //---------------------------------------------------------------------
-
-        private void touchGestureScaleEvent(object sender, System.EventArgs e) {
-            //Debug.Log ("touch gesture SCALE recognized");
-        }
-
-        //---------------------------------------------------------------------
-
-        private void touchGestureTapEvent(object sender, System.EventArgs e) {
-            //Debug.Log ("touch gesture TAP recognized");
-
-        }
-
-        //---------------------------------------------------------------------
-
-        private void touchGesturePanEvent(object sender, System.EventArgs e) {
-            //Debug.Log ("touch gesture PAN recognized");
-
-            TouchScript.Gestures.PanGesture gesture = sender as TouchScript.Gestures.PanGesture;
-            Vector2 delta = (gesture.ScreenPosition - gesture.PreviousScreenPosition);
-
-            //Debug.Log ("Delta: " + delta.ToString());
-
-
-            //GameObject go = GameObject.FindGameObjectsWithTag("Cube");
-
-
-            //Camera.main.transform.Translate(new Vector3(delta.x, 0.0f, delta.y));
-
-            if (gesture.ActiveTouches.Count == 1) {
-                if (this.OnTouchSinglePan != null) {
-                    this.OnTouchSinglePan(delta);
-
-                }
-            } else if (gesture.ActiveTouches.Count > 0) {
-                if (this.OnTouchDoublePan != null) {
-                    this.OnTouchDoublePan(delta);
-
-                }
-            }
-
-        }
-
-        //---------------------------------------------------------------------
-
-        private void touchGesturePanStartet(object sender, System.EventArgs e) {
-            //Debug.Log ("touch gesture PAN STARTED recognized");
-
-        }
-
-        //---------------------------------------------------------------------
-
-        private void touchGesturePanCompleted(object sender, System.EventArgs e) {
-            //Debug.Log ("touch gesture PAN COMPLETED recognized");
-
-        }
-
-
-        //-----------------------------------------------------------------------------
         // EVENT HANDLER
-        //-----------------------------------------------------------------------------
+        //---------------------------------------------------------------------
 
         public void tapHandler(object sender, EventArgs e) {
-            Debug.Log ("TIPPIDITAPPTAPP");
+            //Debug.Log ("TIPPIDITAPPTAPP");
             TouchScript.Gestures.TapGesture gesture = sender as TouchScript.Gestures.TapGesture;
 
             if (float.IsNaN(gesture.ScreenPosition.x) || float.IsNaN(gesture.ScreenPosition.y)) {
                 return;
             }
             if (gesture.ActiveTouches.Count < 2) {
-                //Debug.Log ("TAP NAME : " + this.rotateTarget.transform.name);
-                //Debug.Log ("TAP SCALE: " + this.rotateTarget.transform.rotation);
                 //this.setTappedPosition(gesture.ScreenPosition);
+                if (SceneManager.getInstance().currentScene.Equals(SceneList.Map)) {
+                    SceneManager.getInstance().getMapManager().OnTouchMapMarker(gesture.ScreenPosition);
+                }
+                
             }
         }
 
-        //-----------------------------------------------------------------------------
+        //---------------------------------------------------------------------
+
+        public void panStartedHandler(object sender, EventArgs e) {
+            TouchScript.Gestures.PanGesture gesture = sender as TouchScript.Gestures.PanGesture;
+
+            if (float.IsNaN(gesture.ScreenPosition.x) || float.IsNaN(gesture.ScreenPosition.y)) {
+                return;
+            }
+
+            if (gesture.ActiveTouches.Count < 2) {
+                //this.setPosition(gesture.ScreenPosition, false, false);
+            }
+        }
+
+        //---------------------------------------------------------------------
 
         public void releaseHandler(object sender, EventArgs e) {
             //Debug.Log ("RELEASED");
         }
 
-        //-----------------------------------------------------------------------------
+        //---------------------------------------------------------------------
 
         public void scaleHandler(object sender, EventArgs e) {
 
@@ -172,22 +137,7 @@ namespace Wb.Companion.Core.WbCamera {
             }
         }
 
-        //-----------------------------------------------------------------------------
-
-        public void panStartedHandler(object sender, EventArgs e) {
-
-            TouchScript.Gestures.PanGesture gesture = sender as TouchScript.Gestures.PanGesture;
-
-            if (float.IsNaN(gesture.ScreenPosition.x) || float.IsNaN(gesture.ScreenPosition.y)) {
-                return;
-            }
-
-            if (gesture.ActiveTouches.Count < 2) {
-                //this.setPosition(gesture.ScreenPosition, false, false);
-            }
-        }
-
-        //-----------------------------------------------------------------------------
+        //---------------------------------------------------------------------
 
         public void panCompletedHandler(object sender, EventArgs e) {
 
@@ -199,7 +149,7 @@ namespace Wb.Companion.Core.WbCamera {
             //this.setPosition(gesture.ScreenPosition, true, true);
         }
 
-        //-----------------------------------------------------------------------------
+        //---------------------------------------------------------------------
 
 
         public void panHandler(object sender, EventArgs e) {
@@ -242,7 +192,7 @@ namespace Wb.Companion.Core.WbCamera {
 
         }
 
-        //-----------------------------------------------------------------------------
+        //---------------------------------------------------------------------
 
         public void rotateHandler(object sender, EventArgs e) {
 
@@ -265,7 +215,7 @@ namespace Wb.Companion.Core.WbCamera {
             }
         }
 
-        //-----------------------------------------------------------------------------
+        //---------------------------------------------------------------------
 
         //private void setPosition(Vector3 screenPos, bool changePos, bool isCompleted) {
 
@@ -284,6 +234,65 @@ namespace Wb.Companion.Core.WbCamera {
         //    //    this.oldPos = ray.GetPoint(hitDistance);
         //    //}
         //}
+
+        //---------------------------------------------------------------------
+
+        //private void touchGestureScaleEvent(object sender, System.EventArgs e) {
+        //    Debug.Log("touch gesture SCALE recognized");
+        //}
+
+        ////---------------------------------------------------------------------
+
+        //private void touchGestureTapEvent(object sender, System.EventArgs e) {
+        //    Debug.Log("touch gesture TAP recognized");
+
+        //}
+
+        ////---------------------------------------------------------------------
+
+        //private void touchGesturePanEvent(object sender, System.EventArgs e) {
+        //    Debug.Log("touch gesture PAN recognized");
+
+        //    TouchScript.Gestures.PanGesture gesture = sender as TouchScript.Gestures.PanGesture;
+        //    Vector2 delta = (gesture.ScreenPosition - gesture.PreviousScreenPosition);
+
+        //    //Debug.Log ("Delta: " + delta.ToString());
+
+
+        //    //GameObject go = GameObject.FindGameObjectsWithTag("Cube");
+
+
+        //    //Camera.main.transform.Translate(new Vector3(delta.x, 0.0f, delta.y));
+
+        //    if (gesture.ActiveTouches.Count == 1) {
+        //        if (this.OnTouchSinglePan != null) {
+        //            this.OnTouchSinglePan(delta);
+
+        //        }
+        //    } else if (gesture.ActiveTouches.Count > 0) {
+        //        if (this.OnTouchDoublePan != null) {
+        //            this.OnTouchDoublePan(delta);
+
+        //        }
+        //    }
+
+        //}
+
+        ////---------------------------------------------------------------------
+
+        //private void touchGesturePanStartet(object sender, System.EventArgs e) {
+        //    Debug.Log("touch gesture PAN STARTED recognized");
+
+        //}
+
+        ////---------------------------------------------------------------------
+
+        //private void touchGesturePanCompleted(object sender, System.EventArgs e) {
+        //    Debug.Log("touch gesture PAN COMPLETED recognized");
+
+        //}
+
+
 
     }
 }

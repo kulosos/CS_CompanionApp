@@ -8,11 +8,13 @@
 
 using UnityEngine;
 using System.Collections;
+using Wb.Companion.Core.WbAdministration;
 
 namespace Wb.Companion.Core.Game {
 
     public class WbCompMapMarker : MonoBehaviour {
 
+        public WbCompMapManager mapManager;
         public WbCompMarkerLocation markerLocation;
 
         //-------------------------------------------------------------------------

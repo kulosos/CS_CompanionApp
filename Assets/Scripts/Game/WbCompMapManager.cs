@@ -8,6 +8,8 @@
 
 using UnityEngine;
 using System.Collections;
+using Wb.Companion.Core.WbAdministration;
+using Wb.Companion.Core.WbCamera;
 
 namespace Wb.Companion.Core.Game {
 
@@ -33,7 +35,6 @@ namespace Wb.Companion.Core.Game {
 
     public class WbCompMapManager : MonoBehaviour {
 
-        public Camera currentCamera;
         private WbCompMapMarker[] mapMarkers;
 
         public bool debugging = false;
@@ -44,19 +45,16 @@ namespace Wb.Companion.Core.Game {
 
         void Start() {
             this.mapMarkers = WbCompMapMarker.FindObjectsOfType(typeof(WbCompMapMarker)) as WbCompMapMarker[];
-        }
 
+            // register WbCompMapManager at SceneManager
+            SceneManager.getInstance().setMapManager(this);
+        }
+   
         //-------------------------------------------------------------------------
 
         void Update() {
 
-
-            if (debugging) {
-                Ray ray = this.currentCamera.ScreenPointToRay(new Vector3(200, 200, 0));
-                Debug.DrawRay(ray.origin, ray.direction * 1000, Color.red);
-            }
-
-
+           
             //Ray ray = Camera.main.ScreenPointToRay(screenPos);
             //RaycastHit hit;
             //float distanceToGround = 0;
@@ -64,9 +62,7 @@ namespace Wb.Companion.Core.Game {
             //if (Physics.Raycast(transform.position, -Vector3.up, out hit)) {
             //    distanceToGround = hit.distance;
 
-
             //}
-
 
             //Ray ray = Camera.main.ScreenPointToRay(screenPos);
 
@@ -84,6 +80,29 @@ namespace Wb.Companion.Core.Game {
 
         //-------------------------------------------------------------------------
 
+        public void OnTouchMapMarker(Vector2 screenPos){
+
+            Ray ray = Camera.main.ScreenPointToRay(screenPos);
+            //Debug.DrawRay(ray.origin, ray.direction * 1000, Color.red);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit, 3000f)) {
+                hit.transform.gameObject.GetComponent<Renderer>().material.SetColor("_MainTex", Color.red);
+                Debug.Log("HIT: " + hit.transform.gameObject.name);
+            }
+
+            //RaycastHit hit;
+            //float hitDistance = 0;
+            //float distanceToGround = 0;
+
+            //if (CameraManager.getInstance().plane.Raycast(ray, out hitDistance)) {
+
+            //    //distanceToGround = hit.distance;
+            //    Debug.LogWarning("hitDistance: " + hitDistance);
+            //}
+
+        }
+        
 
         //-------------------------------------------------------------------------
         // SETTER / GETTER

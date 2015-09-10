@@ -1,10 +1,8 @@
-﻿/*
- * brief	Input Management class
- * author	Benedikt Niesen (benedikt@weltenbauer-se.com)
- * company	weltenbauer. Software Entwicklung GmbH
- * date		March 2015
- */
-
+﻿/**
+* @brief		InputManager (Inputs from Companion App for ConSim PC Version)
+* @author		Oliver Kulas (oli@weltenbauer-se.com)
+* @date			September 2015
+*/
 //-----------------------------------------------------------------------------
 
 using UnityEngine;

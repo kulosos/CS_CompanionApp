@@ -1,8 +1,16 @@
+/**
+* @brief		Global scene management for Companion App Game Scenes
+* @author		Oliver Kulas (oli@weltenbauer-se.com)
+* @date			Jun 2015
+*/
+//-----------------------------------------------------------------------------
+
 using UnityEngine;
 using System.Collections;
 using Wb.Companion.Core.UI;
 using Wb.Companion.Core.Inputs;
 using Wb.Companion.Core.WbCamera;
+using Wb.Companion.Core.Game;
 
 namespace Wb.Companion.Core.WbAdministration {
 
@@ -28,7 +36,8 @@ namespace Wb.Companion.Core.WbAdministration {
         public string currentScene;
         [SerializeField]
         private string defaultStartScene;
-        //private List<WbUIThumbstick> thumbsticks = new List<WbUIThumbstick>();
+
+        private WbCompMapManager mapManager;
 
         //---------------------------------------------------------------------
         // MonoBehaviour
@@ -58,7 +67,7 @@ namespace Wb.Companion.Core.WbAdministration {
 
         public void loadScene(string scene) {
 
-            if (!SceneManager.getInstance().currentScene.Equals(scene)) {
+            //if (!SceneManager.getInstance().currentScene.Equals(scene)) {
 
                 //SceneManager.getInstance().uiManager.showLoadingScreen();
 
@@ -70,10 +79,11 @@ namespace Wb.Companion.Core.WbAdministration {
 				this.setCurrentScene(scene);
 
                 StartCoroutine(levelLoaded(scene));
-            } else {
-                SceneManager.getInstance().uiManager.unloadMainMenu("true");
-            }
-        }
+            } 
+        //else {
+        //        SceneManager.getInstance().uiManager.unloadMainMenu("true");
+        //    }
+        //}
 
         //---------------------------------------------------------------------
 
@@ -159,6 +169,18 @@ namespace Wb.Companion.Core.WbAdministration {
 
         public string getCurrentScene() {
             return this.currentScene;
+        }
+
+        //---------------------------------------------------------------------
+
+        public void setMapManager(WbCompMapManager mapMgr) {
+            mapManager = mapMgr;
+        }
+
+        //---------------------------------------------------------------------
+
+        public WbCompMapManager getMapManager(){
+            return mapManager;
         }
 
     }

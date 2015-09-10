@@ -1,5 +1,5 @@
 ﻿/**
-* @brief		
+* @brief		BackView Camera
 * @author		Oliver Kulas (oli@weltenbauer-se.com)
 * @date			September 2015
 */
