@@ -53,29 +53,6 @@ namespace Wb.Companion.Core.Game {
         //-------------------------------------------------------------------------
 
         void Update() {
-
-           
-            //Ray ray = Camera.main.ScreenPointToRay(screenPos);
-            //RaycastHit hit;
-            //float distanceToGround = 0;
-
-            //if (Physics.Raycast(transform.position, -Vector3.up, out hit)) {
-            //    distanceToGround = hit.distance;
-
-            //}
-
-            //Ray ray = Camera.main.ScreenPointToRay(screenPos);
-
-            //float hitDistance;
-            //this.plane.Raycast(ray, out hitDistance);
-
-            //if (this.plane.Raycast(ray, out hitDistance)) {
-
-            //    if (changePos) {
-            //        this.changePosition(this.oldPos - ray.GetPoint(hitDistance), isCompleted);
-            //    }
-            //    this.oldPos = ray.GetPoint(hitDistance);
-            //}
         }
 
         //-------------------------------------------------------------------------
@@ -87,19 +64,8 @@ namespace Wb.Companion.Core.Game {
             RaycastHit hit;
 
             if (Physics.Raycast(ray, out hit, 3000f)) {
-                hit.transform.gameObject.GetComponent<Renderer>().material.SetColor("_MainTex", Color.red);
                 Debug.Log("HIT: " + hit.transform.gameObject.name);
             }
-
-            //RaycastHit hit;
-            //float hitDistance = 0;
-            //float distanceToGround = 0;
-
-            //if (CameraManager.getInstance().plane.Raycast(ray, out hitDistance)) {
-
-            //    //distanceToGround = hit.distance;
-            //    Debug.LogWarning("hitDistance: " + hitDistance);
-            //}
 
         }
         
