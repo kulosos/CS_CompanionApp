@@ -1,5 +1,5 @@
 ﻿/**
-* @brief		
+* @brief		MapMarker Object DataType
 * @author		Oliver Kulas (oli@weltenbauer-se.com)
 * @date			Sep 2015
 */
@@ -11,30 +11,8 @@ using System.Collections;
 
 namespace Wb.Companion.Core.Game {
 
-    // ENUM TYPES -----------------------------------------------------------------
-
-    public enum WbCompMarkerLocation {
-        HomeBase_Small,
-        HomeBase_Big,
-        BuildingMerchant_Small,
-        BuildingMerchant_Big,
-        VehicleDealer,
-        SteelFactory,
-        WallFactory,
-        Sandbox,
-        Sawmill_Small,
-        Sawmill_Big,
-        NurseryGarden,
-        Harbour,
-        ConstructionSite
-    }
-
-    //-----------------------------------------------------------------------------
-
     public class WbCompMapMarker : MonoBehaviour {
 
-
-        public Camera currentCamera;
         public WbCompMarkerLocation markerLocation;
 
         //-------------------------------------------------------------------------
@@ -53,7 +31,6 @@ namespace Wb.Companion.Core.Game {
         }
 
         //-------------------------------------------------------------------------
-
 
     }
 
