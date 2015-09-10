@@ -38,13 +38,17 @@ namespace Wb.Companion.Core.WbAdministration {
             SceneManager.instance = this;
         }
 
+        //---------------------------------------------------------------------
+
         void Start() {
         }
+
+        //---------------------------------------------------------------------
 
         void Update() {
         }
 
-        //--- SINGLETON -------------------------------------------------------
+        //---------------------------------------------------------------------
 
         public static SceneManager getInstance() {
             return SceneManager.instance;
