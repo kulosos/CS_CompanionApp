@@ -8,9 +8,9 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
+using UnityEngine.UI;
 using Wb.Companion.Core;
 using Wb.Companion.Core.WbNetwork;
-using UnityEngine.UI;
 using Wb.Companion.Core.WbCamera;
 using  Wb.Companion.Core.WbAdministration;
 
@@ -35,8 +35,10 @@ namespace Wb.Companion.Core.Inputs {
 		public float tiltSteeringDamping = 1.0f;
 
 		public bool isActiveTiltInput = false;
-
-		private float currentTiltValue = 0.0f;
+        
+        private float timeSinceLastStart = 0;
+		
+        private float currentTiltValue = 0.0f;
 		public Text labelSliderTiltValue;
 		public Text labelSliderTiltDamping;
 
@@ -61,11 +63,15 @@ namespace Wb.Companion.Core.Inputs {
 
         void Update() {
 
-            // Tilt Input
+            // Send Tilt Input frame rate independent
             if (NetworkManager.getInstance().isActiveConnection && InputManager.getInstance().isActiveTiltInput) {
-                WbCompRPCWrapper.getInstance().setTiltInput(this.getSmoothAxisValues());
+                // send TiltValues every 1/rate second (e.g 1/15 = 15 times per second)
+                if (timeSinceLastStart >= 1f / NetworkManager.getInstance().globalRPCSendRate) {
+                    WbCompRPCWrapper.getInstance().setTiltInput(this.getSmoothAxisValues());
+                    timeSinceLastStart = 0;
+                }
+                timeSinceLastStart += Time.deltaTime;
             }
-
         }
 
 		//---------------------------------------------------------------------

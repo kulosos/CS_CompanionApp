@@ -11,6 +11,7 @@ using Wb.Companion.Core.UI;
 using Wb.Companion.Core.WbAdministration;
 using Wb.Companion.Core.Inputs;
 using System;
+using UnityEngine.UI;
 
 namespace Wb.Companion.Core.WbNetwork {
 
@@ -32,8 +33,10 @@ namespace Wb.Companion.Core.WbNetwork {
 		public bool isActiveConnection = false;
         public bool debugging = true;
 
+        public Text labelSliderDrivingRPCSendRate;
+        public Text labelSliderCraneRPCSendRate;
 
-		//---------------------------------------------------------------------
+        //---------------------------------------------------------------------
 		
 		public void Awake() {
 			NetworkManager.instance = this;
@@ -58,7 +61,7 @@ namespace Wb.Companion.Core.WbNetwork {
 
             // Clamps max RenterTexture Rate per second to the max RPC Send rate per second
             if (globalRPCSendRate > Network.sendRate && clampSendRate) globalRPCSendRate = Network.sendRate;
-            if (debugging) Debug.Log("GlobalRPCSendRate = " + this.globalRPCSendRate);
+            if (debugging) Debug.Log("Global RPC Send Rate = " + this.globalRPCSendRate);
             
 		}
 
@@ -166,6 +169,20 @@ namespace Wb.Companion.Core.WbNetwork {
                 //this.uiManager.loadGameUI();
             }
 		}
+
+        //---------------------------------------------------------------------
+        // SETTER / GETTER
+        //---------------------------------------------------------------------
+
+        public void setGlobalRPCSendRate(float value) {
+            globalRPCSendRate = value;
+            labelSliderDrivingRPCSendRate.text = value.ToString();
+            labelSliderCraneRPCSendRate.text = value.ToString();
+        }
+
+        public float getGlobalRPCSendRate() {
+            return globalRPCSendRate;
+        }
 
 	}
 }

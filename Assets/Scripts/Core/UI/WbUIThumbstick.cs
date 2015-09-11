@@ -114,7 +114,8 @@ namespace Wb.Companion.Core.UI {
 
 		void Update() {
 
-            if (SceneManager.getInstance().currentScene.Equals(SceneList.RemoteControlCrane)) {
+            // send thumbstick values frame rate independent
+            if (SceneManager.getInstance().currentScene.Equals(SceneList.RemoteControlCrane) && NetworkManager.getInstance().isActiveConnection) {
                 // send Thumbstick Values every 1/rate second (e.g 1/15 = 15 times per second)
                 // should send data when touch input position don't change and touch is only OnPointerDown
                 if (timeSinceLastStart >= 1f / NetworkManager.getInstance().globalRPCSendRate) {
