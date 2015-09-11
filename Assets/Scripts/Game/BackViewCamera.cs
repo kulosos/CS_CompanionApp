@@ -17,9 +17,8 @@ namespace Wb.Companion.Core.Game {
 
 	public class BackViewCamera : MonoBehaviour {
 
-		public float refreshRatePerSecond = 15f;
-
 		private float timeSinceLastStart = 0;
+
 		//---------------------------------------------------------------------
 		// Mono Behaviour
 		//---------------------------------------------------------------------
@@ -31,8 +30,9 @@ namespace Wb.Companion.Core.Game {
 
 		void Update () {
 		
+            // send render texture data frame rate independent
 			if(NetworkManager.getInstance().isActiveConnection){
-				if(timeSinceLastStart >= 1f/this.refreshRatePerSecond){
+				if(timeSinceLastStart >= 1f/NetworkManager.getInstance().globalRPCSendRate){
 
 					this.setBackViewCamera();
 					this.timeSinceLastStart = 0;
