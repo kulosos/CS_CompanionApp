@@ -68,6 +68,18 @@ namespace Wb.Companion.Core.Inputs {
 
         }
 
+		//---------------------------------------------------------------------
+
+		public void setInitSceneInputs(string scene){
+
+			if(scene.Equals(SceneList.RemoteControlDriving)){
+				isActiveTiltInput = true;
+			}else{
+				isActiveTiltInput = false;
+			}
+
+		}
+
         // --------------------------------------------------------------------
         // Tilt Input
         // --------------------------------------------------------------------
@@ -106,7 +118,6 @@ namespace Wb.Companion.Core.Inputs {
             } else {
                 InputManager.getInstance().isActiveTiltInput = false;
             }
-
         }
 
         //-----------------------------------------------------------------------------

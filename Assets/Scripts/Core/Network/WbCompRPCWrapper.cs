@@ -71,7 +71,7 @@ namespace Wb.Companion.Core.WbNetwork {
         }
 
         public void setTiltInput(float value) {
-            //if(debugging)Debug.Log(value);
+            //Debug.Log(value);
 			networkView.RPC("setRPCTiltInput", RPCMode.Server, value);
         }
 

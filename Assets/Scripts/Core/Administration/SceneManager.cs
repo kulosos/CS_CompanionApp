@@ -102,6 +102,7 @@ namespace Wb.Companion.Core.WbAdministration {
             this.uiManager.initUIElementsPerScene(scene);
 
             CameraManager.getInstance().setInitialCameraOnSceneLoading(scene);
+			InputManager.getInstance().setInitSceneInputs(scene);
 
             yield return Application.LoadLevelAdditiveAsync(scene);
         }
