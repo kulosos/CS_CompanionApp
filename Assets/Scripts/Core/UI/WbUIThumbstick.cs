@@ -70,9 +70,12 @@ namespace Wb.Companion.Core.UI {
 
         // private
         private Vector2 startPos;
+        private Vector2 thumbstickDelta;
         private bool useX;
         private bool useY;
 		public bool isReleased = false;
+        private float timeSinceLastStart = 0;
+         
 
 		// debugging
 		public bool debugging = false;
@@ -99,20 +102,33 @@ namespace Wb.Companion.Core.UI {
                 }
             }
 
-			// Toggle and init Debug Labels for Thumbsticks
-			this.DebugLabelThumbstickUp.gameObject.SetActive(this.debugging);
-			this.DebugLabelThumbstickDown.gameObject.SetActive(this.debugging);
-			this.DebugLabelThumbstickLeft.gameObject.SetActive(this.debugging);
-			this.DebugLabelThumbstickRight.gameObject.SetActive(this.debugging);
+            // Toggle and init Debug Labels for Thumbsticks
+            this.DebugLabelThumbstickUp.gameObject.SetActive(this.debugging);
+            this.DebugLabelThumbstickDown.gameObject.SetActive(this.debugging);
+            this.DebugLabelThumbstickLeft.gameObject.SetActive(this.debugging);
+            this.DebugLabelThumbstickRight.gameObject.SetActive(this.debugging);
 
-			this.debugUIElements = DebugUI.FindObjectsOfType(typeof(DebugUI)) as DebugUI[];
+            this.debugUIElements = DebugUI.FindObjectsOfType(typeof(DebugUI)) as DebugUI[];
+
         }
 
 		void Update() {
 
-			if(isReleased){
-				this.snap3DThumbstickBack();
-			}
+            if (SceneManager.getInstance().currentScene.Equals(SceneList.RemoteControlCrane)) {
+                // send Thumbstick Values every 1/rate second (e.g 1/15 = 15 times per second)
+                // should send data when touch input position don't change and touch is only OnPointerDown
+                if (timeSinceLastStart >= 1f / NetworkManager.getInstance().globalRPCSendRate) {
+                    this.updateInputValues(this.thumbstickDelta);
+                    timeSinceLastStart = 0;
+                }
+                timeSinceLastStart += Time.deltaTime;
+
+                //Snap 3DThumbstick back to middle postion, when touch ends
+                if (isReleased) {
+                    this.snap3DThumbstickBack();
+                }
+            }
+            
 		}
 
         //-----------------------------------------------------------------------------
@@ -120,17 +136,17 @@ namespace Wb.Companion.Core.UI {
         //-----------------------------------------------------------------------------
 
         public void OnPointerUp(PointerEventData data) {
-
+            Debug.Log("OnPointerUp");
             this.indicator.rectTransform.anchoredPosition = new Vector2(0, 0);
             this.SetIconsActive(false);
             this.UpdateAxes(this.indicator.rectTransform.anchoredPosition);
-			this.isReleased = true;
+            this.isReleased = true;
         }
 
         //-----------------------------------------------------------------------------
 
         public void OnPointerDown(PointerEventData data) {
-
+            Debug.Log("OnPointerDown");
             this.SetIconsActive(true);
             this.UpdateIndicator(data);
         }
@@ -138,9 +154,9 @@ namespace Wb.Companion.Core.UI {
         //-----------------------------------------------------------------------------
 
         public void OnDrag(PointerEventData data) {
-
+            Debug.Log("OnDrag");
             this.UpdateIndicator(data);
-			this.isReleased = false;
+            this.isReleased = false;
         }
 
         //-----------------------------------------------------------------------------
@@ -181,7 +197,9 @@ namespace Wb.Companion.Core.UI {
 
             //Debug.Log ("Delta (x/y): " + delta);
 
-			this.updateInputValues(delta);
+            this.thumbstickDelta = delta;
+
+            //this.updateInputValues(delta);
         }
 
 		//-----------------------------------------------------------------------------

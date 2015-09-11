@@ -22,6 +22,9 @@ namespace Wb.Companion.Core.WbNetwork {
 		public string defaultIP = "127.0.0.1";
 		public int defaultPort = 25000;
         public string defaultPassword = "pw";
+        public float globalRPCSendRate = 15;
+        public bool clampSendRate = false;
+
 		public UIManager uiManager;
 		public SceneManager sceneManager;
 		public NetworkView networkView;
@@ -52,11 +55,13 @@ namespace Wb.Companion.Core.WbNetwork {
             }
 
 			this.networkView = GetComponent<NetworkView>();
+
+            // Clamps max RenterTexture Rate per second to the max RPC Send rate per second
+            if (globalRPCSendRate > Network.sendRate && clampSendRate) globalRPCSendRate = Network.sendRate;
+            if (debugging) Debug.Log("GlobalRPCSendRate = " + this.globalRPCSendRate);
+            
 		}
 
-		void Update() {
-		}
-	
 		//---------------------------------------------------------------------
 
 		public static void launchServer(string maxConnections, string listenport, string password) {
