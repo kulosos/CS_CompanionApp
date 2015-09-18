@@ -1,11 +1,8 @@
 ﻿/**
 * @brief		Basic implementation of WbAxisButton
-*
-* @author		Thomas Mueller (thomas.mueller@weltenbauer-se.com)
-*
-* @date			July 2015
-* 
-*/
+* @author		Oliver Kulas (oli@weltenbauer-se.com)
+* @date			September 2015
+**/
 
 //-----------------------------------------------------------------------------
 
@@ -37,16 +34,10 @@ namespace Wb.Companion.Core.Inputs {
         private float value = 0;
         
 		//-----------------------------------------------------------------------------
-		// Properties
-		//-----------------------------------------------------------------------------
-
-		//-----------------------------------------------------------------------------
-		// WBehaviour
+		// Monoehaviour
 		//-----------------------------------------------------------------------------
 
         public void Start() {
-
-            //WbInputManager.VirtualInput.RegisterAxis(new WbVirtualAxis(this.axisName));
         }
 
         //-----------------------------------------------------------------------------
@@ -55,14 +46,15 @@ namespace Wb.Companion.Core.Inputs {
 
             if (this.isPressed) {
                 value = Mathf.MoveTowards(value, this.targetValue, this.responseSpeed * Time.deltaTime);
-                WbCompRPCWrapper.getInstance().setThrottle(this.axisName, value);
 
-                //WbInputManager.VirtualInput.SetAxisValue(this.axisName, Mathf.MoveTowards(WbInputManager.VirtualInput.GetAxis(this.axisName), this.targetValue, this.responseSpeed * Time.deltaTime));
+                // UNDONE Changed RPC to StateSync
+                //WbCompRPCWrapper.getInstance().setThrottle(this.axisName, value);
+                WbCompStateSyncManager.getInstance().setVehicleInput(this.axisName, value);
             }
         }
 
 		//-----------------------------------------------------------------------------
-		// Methods
+		// Interface implementations
 		//-----------------------------------------------------------------------------
 
         public void OnPointerDown(PointerEventData eventData) {
@@ -76,9 +68,10 @@ namespace Wb.Companion.Core.Inputs {
 
             this.isPressed = false;
             this.value = 0f;
-            WbCompRPCWrapper.getInstance().setThrottle(this.axisName, value);
 
-            //WbInputManager.VirtualInput.SetAxisValue(this.axisName, 0f);
+            // UNDONE Changed RPC to StateSync
+            // WbCompRPCWrapper.getInstance().setThrottle(this.axisName, value);
+            WbCompStateSyncManager.getInstance().setVehicleInput(this.axisName, value);
         }
     }	
 }

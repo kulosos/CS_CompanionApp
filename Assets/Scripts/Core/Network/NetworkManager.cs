@@ -67,6 +67,20 @@ namespace Wb.Companion.Core.WbNetwork {
 
 		//---------------------------------------------------------------------
 
+        public void changeOwner() {
+            NetworkViewID newViewId = Network.AllocateViewID();
+            networkView.RPC("DidAllocateNewId", RPCMode.All, newViewId);
+        }
+
+        //---------------------------------------------------------------------
+
+        [RPC]
+        void DidAllocateNewId(NetworkViewID newId) {
+            networkView.viewID = newId;
+        }
+
+        //---------------------------------------------------------------------
+
 		public static void launchServer(string maxConnections, string listenport, string password) {
 			Debug.Log("Init Server");
 			Network.incomingPassword = password;
@@ -137,6 +151,7 @@ namespace Wb.Companion.Core.WbNetwork {
            
 			this.sceneManager.loadScene(this.sceneManager.getDefaultStartScene());
 			NetworkManager.getInstance().isActiveConnection = true;
+
 		}
 
 		// Call on the client
@@ -163,7 +178,7 @@ namespace Wb.Companion.Core.WbNetwork {
 			this.uiManager.setConnectionErrorMsg("Failed to establish server connection");
             this.uiManager.setConnectionLoadingBar();
 
-            // TODO: this is only for debugging purposes
+            // HACK this is only for debugging purposes
             if(debugging){
                 this.sceneManager.loadScene(this.sceneManager.getDefaultStartScene());
                 //this.uiManager.loadGameUI();

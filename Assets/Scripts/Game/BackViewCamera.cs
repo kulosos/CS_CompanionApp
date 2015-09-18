@@ -34,7 +34,7 @@ namespace Wb.Companion.Core.Game {
 			if(NetworkManager.getInstance().isActiveConnection){
 				if(timeSinceLastStart >= 1f/NetworkManager.getInstance().globalRPCSendRate){
 
-					this.setBackViewCamera();
+                    //this.setBackViewCamera();
 					this.timeSinceLastStart = 0;
 				}
 				this.timeSinceLastStart += Time.deltaTime;

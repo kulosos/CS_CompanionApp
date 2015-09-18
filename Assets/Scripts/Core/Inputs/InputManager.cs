@@ -67,7 +67,19 @@ namespace Wb.Companion.Core.Inputs {
             if (NetworkManager.getInstance().isActiveConnection && InputManager.getInstance().isActiveTiltInput) {
                 // send TiltValues every 1/rate second (e.g 1/15 = 15 times per second)
                 if (timeSinceLastStart >= 1f / NetworkManager.getInstance().globalRPCSendRate) {
-                    WbCompRPCWrapper.getInstance().setTiltInput(this.getSmoothAxisValues());
+
+                    // FIXME
+                    //WbCompRPCWrapper.getInstance().setTiltInput(this.getSmoothAxisValues());
+
+                    float tiltValue = this.getSmoothAxisValues();
+                    if (tiltValue >= 0f) {
+                        WbCompStateSyncManager.getInstance().setVehicleInput(InputKeys.DRIVING_STEER_RIGHT, tiltValue);
+                    }
+                    if (tiltValue < 0f) {
+                        WbCompStateSyncManager.getInstance().setVehicleInput(InputKeys.DRIVING_STEER_LEFT, -tiltValue);
+                    }
+
+
                     timeSinceLastStart = 0;
                 }
                 timeSinceLastStart += Time.deltaTime;

@@ -85,6 +85,7 @@
     <Compile Include="Assets\Scripts\Core\Inputs\WbAxisButton.cs" />
     <Compile Include="Assets\Scripts\Core\Network\NetworkManager.cs" />
     <Compile Include="Assets\Scripts\Core\Network\WbCompRPCWrapper.cs" />
+    <Compile Include="Assets\Scripts\Core\Network\WbCompStateSyncManager.cs" />
     <Compile Include="Assets\Scripts\Core\UI\DebugUI.cs" />
     <Compile Include="Assets\Scripts\Core\UI\UIElement.cs" />
     <Compile Include="Assets\Scripts\Core\UI\UIManager.cs" />

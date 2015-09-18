@@ -41,17 +41,18 @@ namespace Wb.Companion.Core.WbNetwork {
 
         // ------------------------------------------------------------------------
 
-        public void disconnectBtn() {
-            NetworkManager.disconnect();
-        }
+        // UNDONE may this can deleted
+        //public void disconnectBtn() {
+        //    NetworkManager.disconnect();
+        //}
 
-        public void launchServerBtn() {
-            NetworkManager.launchServer("4", "25000", "pw");
-        }
+        //public void launchServerBtn() {
+        //    NetworkManager.launchServer("4", "25000", "pw");
+        //}
 
-        public void connectionInfoBtn() {
-            NetworkManager.connectionInfo();
-        }
+        //public void connectionInfoBtn() {
+        //    NetworkManager.connectionInfo();
+        //}
 
         //---------------------------------------------------------------------
         // Set Methods
@@ -62,17 +63,19 @@ namespace Wb.Companion.Core.WbNetwork {
 			networkView.RPC("setRPCThrottleInput", RPCMode.Server, input, value);
         }
 
-        public void setNextCamera(string input) {
-			networkView.RPC("setRPCNextCamera", RPCMode.Server, input);
-        }
+        // UNDONE may this can deleted
+        //public void setNextCamera(string input) {
+        //    networkView.RPC("setRPCNextCamera", RPCMode.Server, input);
+        //}
 
         public void setVehicleInput(string inputkey, float value) {
             networkView.RPC("setRPCVehicleInput", RPCMode.Server, inputkey, value);
         }
 
-        public void setTiltInput(float value) {
-			networkView.RPC("setRPCTiltInput", RPCMode.Server, value);
-        }
+        // UNDONE may this can deleted
+        //public void setTiltInput(float value) {
+        //    networkView.RPC("setRPCTiltInput", RPCMode.Server, value);
+        //}
 
         //---------------------------------------------------------------------
         // Remote Procedure Calls
