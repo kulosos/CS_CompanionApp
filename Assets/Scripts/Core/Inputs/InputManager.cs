@@ -1,4 +1,4 @@
-﻿/**
+/**
 * @brief		InputManager (Inputs from Companion App for ConSim PC Version)
 * @author		Oliver Kulas (oli@weltenbauer-se.com)
 * @date			September 2015
@@ -73,10 +73,10 @@ namespace Wb.Companion.Core.Inputs {
 
                     float tiltValue = this.getSmoothAxisValues();
                     if (tiltValue >= 0f) {
-                        WbCompStateSyncManager.getInstance().setVehicleInput(InputKeys.DRIVING_STEER_RIGHT, tiltValue);
+                        WbCompStateSyncSending.getInstance().setVehicleInput(InputKeys.DRIVING_STEER_RIGHT, tiltValue);
                     }
                     if (tiltValue < 0f) {
-                        WbCompStateSyncManager.getInstance().setVehicleInput(InputKeys.DRIVING_STEER_LEFT, -tiltValue);
+                        WbCompStateSyncSending.getInstance().setVehicleInput(InputKeys.DRIVING_STEER_LEFT, -tiltValue);
                     }
 
 

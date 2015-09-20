@@ -68,8 +68,9 @@ namespace Wb.Companion.Core.WbNetwork {
 		//---------------------------------------------------------------------
 
         public void changeOwner() {
+			Debug.Log ("ChangeOwner");
             NetworkViewID newViewId = Network.AllocateViewID();
-            networkView.RPC("DidAllocateNewId", RPCMode.All, newViewId);
+            this.networkView.RPC("DidAllocateNewId", RPCMode.All, newViewId);
         }
 
         //---------------------------------------------------------------------
@@ -152,6 +153,8 @@ namespace Wb.Companion.Core.WbNetwork {
 			this.sceneManager.loadScene(this.sceneManager.getDefaultStartScene());
 			NetworkManager.getInstance().isActiveConnection = true;
 
+			// Set StateSync Sender as Owner
+			WbCompStateSyncSending.getInstance().setAsOwner();
 		}
 
 		// Call on the client

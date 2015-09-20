@@ -219,10 +219,10 @@ namespace Wb.Companion.Core.UI {
 				
 				// send input key for vehicle interaction
 				if(this.thumbstickType.Equals(ThumbstickType.Left)){
-					WbCompRPCWrapper.getInstance().setVehicleInput(InputKeys.TRUCKCRANE_BOOM_01_UP, Mathf.Clamp01(delta.y));
+					WbCompStateSyncSending.getInstance().setVehicleInput(InputKeys.TRUCKCRANE_BOOM_01_UP, Mathf.Clamp01(delta.y));
 				}
 				if(this.thumbstickType.Equals(ThumbstickType.Right)){
-					WbCompRPCWrapper.getInstance().setVehicleInput(InputKeys.TRUCKCRANE_ROPE_UP, Mathf.Clamp01(delta.y));
+					WbCompStateSyncSending.getInstance().setVehicleInput(InputKeys.TRUCKCRANE_ROPE_UP, Mathf.Clamp01(delta.y));
 				}
 				// debugging
 				this.updateThumbstickDebugUI(ThumbstickAxis.UP, Mathf.Clamp01(delta.y));
@@ -236,10 +236,10 @@ namespace Wb.Companion.Core.UI {
 				
 				// send input key for vehicle interaction
 				if (this.thumbstickType.Equals(ThumbstickType.Left)) {
-					WbCompRPCWrapper.getInstance().setVehicleInput(InputKeys.TRUCKCRANE_BOOM_01_DOWN, Mathf.Clamp01(Mathf.Abs(delta.y)));
+					WbCompStateSyncSending.getInstance().setVehicleInput(InputKeys.TRUCKCRANE_BOOM_01_DOWN, Mathf.Clamp01(Mathf.Abs(delta.y)));
 				}
 				if (this.thumbstickType.Equals(ThumbstickType.Right)) {
-					WbCompRPCWrapper.getInstance().setVehicleInput(InputKeys.TRUCKCRANE_ROPE_DOWN, Mathf.Clamp01(Mathf.Abs(delta.y)));
+					WbCompStateSyncSending.getInstance().setVehicleInput(InputKeys.TRUCKCRANE_ROPE_DOWN, Mathf.Clamp01(Mathf.Abs(delta.y)));
 				}
 				// debugging
 				this.updateThumbstickDebugUI(ThumbstickAxis.DOWN, Mathf.Clamp01(Mathf.Abs(delta.y)));
@@ -250,12 +250,12 @@ namespace Wb.Companion.Core.UI {
 				
 				// send input key for vehicle interaction
 				if (this.thumbstickType.Equals(ThumbstickType.Left)) {
-					WbCompRPCWrapper.getInstance().setVehicleInput(InputKeys.TRUCKCRANE_BOOM_01_UP, 0f);
-					WbCompRPCWrapper.getInstance().setVehicleInput(InputKeys.TRUCKCRANE_BOOM_01_DOWN, 0f);
+					WbCompStateSyncSending.getInstance().setVehicleInput(InputKeys.TRUCKCRANE_BOOM_01_UP, 0f);
+					WbCompStateSyncSending.getInstance().setVehicleInput(InputKeys.TRUCKCRANE_BOOM_01_DOWN, 0f);
 				}
 				if (this.thumbstickType.Equals(ThumbstickType.Right)) {
-					WbCompRPCWrapper.getInstance().setVehicleInput(InputKeys.TRUCKCRANE_ROPE_UP, 0f);
-					WbCompRPCWrapper.getInstance().setVehicleInput(InputKeys.TRUCKCRANE_ROPE_DOWN, 0f);
+					WbCompStateSyncSending.getInstance().setVehicleInput(InputKeys.TRUCKCRANE_ROPE_UP, 0f);
+					WbCompStateSyncSending.getInstance().setVehicleInput(InputKeys.TRUCKCRANE_ROPE_DOWN, 0f);
 				}
 				// debugging
 				this.updateThumbstickDebugUI(ThumbstickAxis.UP, delta.y);
@@ -272,10 +272,10 @@ namespace Wb.Companion.Core.UI {
 				
 				// send input key for vehicle interaction
 				if (this.thumbstickType.Equals(ThumbstickType.Left)) {
-					WbCompRPCWrapper.getInstance().setVehicleInput(InputKeys.TRUCKCRANE_BOOM_MAIN_LEFT,  Mathf.Clamp01(Mathf.Abs(delta.x)));
+					WbCompStateSyncSending.getInstance().setVehicleInput(InputKeys.TRUCKCRANE_BOOM_MAIN_LEFT,  Mathf.Clamp01(Mathf.Abs(delta.x)));
 				}
 				if (this.thumbstickType.Equals(ThumbstickType.Right)) {
-					WbCompRPCWrapper.getInstance().setVehicleInput(InputKeys.TRUCKCRANE_BOOM_FORWARD,  Mathf.Clamp01(Mathf.Abs(delta.x)));
+					WbCompStateSyncSending.getInstance().setVehicleInput(InputKeys.TRUCKCRANE_BOOM_FORWARD,  Mathf.Clamp01(Mathf.Abs(delta.x)));
 				}
 				// debugging
 				this.updateThumbstickDebugUI(ThumbstickAxis.LEFT, Mathf.Clamp01(Mathf.Abs(delta.x)));
@@ -289,10 +289,10 @@ namespace Wb.Companion.Core.UI {
 				
 				// send input key for vehicle interaction
 				if (this.thumbstickType.Equals(ThumbstickType.Left)) {
-					WbCompRPCWrapper.getInstance().setVehicleInput(InputKeys.TRUCKCRANE_BOOM_MAIN_RIGHT, Mathf.Clamp01(delta.x));
+					WbCompStateSyncSending.getInstance().setVehicleInput(InputKeys.TRUCKCRANE_BOOM_MAIN_RIGHT, Mathf.Clamp01(delta.x));
 				}
 				if (this.thumbstickType.Equals(ThumbstickType.Right)) {
-					WbCompRPCWrapper.getInstance().setVehicleInput(InputKeys.TRUCKCRANE_BOOM_BACKWARD, Mathf.Clamp01(delta.x));
+					WbCompStateSyncSending.getInstance().setVehicleInput(InputKeys.TRUCKCRANE_BOOM_BACKWARD, Mathf.Clamp01(delta.x));
 				}
 				// debugging
 				this.updateThumbstickDebugUI(ThumbstickAxis.RIGHT, Mathf.Clamp01(delta.x));
@@ -303,12 +303,12 @@ namespace Wb.Companion.Core.UI {
 
 				// send input key for vehicle interaction
 				if (this.thumbstickType.Equals(ThumbstickType.Left)) {
-					WbCompRPCWrapper.getInstance().setVehicleInput(InputKeys.TRUCKCRANE_BOOM_MAIN_LEFT, 0f);
-					WbCompRPCWrapper.getInstance().setVehicleInput(InputKeys.TRUCKCRANE_BOOM_MAIN_RIGHT, 0f);
+					WbCompStateSyncSending.getInstance().setVehicleInput(InputKeys.TRUCKCRANE_BOOM_MAIN_LEFT, 0f);
+					WbCompStateSyncSending.getInstance().setVehicleInput(InputKeys.TRUCKCRANE_BOOM_MAIN_RIGHT, 0f);
 				}
 				if (this.thumbstickType.Equals(ThumbstickType.Right)) {
-					WbCompRPCWrapper.getInstance().setVehicleInput(InputKeys.TRUCKCRANE_BOOM_FORWARD, 0f);
-					WbCompRPCWrapper.getInstance().setVehicleInput(InputKeys.TRUCKCRANE_BOOM_BACKWARD, 0f);
+					WbCompStateSyncSending.getInstance().setVehicleInput(InputKeys.TRUCKCRANE_BOOM_FORWARD, 0f);
+					WbCompStateSyncSending.getInstance().setVehicleInput(InputKeys.TRUCKCRANE_BOOM_BACKWARD, 0f);
 				}
 				// debugging
 				this.updateThumbstickDebugUI(ThumbstickAxis.LEFT, delta.x);

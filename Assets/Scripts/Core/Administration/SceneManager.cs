@@ -67,23 +67,18 @@ namespace Wb.Companion.Core.WbAdministration {
 
         public void loadScene(string scene) {
 
-            //if (!SceneManager.getInstance().currentScene.Equals(scene)) {
+            //SceneManager.getInstance().uiManager.showLoadingScreen();
 
-                //SceneManager.getInstance().uiManager.showLoadingScreen();
+            GameObject sceneData = GameObject.Find("SceneData");
+            if (sceneData != null) {
+                Destroy(sceneData);
+            }
 
-                GameObject sceneData = GameObject.Find("SceneData");
-                if (sceneData != null) {
-                    Destroy(sceneData);
-                }
+			this.setCurrentScene(scene);
 
-				this.setCurrentScene(scene);
+            StartCoroutine(levelLoaded(scene));
+        } 
 
-                StartCoroutine(levelLoaded(scene));
-            } 
-        //else {
-        //        SceneManager.getInstance().uiManager.unloadMainMenu("true");
-        //    }
-        //}
 
         //---------------------------------------------------------------------
 

@@ -1,4 +1,4 @@
-﻿/**
+/**
 * @brief		Basic implementation of WbAxisButton
 * @author		Oliver Kulas (oli@weltenbauer-se.com)
 * @date			September 2015
@@ -47,9 +47,7 @@ namespace Wb.Companion.Core.Inputs {
             if (this.isPressed) {
                 value = Mathf.MoveTowards(value, this.targetValue, this.responseSpeed * Time.deltaTime);
 
-                // UNDONE Changed RPC to StateSync
-                //WbCompRPCWrapper.getInstance().setThrottle(this.axisName, value);
-                WbCompStateSyncManager.getInstance().setVehicleInput(this.axisName, value);
+                WbCompStateSyncSending.getInstance().setVehicleInput(this.axisName, value);
             }
         }
 
@@ -69,9 +67,7 @@ namespace Wb.Companion.Core.Inputs {
             this.isPressed = false;
             this.value = 0f;
 
-            // UNDONE Changed RPC to StateSync
-            // WbCompRPCWrapper.getInstance().setThrottle(this.axisName, value);
-            WbCompStateSyncManager.getInstance().setVehicleInput(this.axisName, value);
+            WbCompStateSyncSending.getInstance().setVehicleInput(this.axisName, value);
         }
     }	
 }

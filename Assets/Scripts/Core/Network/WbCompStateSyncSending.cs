@@ -4,12 +4,10 @@ using Wb.Companion.Core.Inputs;
 
 namespace Wb.Companion.Core.WbNetwork {
 
-    public class WbCompStateSyncManager : MonoBehaviour {
+    public class WbCompStateSyncSending : MonoBehaviour, ICompNetworkOwner {
 
-        public static WbCompStateSyncManager instance;
+        public static WbCompStateSyncSending instance;
         public NetworkView networkView;
-
-        public bool debugging = false;
 
         //---------------------------------------------------------------------
         // INPUT VALUES
@@ -34,13 +32,13 @@ namespace Wb.Companion.Core.WbNetwork {
         public float truckcrane_ropeDown = 0f;
         public float truckcrane_supportLegsIn = 0f;
         public float truckcrane_supportLegsOut = 0f;
-
+	
         //---------------------------------------------------------------------
         // Singleton
         //---------------------------------------------------------------------
 
-        public static WbCompStateSyncManager getInstance() {
-            return WbCompStateSyncManager.instance;
+        public static WbCompStateSyncSending getInstance() {
+            return WbCompStateSyncSending.instance;
         }
 
         //---------------------------------------------------------------------
@@ -48,7 +46,7 @@ namespace Wb.Companion.Core.WbNetwork {
         //---------------------------------------------------------------------
 
         public void Awake() {
-            WbCompStateSyncManager.instance = this;
+            WbCompStateSyncSending.instance = this;
         }
 
         //---------------------------------------------------------------------
@@ -67,12 +65,11 @@ namespace Wb.Companion.Core.WbNetwork {
 
         void OnSerializeNetworkView(BitStream stream, NetworkMessageInfo info) {
 
-            Debug.LogWarning("OnSerializeNetworkView");
-
             float accelerate = 0;
             float brake = 0;
             float steerLeft = 0;
             float steerRight = 0;
+
 
             // SENDING
             if (stream.isWriting) {
@@ -96,7 +93,7 @@ namespace Wb.Companion.Core.WbNetwork {
 
             // RECEIVING
             else{
-
+	
 
             }
          }
@@ -104,7 +101,7 @@ namespace Wb.Companion.Core.WbNetwork {
         //---------------------------------------------------------------------
         public void setVehicleInput(string inputkey, float value) {
 
-            Debug.Log("setVehicleInput - " + inputkey + " / " + value );
+            //Debug.Log("setVehicleInput - " + inputkey + " / " + value );
 
             // DRIVING---------------------------------------------------------
             if(InputKeys.DRIVING_ACCELERATE.Equals(inputkey)){
@@ -189,6 +186,24 @@ namespace Wb.Companion.Core.WbNetwork {
             //}
 
         }
+
+		//---------------------------------------------------------------------
+		// Interface Implementations
+		//---------------------------------------------------------------------
+
+		public void setAsOwner(){
+			Debug.Log ("Set WbCompStateSyncSending as Owner");
+			NetworkViewID newViewId = Network.AllocateViewID();
+			this.networkView.RPC("allocateNewNetworkViewID", RPCMode.All, newViewId);
+		}
+
+		//---------------------------------------------------------------------
+
+		[RPC]
+		public void allocateNewNetworkViewID(NetworkViewID newId){
+			Debug.Log ("Change Owner for Sender");
+			this.networkView.viewID = newId;
+		}
 
     }
 }

@@ -11,8 +11,8 @@ namespace Wb.Companion.Core.WbNetwork {
 
 		public bool debugging = false;
 
-		private float currentSpeed; 
-		private float currentRPM;
+		//private float currentSpeed; 
+		//private float currentRPM;
 
 		private string backViewCameraFrameBase64;
 		private byte[] backViewCameraFrameByteArray;
@@ -39,85 +39,16 @@ namespace Wb.Companion.Core.WbNetwork {
 
         }
 
-        // ------------------------------------------------------------------------
-
-        // UNDONE may this can deleted
-        //public void disconnectBtn() {
-        //    NetworkManager.disconnect();
-        //}
-
-        //public void launchServerBtn() {
-        //    NetworkManager.launchServer("4", "25000", "pw");
-        //}
-
-        //public void connectionInfoBtn() {
-        //    NetworkManager.connectionInfo();
-        //}
-
-        //---------------------------------------------------------------------
-        // Set Methods
-        //---------------------------------------------------------------------
-
-        public void setThrottle(string input, float value) {
-            //NetworkViewID viewID = Network.AllocateViewID();
-			networkView.RPC("setRPCThrottleInput", RPCMode.Server, input, value);
-        }
-
-        // UNDONE may this can deleted
-        //public void setNextCamera(string input) {
-        //    networkView.RPC("setRPCNextCamera", RPCMode.Server, input);
-        //}
-
-        public void setVehicleInput(string inputkey, float value) {
-            networkView.RPC("setRPCVehicleInput", RPCMode.Server, inputkey, value);
-        }
-
-        // UNDONE may this can deleted
-        //public void setTiltInput(float value) {
-        //    networkView.RPC("setRPCTiltInput", RPCMode.Server, value);
-        //}
-
         //---------------------------------------------------------------------
         // Remote Procedure Calls
         //---------------------------------------------------------------------
 		// OUT GOING RPCs
 		//---------------------------------------------------------------------
 
-        [RPC]
-        public void setRPCThrottleInput(string txt, float value) {
-            //Debug.Log(txt);
-        }
-
-        [RPC]
-        public void setRPCNextCamera(string txt) {
-            //Debug.Log(txt);
-        }
-
-        [RPC]
-		public void setRPCVehicleInput(string inputkey, float value) {
-            //Debug.Log(txt);
-        }
-
-        [RPC]
-        public void setRPCTiltInput(float value) {
-            //Debug.Log ("TiltInput: " + value);
-        }
 
 		//---------------------------------------------------------------------
 		// INCOMING RPCs
 		//---------------------------------------------------------------------
-
-		[RPC]
-		public void setRPCVehicleRPM(float value){
-			//if(debugging)Debug.Log ("CurrentVehicleRPM Value: " + value);
-			currentRPM = value;
-		}
-
-		[RPC]
-		public void setRPCVehicleSpeed(float value){
-			//if(debugging)Debug.Log ("CurrentVehicleSpeed Value: " + value);
-			currentSpeed = value;
-		}
 
 		[RPC]
 		public void sendRPCbroadcastCamera(string imgData){
@@ -126,14 +57,6 @@ namespace Wb.Companion.Core.WbNetwork {
 
 
 		//------ SETTER / GETTER ---------------------------------------------
-
-		public float getCurrentRPM(){
-			return currentRPM;
-		}
-
-		public float getCurrentSpeed(){
-			return currentSpeed;
-		}
 
 		public string getBackViewCameraFrameAsB64String(){
 			return backViewCameraFrameBase64;

@@ -53,8 +53,9 @@ public class VehicleInstruments : MonoBehaviour {
 
 		public void setInstrumentsOnUpdate(){
 
-			float rpm = WbCompRPCWrapper.getInstance().getCurrentRPM();
-			float speed = WbCompRPCWrapper.getInstance().getCurrentSpeed();
+			float rpm = WbCompStateSyncReceiving.getInstance().vehicleRPM;
+			float speed = WbCompStateSyncReceiving.getInstance().vehicleSpeed;
+
 
 			//rpm = 1800f;
 			//speed = 80f;
@@ -100,11 +101,6 @@ public class VehicleInstruments : MonoBehaviour {
 
 		//---------------------------------------------------------------------
 
-		public void setInstrumentOnce(){
-		
-
-
-		}
 	}
 
 }
