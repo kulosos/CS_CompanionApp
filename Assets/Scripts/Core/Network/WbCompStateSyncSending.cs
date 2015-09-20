@@ -65,30 +65,28 @@ namespace Wb.Companion.Core.WbNetwork {
 
         void OnSerializeNetworkView(BitStream stream, NetworkMessageInfo info) {
 
-            float accelerate = 0;
-            float brake = 0;
-            float steerLeft = 0;
-            float steerRight = 0;
-
-
             // SENDING
             if (stream.isWriting) {
 
                 // DRIVING
-                accelerate = driving_accelerate;
-                stream.Serialize(ref accelerate);
-
-                brake = driving_brake;
-                stream.Serialize(ref brake);
-
-                steerLeft = driving_steerLeft;
-                stream.Serialize(ref steerLeft);
-
-                steerRight = driving_steerRight;
-                stream.Serialize(ref steerRight);
+				stream.Serialize(ref driving_accelerate);
+                stream.Serialize(ref driving_brake);
+                stream.Serialize(ref driving_steerLeft);
+                stream.Serialize(ref driving_steerRight);
 
                 // TRUCK CRANE
-                // do stuff ...
+				stream.Serialize(ref truckcrane_boom01Up);
+				stream.Serialize(ref truckcrane_boom01Down);
+				stream.Serialize(ref truckcrane_boomMainLeft);
+				stream.Serialize(ref truckcrane_boomMainRight);
+				stream.Serialize(ref truckcrane_boomForward);
+				stream.Serialize(ref truckcrane_boomBackward);
+				stream.Serialize(ref truckcrane_cabinUp);
+				stream.Serialize(ref truckcrane_cabinDown);
+				stream.Serialize(ref truckcrane_ropeUp);
+				stream.Serialize(ref truckcrane_ropeDown);
+				stream.Serialize(ref truckcrane_supportLegsIn);
+				stream.Serialize(ref truckcrane_supportLegsOut);
             } 
 
             // RECEIVING
@@ -125,65 +123,65 @@ namespace Wb.Companion.Core.WbNetwork {
             }
 
             // TRUCK CRANE-----------------------------------------------------
-            //if (InputKeys.TRUCKCRANE_BOOM_01_UP.Equals(inputkey)) {
-            //    truckcrane_boom01Up = value;
-            //    return;
-            //}
+            if (InputKeys.TRUCKCRANE_BOOM_01_UP.Equals(inputkey)) {
+                truckcrane_boom01Up = value;
+                return;
+            }
 
-            //if (InputKeys.TRUCKCRANE_BOOM_01_DOWN.Equals(inputkey)) {
-            //    truckcrane_boom01Down = value;
-            //    return;
-            //}
+            if (InputKeys.TRUCKCRANE_BOOM_01_DOWN.Equals(inputkey)) {
+                truckcrane_boom01Down = value;
+                return;
+            }
 
-            //if (InputKeys.TRUCKCRANE_BOOM_MAIN_LEFT.Equals(inputkey)) {
-            //    truckcrane_boomMainLeft = value;
-            //    return;
-            //}
+            if (InputKeys.TRUCKCRANE_BOOM_MAIN_LEFT.Equals(inputkey)) {
+                truckcrane_boomMainLeft = value;
+                return;
+            }
 
-            //if (InputKeys.TRUCKCRANE_BOOM_MAIN_RIGHT.Equals(inputkey)) {
-            //    truckcrane_boomMainRight = value;
-            //    return;
-            //}
+            if (InputKeys.TRUCKCRANE_BOOM_MAIN_RIGHT.Equals(inputkey)) {
+                truckcrane_boomMainRight = value;
+                return;
+            }
 
-            //if (InputKeys.TRUCKCRANE_BOOM_FORWARD.Equals(inputkey)) {
-            //    truckcrane_boomForward = value;
-            //    return;
-            //}
+            if (InputKeys.TRUCKCRANE_BOOM_FORWARD.Equals(inputkey)) {
+                truckcrane_boomForward = value;
+                return;
+            }
 
-            //if (InputKeys.TRUCKCRANE_BOOM_BACKWARD.Equals(inputkey)) {
-            //    truckcrane_boomBackward = value;
-            //    return;
-            //}
+            if (InputKeys.TRUCKCRANE_BOOM_BACKWARD.Equals(inputkey)) {
+                truckcrane_boomBackward = value;
+                return;
+            }
 
-            //if (InputKeys.TRUCKCRANE_CABIN_UP.Equals(inputkey)) {
-            //    truckcrane_cabinUp = value;
-            //    return;
-            //}
+            if (InputKeys.TRUCKCRANE_CABIN_UP.Equals(inputkey)) {
+                truckcrane_cabinUp = value;
+                return;
+            }
 
-            //if (InputKeys.TRUCKCRANE_CABIN_DOWN.Equals(inputkey)) {
-            //    truckcrane_cabinDown = value;
-            //    return;
-            //}
+            if (InputKeys.TRUCKCRANE_CABIN_DOWN.Equals(inputkey)) {
+                truckcrane_cabinDown = value;
+                return;
+            }
 
-            //if (InputKeys.TRUCKCRANE_ROPE_UP.Equals(inputkey)) {
-            //    truckcrane_ropeUp = value;
-            //    return;
-            //}
+            if (InputKeys.TRUCKCRANE_ROPE_UP.Equals(inputkey)) {
+                truckcrane_ropeUp = value;
+                return;
+            }
 
-            //if (InputKeys.TRUCKCRANE_ROPE_DOWN.Equals(inputkey)) {
-            //    truckcrane_ropeDown = value;
-            //    return;
-            //}
+            if (InputKeys.TRUCKCRANE_ROPE_DOWN.Equals(inputkey)) {
+                truckcrane_ropeDown = value;
+                return;
+            }
 
-            //if (InputKeys.TRUCKCRANE_SUPPORTLEGS_IN.Equals(inputkey)) {
-            //    truckcrane_supportLegsIn = value;
-            //    return;
-            //}
+            if (InputKeys.TRUCKCRANE_SUPPORTLEGS_IN.Equals(inputkey)) {
+                truckcrane_supportLegsIn = value;
+                return;
+            }
 
-            //if (InputKeys.TRUCKCRANE_SUPPORTLEGS_OUT.Equals(inputkey)) {
-            //    truckcrane_supportLegsOut = value;
-            //    return;
-            //}
+            if (InputKeys.TRUCKCRANE_SUPPORTLEGS_OUT.Equals(inputkey)) {
+                truckcrane_supportLegsOut = value;
+                return;
+            }
 
         }
 

@@ -13,7 +13,7 @@ namespace Wb.Companion.Core.WbCamera {
 
 		private static CameraManager instance;
 
-		private Camera uiCamera;
+		public Camera uiCamera;
 		public bool isMapCameraActive = true;
 
 		public Plane plane = new Plane();
@@ -42,14 +42,14 @@ namespace Wb.Companion.Core.WbCamera {
 
 		private void Awake() {
 			CameraManager.instance = this;
-
+			/*
 			Camera[] cameras = Camera.FindObjectsOfType(typeof(Camera)) as Camera[];
 			foreach (Camera cam in cameras)
 			{
 				if (cam.gameObject.layer == 5) {  // Layer 5 == UI
 					this.uiCamera = cam;
 				}
-			}
+			}*/
 
 		}
 

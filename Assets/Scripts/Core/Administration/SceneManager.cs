@@ -84,6 +84,8 @@ namespace Wb.Companion.Core.WbAdministration {
 
         private IEnumerator levelLoaded(string scene) {
             
+			yield return Application.LoadLevelAdditiveAsync(scene);
+
             if(debugging)Debug.Log("Level: " + scene + " was loaded");
             
             // after SceneLoading is complete
@@ -98,8 +100,6 @@ namespace Wb.Companion.Core.WbAdministration {
 
             CameraManager.getInstance().setInitialCameraOnSceneLoading(scene);
 			InputManager.getInstance().setInitSceneInputs(scene);
-
-            yield return Application.LoadLevelAdditiveAsync(scene);
         }
 
         //---------------------------------------------------------------------

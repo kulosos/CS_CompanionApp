@@ -40,10 +40,7 @@ public class WbCompStateSyncReceiving : MonoBehaviour, ICompNetworkOwner {
 	//---------------------------------------------------------------------
 	
 	void OnSerializeNetworkView(BitStream stream, NetworkMessageInfo info) {
-		
-		float speed = 0f;
-		float rpm = 0f;
-		
+
 		// SENDING
 		if (stream.isWriting) {
 
@@ -51,13 +48,9 @@ public class WbCompStateSyncReceiving : MonoBehaviour, ICompNetworkOwner {
 		
 		// RECEIVING
 		else{
-
 			// Tachometer Values
-			stream.Serialize(ref speed);
-			vehicleSpeed = speed;
-
-			stream.Serialize(ref rpm);
-			vehicleRPM = rpm;
+			stream.Serialize(ref vehicleSpeed);
+			stream.Serialize(ref vehicleRPM);
 		}
 	}
 

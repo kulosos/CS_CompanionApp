@@ -83,7 +83,9 @@ namespace Wb.Companion.Core.UI {
 
         // setPosition and toggle Thumbsticks in scene (e.g. RemoteControlCraneScene)
         public void toggleUIThumbsticks(string scene) {
+
             if (scene.Equals(SceneList.RemoteControlCrane)) {
+
                 foreach (WbUIThumbstick uiStick in this.uiThumbsticks) {
                     uiStick.gameObject.SetActive(true);
 
