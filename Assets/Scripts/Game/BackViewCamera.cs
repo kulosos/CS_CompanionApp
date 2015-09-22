@@ -23,9 +23,7 @@ namespace Wb.Companion.Core.Game {
 		// Mono Behaviour
 		//---------------------------------------------------------------------
 
-
 		void Start () {
-		
 		}
 
 		void Update () {
@@ -33,8 +31,7 @@ namespace Wb.Companion.Core.Game {
             // send render texture data frame rate independent
 			if(NetworkManager.getInstance().isActiveConnection){
 				if(timeSinceLastStart >= 1f/NetworkManager.getInstance().globalRPCSendRate){
-
-                    //this.setBackViewCamera();
+                    this.setBackViewCamera();
 					this.timeSinceLastStart = 0;
 				}
 				this.timeSinceLastStart += Time.deltaTime;
@@ -49,13 +46,17 @@ namespace Wb.Companion.Core.Game {
 		private void setBackViewCamera(){
 
 			string texBase64 = WbCompRPCWrapper.getInstance().getBackViewCameraFrameAsB64String();
+			int imgPart = WbCompRPCWrapper.getInstance().imgPart;
+			int imgWidth = WbCompRPCWrapper.getInstance().imgWidth;
+			int imgHeight = WbCompRPCWrapper.getInstance().imgHeight;
+			int imgSlices = WbCompRPCWrapper.getInstance().imgSlices;
 
 			try{
+
 				byte[] texBin = Convert.FromBase64String(texBase64);
-				Texture2D tex = new Texture2D(200,200,TextureFormat.RGB24, false);
+				Texture2D tex = new Texture2D(128,128,TextureFormat.RGB24, false);
 				tex.LoadImage(texBin);
 				this.gameObject.GetComponent<Renderer>().material.SetTexture("_MainTex", tex);
-
 			}catch(Exception e){
 				print(e);
 			}

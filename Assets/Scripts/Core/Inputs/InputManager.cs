@@ -72,7 +72,7 @@ namespace Wb.Companion.Core.Inputs {
                     //WbCompRPCWrapper.getInstance().setTiltInput(this.getSmoothAxisValues());
 
                     float tiltValue = this.getSmoothAxisValues();
-                    if (tiltValue >= 0f) {
+                    if (tiltValue > 0f) {
                         WbCompStateSyncSending.getInstance().setVehicleInput(InputKeys.DRIVING_STEER_RIGHT, tiltValue);
                     }
                     if (tiltValue < 0f) {

@@ -16,6 +16,10 @@ namespace Wb.Companion.Core.WbNetwork {
 
 		private string backViewCameraFrameBase64;
 		private byte[] backViewCameraFrameByteArray;
+		public int imgPart;
+		public int imgWidth;
+		public int imgHeight;
+		public int imgSlices;
 
         // ------------------------------------------------------------------------
 
@@ -51,10 +55,13 @@ namespace Wb.Companion.Core.WbNetwork {
 		//---------------------------------------------------------------------
 
 		[RPC]
-		public void sendRPCbroadcastCamera(string imgData){
+		public void sendRPCbroadcastCamera(string imgData, int part, int width, int height, int slices){
 			backViewCameraFrameBase64 = imgData;
+			imgPart = part;
+			imgWidth = width;
+			imgHeight = height;
+			imgSlices = slices;
 		}
-
 
 		//------ SETTER / GETTER ---------------------------------------------
 

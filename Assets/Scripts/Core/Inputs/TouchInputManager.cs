@@ -46,21 +46,17 @@ namespace Wb.Companion.Core.WbCamera {
         //---------------------------------------------------------------------
 
         private void OnEnable() {
-			// HACK Avoids NullRef because OnEnable is calling to late or asynchron before CamMgr is instantiate ready
-			//if (CameraManager.getInstance().isMapCameraActive) {
-				if (GetComponent<TouchScript.Gestures.TapGesture>() != null) GetComponent<TouchScript.Gestures.TapGesture>().Tapped += tapHandler;
-				if (GetComponent<TouchScript.Gestures.PanGesture>() != null) GetComponent<TouchScript.Gestures.PanGesture>().Panned += panHandler;
-				if (GetComponent<TouchScript.Gestures.PanGesture>() != null) GetComponent<TouchScript.Gestures.PanGesture>().PanStarted += panStartedHandler;
-				if (GetComponent<TouchScript.Gestures.ScaleGesture>() != null) GetComponent<TouchScript.Gestures.ScaleGesture>().Scaled += scaleHandler;
-				if (GetComponent<TouchScript.Gestures.RotateGesture>() != null) GetComponent<TouchScript.Gestures.RotateGesture>().Rotated += rotateHandler;
-				if (GetComponent<TouchScript.Gestures.ReleaseGesture>() != null) GetComponent<TouchScript.Gestures.ReleaseGesture>().Released += releaseHandler;
-			//}
+			if (GetComponent<TouchScript.Gestures.TapGesture>() != null) GetComponent<TouchScript.Gestures.TapGesture>().Tapped += tapHandler;
+			if (GetComponent<TouchScript.Gestures.PanGesture>() != null) GetComponent<TouchScript.Gestures.PanGesture>().Panned += panHandler;
+			if (GetComponent<TouchScript.Gestures.PanGesture>() != null) GetComponent<TouchScript.Gestures.PanGesture>().PanStarted += panStartedHandler;
+			if (GetComponent<TouchScript.Gestures.ScaleGesture>() != null) GetComponent<TouchScript.Gestures.ScaleGesture>().Scaled += scaleHandler;
+			if (GetComponent<TouchScript.Gestures.RotateGesture>() != null) GetComponent<TouchScript.Gestures.RotateGesture>().Rotated += rotateHandler;
+			if (GetComponent<TouchScript.Gestures.ReleaseGesture>() != null) GetComponent<TouchScript.Gestures.ReleaseGesture>().Released += releaseHandler;
         }
 
         //---------------------------------------------------------------------
 
         private void Start() {
-
             this.tapGesture.Tapped += TouchInputManager.getInstance().tapHandler;
             this.panGesture.Panned += TouchInputManager.getInstance().panStartedHandler;
             this.panGesture.PanCompleted += TouchInputManager.getInstance().panCompletedHandler;
@@ -72,14 +68,12 @@ namespace Wb.Companion.Core.WbCamera {
         //---------------------------------------------------------------------
 
         private void OnDisable() {
-            if (CameraManager.getInstance().isMapCameraActive) {
-                if (GetComponent<TouchScript.Gestures.TapGesture>() != null) GetComponent<TouchScript.Gestures.TapGesture>().Tapped -= tapHandler;
-                if (GetComponent<TouchScript.Gestures.PanGesture>() != null) GetComponent<TouchScript.Gestures.PanGesture>().Panned -= panHandler;
-                if (GetComponent<TouchScript.Gestures.PanGesture>() != null) GetComponent<TouchScript.Gestures.PanGesture>().PanStarted -= panStartedHandler;
-                if (GetComponent<TouchScript.Gestures.ScaleGesture>() != null) GetComponent<TouchScript.Gestures.ScaleGesture>().Scaled -= scaleHandler;
-                if (GetComponent<TouchScript.Gestures.RotateGesture>() != null) GetComponent<TouchScript.Gestures.RotateGesture>().Rotated -= rotateHandler;
-                if (GetComponent<TouchScript.Gestures.ReleaseGesture>() != null) GetComponent<TouchScript.Gestures.ReleaseGesture>().Released -= releaseHandler;
-            }
+            if (GetComponent<TouchScript.Gestures.TapGesture>() != null) GetComponent<TouchScript.Gestures.TapGesture>().Tapped -= tapHandler;
+            if (GetComponent<TouchScript.Gestures.PanGesture>() != null) GetComponent<TouchScript.Gestures.PanGesture>().Panned -= panHandler;
+            if (GetComponent<TouchScript.Gestures.PanGesture>() != null) GetComponent<TouchScript.Gestures.PanGesture>().PanStarted -= panStartedHandler;
+            if (GetComponent<TouchScript.Gestures.ScaleGesture>() != null) GetComponent<TouchScript.Gestures.ScaleGesture>().Scaled -= scaleHandler;
+            if (GetComponent<TouchScript.Gestures.RotateGesture>() != null) GetComponent<TouchScript.Gestures.RotateGesture>().Rotated -= rotateHandler;
+            if (GetComponent<TouchScript.Gestures.ReleaseGesture>() != null) GetComponent<TouchScript.Gestures.ReleaseGesture>().Released -= releaseHandler;
         }
 
         //---------------------------------------------------------------------
@@ -87,7 +81,7 @@ namespace Wb.Companion.Core.WbCamera {
         //---------------------------------------------------------------------
 
         public void tapHandler(object sender, EventArgs e) {
-            Debug.Log ("TIPPIDITAPPTAPP");
+            //Debug.Log ("TIPPIDITAPPTAPP");
             TouchScript.Gestures.TapGesture gesture = sender as TouchScript.Gestures.TapGesture;
 
             if (float.IsNaN(gesture.ScreenPosition.x) || float.IsNaN(gesture.ScreenPosition.y)) {
@@ -154,7 +148,7 @@ namespace Wb.Companion.Core.WbCamera {
 
 
         public void panHandler(object sender, EventArgs e) {
-			Debug.Log ("PANNER");
+			//Debug.Log ("PANNER");
             TouchScript.Gestures.PanGesture gesture = sender as TouchScript.Gestures.PanGesture;
 
             if (float.IsNaN(gesture.ScreenPosition.x) || float.IsNaN(gesture.ScreenPosition.y)) {

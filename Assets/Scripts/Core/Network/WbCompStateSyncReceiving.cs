@@ -12,6 +12,8 @@ public class WbCompStateSyncReceiving : MonoBehaviour, ICompNetworkOwner {
 
 	public float vehicleSpeed = 0f;
 	public float vehicleRPM = 0f;
+	public char compCamB64;
+
 
 	//---------------------------------------------------------------------
 	// Singleton
@@ -51,6 +53,9 @@ public class WbCompStateSyncReceiving : MonoBehaviour, ICompNetworkOwner {
 			// Tachometer Values
 			stream.Serialize(ref vehicleSpeed);
 			stream.Serialize(ref vehicleRPM);
+
+			//Companion Camera
+			stream.Serialize(ref compCamB64);
 		}
 	}
 
