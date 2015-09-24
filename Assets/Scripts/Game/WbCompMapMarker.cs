@@ -28,8 +28,12 @@ namespace Wb.Companion.Core.Game {
         }
 
         void LateUpdate() {
+
             // Billboarding of MapMarkers
-            transform.LookAt(Camera.main.transform, Camera.main.transform.rotation * Vector3.up);
+            if (this.mapManager.isActive) {
+                transform.LookAt(Camera.main.transform, Camera.main.transform.rotation * Vector3.up);
+            }
+            
         }
 
         //-------------------------------------------------------------------------

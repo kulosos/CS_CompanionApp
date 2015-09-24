@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Wb.Companion.Core.Game;
+using Wb.Companion.Core.WbAdministration;
 
 public class WbCompStateSyncReceiving : MonoBehaviour, ICompNetworkOwner {
 
@@ -78,8 +80,12 @@ public class WbCompStateSyncReceiving : MonoBehaviour, ICompNetworkOwner {
 
             // Vehicle Positions
             stream.Serialize(ref wbConcreteMixer);
+            SceneManager.getInstance().getMapManager().setVehiclePositions(WbCompVehicleData.WB_CONCRETE_MIXER, wbConcreteMixer);
+
             stream.Serialize(ref wbConcretePump);
             stream.Serialize(ref wbDepositTipper);
+            SceneManager.getInstance().getMapManager().setVehiclePositions(WbCompVehicleData.WB_DEPOSIT_TIPPER, wbDepositTipper);
+
             stream.Serialize(ref wbEscortSchleicher);
             stream.Serialize(ref wbExcavator);
             stream.Serialize(ref wbFlatbedTruck);
@@ -89,7 +95,10 @@ public class WbCompStateSyncReceiving : MonoBehaviour, ICompNetworkOwner {
             stream.Serialize(ref wbGeneratorTrailer);
             stream.Serialize(ref wbHalfpipeTruck);
             stream.Serialize(ref wbHeavyDutyTrailer);
+
             stream.Serialize(ref wbLittleFlabBedTruck);
+            SceneManager.getInstance().getMapManager().setVehiclePositions(WbCompVehicleData.WB_LITTLE_FLATBED_TRUCK, wbLittleFlabBedTruck);
+
             stream.Serialize(ref wbLittleHalfpipeTruck);
             stream.Serialize(ref wbLowLoaderTrailer);
             stream.Serialize(ref wbMiniExcavator);
@@ -99,7 +108,9 @@ public class WbCompStateSyncReceiving : MonoBehaviour, ICompNetworkOwner {
             stream.Serialize(ref wbTrailer);
             stream.Serialize(ref wbTrailerFlatbed);
             stream.Serialize(ref wbTrailerSmall);
+
             stream.Serialize(ref wbTruckCrane);
+            SceneManager.getInstance().getMapManager().setVehiclePositions(WbCompVehicleData.WB_TRUCK_CRANE, wbTruckCrane);
         }
 	}
 

@@ -8,36 +8,20 @@
 
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using Wb.Companion.Core.WbAdministration;
 using Wb.Companion.Core.WbCamera;
 
 namespace Wb.Companion.Core.Game {
 
-    // ENUM TYPES -----------------------------------------------------------------
-
-    public enum WbCompMarkerLocation {
-        HomeBase_Small,
-        HomeBase_Big,
-        BuildingMerchant_Small,
-        BuildingMerchant_Big,
-        VehicleDealer,
-        SteelFactory,
-        WallFactory,
-        Sandbox,
-        Sawmill_Small,
-        Sawmill_Big,
-        NurseryGarden,
-        Harbour,
-        ConstructionSite
-    }
-
-    //-----------------------------------------------------------------------------
-
     public class WbCompMapManager : MonoBehaviour {
 
         private WbCompMapMarker[] mapMarkers;
 
+        public List<WbCompMapVehicle> vehicleMapMarkers = new List<WbCompMapVehicle>();
+
         public bool debugging = false;
+        public bool isActive = false;
 
         //-------------------------------------------------------------------------
         // MonoBehaviour
@@ -66,6 +50,24 @@ namespace Wb.Companion.Core.Game {
             if (Physics.Raycast(ray, out hit, 3000f)) {
                 Debug.Log("HIT: " + hit.transform.gameObject.name);
             }
+        }
+
+        //-------------------------------------------------------------------------
+
+        public void setVehiclePositions(string vehicleId, Vector3 position) {
+
+            if (isActive) {
+                Debug.Log("O - vID: " + vehicleId);
+
+                foreach (WbCompMapVehicle vehicleMarker in this.vehicleMapMarkers) {
+
+                    Debug.Log("I - vID: " + vehicleId + " - vmarkerID: " + vehicleMarker.vehicleName);
+
+                    if (vehicleId.Equals(vehicleMarker.vehicleName)) {
+                        vehicleMarker.transform.position = position;
+                    }
+                }
+            }
 
         }
         
@@ -78,6 +80,24 @@ namespace Wb.Companion.Core.Game {
             return this.mapMarkers;
         }
 
+
     }
 
+    // ENUM TYPES -----------------------------------------------------------------
+
+    public enum WbCompMarkerLocation {
+        HomeBase_Small,
+        HomeBase_Big,
+        BuildingMerchant_Small,
+        BuildingMerchant_Big,
+        VehicleDealer,
+        SteelFactory,
+        WallFactory,
+        Sandbox,
+        Sawmill_Small,
+        Sawmill_Big,
+        NurseryGarden,
+        Harbour,
+        ConstructionSite
+    }
 }

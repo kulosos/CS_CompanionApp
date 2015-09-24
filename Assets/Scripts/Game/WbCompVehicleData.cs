@@ -44,5 +44,4 @@ namespace Wb.Companion.Core.Game {
         }
 
     }
-
 }
