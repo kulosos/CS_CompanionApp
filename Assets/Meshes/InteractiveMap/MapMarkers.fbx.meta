@@ -1,0 +1,146 @@
+fileFormatVersion: 2
+guid: d3a241f618eddcd4ba745a30b67fc21f
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: MapMarker_POI_BuildingMerchant
+    100002: MapMarker_POI_Harbour
+    100004: MapMarker_POI_NurseryGarden
+    100006: MapMarker_POI_Sandbox
+    100008: MapMarker_POI_Sawmill
+    100010: MapMarker_POI_SteelFactory
+    100012: MapMarker_POI_VehicleDealer
+    100014: MapMarker_POI_WallFactory
+    100016: MapMarker_POIs
+    100018: MapMarker_Vehicle_ConcreteMixer
+    100020: MapMarker_Vehicle_ConcretePump
+    100022: MapMarker_Vehicle_Crane
+    100024: MapMarker_Vehicle_Excavator
+    100026: MapMarker_Vehicle_Roller
+    100028: MapMarker_Vehicle_TransportBulk
+    100030: MapMarker_Vehicle_TransportCargo
+    100032: MapMarker_Vehicles
+    100034: //RootNode
+    100036: MapMarker_POI_Homebase
+    400000: MapMarker_POI_BuildingMerchant
+    400002: MapMarker_POI_Harbour
+    400004: MapMarker_POI_NurseryGarden
+    400006: MapMarker_POI_Sandbox
+    400008: MapMarker_POI_Sawmill
+    400010: MapMarker_POI_SteelFactory
+    400012: MapMarker_POI_VehicleDealer
+    400014: MapMarker_POI_WallFactory
+    400016: MapMarker_POIs
+    400018: MapMarker_Vehicle_ConcreteMixer
+    400020: MapMarker_Vehicle_ConcretePump
+    400022: MapMarker_Vehicle_Crane
+    400024: MapMarker_Vehicle_Excavator
+    400026: MapMarker_Vehicle_Roller
+    400028: MapMarker_Vehicle_TransportBulk
+    400030: MapMarker_Vehicle_TransportCargo
+    400032: MapMarker_Vehicles
+    400034: //RootNode
+    400036: MapMarker_POI_Homebase
+    2300000: MapMarker_POI_BuildingMerchant
+    2300002: MapMarker_POI_Harbour
+    2300004: MapMarker_POI_NurseryGarden
+    2300006: MapMarker_POI_Sandbox
+    2300008: MapMarker_POI_Sawmill
+    2300010: MapMarker_POI_SteelFactory
+    2300012: MapMarker_POI_VehicleDealer
+    2300014: MapMarker_POI_WallFactory
+    2300016: MapMarker_Vehicle_ConcreteMixer
+    2300018: MapMarker_Vehicle_ConcretePump
+    2300020: MapMarker_Vehicle_Crane
+    2300022: MapMarker_Vehicle_Excavator
+    2300024: MapMarker_Vehicle_Roller
+    2300026: MapMarker_Vehicle_TransportBulk
+    2300028: MapMarker_Vehicle_TransportCargo
+    2300030: MapMarker_POI_Homebase
+    3300000: MapMarker_POI_BuildingMerchant
+    3300002: MapMarker_POI_Harbour
+    3300004: MapMarker_POI_NurseryGarden
+    3300006: MapMarker_POI_Sandbox
+    3300008: MapMarker_POI_Sawmill
+    3300010: MapMarker_POI_SteelFactory
+    3300012: MapMarker_POI_VehicleDealer
+    3300014: MapMarker_POI_WallFactory
+    3300016: MapMarker_Vehicle_ConcreteMixer
+    3300018: MapMarker_Vehicle_ConcretePump
+    3300020: MapMarker_Vehicle_Crane
+    3300022: MapMarker_Vehicle_Excavator
+    3300024: MapMarker_Vehicle_Roller
+    3300026: MapMarker_Vehicle_TransportBulk
+    3300028: MapMarker_Vehicle_TransportCargo
+    3300030: MapMarker_POI_Homebase
+    4300000: MapMarker_Vehicle_ConcretePump
+    4300002: MapMarker_Vehicle_ConcreteMixer
+    4300004: MapMarker_Vehicle_TransportBulk
+    4300006: MapMarker_Vehicle_TransportCargo
+    4300008: MapMarker_Vehicle_Crane
+    4300010: MapMarker_Vehicle_Excavator
+    4300012: MapMarker_Vehicle_Roller
+    4300014: MapMarker_POI_BuildingMerchant
+    4300016: MapMarker_POI_Sandbox
+    4300018: MapMarker_POI_VehicleDealer
+    4300020: MapMarker_POI_Sawmill
+    4300022: MapMarker_POI_SteelFactory
+    4300024: MapMarker_POI_NurseryGarden
+    4300026: MapMarker_POI_Harbour
+    4300028: MapMarker_POI_WallFactory
+    4300030: MapMarker_POI_Homebase
+    9500000: //RootNode
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
