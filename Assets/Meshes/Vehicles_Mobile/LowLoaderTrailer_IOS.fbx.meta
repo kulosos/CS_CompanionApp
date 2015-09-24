@@ -1,0 +1,144 @@
+fileFormatVersion: 2
+guid: c084e6d465547e94183ca4e7b9bfe631
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: Body
+    100002: Frame
+    100004: Hyd01a
+    100006: Hyd01b
+    100008: HydFront
+    100010: //RootNode
+    100012: mesh_l_01
+    100014: mesh_l_02
+    100016: mesh_l_03
+    100018: mesh_r_01
+    100020: mesh_r_02
+    100022: mesh_r_03
+    100024: pivot_l_01
+    100026: pivot_l_02
+    100028: pivot_l_03
+    100030: pivot_r_01
+    100032: pivot_r_02
+    100034: pivot_r_03
+    100036: ramp
+    100038: wheels
+    100040: body
+    400000: Body
+    400002: Frame
+    400004: Hyd01a
+    400006: Hyd01b
+    400008: HydFront
+    400010: //RootNode
+    400012: mesh_l_01
+    400014: mesh_l_02
+    400016: mesh_l_03
+    400018: mesh_r_01
+    400020: mesh_r_02
+    400022: mesh_r_03
+    400024: pivot_l_01
+    400026: pivot_l_02
+    400028: pivot_l_03
+    400030: pivot_r_01
+    400032: pivot_r_02
+    400034: pivot_r_03
+    400036: ramp
+    400038: wheels
+    400040: body
+    2300000: Body
+    2300002: Frame
+    2300004: Hyd01a
+    2300006: Hyd01b
+    2300008: HydFront
+    2300010: mesh_l_01
+    2300012: mesh_l_02
+    2300014: mesh_l_03
+    2300016: mesh_r_01
+    2300018: mesh_r_02
+    2300020: mesh_r_03
+    2300022: ramp
+    2300024: body
+    2300026: wheels
+    3300000: Body
+    3300002: Frame
+    3300004: Hyd01a
+    3300006: Hyd01b
+    3300008: HydFront
+    3300010: mesh_l_01
+    3300012: mesh_l_02
+    3300014: mesh_l_03
+    3300016: mesh_r_01
+    3300018: mesh_r_02
+    3300020: mesh_r_03
+    3300022: ramp
+    3300024: body
+    3300026: wheels
+    4300000: mesh_l_02
+    4300002: mesh_l_03
+    4300004: mesh_l_01
+    4300006: mesh_r_01
+    4300008: mesh_r_02
+    4300010: mesh_r_03
+    4300012: Frame
+    4300014: Body
+    4300016: Hyd01a
+    4300018: Hyd01b
+    4300020: HydFront
+    4300022: ramp
+    4300024: wheels
+    4300026: body
+    9500000: //RootNode
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 

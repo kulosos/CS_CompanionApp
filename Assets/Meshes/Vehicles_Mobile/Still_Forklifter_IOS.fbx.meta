@@ -1,0 +1,130 @@
+fileFormatVersion: 2
+guid: 54465f483c45ef9489d4375918dc021f
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: axis_joint_b_l_01
+    100002: axis_joint_b_r_01
+    100004: body
+    100006: forkPart01
+    100008: forkPart02
+    100010: forkPart03
+    100012: pivot_b_l_01
+    100014: pivot_b_r_01
+    100016: pivot_f_l_01
+    100018: pivot_f_r_01
+    100020: steering_wheel
+    100022: //RootNode
+    100024: wheel_b_l_01
+    100026: wheel_b_l_02
+    100028: wheel_f_l_01
+    100030: wheel_f_r_01
+    100032: wheels
+    400000: axis_joint_b_l_01
+    400002: axis_joint_b_r_01
+    400004: body
+    400006: forkPart01
+    400008: forkPart02
+    400010: forkPart03
+    400012: pivot_b_l_01
+    400014: pivot_b_r_01
+    400016: pivot_f_l_01
+    400018: pivot_f_r_01
+    400020: steering_wheel
+    400022: //RootNode
+    400024: wheel_b_l_01
+    400026: wheel_b_l_02
+    400028: wheel_f_l_01
+    400030: wheel_f_r_01
+    400032: wheels
+    2300000: axis_joint_b_l_01
+    2300002: axis_joint_b_r_01
+    2300004: body
+    2300006: forkPart01
+    2300008: forkPart02
+    2300010: forkPart03
+    2300012: steering_wheel
+    2300014: wheel_b_l_01
+    2300016: wheel_b_l_02
+    2300018: wheel_f_l_01
+    2300020: wheel_f_r_01
+    2300022: wheels
+    3300000: axis_joint_b_l_01
+    3300002: axis_joint_b_r_01
+    3300004: body
+    3300006: forkPart01
+    3300008: forkPart02
+    3300010: forkPart03
+    3300012: steering_wheel
+    3300014: wheel_b_l_01
+    3300016: wheel_b_l_02
+    3300018: wheel_f_l_01
+    3300020: wheel_f_r_01
+    3300022: wheels
+    4300000: axis_joint_b_l_01
+    4300002: wheel_b_l_01
+    4300004: axis_joint_b_r_01
+    4300006: wheel_b_l_02
+    4300008: wheel_f_l_01
+    4300010: wheel_f_r_01
+    4300012: body
+    4300014: forkPart01
+    4300016: forkPart02
+    4300018: forkPart03
+    4300020: steering_wheel
+    4300022: wheels
+    9500000: //RootNode
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 

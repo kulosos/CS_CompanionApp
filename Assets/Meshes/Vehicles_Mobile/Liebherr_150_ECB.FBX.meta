@@ -1,0 +1,127 @@
+fileFormatVersion: 2
+guid: 0da70e48eff12f245b73eac2b5d3bb6c
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: Ausleger
+    100002: Ausleger_Floor
+    100004: Crab
+    100006: GlassExterior
+    100008: GlassInterior
+    100010: Hook
+    100012: Interior
+    100014: //RootNode
+    100016: LitronicSign
+    100018: Rope
+    100020: Tower
+    100022: Tower_Floor
+    100024: body_stripped
+    100026: window
+    400000: Ausleger
+    400002: Ausleger_Floor
+    400004: Crab
+    400006: GlassExterior
+    400008: GlassInterior
+    400010: Hook
+    400012: Interior
+    400014: //RootNode
+    400016: LitronicSign
+    400018: Rope
+    400020: Tower
+    400022: Tower_Floor
+    400024: body_stripped
+    400026: window
+    2300000: Ausleger
+    2300002: Ausleger_Floor
+    2300004: Crab
+    2300006: GlassExterior
+    2300008: GlassInterior
+    2300010: Hook
+    2300012: Interior
+    2300014: LitronicSign
+    2300016: Rope
+    2300018: Tower
+    2300020: Tower_Floor
+    2300022: body_stripped
+    2300024: window
+    3300000: Ausleger
+    3300002: Ausleger_Floor
+    3300004: Crab
+    3300006: GlassExterior
+    3300008: GlassInterior
+    3300010: Hook
+    3300012: Interior
+    3300014: LitronicSign
+    3300016: Rope
+    3300018: Tower
+    3300020: Tower_Floor
+    3300022: body_stripped
+    3300024: window
+    4300000: GlassInterior
+    4300002: Interior
+    4300004: LitronicSign
+    4300006: GlassExterior
+    4300008: Crab
+    4300010: Tower
+    4300012: Ausleger
+    4300014: Ausleger_Floor
+    4300016: Tower_Floor
+    4300018: Rope
+    4300020: Hook
+    4300022: window
+    4300024: body_stripped
+    9500000: //RootNode
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 

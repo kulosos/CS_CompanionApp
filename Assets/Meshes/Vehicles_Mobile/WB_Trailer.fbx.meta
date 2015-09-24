@@ -1,0 +1,132 @@
+fileFormatVersion: 2
+guid: ccafd2fb895c5a94cbefce8fb1e5a3f2
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: Folie
+    100002: Hyd
+    100004: Mesh_F_L
+    100006: Mesh_F_R
+    100008: Mesh_M_L
+    100010: Mesh_M_R
+    100012: Mesh_R_L
+    100014: Mesh_R_R
+    100016: SemiTrailer_3Axis
+    100018: SemiTrailer_FrameL
+    100020: SemiTrailer_FrameR
+    100022: //RootNode
+    100024: Wheel
+    100026: Body
+    100028: Wheels
+    400000: Folie
+    400002: Hyd
+    400004: Mesh_F_L
+    400006: Mesh_F_R
+    400008: Mesh_M_L
+    400010: Mesh_M_R
+    400012: Mesh_R_L
+    400014: Mesh_R_R
+    400016: SemiTrailer_3Axis
+    400018: SemiTrailer_FrameL
+    400020: SemiTrailer_FrameR
+    400022: //RootNode
+    400024: Wheel
+    400026: Body
+    400028: Wheels
+    2300000: Folie
+    2300002: Hyd
+    2300004: Mesh_F_L
+    2300006: Mesh_F_R
+    2300008: Mesh_M_L
+    2300010: Mesh_M_R
+    2300012: Mesh_R_L
+    2300014: Mesh_R_R
+    2300016: SemiTrailer_3Axis
+    2300018: SemiTrailer_FrameL
+    2300020: SemiTrailer_FrameR
+    2300022: Wheel
+    2300024: Body
+    2300026: Wheels
+    3300000: Folie
+    3300002: Hyd
+    3300004: Mesh_F_L
+    3300006: Mesh_F_R
+    3300008: Mesh_M_L
+    3300010: Mesh_M_R
+    3300012: Mesh_R_L
+    3300014: Mesh_R_R
+    3300016: SemiTrailer_3Axis
+    3300018: SemiTrailer_FrameL
+    3300020: SemiTrailer_FrameR
+    3300022: Wheel
+    3300024: Body
+    3300026: Wheels
+    4300000: Folie
+    4300002: Hyd
+    4300004: Mesh_F_L
+    4300006: Mesh_F_R
+    4300008: Mesh_M_L
+    4300010: Mesh_M_R
+    4300012: Mesh_R_L
+    4300014: Mesh_R_R
+    4300016: Wheel
+    4300018: SemiTrailer_FrameL
+    4300020: SemiTrailer_FrameR
+    4300022: SemiTrailer_3Axis
+    4300024: Body
+    4300026: Wheels
+    9500000: //RootNode
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 

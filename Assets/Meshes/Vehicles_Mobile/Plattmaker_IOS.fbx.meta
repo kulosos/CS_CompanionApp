@@ -1,0 +1,101 @@
+fileFormatVersion: 2
+guid: d85f65e315f8b2c488876ba6d89bd86c
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: body
+    100002: front_axis
+    100004: pivot_b_l
+    100006: pivot_b_r
+    100008: //RootNode
+    100010: roller
+    100012: wheel_b_l
+    100014: wheel_b_r
+    100016: wheels
+    100018: windows
+    400000: body
+    400002: front_axis
+    400004: pivot_b_l
+    400006: pivot_b_r
+    400008: //RootNode
+    400010: roller
+    400012: wheel_b_l
+    400014: wheel_b_r
+    400016: wheels
+    400018: windows
+    2300000: body
+    2300002: front_axis
+    2300004: roller
+    2300006: wheel_b_l
+    2300008: wheel_b_r
+    2300010: windows
+    2300012: wheels
+    3300000: body
+    3300002: front_axis
+    3300004: roller
+    3300006: wheel_b_l
+    3300008: wheel_b_r
+    3300010: windows
+    3300012: wheels
+    4300000: wheel_b_l
+    4300002: wheel_b_r
+    4300004: windows
+    4300006: front_axis
+    4300008: roller
+    4300010: body
+    4300012: wheels
+    9500000: //RootNode
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
