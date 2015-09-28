@@ -42,6 +42,7 @@ public enum VehicleID {
         wbFrontLoader,
         wbGeneratorTrailer,
         wbHalfpipeTruck,
+		wbHalfpipeTrailer,
         wbHeavyDutyTrailer,
         wbLittleFlatbedTruck,
         wbLittleHalfpipeTruck,
