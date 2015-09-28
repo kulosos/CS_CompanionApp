@@ -11,17 +11,17 @@ using System.Collections;
 using System.Collections.Generic;
 using Wb.Companion.Core.WbAdministration;
 using Wb.Companion.Core.WbCamera;
+using Wb.Companion.Core.WbNetwork;
 
 namespace Wb.Companion.Core.Game {
 
     public class WbCompMapManager : MonoBehaviour {
 
         private WbCompMapMarker[] mapMarkers;
-
+		public bool isActive = false;
+		public bool offlineBypass = false;
+		public float dampingFactor = 1.0f;
         public List<WbCompMapVehicle> vehicleMapMarkers = new List<WbCompMapVehicle>();
-
-        public bool debugging = false;
-        public bool isActive = false;
 
         //-------------------------------------------------------------------------
         // MonoBehaviour
@@ -37,7 +37,12 @@ namespace Wb.Companion.Core.Game {
         //-------------------------------------------------------------------------
 
         void Update() {
-        }
+
+			if((NetworkManager.getInstance().isActiveConnection && this.isActive) || offlineBypass){
+				setVehiclePositions();
+			}
+
+		}
 
         //-------------------------------------------------------------------------
 
@@ -52,26 +57,38 @@ namespace Wb.Companion.Core.Game {
             }
         }
 
-        //-------------------------------------------------------------------------
+		//-------------------------------------------------------------------------
 
-        public void setVehiclePositions(string vehicleId, Vector3 position) {
+		// get current received map position of vehicle and set the vehiclemarkes accordingly
+		public void setVehiclePositions() {
 
-            if (isActive) {
-                Debug.Log("O - vID: " + vehicleId);
+			foreach(WbCompMapVehicle vehicle in vehicleMapMarkers){
 
-                foreach (WbCompMapVehicle vehicleMarker in this.vehicleMapMarkers) {
+				// Positions
+				foreach(KeyValuePair<VehicleID, Vector3> vehiclePositions in WbCompStateSyncReceiving.getInstance().getVehicleMapPositionList()){
+					
+					if(vehiclePositions.Key.Equals(vehicle.vehicleId)){
 
-                    Debug.Log("I - vID: " + vehicleId + " - vmarkerID: " + vehicleMarker.vehicleName);
+						Vector3 pos = vehicle.transform.position;
+						vehicle.transform.position = Vector3.Lerp (pos, vehiclePositions.Value, Time.deltaTime * dampingFactor);
+					}
+				}
 
-                    if (vehicleId.Equals(vehicleMarker.vehicleName)) {
-                        vehicleMarker.transform.position = position;
-                    }
-                }
-            }
-
-        }
+				// Rotations
+				foreach(KeyValuePair<VehicleID, Vector3> vehicleRotations in WbCompStateSyncReceiving.getInstance().getVehicleMapRotationList()){
+					
+					if(vehicleRotations.Key.Equals(vehicle.vehicleId)){
+					
+						// Rotations
+						Quaternion rot = vehicle.transform.rotation;
+						
+						Quaternion newRotation = Quaternion.Euler(vehicleRotations.Value.x, vehicleRotations.Value.y, vehicleRotations.Value.z);
+						vehicle.transform.rotation = Quaternion.Lerp (rot, newRotation, Time.deltaTime * dampingFactor);
+					}
+				}
+			}
+		}
         
-
         //-------------------------------------------------------------------------
         // SETTER / GETTER
         //-------------------------------------------------------------------------
@@ -79,25 +96,5 @@ namespace Wb.Companion.Core.Game {
         public WbCompMapMarker[] getMapMarkers() {
             return this.mapMarkers;
         }
-
-
-    }
-
-    // ENUM TYPES -----------------------------------------------------------------
-
-    public enum WbCompMarkerLocation {
-        HomeBase_Small,
-        HomeBase_Big,
-        BuildingMerchant_Small,
-        BuildingMerchant_Big,
-        VehicleDealer,
-        SteelFactory,
-        WallFactory,
-        Sandbox,
-        Sawmill_Small,
-        Sawmill_Big,
-        NurseryGarden,
-        Harbour,
-        ConstructionSite
     }
 }

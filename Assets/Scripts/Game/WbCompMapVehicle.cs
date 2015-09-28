@@ -6,7 +6,7 @@ namespace Wb.Companion.Core.Game {
 
     public class WbCompMapVehicle : MonoBehaviour {
 
-        public VehicleName vehicleName;
+        public VehicleID vehicleId;
         public VehicleFunction vehicleFunction;
         public GameObject vehicleMarkerBillboard;
 
@@ -30,7 +30,7 @@ namespace Wb.Companion.Core.Game {
 
 //---------------------------------------------------------------------------------
 
-public enum VehicleName {
+public enum VehicleID {
         wbConcreteMixer,
         wbConcretePump,
         wbDepositTipper,

@@ -40,4 +40,23 @@ namespace Wb.Companion.Core.Game {
 
     }
 
+	
+	// ENUM TYPES -----------------------------------------------------------------
+	
+	public enum WbCompMarkerLocation {
+		HomeBase_Small,
+		HomeBase_Big,
+		BuildingMerchant_Small,
+		BuildingMerchant_Big,
+		VehicleDealer,
+		SteelFactory,
+		WallFactory,
+		Sandbox,
+		Sawmill_Small,
+		Sawmill_Big,
+		NurseryGarden,
+		Harbour,
+		ConstructionSite
+	}
+
 }
