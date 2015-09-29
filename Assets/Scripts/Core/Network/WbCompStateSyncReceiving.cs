@@ -42,31 +42,31 @@ public class WbCompStateSyncReceiving : MonoBehaviour, ICompNetworkOwner {
     public Vector3 wbTruckCranePosition = Vector3.zero;
 
 	// VEHICLE MAP ROTATIONS  ---------------------------------------------------
-	public Vector3 wbConcreteMixerRotation = Vector3.zero;
-	public Vector3 wbConcretePumpRotation = Vector3.zero;
-	public Vector3 wbDepositTipperRotation = Vector3.zero;
-	public Vector3 wbEscortSchleicherRotation = Vector3.zero;
-	public Vector3 wbExcavatorRotation = Vector3.zero;
-	public Vector3 wbFlatbedTruckRotation = Vector3.zero;
-	public Vector3 wbFlatTopCraneRotation = Vector3.zero;
-	public Vector3 wbForkLiftRotation = Vector3.zero;
-	public Vector3 wbFrontLoaderRotation = Vector3.zero;
-	public Vector3 wbGeneratorTrailerRotation = Vector3.zero;
-	//public Vector3 HalfpipeTrailerRotation = Vector3.zero;
-	public Vector3 wbHalfpipeTruckRotation = Vector3.zero;
-	public Vector3 wbHeavyDutyTrailerRotation = Vector3.zero;
-	public Vector3 wbLittleFlabBedTruckRotation = Vector3.zero;
-	public Vector3 wbLittleHalfpipeTruckRotation = Vector3.zero;
-	public Vector3 wbLowLoaderTrailerRotation = Vector3.zero;
-	public Vector3 wbMiniExcavatorRotation = Vector3.zero;
-	public Vector3 wbPlattmakerRotation = Vector3.zero;
-	public Vector3 wbRotaryDrillingRigRotation = Vector3.zero;
-	public Vector3 wbTowerCraneRotation = Vector3.zero;
-	public Vector3 wbTrailerRotation = Vector3.zero;
-	//public Vector3 wbTrailerDrawbarFlatbedRotation = Vector3.zero;
-	public Vector3 wbTrailerFlatbedRotation = Vector3.zero;
-	public Vector3 wbTrailerSmallRotation = Vector3.zero;
-	public Vector3 wbTruckCraneRotation = Vector3.zero;
+	public Quaternion wbConcreteMixerRotation;
+	public Quaternion wbConcretePumpRotation;
+	public Quaternion wbDepositTipperRotation;
+	public Quaternion wbEscortSchleicherRotation;
+	public Quaternion wbExcavatorRotation;
+	public Quaternion wbFlatbedTruckRotation;
+	public Quaternion wbFlatTopCraneRotation;
+	public Quaternion wbForkLiftRotation;
+	public Quaternion wbFrontLoaderRotation;
+	public Quaternion wbGeneratorTrailerRotation;
+	//public Quaternion HalfpipeTrailerRotation;
+	public Quaternion wbHalfpipeTruckRotation;
+	public Quaternion wbHeavyDutyTrailerRotation;
+	public Quaternion wbLittleFlabBedTruckRotation;
+	public Quaternion wbLittleHalfpipeTruckRotation;
+	public Quaternion wbLowLoaderTrailerRotation;
+	public Quaternion wbMiniExcavatorRotation;
+	public Quaternion wbPlattmakerRotation;
+	public Quaternion wbRotaryDrillingRigRotation;
+	public Quaternion wbTowerCraneRotation;
+	public Quaternion wbTrailerRotation;
+	//public Quaternion wbTrailerDrawbarFlatbedRotation;
+	public Quaternion wbTrailerFlatbedRotation;
+	public Quaternion wbTrailerSmallRotation;
+	public Quaternion wbTruckCraneRotation;
 
 	// Debug helpers
 	public bool debugging = false;
@@ -94,15 +94,15 @@ public class WbCompStateSyncReceiving : MonoBehaviour, ICompNetworkOwner {
 
 	void Update () {
 
-		// HACK only for debuggung purposes, when no network connection is available
+		/*// HACK only for debuggung purposes, when no network connection is available
 		if(!NetworkManager.getInstance().isActiveConnection && debugging){
 
 			if(timeSinceLastStart >= 3f){
 
-			/*	wbLittleFlabBedTruckPosition = new Vector3(wbLittleFlabBedTruckPosition.x + 2f, 0f, 0f);
+				wbLittleFlabBedTruckPosition = new Vector3(wbLittleFlabBedTruckPosition.x + 2f, 0f, 0f);
 				wbTruckCranePosition = new Vector3(0f, 0f, wbTruckCranePosition.z + 2f); 
 				wbFlatbedTruckPosition = new Vector3(0f, wbFlatbedTruckPosition.y + 1f, 0f);
-				wbDepositTipperPosition = new Vector3(wbDepositTipperPosition.x - 2f, 0f, 0f);*/
+				wbDepositTipperPosition = new Vector3(wbDepositTipperPosition.x - 2f, 0f, 0f);
 
 				wbLittleFlabBedTruckRotation = new Vector3(wbLittleFlabBedTruckRotation.x + 20f, 0f, 0f);
 				wbTruckCraneRotation = new Vector3(0f, 0f, wbTruckCraneRotation.z + 20f); 
@@ -113,7 +113,7 @@ public class WbCompStateSyncReceiving : MonoBehaviour, ICompNetworkOwner {
 			}
 			this.timeSinceLastStart += Time.deltaTime;
 
-		}
+		}*/
 
 	
 	}
@@ -159,29 +159,29 @@ public class WbCompStateSyncReceiving : MonoBehaviour, ICompNetworkOwner {
             stream.Serialize(ref wbTruckCranePosition);
 
 			// Vehicle Rotations
-			stream.Serialize(ref wbConcreteMixerPosition);
-			stream.Serialize(ref wbConcretePumpPosition);
-			stream.Serialize(ref wbDepositTipperPosition);
-			stream.Serialize(ref wbEscortSchleicherPosition);
-			stream.Serialize(ref wbExcavatorPosition);
-			stream.Serialize(ref wbFlatbedTruckPosition);
-			stream.Serialize(ref wbFlatTopCranePosition);
-			stream.Serialize(ref wbForkLiftPosition);
-			stream.Serialize(ref wbFrontLoaderPosition);
-			stream.Serialize(ref wbGeneratorTrailerPosition);
-			stream.Serialize(ref wbHalfpipeTruckPosition);
-			stream.Serialize(ref wbHeavyDutyTrailerPosition);
-			stream.Serialize(ref wbLittleFlabBedTruckPosition);
-			stream.Serialize(ref wbLittleHalfpipeTruckPosition);
-			stream.Serialize(ref wbLowLoaderTrailerPosition);
-			stream.Serialize(ref wbMiniExcavatorPosition);
-			stream.Serialize(ref wbPlattmakerPosition);
-			stream.Serialize(ref wbRotaryDrillingRigPosition);
-			stream.Serialize(ref wbTowerCranePosition);
-			stream.Serialize(ref wbTrailerPosition);
-			stream.Serialize(ref wbTrailerFlatbedPosition);
-			stream.Serialize(ref wbTrailerSmallPosition);
-			stream.Serialize(ref wbTruckCranePosition);
+			stream.Serialize(ref wbConcreteMixerRotation);
+			stream.Serialize(ref wbConcretePumpRotation);
+			stream.Serialize(ref wbDepositTipperRotation);
+			stream.Serialize(ref wbEscortSchleicherRotation);
+			stream.Serialize(ref wbExcavatorRotation);
+			stream.Serialize(ref wbFlatbedTruckRotation);
+			stream.Serialize(ref wbFlatTopCraneRotation);
+			stream.Serialize(ref wbForkLiftRotation);
+			stream.Serialize(ref wbFrontLoaderRotation);
+			stream.Serialize(ref wbGeneratorTrailerRotation);
+			stream.Serialize(ref wbHalfpipeTruckRotation);
+			stream.Serialize(ref wbHeavyDutyTrailerRotation);
+			stream.Serialize(ref wbLittleFlabBedTruckRotation);
+			stream.Serialize(ref wbLittleHalfpipeTruckRotation);
+			stream.Serialize(ref wbLowLoaderTrailerRotation);
+			stream.Serialize(ref wbMiniExcavatorRotation);
+			stream.Serialize(ref wbPlattmakerRotation);
+			stream.Serialize(ref wbRotaryDrillingRigRotation);
+			stream.Serialize(ref wbTowerCraneRotation);
+			stream.Serialize(ref wbTrailerRotation);
+			stream.Serialize(ref wbTrailerFlatbedRotation);
+			stream.Serialize(ref wbTrailerSmallRotation);
+			stream.Serialize(ref wbTruckCraneRotation);
         }
 	}
 
@@ -237,9 +237,9 @@ public class WbCompStateSyncReceiving : MonoBehaviour, ICompNetworkOwner {
 
 	//----------------------------------------------------------------------
 	
-	public Dictionary<VehicleID, Vector3> getVehicleMapRotationList(){
+	public Dictionary<VehicleID, Quaternion> getVehicleMapRotationList(){
 		
-		Dictionary<VehicleID, Vector3> vehicleMapRotations = new Dictionary<VehicleID, Vector3>();
+		Dictionary<VehicleID, Quaternion> vehicleMapRotations = new Dictionary<VehicleID, Quaternion>();
 		
 		vehicleMapRotations.Add (VehicleID.wbConcreteMixer, wbConcreteMixerRotation);
 		vehicleMapRotations.Add (VehicleID.wbConcretePump, wbConcretePumpRotation);

@@ -87,6 +87,7 @@ namespace Wb.Companion.Core.WbNetwork {
 				stream.Serialize(ref truckcrane_ropeDown);
 				stream.Serialize(ref truckcrane_supportLegsIn);
 				stream.Serialize(ref truckcrane_supportLegsOut);
+			
             } 
 
             // RECEIVING

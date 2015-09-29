@@ -30,7 +30,7 @@ namespace Wb.Companion.Core.Game {
         void LateUpdate() {
 
             // Billboarding of MapMarkers
-            if (this.mapManager.isActive) {
+            if (SceneManager.getInstance().currentScene.Equals(SceneList.Map)) {
                 transform.LookAt(Camera.main.transform, Camera.main.transform.rotation * Vector3.up);
             }
             

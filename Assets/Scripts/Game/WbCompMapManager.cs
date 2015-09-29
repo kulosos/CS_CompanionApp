@@ -18,7 +18,6 @@ namespace Wb.Companion.Core.Game {
     public class WbCompMapManager : MonoBehaviour {
 
         private WbCompMapMarker[] mapMarkers;
-		public bool isActive = false;
 		public bool offlineBypass = false;
 		public float dampingFactor = 1.0f;
         public List<WbCompMapVehicle> vehicleMapMarkers = new List<WbCompMapVehicle>();
@@ -38,7 +37,7 @@ namespace Wb.Companion.Core.Game {
 
         void Update() {
 
-			if((NetworkManager.getInstance().isActiveConnection && this.isActive) || offlineBypass){
+			if((NetworkManager.getInstance().isActiveConnection && SceneManager.getInstance().currentScene.Equals(SceneList.Map)) || offlineBypass){
 				setVehiclePositions();
 			}
 
@@ -75,15 +74,12 @@ namespace Wb.Companion.Core.Game {
 				}
 
 				// Rotations
-				foreach(KeyValuePair<VehicleID, Vector3> vehicleRotations in WbCompStateSyncReceiving.getInstance().getVehicleMapRotationList()){
-					
+				foreach(KeyValuePair<VehicleID, Quaternion> vehicleRotations in WbCompStateSyncReceiving.getInstance().getVehicleMapRotationList()){
+
 					if(vehicleRotations.Key.Equals(vehicle.vehicleId)){
 					
-						// Rotations
 						Quaternion rot = vehicle.transform.rotation;
-						
-						Quaternion newRotation = Quaternion.Euler(vehicleRotations.Value.x, vehicleRotations.Value.y, vehicleRotations.Value.z);
-						vehicle.transform.rotation = Quaternion.Lerp (rot, newRotation, Time.deltaTime * dampingFactor);
+						vehicle.transform.rotation = Quaternion.Lerp (rot, vehicleRotations.Value, Time.deltaTime * dampingFactor);
 					}
 				}
 			}

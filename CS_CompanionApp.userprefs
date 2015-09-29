@@ -1,8 +1,8 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Game/WbCompMapManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Game/WbCompMapVehicle.cs">
     <Files>
-      <File FileName="Assets/Scripts/Game/WbCompMapVehicle.cs" Line="9" Column="35" />
+      <File FileName="Assets/Scripts/Game/WbCompMapVehicle.cs" Line="22" Column="1" />
       <File FileName="Assets/Scripts/Game/WbCompMapManager.cs" Line="89" Column="5" />
       <File FileName="Assets/Scripts/Core/Network/WbCompStateSyncSending.cs" Line="130" Column="4" />
       <File FileName="Assets/Scripts/Core/Network/WbCompStateSyncReceiving.cs" Line="98" Column="69" />
