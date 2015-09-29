@@ -23,7 +23,8 @@ namespace Wb.Companion.Core.WbCamera {
 		public float movementMultiplier = 2f;
 		public float minBounds = -1500f;
 		public float maxBounds = 1500f;
-		public float zoomMin = 0.0f;
+		public float zoomFactor = 50f;
+		public float zoomMin = 250f;
 		public float zoomMax = 1000f;
 
 		public Vector3 targetPosition = Vector3.zero;

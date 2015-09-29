@@ -127,8 +127,23 @@ namespace Wb.Companion.Core.WbCamera {
             }
 
             if (gesture.ActiveTouches.Count > 1 && gesture.ActiveTouches.Count < 3) {
-                Debug.Log("----- Scale Gesture");
-                //this.setZoom(gesture.LocalDeltaScale);
+
+				float scaleValue = gesture.LocalDeltaScale * CameraManager.getInstance().zoomFactor;
+
+				// localDeltaScale > 1 means zoomIn | localDetlaScale < 1 means zommOut
+				if(gesture.LocalDeltaScale > 1.0f){
+					scaleValue = -scaleValue;
+				}
+
+				//Debug.Log("----- Scale Gesture: " + scaleValue);
+             
+				Vector3 oldPos = Camera.main.transform.localPosition;
+				Vector3 newPos = new Vector3(oldPos.x, oldPos.y + scaleValue, oldPos.z);
+
+				newPos.y = Mathf.Clamp(newPos.y, CameraManager.getInstance().zoomMin, CameraManager.getInstance().zoomMax);
+
+				CameraManager.getInstance().targetPosition = newPos;
+
             }
         }
 
@@ -172,7 +187,7 @@ namespace Wb.Companion.Core.WbCamera {
                 CameraManager.getInstance().panMagnitude = gesture.WorldDeltaPosition.magnitude;
 
                 newPos.x = Mathf.Clamp(newPos.x, CameraManager.getInstance().minBounds, CameraManager.getInstance().maxBounds);
-                newPos.y = CameraManager.getInstance().cameraHeight;
+                //newPos.y = CameraManager.getInstance().cameraHeight;
                 newPos.z = Mathf.Clamp(newPos.z, CameraManager.getInstance().minBounds, CameraManager.getInstance().maxBounds);
 
                 CameraManager.getInstance().targetPosition = newPos;
@@ -209,85 +224,6 @@ namespace Wb.Companion.Core.WbCamera {
 
             }
         }
-
-        //---------------------------------------------------------------------
-
-        //private void setPosition(Vector3 screenPos, bool changePos, bool isCompleted) {
-
-        //    //this.plane.SetNormalAndPosition(this.translateTarget.up, this.targetPosition);
-
-        //    //Ray ray = Camera.main.ScreenPointToRay(screenPos);
-
-        //    //float hitDistance;
-        //    //this.plane.Raycast(ray, out hitDistance);
-
-        //    //if (this.plane.Raycast(ray, out hitDistance)) {
-
-        //    //    if (changePos) {
-        //    //        this.changePosition(this.oldPos - ray.GetPoint(hitDistance), isCompleted);
-        //    //    }
-        //    //    this.oldPos = ray.GetPoint(hitDistance);
-        //    //}
-        //}
-
-        //---------------------------------------------------------------------
-
-        //private void touchGestureScaleEvent(object sender, System.EventArgs e) {
-        //    Debug.Log("touch gesture SCALE recognized");
-        //}
-
-        ////---------------------------------------------------------------------
-
-        //private void touchGestureTapEvent(object sender, System.EventArgs e) {
-        //    Debug.Log("touch gesture TAP recognized");
-
-        //}
-
-        ////---------------------------------------------------------------------
-
-        //private void touchGesturePanEvent(object sender, System.EventArgs e) {
-        //    Debug.Log("touch gesture PAN recognized");
-
-        //    TouchScript.Gestures.PanGesture gesture = sender as TouchScript.Gestures.PanGesture;
-        //    Vector2 delta = (gesture.ScreenPosition - gesture.PreviousScreenPosition);
-
-        //    //Debug.Log ("Delta: " + delta.ToString());
-
-
-        //    //GameObject go = GameObject.FindGameObjectsWithTag("Cube");
-
-
-        //    //Camera.main.transform.Translate(new Vector3(delta.x, 0.0f, delta.y));
-
-        //    if (gesture.ActiveTouches.Count == 1) {
-        //        if (this.OnTouchSinglePan != null) {
-        //            this.OnTouchSinglePan(delta);
-
-        //        }
-        //    } else if (gesture.ActiveTouches.Count > 0) {
-        //        if (this.OnTouchDoublePan != null) {
-        //            this.OnTouchDoublePan(delta);
-
-        //        }
-        //    }
-
-        //}
-
-        ////---------------------------------------------------------------------
-
-        //private void touchGesturePanStartet(object sender, System.EventArgs e) {
-        //    Debug.Log("touch gesture PAN STARTED recognized");
-
-        //}
-
-        ////---------------------------------------------------------------------
-
-        //private void touchGesturePanCompleted(object sender, System.EventArgs e) {
-        //    Debug.Log("touch gesture PAN COMPLETED recognized");
-
-        //}
-
-
 
     }
 }
