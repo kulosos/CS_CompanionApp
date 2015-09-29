@@ -78,7 +78,7 @@ namespace Wb.Companion.Core.WbCamera {
 			if(scene.Equals(SceneList.Map)){
 				this.targetPosition = new Vector3(0f, this.cameraHeight, 0f);
 
-				Quaternion rotation = Quaternion.Euler(60f, 90f, 0f);
+				Quaternion rotation = Quaternion.Euler(60f, -90f, 0f);
 				Camera.main.transform.rotation = rotation;
 
 				toggleOrthogonalCamera(false);
