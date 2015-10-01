@@ -130,20 +130,17 @@ namespace Wb.Companion.Core.WbCamera {
 
 				float scaleValue = gesture.LocalDeltaScale * CameraManager.getInstance().zoomFactor;
 
-				// localDeltaScale > 1 means zoomIn | localDetlaScale < 1 means zommOut
-				if(gesture.LocalDeltaScale > 1.0f){
-					scaleValue = -scaleValue;
-				}
+				// localDeltaScale > 1 means zoomIn | localDetlaScale < 1 means zoomOut
+				if(gesture.LocalDeltaScale < 1.0f){
+                    scaleValue = -scaleValue;
+                }
+               
+                Vector3 oldPos = Camera.main.transform.localPosition;
+                Vector3 newPos = oldPos + (Camera.main.transform.forward * scaleValue);
 
-				//Debug.Log("----- Scale Gesture: " + scaleValue);
-             
-				Vector3 oldPos = Camera.main.transform.localPosition;
-				Vector3 newPos = new Vector3(oldPos.x, oldPos.y + scaleValue, oldPos.z);
+                newPos.y = Mathf.Clamp(newPos.y, CameraManager.getInstance().zoomMin, CameraManager.getInstance().zoomMax);
 
-				newPos.y = Mathf.Clamp(newPos.y, CameraManager.getInstance().zoomMin, CameraManager.getInstance().zoomMax);
-
-				CameraManager.getInstance().targetPosition = newPos;
-
+                CameraManager.getInstance().targetPosition = newPos;
             }
         }
 
