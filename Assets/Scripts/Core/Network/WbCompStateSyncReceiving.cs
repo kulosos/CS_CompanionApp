@@ -93,29 +93,6 @@ public class WbCompStateSyncReceiving : MonoBehaviour, ICompNetworkOwner {
 	}
 
 	void Update () {
-
-		/*// HACK only for debuggung purposes, when no network connection is available
-		if(!NetworkManager.getInstance().isActiveConnection && debugging){
-
-			if(timeSinceLastStart >= 3f){
-
-				wbLittleFlabBedTruckPosition = new Vector3(wbLittleFlabBedTruckPosition.x + 2f, 0f, 0f);
-				wbTruckCranePosition = new Vector3(0f, 0f, wbTruckCranePosition.z + 2f); 
-				wbFlatbedTruckPosition = new Vector3(0f, wbFlatbedTruckPosition.y + 1f, 0f);
-				wbDepositTipperPosition = new Vector3(wbDepositTipperPosition.x - 2f, 0f, 0f);
-
-				wbLittleFlabBedTruckRotation = new Vector3(wbLittleFlabBedTruckRotation.x + 20f, 0f, 0f);
-				wbTruckCraneRotation = new Vector3(0f, 0f, wbTruckCraneRotation.z + 20f); 
-				wbFlatbedTruckRotation = new Vector3(0f, wbFlatbedTruckRotation.y + 10f, 0f);
-				wbDepositTipperRotation = new Vector3(wbDepositTipperRotation.x - 20f, 0f, 0f);
-
-				this.timeSinceLastStart = 0;
-			}
-			this.timeSinceLastStart += Time.deltaTime;
-
-		}*/
-
-	
 	}
 
 	//---------------------------------------------------------------------

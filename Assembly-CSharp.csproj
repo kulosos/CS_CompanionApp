@@ -58,6 +58,7 @@
      <Compile Include="Assets\Scripts\Core\Network\WbCompStateSyncReceiving.cs" />
      <Compile Include="Assets\Scripts\Core\Network\WbCompStateSyncSending.cs" />
      <Compile Include="Assets\Scripts\Core\UI\DebugUI.cs" />
+     <Compile Include="Assets\Scripts\Core\UI\UIArrowBtn.cs" />
      <Compile Include="Assets\Scripts\Core\UI\UIElement.cs" />
      <Compile Include="Assets\Scripts\Core\UI\UIManager.cs" />
      <Compile Include="Assets\Scripts\Core\UI\UIWrapper.cs" />
@@ -68,6 +69,7 @@
      <Compile Include="Assets\Scripts\Game\WbCompMapManager.cs" />
      <Compile Include="Assets\Scripts\Game\WbCompMapMarker.cs" />
      <Compile Include="Assets\Scripts\Game\WbCompMapVehicle.cs" />
+     <Compile Include="Assets\Scripts\Game\WbCompRetailManager.cs" />
      <Compile Include="Assets\Scripts\Image Effects\Blur.cs" />
      <Compile Include="Assets\Scripts\Image Effects\BlurEffect.cs" />
      <Compile Include="Assets\Scripts\Image Effects\ColorCorrectionEffect.cs" />

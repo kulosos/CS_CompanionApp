@@ -49,6 +49,24 @@ namespace Wb.Companion.Core.WbNetwork {
 		// OUT GOING RPCs
 		//---------------------------------------------------------------------
 
+        
+        public void addItemsToList() {
+            this.networkView.RPC("purchaseRetailerItem", RPCMode.Server, WbLocationName.MaterialsTraderCity.ToString(), "Pallet_BricksSmall", 1);
+        }
+
+        public void executePurchase() {
+            this.networkView.RPC("executeExternalPurchase", RPCMode.Server);
+        }
+
+        [RPC]
+        public void purchaseRetailerItem(string location, string retailerItem, int amount) {
+            // does stuff on server side
+        }
+
+        [RPC]
+        public void executeExternalPurchase() {
+            // does stuff on server side
+        }
 
 		//---------------------------------------------------------------------
 		// INCOMING RPCs
