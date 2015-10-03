@@ -1,11 +1,23 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
+using Wb.Companion.Core.WbNetwork;
 
 public class WbCompRetailManager : MonoBehaviour {
+
+	public List<UIRetailerItem> retailItems = new List<UIRetailerItem>();
+	public Dictionary<string, int> shoppingList = new Dictionary<string, int>();
+
+	public WbLocationName currentLocationName;
 
     //-------------------------------------------------------------------------
     // MonoBehaviour
     //-------------------------------------------------------------------------
+
+	void Awake() {
+		foreach(UIRetailerItem item in this.retailItems){
+			this.shoppingList.Add(item.retailItemName, 0);
+		}
+	}
 
 	void Start () {
 	
@@ -16,7 +28,16 @@ public class WbCompRetailManager : MonoBehaviour {
 	
 	}
 
-    //-------------------------------------------------------------------------
+	//-------------------------------------------------------------------------
+	
+	public void executePurchase(){
+		
+		foreach(KeyValuePair<string, int> entry in this.shoppingList){
+			WbCompRPCWrapper.getInstance().networkView.RPC("addItemToShoppingListExternal", RPCMode.Server, this.currentLocationName.ToString(), entry.Key, entry.Value);
+		}
+		
+		WbCompRPCWrapper.getInstance().networkView.RPC("executeExternalPurchase", RPCMode.Server);
+	}
 }
 
 public enum WbLocationName {
