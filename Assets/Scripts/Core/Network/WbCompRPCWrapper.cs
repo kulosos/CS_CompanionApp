@@ -49,7 +49,6 @@ namespace Wb.Companion.Core.WbNetwork {
 		// OUT GOING RPCs
 		//---------------------------------------------------------------------
 
-        
         public void addItemsToList() {
             this.networkView.RPC("purchaseRetailerItem", RPCMode.Server, WbLocationName.MaterialsTraderCity.ToString(), "Pallet_BricksSmall", 1);
         }

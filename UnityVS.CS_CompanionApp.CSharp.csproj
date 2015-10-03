@@ -89,9 +89,9 @@
     <Compile Include="Assets\Scripts\Core\Network\WbCompStateSyncReceiving.cs" />
     <Compile Include="Assets\Scripts\Core\Network\WbCompStateSyncSending.cs" />
     <Compile Include="Assets\Scripts\Core\UI\DebugUI.cs" />
-    <Compile Include="Assets\Scripts\Core\UI\UIArrowBtn.cs" />
     <Compile Include="Assets\Scripts\Core\UI\UIElement.cs" />
     <Compile Include="Assets\Scripts\Core\UI\UIManager.cs" />
+    <Compile Include="Assets\Scripts\Core\UI\UIRetailerItem.cs" />
     <Compile Include="Assets\Scripts\Core\UI\UIWrapper.cs" />
     <Compile Include="Assets\Scripts\Core\UI\WbUIThumbstick.cs" />
     <Compile Include="Assets\Scripts\Game\BackViewCamera.cs" />

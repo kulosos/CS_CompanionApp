@@ -39,10 +39,10 @@
 	<Reference Include="System.Core" />
 	<Reference Include="System.Xml.Linq" />
 	<Reference Include="UnityEngine">
-	  <HintPath>C:/Program Files (x86)/Unity/Editor4.6.4f1/Data/Managed/UnityEngine.dll</HintPath>
+	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
 	</Reference>
 	<Reference Include="UnityEditor">
-	  <HintPath>C:/Program Files (x86)/Unity/Editor4.6.4f1/Data/Managed/UnityEditor.dll</HintPath>
+	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
 	</Reference>
   </ItemGroup>
   <ItemGroup>
@@ -141,40 +141,40 @@
      <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\_BloomAndFlares\BrightPassFilter2.shader" />
      <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\GlowConeTap.shader" />
  <Reference Include="UnityEngine.UI">
- <HintPath>C:/Program Files (x86)/Unity/Editor4.6.4f1/Data/UnityExtensions/Unity/GUISystem/4.6.4/UnityEngine.UI.dll</HintPath>
+ <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.4/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.UI">
- <HintPath>C:/Program Files (x86)/Unity/Editor4.6.4f1/Data/UnityExtensions/Unity/GUISystem/4.6.4/Editor/UnityEditor.UI.dll</HintPath>
+ <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.4/Editor/UnityEditor.UI.dll</HintPath>
  </Reference>
  <Reference Include="TouchScript.Editor">
- <HintPath>D:/Projekte/BauSimulator2015_CompanionApp/GitHubProject/CS_CompanionApp/Assets/Libs/TouchScript/Editor/TouchScript.Editor.dll</HintPath>
+ <HintPath>F:/Studium/02 Master Medieninformatik/Entwicklungsprojekt/Git/CS_CompanionApp/Assets/Libs/TouchScript/Editor/TouchScript.Editor.dll</HintPath>
  </Reference>
  <Reference Include="TouchScript.Windows.Editor">
- <HintPath>D:/Projekte/BauSimulator2015_CompanionApp/GitHubProject/CS_CompanionApp/Assets/Libs/TouchScript/Editor/TouchScript.Windows.Editor.dll</HintPath>
+ <HintPath>F:/Studium/02 Master Medieninformatik/Entwicklungsprojekt/Git/CS_CompanionApp/Assets/Libs/TouchScript/Editor/TouchScript.Windows.Editor.dll</HintPath>
  </Reference>
  <Reference Include="TouchScript">
- <HintPath>D:/Projekte/BauSimulator2015_CompanionApp/GitHubProject/CS_CompanionApp/Assets/Libs/TouchScript/Plugins/TouchScript.dll</HintPath>
+ <HintPath>F:/Studium/02 Master Medieninformatik/Entwicklungsprojekt/Git/CS_CompanionApp/Assets/Libs/TouchScript/Plugins/TouchScript.dll</HintPath>
  </Reference>
  <Reference Include="TouchScript.Windows">
- <HintPath>D:/Projekte/BauSimulator2015_CompanionApp/GitHubProject/CS_CompanionApp/Assets/Libs/TouchScript/Plugins/TouchScript.Windows.dll</HintPath>
+ <HintPath>F:/Studium/02 Master Medieninformatik/Entwicklungsprojekt/Git/CS_CompanionApp/Assets/Libs/TouchScript/Plugins/TouchScript.Windows.dll</HintPath>
  </Reference>
  <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
- <HintPath>D:/Projekte/BauSimulator2015_CompanionApp/GitHubProject/CS_CompanionApp/Assets/UnityVS/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
+ <HintPath>F:/Studium/02 Master Medieninformatik/Entwicklungsprojekt/Git/CS_CompanionApp/Assets/UnityVS/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
  </Reference>
  <Reference Include="SyntaxTree.VisualStudio.Unity.Messaging">
- <HintPath>D:/Projekte/BauSimulator2015_CompanionApp/GitHubProject/CS_CompanionApp/Assets/UnityVS/Editor/SyntaxTree.VisualStudio.Unity.Messaging.dll</HintPath>
+ <HintPath>F:/Studium/02 Master Medieninformatik/Entwicklungsprojekt/Git/CS_CompanionApp/Assets/UnityVS/Editor/SyntaxTree.VisualStudio.Unity.Messaging.dll</HintPath>
  </Reference>
  <Reference Include="UnityVS.VersionSpecific">
- <HintPath>D:/Projekte/BauSimulator2015_CompanionApp/GitHubProject/CS_CompanionApp/Assets/UnityVS/Editor/UnityVS.VersionSpecific.dll</HintPath>
+ <HintPath>F:/Studium/02 Master Medieninformatik/Entwicklungsprojekt/Git/CS_CompanionApp/Assets/UnityVS/Editor/UnityVS.VersionSpecific.dll</HintPath>
  </Reference>
  <Reference Include="CoherentUIMobileNet">
- <HintPath>D:/Projekte/BauSimulator2015_CompanionApp/GitHubProject/CS_CompanionApp/Assets/Plugins/CoherentUIMobileNet.dll</HintPath>
+ <HintPath>F:/Studium/02 Master Medieninformatik/Entwicklungsprojekt/Git/CS_CompanionApp/Assets/Plugins/CoherentUIMobileNet.dll</HintPath>
  </Reference>
  <Reference Include="CoherentUINet">
- <HintPath>D:/Projekte/BauSimulator2015_CompanionApp/GitHubProject/CS_CompanionApp/Assets/Plugins/CoherentUINet.dll</HintPath>
+ <HintPath>F:/Studium/02 Master Medieninformatik/Entwicklungsprojekt/Git/CS_CompanionApp/Assets/Plugins/CoherentUINet.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.Graphs">
- <HintPath>C:/Program Files (x86)/Unity/Editor4.6.4f1/Data/Managed/UnityEditor.Graphs.dll</HintPath>
+ <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.Graphs.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>

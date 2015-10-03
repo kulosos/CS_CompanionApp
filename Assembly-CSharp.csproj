@@ -39,10 +39,10 @@
 	<Reference Include="System.Core" />
 	<Reference Include="System.Xml.Linq" />
 	<Reference Include="UnityEngine">
-	  <HintPath>C:/Program Files (x86)/Unity/Editor4.6.4f1/Data/Managed/UnityEngine.dll</HintPath>
+	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
 	</Reference>
 	<Reference Include="UnityEditor">
-	  <HintPath>C:/Program Files (x86)/Unity/Editor4.6.4f1/Data/Managed/UnityEditor.dll</HintPath>
+	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
 	</Reference>
   </ItemGroup>
   <ItemGroup>
@@ -58,9 +58,9 @@
      <Compile Include="Assets\Scripts\Core\Network\WbCompStateSyncReceiving.cs" />
      <Compile Include="Assets\Scripts\Core\Network\WbCompStateSyncSending.cs" />
      <Compile Include="Assets\Scripts\Core\UI\DebugUI.cs" />
-     <Compile Include="Assets\Scripts\Core\UI\UIArrowBtn.cs" />
      <Compile Include="Assets\Scripts\Core\UI\UIElement.cs" />
      <Compile Include="Assets\Scripts\Core\UI\UIManager.cs" />
+     <Compile Include="Assets\Scripts\Core\UI\UIRetailerItem.cs" />
      <Compile Include="Assets\Scripts\Core\UI\UIWrapper.cs" />
      <Compile Include="Assets\Scripts\Core\UI\WbUIThumbstick.cs" />
      <Compile Include="Assets\Scripts\Game\BackViewCamera.cs" />
@@ -173,19 +173,19 @@
      <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\_BloomAndFlares\BrightPassFilter2.shader" />
      <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\GlowConeTap.shader" />
  <Reference Include="UnityEngine.UI">
- <HintPath>C:/Program Files (x86)/Unity/Editor4.6.4f1/Data/UnityExtensions/Unity/GUISystem/4.6.4/UnityEngine.UI.dll</HintPath>
+ <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.4/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="TouchScript">
- <HintPath>D:/Projekte/BauSimulator2015_CompanionApp/GitHubProject/CS_CompanionApp/Assets/Libs/TouchScript/Plugins/TouchScript.dll</HintPath>
+ <HintPath>F:/Studium/02 Master Medieninformatik/Entwicklungsprojekt/Git/CS_CompanionApp/Assets/Libs/TouchScript/Plugins/TouchScript.dll</HintPath>
  </Reference>
  <Reference Include="TouchScript.Windows">
- <HintPath>D:/Projekte/BauSimulator2015_CompanionApp/GitHubProject/CS_CompanionApp/Assets/Libs/TouchScript/Plugins/TouchScript.Windows.dll</HintPath>
+ <HintPath>F:/Studium/02 Master Medieninformatik/Entwicklungsprojekt/Git/CS_CompanionApp/Assets/Libs/TouchScript/Plugins/TouchScript.Windows.dll</HintPath>
  </Reference>
  <Reference Include="CoherentUIMobileNet">
- <HintPath>D:/Projekte/BauSimulator2015_CompanionApp/GitHubProject/CS_CompanionApp/Assets/Plugins/CoherentUIMobileNet.dll</HintPath>
+ <HintPath>F:/Studium/02 Master Medieninformatik/Entwicklungsprojekt/Git/CS_CompanionApp/Assets/Plugins/CoherentUIMobileNet.dll</HintPath>
  </Reference>
  <Reference Include="CoherentUINet">
- <HintPath>D:/Projekte/BauSimulator2015_CompanionApp/GitHubProject/CS_CompanionApp/Assets/Plugins/CoherentUINet.dll</HintPath>
+ <HintPath>F:/Studium/02 Master Medieninformatik/Entwicklungsprojekt/Git/CS_CompanionApp/Assets/Plugins/CoherentUINet.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>
