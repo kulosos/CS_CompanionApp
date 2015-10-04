@@ -21,49 +21,18 @@ public class UIRetailerItem : MonoBehaviour {
 
     //-------------------------------------------------------------------------
 
-    public void setAmountValueUp() {
+    public void setAmountValue(bool positive) {
 
         int x = 0;
         Int32.TryParse(this.amountField.text, out x);
 
-        x++;
+		x += (positive) ? 1 : -1;
         x = Mathf.Clamp(x, this.minAmount, this.maxAmount);
 
         this.amount = x;
         this.amountField.text = x.ToString();
 
-		foreach(KeyValuePair<string, int> entry in this.retailManager.shoppingList){
-			
-			if(entry.Key.Equals(this.retailItemName)){
-				
-				// set new value for key
-				this.retailManager.shoppingList[entry.Key] = this.amount;
-				Debug.Log ("xxx: " + entry.Value);
-			}
-		}
-    }
-	
-    //-------------------------------------------------------------------------
-
-    public void setAmountValueDown() {
-
-        int x = 0;
-        Int32.TryParse(this.amountField.text, out x);
-
-        x--;
-        x = Mathf.Clamp(x, this.minAmount, this.maxAmount);
-
-        this.amount = x;
-        this.amountField.text = x.ToString();
-
-		foreach(KeyValuePair<string, int> entry in this.retailManager.shoppingList){
-
-			if(entry.Key.Equals(this.retailItemName)){
-
-				// set new value for key
-				this.retailManager.shoppingList[entry.Key] = this.amount;
-				Debug.Log ("yyy: " + entry.Value);
-			}
-		}
+		// set amount value for retail item accordingly
+		this.retailManager.shoppingList[this.retailItemName] = this.amount;
     }
 }
