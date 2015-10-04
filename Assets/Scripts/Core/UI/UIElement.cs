@@ -4,10 +4,8 @@ using System.Collections;
 using System.Collections.Generic;
 using Wb.Companion.Core.WbAdministration;
 
-
 namespace Wb.Companion.Core.UI
 {
-
     public enum UIElementMembership
     {
         Map = 0,
@@ -15,12 +13,13 @@ namespace Wb.Companion.Core.UI
         RemoteControl_Crane = 2,
         BackViewCamera = 3
     }
-
-
+	
     public class UIElement : MonoBehaviour
     {
-
         public UIElementMembership uiElementMember;
+		public bool hideOnInitialStart = false;
+
+		public WbLocationName location = WbLocationName.Undefined;
 
         // --------------------------------------------------------------------
         // Mono Behaviour
@@ -35,8 +34,5 @@ namespace Wb.Companion.Core.UI
         {
 
         }
-
-        // --------------------------------------------------------------------
-
     }
 }

@@ -3,7 +3,6 @@
 * @author		Oliver Kulas (oli@weltenbauer-se.com)
 * @date			Sep 2015
 */
-
 //-----------------------------------------------------------------------------
 
 using UnityEngine;
@@ -12,6 +11,7 @@ using System.Collections.Generic;
 using Wb.Companion.Core.WbAdministration;
 using Wb.Companion.Core.WbCamera;
 using Wb.Companion.Core.WbNetwork;
+using Wb.Companion.Core.UI;
 
 namespace Wb.Companion.Core.Game {
 
@@ -21,6 +21,7 @@ namespace Wb.Companion.Core.Game {
 		public bool offlineBypass = false;
 		public float dampingFactor = 1.0f;
         public List<WbCompMapVehicle> vehicleMapMarkers = new List<WbCompMapVehicle>();
+		private UIElement[] uiElements;
 
         //-------------------------------------------------------------------------
         // MonoBehaviour
@@ -31,6 +32,9 @@ namespace Wb.Companion.Core.Game {
 
             // register WbCompMapManager at SceneManager
             SceneManager.getInstance().setMapManager(this);
+
+			// get all UIElements from UIManager
+			this.uiElements = SceneManager.getInstance().uiManager.getUIElements();
         }
    
         //-------------------------------------------------------------------------
@@ -52,7 +56,20 @@ namespace Wb.Companion.Core.Game {
             RaycastHit hit;
 
             if (Physics.Raycast(ray, out hit, 3000f)) {
-                Debug.Log("HIT: " + hit.transform.gameObject.name);
+
+				Debug.Log("HIT: " + hit.transform.gameObject.name);
+
+				if(hit.transform.GetComponents<WbCompMapMarker>().Length > 0){
+
+					foreach(UIElement uie in this.uiElements){
+
+						if(hit.transform.gameObject.GetComponent<WbCompMapMarker>().uiLocationName.Equals(uie.location)){
+							uie.transform.gameObject.SetActive(true);
+
+							WbCompRetailManager.getInstance().currentRetailLocationName = uie.location;
+						}		
+					}
+				}   
             }
         }
 

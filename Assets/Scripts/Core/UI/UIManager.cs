@@ -71,7 +71,7 @@ namespace Wb.Companion.Core.UI {
             // toggeling UIElements on and off accordingly to scene
             foreach (UIElement uie in this.uiElements) {
 
-                if (SceneManager.getInstance().getSceneId(scene) == (int)uie.uiElementMember) {
+                if (SceneManager.getInstance().getSceneId(scene) == (int)uie.uiElementMember && !uie.hideOnInitialStart) {
                     uie.gameObject.SetActive(true);
                 } else {
                     uie.gameObject.SetActive(false);
@@ -109,6 +109,12 @@ namespace Wb.Companion.Core.UI {
         public List<WbUIThumbstick> getWbUIThumbsticks() {
             return this.uiThumbsticks;
         }
+
+		//-----------------------------------------------------------------------------
+
+		public UIElement[] getUIElements(){
+			return this.uiElements;
+		}
 
 		//-----------------------------------------------------------------------------
 		// Bind Methods to UI 

@@ -3,12 +3,12 @@
 * @author		Oliver Kulas (oli@weltenbauer-se.com)
 * @date			Sep 2015
 */
-
 //-----------------------------------------------------------------------------
 
 using UnityEngine;
 using System.Collections;
 using Wb.Companion.Core.WbAdministration;
+using Wb.Companion.Core.UI;
 
 namespace Wb.Companion.Core.Game {
 
@@ -16,6 +16,7 @@ namespace Wb.Companion.Core.Game {
 
         public WbCompMapManager mapManager;
         public WbCompMarkerLocation markerLocation;
+		public WbLocationName uiLocationName;
 
         //-------------------------------------------------------------------------
         // MonoBehaviour

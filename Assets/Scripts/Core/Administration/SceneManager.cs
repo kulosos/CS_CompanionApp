@@ -79,7 +79,6 @@ namespace Wb.Companion.Core.WbAdministration {
             StartCoroutine(levelLoaded(scene));
         } 
 
-
         //---------------------------------------------------------------------
 
         private IEnumerator levelLoaded(string scene) {
@@ -105,7 +104,6 @@ namespace Wb.Companion.Core.WbAdministration {
         //---------------------------------------------------------------------
         // Setter / Getter
         //---------------------------------------------------------------------
-
 
         public string[] getSceneList() {
             string[] sceneList = new string[] { 
