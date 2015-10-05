@@ -75,7 +75,6 @@ namespace Wb.Companion.Core.UI {
         private bool useY;
 		public bool isReleased = false;
         private float timeSinceLastStart = 0;
-         
 
 		// debugging
 		public bool debugging = false;
@@ -137,7 +136,7 @@ namespace Wb.Companion.Core.UI {
         //-----------------------------------------------------------------------------
 
         public void OnPointerUp(PointerEventData data) {
-            Debug.Log("OnPointerUp");
+            if(debugging)Debug.Log("OnPointerUp");
             this.indicator.rectTransform.anchoredPosition = new Vector2(0, 0);
             this.SetIconsActive(false);
             this.UpdateAxes(this.indicator.rectTransform.anchoredPosition);
@@ -147,7 +146,7 @@ namespace Wb.Companion.Core.UI {
         //-----------------------------------------------------------------------------
 
         public void OnPointerDown(PointerEventData data) {
-            Debug.Log("OnPointerDown");
+            if(debugging)Debug.Log("OnPointerDown");
             this.SetIconsActive(true);
             this.UpdateIndicator(data);
         }
@@ -155,7 +154,7 @@ namespace Wb.Companion.Core.UI {
         //-----------------------------------------------------------------------------
 
         public void OnDrag(PointerEventData data) {
-            Debug.Log("OnDrag");
+            if(debugging)Debug.Log("OnDrag");
             this.UpdateIndicator(data);
             this.isReleased = false;
         }

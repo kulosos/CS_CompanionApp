@@ -57,7 +57,7 @@ namespace Wb.Companion.Core.Game {
 
             if (Physics.Raycast(ray, out hit, 3000f)) {
 
-				Debug.Log("HIT: " + hit.transform.gameObject.name);
+				//Debug.Log("HIT: " + hit.transform.gameObject.name);
 
 				if(hit.transform.GetComponents<WbCompMapMarker>().Length > 0){
 

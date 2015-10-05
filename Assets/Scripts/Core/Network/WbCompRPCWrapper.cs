@@ -14,7 +14,7 @@ namespace Wb.Companion.Core.WbNetwork {
 		//private float currentSpeed; 
 		//private float currentRPM;
 
-		private string backViewCameraFrameBase64;
+		private string backViewCameraFrameBase64 = "empty";
 		private byte[] backViewCameraFrameByteArray;
 		public int imgPart;
 		public int imgWidth;

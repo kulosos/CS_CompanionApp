@@ -29,7 +29,7 @@ namespace Wb.Companion.Core.Game {
 		void Update () {
 		
             // send render texture data frame rate independent
-			if(NetworkManager.getInstance().isActiveConnection){
+			if(NetworkManager.getInstance().isActiveConnection && !WbCompRPCWrapper.getInstance().getBackViewCameraFrameAsB64String().Equals("empty")){
 				if(timeSinceLastStart >= 1f/NetworkManager.getInstance().globalRPCSendRate){
                     this.setBackViewCamera();
 					this.timeSinceLastStart = 0;
@@ -52,7 +52,6 @@ namespace Wb.Companion.Core.Game {
 			int imgSlices = WbCompRPCWrapper.getInstance().imgSlices;
 
 			try{
-
 				byte[] texBin = Convert.FromBase64String(texBase64);
 				Texture2D tex = new Texture2D(128,128,TextureFormat.RGB24, false);
 				tex.LoadImage(texBin);
