@@ -66,7 +66,7 @@ namespace Wb.Companion.Core.Inputs {
             // Send Tilt Input frame rate independent
             if (NetworkManager.getInstance().isActiveConnection && InputManager.getInstance().isActiveTiltInput) {
                 // send TiltValues every 1/rate second (e.g 1/15 = 15 times per second)
-                if (timeSinceLastStart >= 1f / NetworkManager.getInstance().globalRPCSendRate) {
+                if (timeSinceLastStart >= 1f / Network.sendRate) {
 
                     // FIXME
                     //WbCompRPCWrapper.getInstance().setTiltInput(this.getSmoothAxisValues());
@@ -75,7 +75,7 @@ namespace Wb.Companion.Core.Inputs {
                     if (tiltValue > 0f) {
                         WbCompStateSyncSending.getInstance().setVehicleInput(InputKeys.DRIVING_STEER_RIGHT, tiltValue);
                     }
-                    if (tiltValue < 0f) {
+                    else if (tiltValue < 0f) {
                         WbCompStateSyncSending.getInstance().setVehicleInput(InputKeys.DRIVING_STEER_LEFT, -tiltValue);
                     }
 

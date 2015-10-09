@@ -64,6 +64,7 @@ namespace Wb.Companion.Core.Game {
 					foreach(UIElement uie in this.uiElements){
 
 						if(hit.transform.gameObject.GetComponent<WbCompMapMarker>().uiLocationName.Equals(uie.location)){
+
 							uie.transform.gameObject.SetActive(true);
 
 							WbCompRetailManager.getInstance().currentRetailLocationName = uie.location;

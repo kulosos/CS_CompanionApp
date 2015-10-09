@@ -24,6 +24,7 @@ namespace Wb.Companion.Core.Game {
         //-----------------------------------------------------------------------------
 
         void Start() {
+			this.uiManager = UIManager.FindObjectOfType(typeof(UIManager)) as UIManager;
             this.init3DThumbsticks();
         }
 
@@ -34,7 +35,6 @@ namespace Wb.Companion.Core.Game {
 
         private void init3DThumbsticks() {
 
-			this.uiManager = UIManager.FindObjectOfType(typeof(UIManager)) as UIManager;
 			List<WbUIThumbstick> uiSticks = this.uiManager.getWbUIThumbsticks();
             Wb3DThumbstick[] meshSticks = Wb3DThumbstick.FindObjectsOfType(typeof(Wb3DThumbstick)) as Wb3DThumbstick[];
 
@@ -56,5 +56,4 @@ namespace Wb.Companion.Core.Game {
 			}
         }
     }
-
 }

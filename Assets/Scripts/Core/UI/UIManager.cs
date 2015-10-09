@@ -41,6 +41,8 @@ namespace Wb.Companion.Core.UI {
 
         private UIElement[] uiElements;
 
+		public WbCompCraneRCController craneRCController;
+
 		//-----------------------------------------------------------------------------
 		// MonoBehaviour
 		//-----------------------------------------------------------------------------
@@ -72,11 +74,20 @@ namespace Wb.Companion.Core.UI {
             foreach (UIElement uie in this.uiElements) {
 
                 if (SceneManager.getInstance().getSceneId(scene) == (int)uie.uiElementMember && !uie.hideOnInitialStart) {
+
                     uie.gameObject.SetActive(true);
+
+					// HACK - Companion App
+					// Because the Crane RC Funciton Buttons are loading to late / call order is wrong
+					if(SceneManager.getInstance().getCurrentScene().Equals(SceneList.RemoteControlCrane)){
+						craneRCController.setFunctionBtnPositions();
+					}
+
                 } else {
                     uie.gameObject.SetActive(false);
                 } 
             }
+
         }
 
         //-----------------------------------------------------------------------------

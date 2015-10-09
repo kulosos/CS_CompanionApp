@@ -90,7 +90,6 @@ namespace Wb.Companion.Core.WbAdministration {
             // after SceneLoading is complete
             this.uiManager.hideLoadingScreen();
             this.uiManager.loadGameUI();
-            //this.setCurrentScene(scene);
 
             // toggle TiltInput RPC sending (only if it's RemoteControlDriving Scene)
             //InputManager.getInstance().toggleActiveTiltInput(scene);
@@ -106,6 +105,7 @@ namespace Wb.Companion.Core.WbAdministration {
         //---------------------------------------------------------------------
 
         public string[] getSceneList() {
+
             string[] sceneList = new string[] { 
 				SceneList.Map,                      // 0
 				SceneList.RemoteControlDriving,     // 1  
