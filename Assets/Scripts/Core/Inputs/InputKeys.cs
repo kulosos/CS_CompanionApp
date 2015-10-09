@@ -30,8 +30,8 @@ namespace Wb.Companion.Core.Inputs {
 		public const string TRUCKCRANE_CABIN_DOWN 		= "tcCabinDown";
 		public const string TRUCKCRANE_ROPE_UP 			= "wbtruckCrane-rope-up";
 		public const string TRUCKCRANE_ROPE_DOWN 		= "wbtruckCrane-rope-down";
-		public const string TRUCKCRANE_SUPPORTLEGS_IN 	= "wbtruckCrane-supportlegs-in";
-		public const string TRUCKCRANE_SUPPORTLEGS_OUT 	= "wbtruckCrane-supportlegs-out";
+		public const string TRUCKCRANE_SUPPORTLEGS_IN 	= "wbTruckCrane-supportlegs-in";
+		public const string TRUCKCRANE_SUPPORTLEGS_OUT 	= "wbTruckCrane-supportlegs-out";
 
 		// -----------------------------------------------------------------
 

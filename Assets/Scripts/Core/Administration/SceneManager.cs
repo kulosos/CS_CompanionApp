@@ -94,10 +94,11 @@ namespace Wb.Companion.Core.WbAdministration {
             // toggle TiltInput RPC sending (only if it's RemoteControlDriving Scene)
             //InputManager.getInstance().toggleActiveTiltInput(scene);
 
-            this.uiManager.initUIElementsPerScene(scene);
+			this.uiManager.initUIElementsPerScene(scene);
 
             CameraManager.getInstance().setInitialCameraOnSceneLoading(scene);
 			InputManager.getInstance().setInitSceneInputs(scene);
+		
         }
 
         //---------------------------------------------------------------------

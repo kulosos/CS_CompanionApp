@@ -193,7 +193,7 @@ namespace Wb.Companion.Core.UI {
             delta.y = -delta.y;
             delta /= this.movementRange;
             
-            this.SimulateHover(delta);
+            //this.SimulateHover(delta);
 
             //Debug.Log ("Delta (x/y): " + delta);
 

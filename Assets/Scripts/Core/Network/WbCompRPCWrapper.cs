@@ -59,6 +59,26 @@ namespace Wb.Companion.Core.WbNetwork {
             // does stuff on server side
         }
 
+	 	[RPC]
+		public void toggleCompanionAppInput(){
+			// does stuff on server side
+		}
+
+		[RPC]
+		public void switchBroadcastingCamera(){
+			// does stuff on server side
+		}
+
+		[RPC]
+		public void switchVehicleMode(){
+			// does stuff on server side
+		}
+
+		[RPC]
+		public void resetVehicle(){
+			// does stuff on server side
+		}
+
 		//---------------------------------------------------------------------
 		// INCOMING RPCs
 		//---------------------------------------------------------------------
@@ -76,6 +96,22 @@ namespace Wb.Companion.Core.WbNetwork {
 
 		public string getBackViewCameraFrameAsB64String(){
 			return backViewCameraFrameBase64;
+		}
+
+		public void toggleCompanionAppInputRPC(){
+			this.networkView.RPC("toggleCompanionAppInput", RPCMode.Server);
+		}
+
+		public void switchBroadcastingCameraRPC(){
+			this.networkView.RPC("switchBroadcastingCamera", RPCMode.Server);
+		}
+		
+		public void switchVehicleModeRPC(){
+			this.networkView.RPC("switchVehicleMode", RPCMode.Server);
+		}
+
+		public void resetVehicleRPC(){
+			this.networkView.RPC("resetVehicle", RPCMode.Server);
 		}
 	
     }
