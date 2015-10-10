@@ -32,6 +32,8 @@ namespace Wb.Companion.Core.WbNetwork {
         public float truckcrane_ropeDown = 0f;
         public float truckcrane_supportLegsIn = 0f;
         public float truckcrane_supportLegsOut = 0f;
+		public float truckcrane_rotateHookLeft = 0f;
+		public float truckcrane_rotateHookRight = 0f;
 	
         //---------------------------------------------------------------------
         // Singleton
@@ -87,6 +89,8 @@ namespace Wb.Companion.Core.WbNetwork {
 				stream.Serialize(ref truckcrane_ropeDown);
 				stream.Serialize(ref truckcrane_supportLegsIn);
 				stream.Serialize(ref truckcrane_supportLegsOut);
+				stream.Serialize(ref truckcrane_rotateHookLeft);
+				stream.Serialize(ref truckcrane_rotateHookRight);
 			
             } 
 
@@ -183,6 +187,16 @@ namespace Wb.Companion.Core.WbNetwork {
                 truckcrane_supportLegsOut = value;
                 return;
             }
+
+			if (InputKeys.TRUCKCRANE_ROTATE_HOOK_LEFT.Equals(inputkey)) {
+				truckcrane_rotateHookLeft = value;
+				return;
+			}
+
+			if (InputKeys.TRUCKCRANE_ROTATE_HOOK_RIGHT.Equals(inputkey)) {
+				truckcrane_rotateHookRight = value;
+				return;
+			}
 
         }
 

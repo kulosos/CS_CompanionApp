@@ -79,6 +79,16 @@ namespace Wb.Companion.Core.WbNetwork {
 			// does stuff on server side
 		}
 
+		[RPC]
+		public void connectHookCargo(){
+			// does stuff on server side
+		}
+
+		[RPC]
+		public void toggleCameraBroadcasting(){
+			// does stuff on server side
+		}
+
 		//---------------------------------------------------------------------
 		// INCOMING RPCs
 		//---------------------------------------------------------------------
@@ -112,6 +122,14 @@ namespace Wb.Companion.Core.WbNetwork {
 
 		public void resetVehicleRPC(){
 			this.networkView.RPC("resetVehicle", RPCMode.Server);
+		}
+
+		public void connectHookCargoRPC(){
+			this.networkView.RPC("connectHookCargo", RPCMode.Server);
+		}
+
+		public void toggleCameraBroadcastingRPC(){
+			this.networkView.RPC("toggleCameraBroadcasting", RPCMode.Server);
 		}
 	
     }
