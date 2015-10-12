@@ -34,6 +34,13 @@ namespace Wb.Companion.Core.UI {
 
 		public CoherentUIView coherentUiView;
 		public UIWrapper uiWrapper;
+
+		public GameObject startscreenUI;
+		public float startScreenMotionFactor = 1f;
+		private bool isStartScreenUIInMotion;
+		private Vector3 startScreenOriginalPos = Vector3.zero;
+		private Vector3 startScreenTargetPos = Vector3.zero;
+
 		public bool debugging = false;
 
         private List<WbUIThumbstick> uiThumbsticks = new List<WbUIThumbstick>();
@@ -47,19 +54,43 @@ namespace Wb.Companion.Core.UI {
 		// MonoBehaviour
 		//-----------------------------------------------------------------------------
 
-		public void Start() {
+		void Start() {
+
 			this.coherentUiView.ReceivesInput = true;
             this.initWbUIThumbstickList();
 
             // get all uiElements for toggeling on and off
             this.uiElements = UIElement.FindObjectsOfType(typeof(UIElement)) as UIElement[];
+
+			Debug.Log ("Screen h/w " + Screen.height + "/" + Screen.width);
+
+			// set start screen ui paramenter for disposing
+			this.startScreenOriginalPos = this.startscreenUI.transform.localPosition;
+			this.startScreenTargetPos = new Vector3(this.startscreenUI.transform.localPosition.x, 
+			                                        this.startscreenUI.transform.localPosition.y - (Screen.height * 2),
+			                                        this.startscreenUI.transform.localPosition.z);
+
+			//HACK for debug in Unity Editor, because weired results of given screen size
+			#if UNITY_EDITOR
+			this.startScreenTargetPos = new Vector3(this.startscreenUI.transform.localPosition.x, 
+			                                        this.startscreenUI.transform.localPosition.y - (1600f),
+			                                        this.startscreenUI.transform.localPosition.z);
+			#endif
         }
+
+		void Update(){
+
+			if(isStartScreenUIInMotion){
+				this.setStartScreenUIPosition(this.startScreenTargetPos, true);
+			}
+		}
 
         //-----------------------------------------------------------------------------
         
         // Get all Thumbsticks in scene
         private void initWbUIThumbstickList() {
-            this.uiThumbsticks.Clear();
+           
+			this.uiThumbsticks.Clear();
             WbUIThumbstick[] sticks = WbUIThumbstick.FindObjectsOfType(typeof(WbUIThumbstick)) as WbUIThumbstick[];
             foreach (WbUIThumbstick stick in sticks) {
                 this.uiThumbsticks.Add(stick);
@@ -115,6 +146,65 @@ namespace Wb.Companion.Core.UI {
             }
         }
 
+		//-----------------------------------------------------------------------------
+
+		public void showStartScreenUI(){
+
+		}
+
+		//-----------------------------------------------------------------------------
+
+		public void diposeStartScreen(){
+
+			this.isStartScreenUIInMotion = true;
+
+			if(this.startscreenUI.transform.position.y > (Screen.height * 1.9)){
+				this.startscreenUI.gameObject.SetActive(false);
+				//Destroy(startscreenUI);
+			}
+
+		}
+
+		//-----------------------------------------------------------------------------
+
+		public void setStartScreenUIPosition(){
+			setStartScreenUIPosition(this.startScreenTargetPos, false);
+		}
+
+		public void setStartScreenUIPosition(Vector3 targetPos){
+			setStartScreenUIPosition(targetPos, false);
+		}
+
+		public void setStartScreenUIPosition(Vector3 targetPos, bool setInactive){
+
+			float height;
+
+			//HACK for debug in Unity Editor, because weired results of given screen size
+			#if UNITY_IOS
+			height = Screen.height *2;
+			#endif
+			
+			#if UNITY_ANDROID
+			height = Screen.height *2;
+			#endif
+			
+			#if UNITY_EDITOR
+			height = 1598f;
+			#endif
+
+			if(this.startscreenUI.transform.localPosition.y > -height){
+				Vector3 oldPos = startscreenUI.transform.localPosition;
+				startscreenUI.transform.localPosition = Vector3.Lerp(oldPos, targetPos, Time.deltaTime * this.startScreenMotionFactor);
+			}else{
+				this.isStartScreenUIInMotion = false;
+
+				if(setInactive){
+					this.startscreenUI.gameObject.SetActive(false);
+				}
+			}
+
+		}
+
         //-----------------------------------------------------------------------------
 
         public List<WbUIThumbstick> getWbUIThumbsticks() {
@@ -128,7 +218,7 @@ namespace Wb.Companion.Core.UI {
 		}
 
 		//-----------------------------------------------------------------------------
-		// Bind Methods to UI 
+		// Bind Methods to Coherent UI 
 		//-----------------------------------------------------------------------------
 
         // UI ELEMENTS

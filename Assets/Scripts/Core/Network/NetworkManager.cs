@@ -33,6 +33,10 @@ namespace Wb.Companion.Core.WbNetwork {
 		public bool isActiveConnection = false;
         public bool debugging = true;
 
+		public Text inputIP;
+		public Text inputPort;
+		public Text inputPassword;
+
         public Text labelSliderDrivingRPCSendRate;
         public Text labelSliderCraneRPCSendRate;
 
@@ -94,6 +98,13 @@ namespace Wb.Companion.Core.WbNetwork {
 		}
 
 		//---------------------------------------------------------------------
+
+		// used by Unity UI Connect Btn on Startpage
+		public void connect(){
+
+			Debug.Log ("IP: " + inputIP.text + ":" + inputPort.text + " | " + inputPassword.text);
+			NetworkManager.connect(inputIP.text.ToString(), inputPort.text.ToString(), inputPassword.text.ToString());
+		}
 
 		public static void connect(string ip, string port, string password){ 
 			int portNum = Convert.ToInt32(port);
