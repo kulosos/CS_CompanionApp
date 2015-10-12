@@ -59,6 +59,7 @@
      <Compile Include="Assets\Scripts\Core\Network\WbCompStateSyncSending.cs" />
      <Compile Include="Assets\Scripts\Core\UI\DebugUI.cs" />
      <Compile Include="Assets\Scripts\Core\UI\UIElement.cs" />
+     <Compile Include="Assets\Scripts\Core\UI\UIMainMenuItem.cs" />
      <Compile Include="Assets\Scripts\Core\UI\UIManager.cs" />
      <Compile Include="Assets\Scripts\Core\UI\UIMenuItem.cs" />
      <Compile Include="Assets\Scripts\Core\UI\UIRetailSubMenu.cs" />

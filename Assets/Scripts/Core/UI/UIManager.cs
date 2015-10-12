@@ -35,11 +35,18 @@ namespace Wb.Companion.Core.UI {
 		public CoherentUIView coherentUiView;
 		public UIWrapper uiWrapper;
 
+		public float uiMotionDampingFactor = 5f;
+
+		// StartScreen UI
 		public GameObject startscreenUI;
-		public float startScreenMotionFactor = 1f;
 		private bool isStartScreenUIInMotion;
 		private Vector3 startScreenOriginalPos = Vector3.zero;
 		private Vector3 startScreenTargetPos = Vector3.zero;
+
+		// MainHeader & MainMenu UI
+		public GameObject mainHeader;
+		public GameObject mainMenu;
+
 
 		public bool debugging = false;
 
@@ -194,7 +201,7 @@ namespace Wb.Companion.Core.UI {
 
 			if(this.startscreenUI.transform.localPosition.y > -height){
 				Vector3 oldPos = startscreenUI.transform.localPosition;
-				startscreenUI.transform.localPosition = Vector3.Lerp(oldPos, targetPos, Time.deltaTime * this.startScreenMotionFactor);
+				startscreenUI.transform.localPosition = Vector3.Lerp(oldPos, targetPos, Time.deltaTime * this.uiMotionDampingFactor);
 			}else{
 				this.isStartScreenUIInMotion = false;
 
