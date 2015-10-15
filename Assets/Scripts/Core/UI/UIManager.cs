@@ -39,7 +39,8 @@ namespace Wb.Companion.Core.UI {
 
 		// StartScreen UI
 		public GameObject startscreenUI;
-		private bool isStartScreenUIInMotion;
+		private bool showStartScreen;
+		private bool disposeStartScreen;
 		private Vector3 startScreenOriginalPos = Vector3.zero;
 		private Vector3 startScreenTargetPos = Vector3.zero;
 
@@ -85,10 +86,16 @@ namespace Wb.Companion.Core.UI {
 			#endif
         }
 
+		//-----------------------------------------------------------------------------
+
 		void Update(){
 
-			if(isStartScreenUIInMotion){
-				this.setStartScreenUIPosition(this.startScreenTargetPos, true);
+			if(disposeStartScreen && !showStartScreen){
+				this.toggleStartScreenUIPosition(this.startScreenTargetPos, true);
+			}
+
+			if(showStartScreen && !disposeStartScreen){
+				this.toggleStartScreenUIPosition(this.startScreenOriginalPos, false);
 			}
 		}
 
@@ -125,7 +132,6 @@ namespace Wb.Companion.Core.UI {
                     uie.gameObject.SetActive(false);
                 } 
             }
-
         }
 
         //-----------------------------------------------------------------------------
@@ -156,33 +162,20 @@ namespace Wb.Companion.Core.UI {
 		//-----------------------------------------------------------------------------
 
 		public void showStartScreenUI(){
-
+			this.showStartScreen = true;
+			this.disposeStartScreen = false;
 		}
 
 		//-----------------------------------------------------------------------------
 
 		public void diposeStartScreen(){
-
-			this.isStartScreenUIInMotion = true;
-
-			if(this.startscreenUI.transform.position.y > (Screen.height * 1.9)){
-				this.startscreenUI.gameObject.SetActive(false);
-				//Destroy(startscreenUI);
-			}
-
+			this.disposeStartScreen = true;
+			this.showStartScreen = false;
 		}
 
 		//-----------------------------------------------------------------------------
 
-		public void setStartScreenUIPosition(){
-			setStartScreenUIPosition(this.startScreenTargetPos, false);
-		}
-
-		public void setStartScreenUIPosition(Vector3 targetPos){
-			setStartScreenUIPosition(targetPos, false);
-		}
-
-		public void setStartScreenUIPosition(Vector3 targetPos, bool setInactive){
+		public void toggleStartScreenUIPosition(Vector3 targetPos, bool setInactive){
 
 			float height;
 
@@ -199,14 +192,27 @@ namespace Wb.Companion.Core.UI {
 			height = 1598f;
 			#endif
 
-			if(this.startscreenUI.transform.localPosition.y > -height){
-				Vector3 oldPos = startscreenUI.transform.localPosition;
-				startscreenUI.transform.localPosition = Vector3.Lerp(oldPos, targetPos, Time.deltaTime * this.uiMotionDampingFactor);
-			}else{
-				this.isStartScreenUIInMotion = false;
+			// DISPOSE
+			if(disposeStartScreen && !showStartScreen){
 
-				if(setInactive){
+				if(this.startscreenUI.transform.localPosition.y > -height){
+					Vector3 oldPos = startscreenUI.transform.localPosition;
+					startscreenUI.transform.localPosition = Vector3.Lerp(oldPos, targetPos, Time.deltaTime * this.uiMotionDampingFactor);
+				}else{
+					this.disposeStartScreen = false;
 					this.startscreenUI.gameObject.SetActive(false);
+				}
+			}
+			// SHOW
+			else if (!disposeStartScreen && showStartScreen){
+
+				this.startscreenUI.gameObject.SetActive(true);
+
+				if(this.startscreenUI.transform.localPosition.y < 0.05f){
+					Vector3 oldPos = startscreenUI.transform.localPosition;
+					startscreenUI.transform.localPosition = Vector3.Lerp(oldPos, targetPos, Time.deltaTime * this.uiMotionDampingFactor);
+				}else{
+					this.showStartScreen = false;
 				}
 			}
 
