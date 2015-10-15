@@ -36,9 +36,10 @@ namespace Wb.Companion.Core.UI {
 		// Coherent UI
 		public CoherentUIView coherentUiView;
 		public UIWrapper uiWrapper;
+		public bool useCoherentUI = false;
 
 		// Global UI Motion Values
-		public float uiMotionDampingFactor = 5f;
+		public float uiMotionSpeedFactor = 10f;
 
 		// UI Editor Values
 		private float editorUIHeight = 1536f;
@@ -62,7 +63,7 @@ namespace Wb.Companion.Core.UI {
 		public GameObject mainMenu;
 		private RectTransform mainMenuRect;
 		private float mainMenuWidth = 0f;
-		private bool isMainMenuActive = false;
+		private bool isMainMenuActive = true;
 		private bool isMainMenuInMotion = false;
 		private Vector3 mainMenuActivePos = Vector3.zero;
 		private Vector3 mainMenuInactivePos = Vector3.zero; 
@@ -81,6 +82,14 @@ namespace Wb.Companion.Core.UI {
 
 		//-----------------------------------------------------------------------------
 		// MonoBehaviour
+		//-----------------------------------------------------------------------------
+
+		void Awake(){
+			if (!this.useCoherentUI){
+				this.coherentUiView.gameObject.SetActive(false);
+			}
+		}
+
 		//-----------------------------------------------------------------------------
 
 		void Start() {
@@ -242,7 +251,7 @@ namespace Wb.Companion.Core.UI {
 				// StartScreen UI
 				if(this.startscreenUI.transform.localPosition.y > -height){
 					Vector3 oldPos = this.startscreenUI.transform.localPosition;
-					this.startscreenUI.transform.localPosition = Vector3.Lerp(oldPos, targetPos, Time.deltaTime * this.uiMotionDampingFactor);
+					this.startscreenUI.transform.localPosition = Vector3.Lerp(oldPos, targetPos, Time.deltaTime * this.uiMotionSpeedFactor);
 				}else{
 					this.disposeStartScreen = false;
 					this.startscreenUI.gameObject.SetActive(false);
@@ -251,7 +260,7 @@ namespace Wb.Companion.Core.UI {
 				// MainHeader UI
 				if(this.mainHeader.transform.localPosition.y > this.mainHeaderShowPos.y){
 					Vector3 oldPos = this.mainHeader.transform.localPosition;
-					this.mainHeader.transform.localPosition = Vector3.Lerp (oldPos, this.mainHeaderShowPos, Time.deltaTime * this.uiMotionDampingFactor);
+					this.mainHeader.transform.localPosition = Vector3.Lerp (oldPos, this.mainHeaderShowPos, Time.deltaTime * this.uiMotionSpeedFactor);
 				}
 			}
 			// SHOW
@@ -262,7 +271,7 @@ namespace Wb.Companion.Core.UI {
 
 				if(this.startscreenUI.transform.localPosition.y < 0.05f){
 					Vector3 oldPos = startscreenUI.transform.localPosition;
-					startscreenUI.transform.localPosition = Vector3.Lerp(oldPos, targetPos, Time.deltaTime * this.uiMotionDampingFactor);
+					startscreenUI.transform.localPosition = Vector3.Lerp(oldPos, targetPos, Time.deltaTime * this.uiMotionSpeedFactor);
 				}else{
 					this.showStartScreen = false;
 				}
@@ -270,7 +279,7 @@ namespace Wb.Companion.Core.UI {
 				// MainHeader UI
 				if(this.mainHeader.transform.localPosition.y < this.mainHeaderDisposedPos.y){
 					Vector3 oldPos = this.mainHeader.transform.localPosition;
-					this.mainHeader.transform.localPosition = Vector3.Lerp (oldPos, this.mainHeaderDisposedPos, Time.deltaTime * this.uiMotionDampingFactor);
+					this.mainHeader.transform.localPosition = Vector3.Lerp (oldPos, this.mainHeaderDisposedPos, Time.deltaTime * this.uiMotionSpeedFactor);
 				}
 			}
 	
@@ -285,7 +294,7 @@ namespace Wb.Companion.Core.UI {
 				// Move in
 				if(this.mainMenu.transform.localPosition.x < this.mainMenuInactivePos.x - 0.1f){
 					Vector3 oldPos = this.mainMenu.transform.localPosition;
-					this.mainMenu.transform.localPosition = Vector3.Lerp(oldPos, this.mainMenuInactivePos, Time.deltaTime * this.uiMotionDampingFactor);
+					this.mainMenu.transform.localPosition = Vector3.Lerp(oldPos, this.mainMenuInactivePos, Time.deltaTime * this.uiMotionSpeedFactor);
 				}else{
 					this.isMainMenuActive = false;
 					this.isMainMenuInMotion = false;
@@ -298,7 +307,7 @@ namespace Wb.Companion.Core.UI {
 
 				if(this.mainMenu.transform.localPosition.x > this.mainMenuActivePos.x +0.1f){
 					Vector3 oldPos = this.mainMenu.transform.localPosition;
-					this.mainMenu.transform.localPosition = Vector3.Lerp(oldPos, this.mainMenuActivePos, Time.deltaTime * this.uiMotionDampingFactor);
+					this.mainMenu.transform.localPosition = Vector3.Lerp(oldPos, this.mainMenuActivePos, Time.deltaTime * this.uiMotionSpeedFactor);
 				}else{
 					this.isMainMenuActive = true;
 					this.isMainMenuInMotion = false;
@@ -350,36 +359,36 @@ namespace Wb.Companion.Core.UI {
 
         // UI ELEMENTS
 		public void switchGameUI(){
-			this.coherentUiView.View.TriggerEvent("switchGameUI");
+			if(this.useCoherentUI)this.coherentUiView.View.TriggerEvent("switchGameUI");
 		}
 
         public void loadGameUI() {
-            this.coherentUiView.View.TriggerEvent("loadGameUI");
+			if(this.useCoherentUI)this.coherentUiView.View.TriggerEvent("loadGameUI");
         }
 
         public void unloadGameUI() {
-            this.coherentUiView.View.TriggerEvent("unloadGameUI");
+			if(this.useCoherentUI)this.coherentUiView.View.TriggerEvent("unloadGameUI");
         }
 
         public void setConnectionLoadingBar() {
-            this.coherentUiView.View.TriggerEvent("setConnectionLoadingBar");
+			if(this.useCoherentUI)this.coherentUiView.View.TriggerEvent("setConnectionLoadingBar");
         }
 
         public void unloadMainMenu(string setMenuInactive) {
-            this.coherentUiView.View.TriggerEvent("unloadMainMenu", setMenuInactive);
+			if(this.useCoherentUI)this.coherentUiView.View.TriggerEvent("unloadMainMenu", setMenuInactive);
         }
 
         // CONNECTION
 		public void setConnectionErrorMsg(string obj){
-			this.coherentUiView.View.TriggerEvent("setConnectionErrorMsg", obj);
+			if(this.useCoherentUI)this.coherentUiView.View.TriggerEvent("setConnectionErrorMsg", obj);
 		}
 
         public void showLoadingScreen() {
-            this.coherentUiView.View.TriggerEvent("showLoadingScreen");
+			if(this.useCoherentUI)this.coherentUiView.View.TriggerEvent("showLoadingScreen");
         }
 
         public void hideLoadingScreen() {
-            this.coherentUiView.View.TriggerEvent("hideLoadingScreen");
+            if(this.useCoherentUI)this.coherentUiView.View.TriggerEvent("hideLoadingScreen");
         }
 
         //-----------------------------------------------------------------------------

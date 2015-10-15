@@ -67,7 +67,7 @@ namespace Wb.Companion.Core.WbAdministration {
 
         public void loadScene(string scene) {
 
-            //SceneManager.getInstance().uiManager.showLoadingScreen();
+			this.uiManager.toggleMainMenu();
 
             GameObject sceneData = GameObject.Find("SceneData");
             if (sceneData != null) {
@@ -86,11 +86,7 @@ namespace Wb.Companion.Core.WbAdministration {
 			yield return Application.LoadLevelAdditiveAsync(scene);
 
             if(debugging)Debug.Log("Level: " + scene + " was loaded");
-            
-            // after SceneLoading is complete
-            this.uiManager.hideLoadingScreen();
-            this.uiManager.loadGameUI();
-
+  
             // toggle TiltInput RPC sending (only if it's RemoteControlDriving Scene)
             //InputManager.getInstance().toggleActiveTiltInput(scene);
 

@@ -159,8 +159,13 @@ namespace Wb.Companion.Core.WbNetwork {
 		// Call on the client when server connection successfully established
 		private void OnConnectedToServer() {
 			Debug.Log("Server connection successfully established.");
-            //this.uiManager.switchGameUI();
-           
+
+			if(this.uiManager.useCoherentUI){
+				this.uiManager.switchGameUI();
+			}else{
+				this.uiManager.diposeStartScreen();
+			}
+            
 			this.sceneManager.loadScene(this.sceneManager.getDefaultStartScene());
 			NetworkManager.getInstance().isActiveConnection = true;
 
@@ -168,17 +173,29 @@ namespace Wb.Companion.Core.WbNetwork {
 			WbCompStateSyncSending.getInstance().setAsOwner();
 		}
 
+		//---------------------------------------------------------------------
+
 		// Call on the client
 		private void OnDisconnectedFromServer(){
 			Debug.Log("Server connection disconnected.");
-            this.uiManager.unloadGameUI();
+
+			if(this.uiManager.useCoherentUI){
+				this.uiManager.switchGameUI();
+			}else{
+				this.uiManager.diposeStartScreen();
+			}
+
 			NetworkManager.getInstance().isActiveConnection = false;
 		}
+
+		//---------------------------------------------------------------------
 
 		// Call on the server when player has successfully connected
 		private void OnPlayerConnected(){
 			Debug.Log("A player was successfully connected to server.");
 		}
+
+		//---------------------------------------------------------------------
 
 		// Call on the server when a player is disconnected
 		private void OnPlayerDisconnected(){
@@ -186,16 +203,26 @@ namespace Wb.Companion.Core.WbNetwork {
 			NetworkManager.getInstance().isActiveConnection = false;
 		}
 
+		//---------------------------------------------------------------------
+
 		// Called on client
 		private void OnFailedToConnect() {
 			Debug.Log("Failed to establish server connection.");
-			this.uiManager.setConnectionErrorMsg("Failed to establish server connection");
-            this.uiManager.setConnectionLoadingBar();
+
+			if(this.uiManager.useCoherentUI){
+				this.uiManager.setConnectionErrorMsg("Failed to establish server connection");
+				this.uiManager.setConnectionLoadingBar();
+			}
 
             // HACK this is only for debugging purposes
             if(debugging){
                 this.sceneManager.loadScene(this.sceneManager.getDefaultStartScene());
-                //this.uiManager.loadGameUI();
+                
+				if(this.uiManager.useCoherentUI){
+					this.uiManager.switchGameUI();
+				}else{
+					this.uiManager.diposeStartScreen();
+				}
             }
 		}
 
