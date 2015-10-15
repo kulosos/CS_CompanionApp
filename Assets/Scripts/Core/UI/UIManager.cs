@@ -2,7 +2,8 @@
  * brief	Central control unit of UI
  * author	Oliver Kulas (oli@weltenbauer-se.com)
  * company	weltenbauer. Software Entwicklung GmbH
- * date		June 2015
+ * version 	1.2
+ * date		Oct 2015
  */
 
 //-----------------------------------------------------------------------------
@@ -32,10 +33,16 @@ namespace Wb.Companion.Core.UI {
 
         //-----------------------------------------------------------------------------
 
+		// Coherent UI
 		public CoherentUIView coherentUiView;
 		public UIWrapper uiWrapper;
 
+		// Global UI Motion Values
 		public float uiMotionDampingFactor = 5f;
+
+		// UI Editor Values
+		private float editorUIHeight = 1536f;
+		private float editorUIWidth = 2048f;
 
 		// StartScreen UI
 		public GameObject startscreenUI;
@@ -44,19 +51,33 @@ namespace Wb.Companion.Core.UI {
 		private Vector3 startScreenOriginalPos = Vector3.zero;
 		private Vector3 startScreenTargetPos = Vector3.zero;
 
-		// MainHeader & MainMenu UI
+		// MainHeader UI
 		public GameObject mainHeader;
+		private RectTransform mainHeaderRect; 
+		private float mainHeaderHeight = 0f;
+		private Vector3 mainHeaderDisposedPos = Vector3.zero;
+		private Vector3 mainHeaderShowPos = Vector3.zero;
+
+		// MainMenu UI
 		public GameObject mainMenu;
+		private RectTransform mainMenuRect;
+		private float mainMenuWidth = 0f;
+		private bool isMainMenuActive = false;
+		private bool isMainMenuInMotion = false;
+		private Vector3 mainMenuActivePos = Vector3.zero;
+		private Vector3 mainMenuInactivePos = Vector3.zero; 
 
-
+		// Debug
 		public bool debugging = false;
 
+		// Crane Thumbsticks
         private List<WbUIThumbstick> uiThumbsticks = new List<WbUIThumbstick>();
 		private List<Wb3DThumbstick> meshThumbsticks;
-
+		public WbCompCraneRCController craneRCController;
+		
+		// UI Elements / UI Members per Scene
         private UIElement[] uiElements;
 
-		public WbCompCraneRCController craneRCController;
 
 		//-----------------------------------------------------------------------------
 		// MonoBehaviour
@@ -70,19 +91,60 @@ namespace Wb.Companion.Core.UI {
             // get all uiElements for toggeling on and off
             this.uiElements = UIElement.FindObjectsOfType(typeof(UIElement)) as UIElement[];
 
-			Debug.Log ("Screen h/w " + Screen.height + "/" + Screen.width);
+			if(debugging)Debug.Log ("Screen h/w " + Screen.height + "/" + Screen.width);
 
-			// set start screen ui paramenter for disposing
+			// set ui element positons paramenters for disposing/showing
 			this.startScreenOriginalPos = this.startscreenUI.transform.localPosition;
 			this.startScreenTargetPos = new Vector3(this.startscreenUI.transform.localPosition.x, 
 			                                        this.startscreenUI.transform.localPosition.y - (Screen.height * 2),
 			                                        this.startscreenUI.transform.localPosition.z);
 
+			// get rectTransforms and size of header & mainMenu elements
+			this.mainHeaderRect = this.mainHeader.GetComponent<RectTransform>();
+			this.mainHeaderHeight = this.mainHeaderRect.rect.height;
+
+			this.mainMenuRect = this.mainMenu.GetComponent<RectTransform>();
+			this.mainMenuWidth = this.mainMenuRect.rect.width;
+
+			// set origin and target positions
+			this.mainHeaderDisposedPos = new Vector3(this.mainHeader.transform.localPosition.x, 
+			                                         this.mainHeaderHeight + (Screen.height/2), 
+			                                         this.mainHeader.transform.localPosition.z);
+
+			this.mainHeaderShowPos = new Vector3(this.mainHeader.transform.localPosition.x, 
+			                                     1f + (Screen.height/2), 
+			                                     this.mainHeader.transform.localPosition.z);
+
+			this.mainMenuActivePos = new Vector3(Screen.width - this.mainMenuWidth,
+			                                     this.mainMenu.transform.localPosition.y,
+			                                     this.mainMenu.transform.localPosition.z);
+
+			this.mainMenuInactivePos = new Vector3(Screen.width + this.mainMenuWidth, 
+			                                       this.mainMenu.transform.localPosition.y,
+			                                       this.mainMenu.transform.localPosition.z);
+
+
 			//HACK for debug in Unity Editor, because weired results of given screen size
 			#if UNITY_EDITOR
 			this.startScreenTargetPos = new Vector3(this.startscreenUI.transform.localPosition.x, 
-			                                        this.startscreenUI.transform.localPosition.y - (1600f),
+			                                        this.startscreenUI.transform.localPosition.y - (this.editorUIHeight),
 			                                        this.startscreenUI.transform.localPosition.z);
+
+			this.mainHeaderDisposedPos = new Vector3(this.mainHeader.transform.localPosition.x, 
+			                                         this.mainHeaderHeight + (this.editorUIHeight/2), 
+			                                         this.mainHeader.transform.localPosition.z);
+
+			this.mainHeaderShowPos = new Vector3(this.mainHeader.transform.localPosition.x, 
+			                                     1f + (this.editorUIHeight/2), 
+			                                     this.mainHeader.transform.localPosition.z);
+
+			this.mainMenuActivePos = new Vector3((this.editorUIWidth/2) - this.mainMenuWidth,
+												 this.mainMenu.transform.localPosition.y,
+			                                     this.mainMenu.transform.localPosition.z);
+			
+			this.mainMenuInactivePos = new Vector3((this.editorUIWidth/2),
+												   this.mainMenu.transform.localPosition.y,
+			                                       this.mainMenu.transform.localPosition.z);
 			#endif
         }
 
@@ -91,11 +153,15 @@ namespace Wb.Companion.Core.UI {
 		void Update(){
 
 			if(disposeStartScreen && !showStartScreen){
-				this.toggleStartScreenUIPosition(this.startScreenTargetPos, true);
+				this.toggleStartScreenUIPosition(this.startScreenTargetPos);
 			}
 
 			if(showStartScreen && !disposeStartScreen){
-				this.toggleStartScreenUIPosition(this.startScreenOriginalPos, false);
+				this.toggleStartScreenUIPosition(this.startScreenOriginalPos);
+			}
+
+			if(this.isMainMenuInMotion){
+				this.animateMenuMenu();
 			}
 		}
 
@@ -134,31 +200,6 @@ namespace Wb.Companion.Core.UI {
             }
         }
 
-        //-----------------------------------------------------------------------------
-
-        // setPosition and toggle Thumbsticks in scene (e.g. RemoteControlCraneScene)
-        public void toggleUIThumbsticks(string scene) {
-
-            if (scene.Equals(SceneList.RemoteControlCrane)) {
-
-                foreach (WbUIThumbstick uiStick in this.uiThumbsticks) {
-                    uiStick.gameObject.SetActive(true);
-
-					foreach(Wb3DThumbstick meshStick in this.meshThumbsticks){
-						if(meshStick.thumbstickType.Equals(uiStick.thumbstickType)){
-                            uiStick.transform.position = new Vector3(meshStick.UIThumbstickLocator.transform.position.x,
-                                                                     meshStick.UIThumbstickLocator.transform.position.y,
-                                                                     uiStick.transform.position.z);
-						}
-					}
-                }
-            } else {
-                foreach (WbUIThumbstick stick in this.uiThumbsticks) {
-                    stick.gameObject.SetActive(false);
-                }
-            }
-        }
-
 		//-----------------------------------------------------------------------------
 
 		public void showStartScreenUI(){
@@ -175,37 +216,48 @@ namespace Wb.Companion.Core.UI {
 
 		//-----------------------------------------------------------------------------
 
-		public void toggleStartScreenUIPosition(Vector3 targetPos, bool setInactive){
+		public void toggleMainMenu(){
 
-			float height;
+			if(!this.isMainMenuInMotion){
+				this.isMainMenuInMotion = true;
+			}/*else{
+				this.isMainMenuInMotion = false;
+			}*/
+		}
+
+		//-----------------------------------------------------------------------------
+
+		public void toggleStartScreenUIPosition(Vector3 targetPos){
+
+			float height = Screen.height;
 
 			//HACK for debug in Unity Editor, because weired results of given screen size
-			#if UNITY_IOS
-			height = Screen.height *2;
-			#endif
-			
-			#if UNITY_ANDROID
-			height = Screen.height *2;
-			#endif
-			
 			#if UNITY_EDITOR
-			height = 1598f;
+			height = this.editorUIHeight;
 			#endif
 
 			// DISPOSE
 			if(disposeStartScreen && !showStartScreen){
 
+				// StartScreen UI
 				if(this.startscreenUI.transform.localPosition.y > -height){
-					Vector3 oldPos = startscreenUI.transform.localPosition;
-					startscreenUI.transform.localPosition = Vector3.Lerp(oldPos, targetPos, Time.deltaTime * this.uiMotionDampingFactor);
+					Vector3 oldPos = this.startscreenUI.transform.localPosition;
+					this.startscreenUI.transform.localPosition = Vector3.Lerp(oldPos, targetPos, Time.deltaTime * this.uiMotionDampingFactor);
 				}else{
 					this.disposeStartScreen = false;
 					this.startscreenUI.gameObject.SetActive(false);
+				}
+				
+				// MainHeader UI
+				if(this.mainHeader.transform.localPosition.y > this.mainHeaderShowPos.y){
+					Vector3 oldPos = this.mainHeader.transform.localPosition;
+					this.mainHeader.transform.localPosition = Vector3.Lerp (oldPos, this.mainHeaderShowPos, Time.deltaTime * this.uiMotionDampingFactor);
 				}
 			}
 			// SHOW
 			else if (!disposeStartScreen && showStartScreen){
 
+				// StartScreen UI
 				this.startscreenUI.gameObject.SetActive(true);
 
 				if(this.startscreenUI.transform.localPosition.y < 0.05f){
@@ -214,8 +266,70 @@ namespace Wb.Companion.Core.UI {
 				}else{
 					this.showStartScreen = false;
 				}
-			}
 
+				// MainHeader UI
+				if(this.mainHeader.transform.localPosition.y < this.mainHeaderDisposedPos.y){
+					Vector3 oldPos = this.mainHeader.transform.localPosition;
+					this.mainHeader.transform.localPosition = Vector3.Lerp (oldPos, this.mainHeaderDisposedPos, Time.deltaTime * this.uiMotionDampingFactor);
+				}
+			}
+	
+		}
+
+		//-----------------------------------------------------------------------------
+
+		public void animateMenuMenu(){
+
+			if(this.isMainMenuActive){
+
+				// Move in
+				if(this.mainMenu.transform.localPosition.x < this.mainMenuInactivePos.x - 0.1f){
+					Vector3 oldPos = this.mainMenu.transform.localPosition;
+					this.mainMenu.transform.localPosition = Vector3.Lerp(oldPos, this.mainMenuInactivePos, Time.deltaTime * this.uiMotionDampingFactor);
+				}else{
+					this.isMainMenuActive = false;
+					this.isMainMenuInMotion = false;
+					this.mainMenu.gameObject.SetActive(false);
+				}
+
+			}else{
+				// Move out
+				this.mainMenu.gameObject.SetActive(true);
+
+				if(this.mainMenu.transform.localPosition.x > this.mainMenuActivePos.x +0.1f){
+					Vector3 oldPos = this.mainMenu.transform.localPosition;
+					this.mainMenu.transform.localPosition = Vector3.Lerp(oldPos, this.mainMenuActivePos, Time.deltaTime * this.uiMotionDampingFactor);
+				}else{
+					this.isMainMenuActive = true;
+					this.isMainMenuInMotion = false;
+				}
+			}
+		
+		}
+
+		//-----------------------------------------------------------------------------
+		
+		// setPosition and toggle Thumbsticks in scene (e.g. RemoteControlCraneScene)
+		public void toggleUIThumbsticks(string scene) {
+			
+			if (scene.Equals(SceneList.RemoteControlCrane)) {
+				
+				foreach (WbUIThumbstick uiStick in this.uiThumbsticks) {
+					uiStick.gameObject.SetActive(true);
+					
+					foreach(Wb3DThumbstick meshStick in this.meshThumbsticks){
+						if(meshStick.thumbstickType.Equals(uiStick.thumbstickType)){
+							uiStick.transform.position = new Vector3(meshStick.UIThumbstickLocator.transform.position.x,
+							                                         meshStick.UIThumbstickLocator.transform.position.y,
+							                                         uiStick.transform.position.z);
+						}
+					}
+				}
+			} else {
+				foreach (WbUIThumbstick stick in this.uiThumbsticks) {
+					stick.gameObject.SetActive(false);
+				}
+			}
 		}
 
         //-----------------------------------------------------------------------------
