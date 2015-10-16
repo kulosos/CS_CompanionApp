@@ -100,7 +100,7 @@ namespace Wb.Companion.Core.UI {
             // get all uiElements for toggeling on and off
             this.uiElements = UIElement.FindObjectsOfType(typeof(UIElement)) as UIElement[];
 
-			if(debugging)Debug.Log ("Screen h/w " + Screen.height + "/" + Screen.width);
+			if(debugging)Debug.Log ("DEBUG Screen h/w " + Screen.height + "/" + Screen.width);
 
 			// set ui element positons paramenters for disposing/showing
 			this.startScreenOriginalPos = this.startscreenUI.transform.localPosition;
@@ -124,11 +124,11 @@ namespace Wb.Companion.Core.UI {
 			                                     1f + (Screen.height/2), 
 			                                     this.mainHeader.transform.localPosition.z);
 
-			this.mainMenuActivePos = new Vector3(Screen.width - this.mainMenuWidth,
+			this.mainMenuActivePos = new Vector3((Screen.width/2) - this.mainMenuWidth,
 			                                     this.mainMenu.transform.localPosition.y,
 			                                     this.mainMenu.transform.localPosition.z);
-
-			this.mainMenuInactivePos = new Vector3(Screen.width + this.mainMenuWidth, 
+			
+			this.mainMenuInactivePos = new Vector3((Screen.width/2),
 			                                       this.mainMenu.transform.localPosition.y,
 			                                       this.mainMenu.transform.localPosition.z);
 
@@ -155,6 +155,12 @@ namespace Wb.Companion.Core.UI {
 												   this.mainMenu.transform.localPosition.y,
 			                                       this.mainMenu.transform.localPosition.z);
 			#endif
+
+			if(debugging)Debug.Log ("DEBUG menu header show pos: " + this.mainHeaderShowPos.ToString());
+			if(debugging)Debug.Log ("DEBUG menu header dispose pos: " + this.mainHeaderDisposedPos.ToString());
+			if(debugging)Debug.Log ("DEBUG active menu pos: " + this.mainMenuActivePos.ToString());
+			if(debugging)Debug.Log ("DEBUG inactive menu pos: " + this.mainMenuInactivePos.ToString());
+
         }
 
 		//-----------------------------------------------------------------------------
