@@ -39,6 +39,7 @@ namespace Wb.Companion.Core.UI {
 		public bool useCoherentUI = false;
 
 		// Global UI Motion Values
+		public GameObject canvas;
 		public float uiMotionSpeedFactor = 10f;
 
 		// UI Editor Values
@@ -66,8 +67,8 @@ namespace Wb.Companion.Core.UI {
 		private float mainMenuWidth = 0f;
 		private bool isMainMenuActive = true;
 		private bool isMainMenuInMotion = false;
-		private Vector3 mainMenuActivePos = Vector3.zero;
-		private Vector3 mainMenuInactivePos = Vector3.zero; 
+		private Vector2 mainMenuActivePos = Vector2.zero;
+		private Vector2 mainMenuInactivePos = Vector2.zero; 
 
 		// Debug
 		public bool debugging = false;
@@ -119,47 +120,21 @@ namespace Wb.Companion.Core.UI {
 			this.mainMenuWidth = this.mainMenuRect.rect.width;
 
 			// set origin and target positions if MainHeader & MainMenu
-            this.mainHeaderDisposedPos = new Vector2(this.mainHeaderRect.anchoredPosition.x, this.mainHeaderRect.anchoredPosition.y + (Screen.height / 2));
-            this.mainHeaderShowPos = new Vector2(this.mainHeaderRect.anchoredPosition.x, 1f + (Screen.height / 2) );
+            this.mainHeaderDisposedPos = new Vector2(this.mainHeaderRect.anchoredPosition.x, this.mainHeaderHeight);
+            this.mainHeaderShowPos = new Vector2(this.mainHeaderRect.anchoredPosition.x, 0f);
 
-			this.mainMenuActivePos = new Vector3((Screen.width/2) - this.mainMenuWidth,
-			                                     this.mainMenu.transform.localPosition.y,
-			                                     this.mainMenu.transform.localPosition.z);
-			
-			this.mainMenuInactivePos = new Vector3((Screen.width/2),
-			                                       this.mainMenu.transform.localPosition.y,
-			                                       this.mainMenu.transform.localPosition.z);
-
-
-			//HACK for debug in Unity Editor, because weired results of given screen size
-            //#if UNITY_EDITOR
-            //this.startScreenTargetPos = new Vector3(this.startscreenUI.transform.localPosition.x, 
-            //                                        this.startscreenUI.transform.localPosition.y - (this.editorUIHeight),
-            //                                        this.startscreenUI.transform.localPosition.z);
-
-            //this.mainHeaderDisposedPos = new Vector3(this.mainHeader.transform.localPosition.x, 
-            //                                         this.mainHeaderHeight + (this.editorUIHeight/2), 
-            //                                         this.mainHeader.transform.localPosition.z);
-
-            //this.mainHeaderShowPos = new Vector3(this.mainHeader.transform.localPosition.x, 
-            //                                     1f + (this.editorUIHeight/2), 
-            //                                     this.mainHeader.transform.localPosition.z);
-
-            //this.mainMenuActivePos = new Vector3((this.editorUIWidth/2) - this.mainMenuWidth,
-            //                                     this.mainMenu.transform.localPosition.y,
-            //                                     this.mainMenu.transform.localPosition.z);
-			
-            //this.mainMenuInactivePos = new Vector3((this.editorUIWidth/2),
-            //                                       this.mainMenu.transform.localPosition.y,
-            //                                       this.mainMenu.transform.localPosition.z);
-            //#endif
+			this.mainMenuActivePos = new Vector2(this.mainMenuRect.anchoredPosition.x - this.mainMenuWidth, this.mainMenuRect.anchoredPosition.y);
+			this.mainMenuInactivePos = new Vector2(this.mainMenuRect.anchoredPosition.x , this.mainMenuRect.anchoredPosition.y);
 
             if (debugging) {
                 Debug.Log("DEBUG Screen h/w " + Screen.height + "/" + Screen.width);
+				Debug.Log("DEBUG start screen ui org pos: " + this.startScreenOriginalPos.ToString());
+				Debug.Log("DEBUG start screen ui target pos: " + this.startScreenTargetPos.ToString());
                 Debug.Log("DEBUG menu header show pos: " + this.mainHeaderShowPos.ToString());
                 Debug.Log("DEBUG menu header dispose pos: " + this.mainHeaderDisposedPos.ToString());
                 Debug.Log("DEBUG active menu pos: " + this.mainMenuActivePos.ToString());
                 Debug.Log("DEBUG inactive menu pos: " + this.mainMenuInactivePos.ToString());
+				Debug.Log ("DEBUG main menu WIDTH: " + this.mainMenuWidth);
             }
         }
 
@@ -246,39 +221,34 @@ namespace Wb.Companion.Core.UI {
 
 			float height = Screen.height;
 
-			//HACK for debug in Unity Editor, because weired results of given screen size
-            //#if UNITY_EDITOR
-            //height = this.editorUIHeight;
-            //#endif
-
 			// DISPOSE
 			if(disposeStartScreen && !showStartScreen){
-
 				// StartScreen UI
-				if(this.startScreenRect.rect.y > -height){
+				if(this.startScreenRect.anchoredPosition.y > -height){
                     Vector2 oldPos = this.startScreenRect.anchoredPosition;
 					this.startScreenRect.anchoredPosition = Vector2.Lerp(oldPos, targetPos, Time.deltaTime * this.uiMotionSpeedFactor);
-				}else{
-					this.disposeStartScreen = false;
-					this.startscreenUI.gameObject.SetActive(false);
 				}
-				
-				// MainHeader UI
-				if(this.mainHeaderRect.anchoredPosition.y > this.mainHeaderShowPos.y){
-					Vector2 oldPos = this.mainHeaderRect.anchoredPosition;
-					this.mainHeaderRect.anchoredPosition = Vector2.Lerp (oldPos, this.mainHeaderShowPos, Time.deltaTime * this.uiMotionSpeedFactor);
+				else{
+					// MainHeader UI
+					if(this.mainHeaderRect.anchoredPosition.y > this.mainHeaderShowPos.y){
+						Vector2 oldPos = this.mainHeaderRect.anchoredPosition;
+						this.mainHeaderRect.anchoredPosition = Vector2.Lerp (oldPos, this.mainHeaderShowPos, Time.deltaTime * this.uiMotionSpeedFactor);
+					}else{
+						this.disposeStartScreen = false;
+						this.startscreenUI.gameObject.SetActive(false);
+					}
 				}
 			}
 			// SHOW
 			else if (!disposeStartScreen && showStartScreen){
-
 				// StartScreen UI
 				this.startscreenUI.gameObject.SetActive(true);
 
-                if (this.startScreenRect.rect.y < 0.05f) {
+                if (this.startScreenRect.anchoredPosition.y < 0f) {
                     Vector2 oldPos = this.startScreenRect.anchoredPosition;
                     this.startScreenRect.anchoredPosition = Vector2.Lerp(oldPos, targetPos, Time.deltaTime * this.uiMotionSpeedFactor);
-				}else{
+				}
+				else{
 					this.showStartScreen = false;
 				}
 
@@ -288,7 +258,6 @@ namespace Wb.Companion.Core.UI {
 					this.mainHeaderRect.anchoredPosition = Vector2.Lerp (oldPos, this.mainHeaderDisposedPos, Time.deltaTime * this.uiMotionSpeedFactor);
 				}
 			}
-	
 		}
 
 		//-----------------------------------------------------------------------------
@@ -298,9 +267,9 @@ namespace Wb.Companion.Core.UI {
 			if(this.isMainMenuActive){
 
 				// Move in
-				if(this.mainMenu.transform.localPosition.x < this.mainMenuInactivePos.x - 0.1f){
-					Vector3 oldPos = this.mainMenu.transform.localPosition;
-					this.mainMenu.transform.localPosition = Vector3.Lerp(oldPos, this.mainMenuInactivePos, Time.deltaTime * this.uiMotionSpeedFactor);
+				if(this.mainMenuRect.anchoredPosition.x < this.mainMenuInactivePos.x - 0.1f){
+					Vector2 oldPos = this.mainMenuRect.anchoredPosition;
+					this.mainMenuRect.anchoredPosition = Vector2.Lerp(oldPos, this.mainMenuInactivePos, Time.deltaTime * this.uiMotionSpeedFactor);
 				}else{
 					this.isMainMenuActive = false;
 					this.isMainMenuInMotion = false;
@@ -311,9 +280,9 @@ namespace Wb.Companion.Core.UI {
 				// Move out
 				this.mainMenu.gameObject.SetActive(true);
 
-				if(this.mainMenu.transform.localPosition.x > this.mainMenuActivePos.x +0.1f){
-					Vector3 oldPos = this.mainMenu.transform.localPosition;
-					this.mainMenu.transform.localPosition = Vector3.Lerp(oldPos, this.mainMenuActivePos, Time.deltaTime * this.uiMotionSpeedFactor);
+				if(this.mainMenuRect.anchoredPosition.x > this.mainMenuActivePos.x +0.1f){
+					Vector2 oldPos = this.mainMenuRect.anchoredPosition;
+					this.mainMenuRect.anchoredPosition = Vector2.Lerp(oldPos, this.mainMenuActivePos, Time.deltaTime * this.uiMotionSpeedFactor);
 				}else{
 					this.isMainMenuActive = true;
 					this.isMainMenuInMotion = false;
