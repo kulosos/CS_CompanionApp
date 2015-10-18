@@ -32,6 +32,7 @@ namespace Wb.Companion.Core.WbNetwork {
 
 		public bool isActiveConnection = false;
         public bool debugging = true;
+        public bool DebugBypassConnection = false;
 
 		public Text inputIP;
 		public Text inputPort;
@@ -102,8 +103,33 @@ namespace Wb.Companion.Core.WbNetwork {
 		// used by Unity UI Connect Btn on Startpage
 		public void connect(){
 
-			Debug.Log ("IP: " + inputIP.text + ":" + inputPort.text + " | " + inputPassword.text);
-			NetworkManager.connect(inputIP.text.ToString(), inputPort.text.ToString(), inputPassword.text.ToString());
+            // HACK this is only for debugging purposes
+            // avoids scene loading and following actions
+            if (DebugBypassConnection) {
+
+                if (debugging) {
+                    this.uiManager.toggleMainMenu();
+
+                    if (this.uiManager.useCoherentUI) {
+                        this.uiManager.switchGameUI();
+                    } else {
+                        this.uiManager.diposeStartScreen();
+                    }
+                }
+                return;
+            }
+
+            if (inputIP.text.Equals("") || inputPort.text.Equals("") || inputPassword.text.Equals("")) {
+
+                Debug.Log("Empty connecetion parameter. Fallback to default connection");
+                NetworkManager.connect(this.defaultIP.ToString(), this.defaultPort.ToString(), this.defaultPassword.ToString());
+
+            } else {
+
+                Debug.Log("IP: " + inputIP.text + ":" + inputPort.text + " | " + inputPassword.text);
+                NetworkManager.connect(inputIP.text.ToString(), inputPort.text.ToString(), inputPassword.text.ToString());
+            }
+			
 		}
 
 		public static void connect(string ip, string port, string password){ 

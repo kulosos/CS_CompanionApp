@@ -47,17 +47,18 @@ namespace Wb.Companion.Core.UI {
 
 		// StartScreen UI
 		public GameObject startscreenUI;
+        private RectTransform startScreenRect;
 		private bool showStartScreen;
 		private bool disposeStartScreen;
-		private Vector3 startScreenOriginalPos = Vector3.zero;
-		private Vector3 startScreenTargetPos = Vector3.zero;
+		private Vector2 startScreenOriginalPos = Vector2.zero;
+		private Vector2 startScreenTargetPos = Vector2.zero;
 
 		// MainHeader UI
 		public GameObject mainHeader;
 		private RectTransform mainHeaderRect; 
 		private float mainHeaderHeight = 0f;
-		private Vector3 mainHeaderDisposedPos = Vector3.zero;
-		private Vector3 mainHeaderShowPos = Vector3.zero;
+		private Vector2 mainHeaderDisposedPos = Vector2.zero;
+		private Vector2 mainHeaderShowPos = Vector2.zero;
 
 		// MainMenu UI
 		public GameObject mainMenu;
@@ -94,19 +95,21 @@ namespace Wb.Companion.Core.UI {
 
 		void Start() {
 
-			this.coherentUiView.ReceivesInput = true;
+            if(this.useCoherentUI) this.coherentUiView.ReceivesInput = true;
+
             this.initWbUIThumbstickList();
 
             // get all uiElements for toggeling on and off
             this.uiElements = UIElement.FindObjectsOfType(typeof(UIElement)) as UIElement[];
 
-			if(debugging)Debug.Log ("DEBUG Screen h/w " + Screen.height + "/" + Screen.width);
-
 			// set ui element positons paramenters for disposing/showing
-			this.startScreenOriginalPos = this.startscreenUI.transform.localPosition;
-			this.startScreenTargetPos = new Vector3(this.startscreenUI.transform.localPosition.x, 
-			                                        this.startscreenUI.transform.localPosition.y - (Screen.height * 2),
-			                                        this.startscreenUI.transform.localPosition.z);
+            this.startScreenRect = this.startscreenUI.GetComponent<RectTransform>();
+            this.startScreenOriginalPos = this.startScreenRect.anchoredPosition;
+			this.startScreenTargetPos = new Vector2(this.startScreenOriginalPos.x, this.startScreenRect.anchoredPosition.y - (Screen.height * 2) );
+                
+                //new Vector3(this.startscreenUI.transform.localPosition.x, 
+                //                                    this.startscreenUI.transform.localPosition.y - (Screen.height * 2),
+                //                                    this.startscreenUI.transform.localPosition.z);
 
 			// get rectTransforms and size of header & mainMenu elements
 			this.mainHeaderRect = this.mainHeader.GetComponent<RectTransform>();
@@ -115,14 +118,9 @@ namespace Wb.Companion.Core.UI {
 			this.mainMenuRect = this.mainMenu.GetComponent<RectTransform>();
 			this.mainMenuWidth = this.mainMenuRect.rect.width;
 
-			// set origin and target positions
-			this.mainHeaderDisposedPos = new Vector3(this.mainHeader.transform.localPosition.x, 
-			                                         this.mainHeaderHeight + (Screen.height/2), 
-			                                         this.mainHeader.transform.localPosition.z);
-
-			this.mainHeaderShowPos = new Vector3(this.mainHeader.transform.localPosition.x, 
-			                                     1f + (Screen.height/2), 
-			                                     this.mainHeader.transform.localPosition.z);
+			// set origin and target positions if MainHeader & MainMenu
+            this.mainHeaderDisposedPos = new Vector2(this.mainHeaderRect.anchoredPosition.x, this.mainHeaderRect.anchoredPosition.y + (Screen.height / 2));
+            this.mainHeaderShowPos = new Vector2(this.mainHeaderRect.anchoredPosition.x, 1f + (Screen.height / 2) );
 
 			this.mainMenuActivePos = new Vector3((Screen.width/2) - this.mainMenuWidth,
 			                                     this.mainMenu.transform.localPosition.y,
@@ -134,33 +132,35 @@ namespace Wb.Companion.Core.UI {
 
 
 			//HACK for debug in Unity Editor, because weired results of given screen size
-			#if UNITY_EDITOR
-			this.startScreenTargetPos = new Vector3(this.startscreenUI.transform.localPosition.x, 
-			                                        this.startscreenUI.transform.localPosition.y - (this.editorUIHeight),
-			                                        this.startscreenUI.transform.localPosition.z);
+            //#if UNITY_EDITOR
+            //this.startScreenTargetPos = new Vector3(this.startscreenUI.transform.localPosition.x, 
+            //                                        this.startscreenUI.transform.localPosition.y - (this.editorUIHeight),
+            //                                        this.startscreenUI.transform.localPosition.z);
 
-			this.mainHeaderDisposedPos = new Vector3(this.mainHeader.transform.localPosition.x, 
-			                                         this.mainHeaderHeight + (this.editorUIHeight/2), 
-			                                         this.mainHeader.transform.localPosition.z);
+            //this.mainHeaderDisposedPos = new Vector3(this.mainHeader.transform.localPosition.x, 
+            //                                         this.mainHeaderHeight + (this.editorUIHeight/2), 
+            //                                         this.mainHeader.transform.localPosition.z);
 
-			this.mainHeaderShowPos = new Vector3(this.mainHeader.transform.localPosition.x, 
-			                                     1f + (this.editorUIHeight/2), 
-			                                     this.mainHeader.transform.localPosition.z);
+            //this.mainHeaderShowPos = new Vector3(this.mainHeader.transform.localPosition.x, 
+            //                                     1f + (this.editorUIHeight/2), 
+            //                                     this.mainHeader.transform.localPosition.z);
 
-			this.mainMenuActivePos = new Vector3((this.editorUIWidth/2) - this.mainMenuWidth,
-												 this.mainMenu.transform.localPosition.y,
-			                                     this.mainMenu.transform.localPosition.z);
+            //this.mainMenuActivePos = new Vector3((this.editorUIWidth/2) - this.mainMenuWidth,
+            //                                     this.mainMenu.transform.localPosition.y,
+            //                                     this.mainMenu.transform.localPosition.z);
 			
-			this.mainMenuInactivePos = new Vector3((this.editorUIWidth/2),
-												   this.mainMenu.transform.localPosition.y,
-			                                       this.mainMenu.transform.localPosition.z);
-			#endif
+            //this.mainMenuInactivePos = new Vector3((this.editorUIWidth/2),
+            //                                       this.mainMenu.transform.localPosition.y,
+            //                                       this.mainMenu.transform.localPosition.z);
+            //#endif
 
-			if(debugging)Debug.Log ("DEBUG menu header show pos: " + this.mainHeaderShowPos.ToString());
-			if(debugging)Debug.Log ("DEBUG menu header dispose pos: " + this.mainHeaderDisposedPos.ToString());
-			if(debugging)Debug.Log ("DEBUG active menu pos: " + this.mainMenuActivePos.ToString());
-			if(debugging)Debug.Log ("DEBUG inactive menu pos: " + this.mainMenuInactivePos.ToString());
-
+            if (debugging) {
+                Debug.Log("DEBUG Screen h/w " + Screen.height + "/" + Screen.width);
+                Debug.Log("DEBUG menu header show pos: " + this.mainHeaderShowPos.ToString());
+                Debug.Log("DEBUG menu header dispose pos: " + this.mainHeaderDisposedPos.ToString());
+                Debug.Log("DEBUG active menu pos: " + this.mainMenuActivePos.ToString());
+                Debug.Log("DEBUG inactive menu pos: " + this.mainMenuInactivePos.ToString());
+            }
         }
 
 		//-----------------------------------------------------------------------------
@@ -242,31 +242,31 @@ namespace Wb.Companion.Core.UI {
 
 		//-----------------------------------------------------------------------------
 
-		public void toggleStartScreenUIPosition(Vector3 targetPos){
+		public void toggleStartScreenUIPosition(Vector2 targetPos){
 
 			float height = Screen.height;
 
 			//HACK for debug in Unity Editor, because weired results of given screen size
-			#if UNITY_EDITOR
-			height = this.editorUIHeight;
-			#endif
+            //#if UNITY_EDITOR
+            //height = this.editorUIHeight;
+            //#endif
 
 			// DISPOSE
 			if(disposeStartScreen && !showStartScreen){
 
 				// StartScreen UI
-				if(this.startscreenUI.transform.localPosition.y > -height){
-					Vector3 oldPos = this.startscreenUI.transform.localPosition;
-					this.startscreenUI.transform.localPosition = Vector3.Lerp(oldPos, targetPos, Time.deltaTime * this.uiMotionSpeedFactor);
+				if(this.startScreenRect.rect.y > -height){
+                    Vector2 oldPos = this.startScreenRect.anchoredPosition;
+					this.startScreenRect.anchoredPosition = Vector2.Lerp(oldPos, targetPos, Time.deltaTime * this.uiMotionSpeedFactor);
 				}else{
 					this.disposeStartScreen = false;
 					this.startscreenUI.gameObject.SetActive(false);
 				}
 				
 				// MainHeader UI
-				if(this.mainHeader.transform.localPosition.y > this.mainHeaderShowPos.y){
-					Vector3 oldPos = this.mainHeader.transform.localPosition;
-					this.mainHeader.transform.localPosition = Vector3.Lerp (oldPos, this.mainHeaderShowPos, Time.deltaTime * this.uiMotionSpeedFactor);
+				if(this.mainHeaderRect.anchoredPosition.y > this.mainHeaderShowPos.y){
+					Vector2 oldPos = this.mainHeaderRect.anchoredPosition;
+					this.mainHeaderRect.anchoredPosition = Vector2.Lerp (oldPos, this.mainHeaderShowPos, Time.deltaTime * this.uiMotionSpeedFactor);
 				}
 			}
 			// SHOW
@@ -275,17 +275,17 @@ namespace Wb.Companion.Core.UI {
 				// StartScreen UI
 				this.startscreenUI.gameObject.SetActive(true);
 
-				if(this.startscreenUI.transform.localPosition.y < 0.05f){
-					Vector3 oldPos = startscreenUI.transform.localPosition;
-					startscreenUI.transform.localPosition = Vector3.Lerp(oldPos, targetPos, Time.deltaTime * this.uiMotionSpeedFactor);
+                if (this.startScreenRect.rect.y < 0.05f) {
+                    Vector2 oldPos = this.startScreenRect.anchoredPosition;
+                    this.startScreenRect.anchoredPosition = Vector2.Lerp(oldPos, targetPos, Time.deltaTime * this.uiMotionSpeedFactor);
 				}else{
 					this.showStartScreen = false;
 				}
 
 				// MainHeader UI
-				if(this.mainHeader.transform.localPosition.y < this.mainHeaderDisposedPos.y){
-					Vector3 oldPos = this.mainHeader.transform.localPosition;
-					this.mainHeader.transform.localPosition = Vector3.Lerp (oldPos, this.mainHeaderDisposedPos, Time.deltaTime * this.uiMotionSpeedFactor);
+				if(this.mainHeaderRect.anchoredPosition.y < this.mainHeaderDisposedPos.y){
+					Vector2 oldPos = this.mainHeaderRect.anchoredPosition;
+					this.mainHeaderRect.anchoredPosition = Vector2.Lerp (oldPos, this.mainHeaderDisposedPos, Time.deltaTime * this.uiMotionSpeedFactor);
 				}
 			}
 	
@@ -381,12 +381,12 @@ namespace Wb.Companion.Core.UI {
         }
 
         public void unloadMainMenu(string setMenuInactive) {
-			if(this.useCoherentUI)this.coherentUiView.View.TriggerEvent("unloadMainMenu", setMenuInactive);
+            //if(this.useCoherentUI)this.coherentUiView.View.TriggerEvent("unloadMainMenu", setMenuInactive);
         }
 
         // CONNECTION
 		public void setConnectionErrorMsg(string obj){
-			if(this.useCoherentUI)this.coherentUiView.View.TriggerEvent("setConnectionErrorMsg", obj);
+            //if(this.useCoherentUI)this.coherentUiView.View.TriggerEvent("setConnectionErrorMsg", obj);
 		}
 
         public void showLoadingScreen() {
