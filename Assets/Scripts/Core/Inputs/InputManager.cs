@@ -1,18 +1,16 @@
-﻿/*
- * brief	Input Management class
- * author	Benedikt Niesen (benedikt@weltenbauer-se.com)
- * company	weltenbauer. Software Entwicklung GmbH
- * date		March 2015
- */
-
+/**
+* @brief		InputManager (Inputs from Companion App for ConSim PC Version)
+* @author		Oliver Kulas (oli@weltenbauer-se.com)
+* @date			September 2015
+*/
 //-----------------------------------------------------------------------------
 
 using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
+using UnityEngine.UI;
 using Wb.Companion.Core;
 using Wb.Companion.Core.WbNetwork;
-using UnityEngine.UI;
 using Wb.Companion.Core.WbCamera;
 using  Wb.Companion.Core.WbAdministration;
 
@@ -29,15 +27,6 @@ namespace Wb.Companion.Core.Inputs {
 
 		public static InputManager instance;
 
-        public TouchScript.Gestures.PanGesture panGesture;
-        public TouchScript.Gestures.ScaleGesture scaleGesture;
-        public TouchScript.Gestures.TapGesture tapGesture;
-		public TouchScript.Gestures.RotateGesture rotateGesture;
-		public TouchScript.Gestures.ReleaseGesture releaseGesture;
-
-		public System.Action<Vector2> OnTouchSinglePan;
-		public System.Action<Vector2> OnTouchDoublePan;
-
         // TiltInput
         public float forwardCenterAngleOffset = 0f;
         public float sidewaysCenterAngleOffset = 0f;
@@ -46,12 +35,16 @@ namespace Wb.Companion.Core.Inputs {
 		public float tiltSteeringDamping = 1.0f;
 
 		public bool isActiveTiltInput = false;
-
-		private float currentTiltValue = 0.0f;
+        
+        private float timeSinceLastStart = 0;
+		
+        private float currentTiltValue = 0.0f;
 		public Text labelSliderTiltValue;
 		public Text labelSliderTiltDamping;
 
 		//---------------------------------------------------------------------
+        // Mono Behaviour
+        //---------------------------------------------------------------------
 
 		public void Awake() {
 			InputManager.instance = this;
@@ -61,83 +54,48 @@ namespace Wb.Companion.Core.Inputs {
 			return InputManager.instance;
 		}
 
+        //---------------------------------------------------------------------
+
         public void Start() {
-
-            this.tapGesture.Tapped += CameraManager.getInstance().tapHandler;
-            this.scaleGesture.Scaled += CameraManager.getInstance().scaleHandler;
-			this.panGesture.Panned += CameraManager.getInstance().panStartedHandler; //this.wbTransformer2d.panStarted; //touchGesturePanEvent;
-			//this.panGesture.PanStarted += touchGesturePanStartet;
-			this.panGesture.PanCompleted += CameraManager.getInstance().panCompletedHandler;
-			this.rotateGesture.Rotated += CameraManager.getInstance().rotateHandler;
-			this.releaseGesture.Released += CameraManager.getInstance().releaseHandler;
-
         }
+
+        //---------------------------------------------------------------------
 
         void Update() {
 
-            // Tilt Input
+            // Send Tilt Input frame rate independent
             if (NetworkManager.getInstance().isActiveConnection && InputManager.getInstance().isActiveTiltInput) {
-                WbCompRPCWrapper.getInstance().setTiltInput(this.getSmoothAxisValues());
+                // send TiltValues every 1/rate second (e.g 1/15 = 15 times per second)
+                if (timeSinceLastStart >= 1f / Network.sendRate) {
+
+                    // FIXME
+                    //WbCompRPCWrapper.getInstance().setTiltInput(this.getSmoothAxisValues());
+
+                    float tiltValue = this.getSmoothAxisValues();
+                    if (tiltValue > 0f) {
+                        WbCompStateSyncSending.getInstance().setVehicleInput(InputKeys.DRIVING_STEER_RIGHT, tiltValue);
+                    }
+                    else if (tiltValue < 0f) {
+                        WbCompStateSyncSending.getInstance().setVehicleInput(InputKeys.DRIVING_STEER_LEFT, -tiltValue);
+                    }
+
+
+                    timeSinceLastStart = 0;
+                }
+                timeSinceLastStart += Time.deltaTime;
             }
-
         }
 
-        //---------------------------------------------------------------------
-
-        private void touchGestureScaleEvent(object sender, System.EventArgs e) {
-			//Debug.Log ("touch gesture SCALE recognized");
-        }
-
-        //---------------------------------------------------------------------
-
-        private void touchGestureTapEvent(object sender, System.EventArgs e) {
-			//Debug.Log ("touch gesture TAP recognized");
-
-        }	
-
 		//---------------------------------------------------------------------
-		
-		private void touchGesturePanEvent(object sender, System.EventArgs e) {
-			//Debug.Log ("touch gesture PAN recognized");
 
-			TouchScript.Gestures.PanGesture gesture = sender as TouchScript.Gestures.PanGesture;
-			Vector2 delta = (gesture.ScreenPosition - gesture.PreviousScreenPosition);
+		public void setInitSceneInputs(string scene){
 
-			//Debug.Log ("Delta: " + delta.ToString());
-
-
-			//GameObject go = GameObject.FindGameObjectsWithTag("Cube");
-
-
-			//Camera.main.transform.Translate(new Vector3(delta.x, 0.0f, delta.y));
-
-			if(gesture.ActiveTouches.Count == 1){
-				if(this.OnTouchSinglePan != null){
-					this.OnTouchSinglePan(delta);
-
-				}
+			if(scene.Equals(SceneList.RemoteControlDriving)){
+				isActiveTiltInput = true;
+			}else{
+				isActiveTiltInput = false;
 			}
-			else if (gesture.ActiveTouches.Count > 0){
-				if(this.OnTouchDoublePan != null){
-					this.OnTouchDoublePan(delta);
 
-				}
-			}
-			
-		}
-
-		//---------------------------------------------------------------------
-		
-		private void touchGesturePanStartet(object sender, System.EventArgs e) {
-			//Debug.Log ("touch gesture PAN STARTED recognized");
-			
-		}
-
-		//---------------------------------------------------------------------
-		
-		private void touchGesturePanCompleted(object sender, System.EventArgs e) {
-			//Debug.Log ("touch gesture PAN COMPLETED recognized");
-			
 		}
 
         // --------------------------------------------------------------------
@@ -178,7 +136,6 @@ namespace Wb.Companion.Core.Inputs {
             } else {
                 InputManager.getInstance().isActiveTiltInput = false;
             }
-
         }
 
         //-----------------------------------------------------------------------------
@@ -224,6 +181,5 @@ namespace Wb.Companion.Core.Inputs {
 		public float getTiltSteeringDamping(){
 			return tiltSteeringDamping;
 		}
-
 	}
 }

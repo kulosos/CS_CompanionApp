@@ -19,7 +19,7 @@
 	<DebugType>full</DebugType>
 	<Optimize>false</Optimize>
 	<OutputPath>Temp\bin\Debug\</OutputPath>
-	<DefineConstants>DEBUG;TRACE;UNITY_4_6_4;UNITY_4_6;UNITY_IPHONE;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_IL2CPP;INCLUDE_WP8SUPPORT;ENABLE_WWW;ENABLE_IMAGEEFFECTS;UNITY_IPHONE_API;ENABLE_4_6_FEATURES;INCLUDE_WP_BLUE_SUPPORT;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;ENABLE_NETWORK;ENABLE_PHYSICS;UNITY5_SCRIPTING_IN_UNITY4;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_GAMECENTER;UNITY_IOS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_MONO;DEVELOPMENT_BUILD;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_OSX;UNITY_TEAM_LICENSE;UNITY_PRO_LICENSE</DefineConstants>
+	<DefineConstants>DEBUG;TRACE;UNITY_4_6_8;UNITY_4_6;UNITY_IPHONE;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_IL2CPP;INCLUDE_WP8SUPPORT;ENABLE_WWW;ENABLE_IMAGEEFFECTS;UNITY_IPHONE_API;ENABLE_4_6_FEATURES;INCLUDE_WP_BLUE_SUPPORT;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;ENABLE_NETWORK;ENABLE_PHYSICS;UNITY5_SCRIPTING_IN_UNITY4;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_GAMECENTER;UNITY_IOS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_MONO;DEVELOPMENT_BUILD;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_OSX;UNITY_TEAM_LICENSE;UNITY_PRO_LICENSE</DefineConstants>
 	<ErrorReport>prompt</ErrorReport>
 	<WarningLevel>4</WarningLevel>
 	<NoWarn>0169</NoWarn>
@@ -48,16 +48,33 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Core\Administration\SceneManager.cs" />
      <Compile Include="Assets\Scripts\Core\Camera\CameraManager.cs" />
+     <Compile Include="Assets\Scripts\Core\Inputs\InputKeys.cs" />
      <Compile Include="Assets\Scripts\Core\Inputs\InputManager.cs" />
+     <Compile Include="Assets\Scripts\Core\Inputs\TouchInputManager.cs" />
      <Compile Include="Assets\Scripts\Core\Inputs\WbAxisButton.cs" />
+     <Compile Include="Assets\Scripts\Core\Network\ICompNetworkOwner.cs" />
      <Compile Include="Assets\Scripts\Core\Network\NetworkManager.cs" />
      <Compile Include="Assets\Scripts\Core\Network\WbCompRPCWrapper.cs" />
+     <Compile Include="Assets\Scripts\Core\Network\WbCompStateSyncReceiving.cs" />
+     <Compile Include="Assets\Scripts\Core\Network\WbCompStateSyncSending.cs" />
      <Compile Include="Assets\Scripts\Core\UI\DebugUI.cs" />
+     <Compile Include="Assets\Scripts\Core\UI\UIElement.cs" />
+     <Compile Include="Assets\Scripts\Core\UI\UIMainMenuItem.cs" />
      <Compile Include="Assets\Scripts\Core\UI\UIManager.cs" />
+     <Compile Include="Assets\Scripts\Core\UI\UIMenuItem.cs" />
+     <Compile Include="Assets\Scripts\Core\UI\UIRetailSubMenu.cs" />
+     <Compile Include="Assets\Scripts\Core\UI\UIRetailerItem.cs" />
      <Compile Include="Assets\Scripts\Core\UI\UIWrapper.cs" />
      <Compile Include="Assets\Scripts\Core\UI\WbUIThumbstick.cs" />
+     <Compile Include="Assets\Scripts\Game\BackViewCamera.cs" />
      <Compile Include="Assets\Scripts\Game\VehicleInstruments.cs" />
      <Compile Include="Assets\Scripts\Game\Wb3DThumbstick.cs" />
+     <Compile Include="Assets\Scripts\Game\WbCompCraneRCController.cs" />
+     <Compile Include="Assets\Scripts\Game\WbCompMapManager.cs" />
+     <Compile Include="Assets\Scripts\Game\WbCompMapMarker.cs" />
+     <Compile Include="Assets\Scripts\Game\WbCompMapVehicle.cs" />
+     <Compile Include="Assets\Scripts\Game\WbCompRetailManager.cs" />
+     <Compile Include="Assets\Scripts\Game\WbCraneRCButton.cs" />
      <Compile Include="Assets\Scripts\Image Effects\Blur.cs" />
      <Compile Include="Assets\Scripts\Image Effects\BlurEffect.cs" />
      <Compile Include="Assets\Scripts\Image Effects\ColorCorrectionEffect.cs" />
@@ -161,7 +178,7 @@
      <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\_BloomAndFlares\BrightPassFilter2.shader" />
      <None Include="Assets\Scripts\Image Effects\_Sources\Shaders\GlowConeTap.shader" />
  <Reference Include="UnityEngine.UI">
- <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/4.6.4/UnityEngine.UI.dll</HintPath>
+ <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/4.6.8/Standalone/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="TouchScript">
  <HintPath>/Users/oli/Documents/workspace/unity/CS_CompanionApp/Assets/Libs/TouchScript/Plugins/TouchScript.dll</HintPath>

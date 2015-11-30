@@ -197,4 +197,10 @@ function bindMenuButtons(){
 		});
 	});
 	
+	$("body").find("#menuIdBackViewCamera").bind( "click", function() {
+		unloadMainMenu(true, function(){
+			engine.trigger("loadScene", "04_BackViewCamera");
+		});
+	});
+	
 }

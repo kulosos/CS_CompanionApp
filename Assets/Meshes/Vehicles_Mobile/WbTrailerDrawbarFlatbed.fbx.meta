@@ -1,0 +1,143 @@
+fileFormatVersion: 2
+guid: 2d32540ac54a87c409af086964e82c9b
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: CenterPivotPlate
+    100002: Drawbar
+    100004: LoadingFlapBack
+    100006: LoadingFlapLeft1
+    100008: LoadingFlapLeft2
+    100010: LoadingFlaps
+    100012: LoadingFlapsRight1
+    100014: LoadingFlapsRight2
+    100016: Mesh_F_R
+    100018: Mesh_R_L
+    100020: Mesh_R_R
+    100022: Meshl_F_L
+    100024: RotaryPlate
+    100026: TrailerBody
+    100028: //RootNode
+    100030: WheelsFront
+    100032: WheelsRear
+    100034: body
+    100036: body2
+    400000: CenterPivotPlate
+    400002: Drawbar
+    400004: LoadingFlapBack
+    400006: LoadingFlapLeft1
+    400008: LoadingFlapLeft2
+    400010: LoadingFlaps
+    400012: LoadingFlapsRight1
+    400014: LoadingFlapsRight2
+    400016: Mesh_F_R
+    400018: Mesh_R_L
+    400020: Mesh_R_R
+    400022: Meshl_F_L
+    400024: RotaryPlate
+    400026: TrailerBody
+    400028: //RootNode
+    400030: WheelsFront
+    400032: WheelsRear
+    400034: body
+    400036: body2
+    2300000: Drawbar
+    2300002: LoadingFlapBack
+    2300004: LoadingFlapLeft1
+    2300006: LoadingFlapLeft2
+    2300008: LoadingFlapsRight1
+    2300010: LoadingFlapsRight2
+    2300012: Mesh_F_R
+    2300014: Mesh_R_L
+    2300016: Mesh_R_R
+    2300018: Meshl_F_L
+    2300020: RotaryPlate
+    2300022: TrailerBody
+    2300024: body
+    2300026: body2
+    2300028: WheelsFront
+    3300000: Drawbar
+    3300002: LoadingFlapBack
+    3300004: LoadingFlapLeft1
+    3300006: LoadingFlapLeft2
+    3300008: LoadingFlapsRight1
+    3300010: LoadingFlapsRight2
+    3300012: Mesh_F_R
+    3300014: Mesh_R_L
+    3300016: Mesh_R_R
+    3300018: Meshl_F_L
+    3300020: RotaryPlate
+    3300022: TrailerBody
+    3300024: body
+    3300026: body2
+    3300028: WheelsFront
+    4300000: LoadingFlapLeft1
+    4300002: LoadingFlapLeft2
+    4300004: LoadingFlapsRight1
+    4300006: LoadingFlapsRight2
+    4300008: LoadingFlapBack
+    4300010: RotaryPlate
+    4300012: Drawbar
+    4300014: Meshl_F_L
+    4300016: Mesh_F_R
+    4300018: Mesh_R_L
+    4300020: Mesh_R_R
+    4300022: TrailerBody
+    4300024: body
+    4300026: body2
+    4300028: WheelsFront
+    9500000: //RootNode
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 

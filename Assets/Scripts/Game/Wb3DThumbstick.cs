@@ -6,6 +6,7 @@ using Wb.Companion.Core.WbNetwork;
 using UnityEngine.UI;
 using Wb.Companion.Core.Inputs;
 using Wb.Companion.Core.UI;
+using Wb.Companion.Core.WbAdministration;
 
 //-----------------------------------------------------------------------------
 
@@ -16,12 +17,14 @@ namespace Wb.Companion.Core.Game {
         private List<Wb3DThumbstick> meshThumbsticks = new List<Wb3DThumbstick>();
 		private UIManager uiManager;
 		public ThumbstickType thumbstickType;
+		public Transform UIThumbstickLocator;
 
         //-----------------------------------------------------------------------------
         // Mono Behaviour
         //-----------------------------------------------------------------------------
 
         void Start() {
+			this.uiManager = UIManager.FindObjectOfType(typeof(UIManager)) as UIManager;
             this.init3DThumbsticks();
         }
 
@@ -32,7 +35,6 @@ namespace Wb.Companion.Core.Game {
 
         private void init3DThumbsticks() {
 
-			this.uiManager = UIManager.FindObjectOfType(typeof(UIManager)) as UIManager;
 			List<WbUIThumbstick> uiSticks = this.uiManager.getWbUIThumbsticks();
             Wb3DThumbstick[] meshSticks = Wb3DThumbstick.FindObjectsOfType(typeof(Wb3DThumbstick)) as Wb3DThumbstick[];
 
@@ -45,10 +47,13 @@ namespace Wb.Companion.Core.Game {
 						uiStick.meshThumbstick = meshStick;
 					}
 				}
-
             }
+			this.uiManager.set3DThumbstickList(meshThumbsticks);
 
+			// get all UI Thumbsticks in scene and toggle them per scene
+			if (this.uiManager.getWbUIThumbsticks().Count > 0) {
+				this.uiManager.toggleUIThumbsticks(SceneManager.getInstance().currentScene);
+			}
         }
     }
-
 }

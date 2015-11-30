@@ -1,9 +1,17 @@
-﻿using UnityEngine;
+﻿/**
+* @brief		Network Management (RPCs, NetworkView, LAN)
+* @author		Oliver Kulas (oli@weltenbauer-se.com)
+* @date			May 2015
+*/
+//-----------------------------------------------------------------------------
+
+using UnityEngine;
 using System.Collections;
 using Wb.Companion.Core.UI;
 using Wb.Companion.Core.WbAdministration;
 using Wb.Companion.Core.Inputs;
 using System;
+using UnityEngine.UI;
 
 namespace Wb.Companion.Core.WbNetwork {
 
@@ -15,15 +23,25 @@ namespace Wb.Companion.Core.WbNetwork {
 		public string defaultIP = "127.0.0.1";
 		public int defaultPort = 25000;
         public string defaultPassword = "pw";
+        public float globalRPCSendRate = 15;
+        public bool clampSendRate = false;
+
 		public UIManager uiManager;
 		public SceneManager sceneManager;
 		public NetworkView networkView;
 
 		public bool isActiveConnection = false;
         public bool debugging = true;
+        public bool DebugBypassConnection = false;
 
+		public Text inputIP;
+		public Text inputPort;
+		public Text inputPassword;
 
-		//---------------------------------------------------------------------
+        public Text labelSliderDrivingRPCSendRate;
+        public Text labelSliderCraneRPCSendRate;
+
+        //---------------------------------------------------------------------
 		
 		public void Awake() {
 			NetworkManager.instance = this;
@@ -45,12 +63,29 @@ namespace Wb.Companion.Core.WbNetwork {
             }
 
 			this.networkView = GetComponent<NetworkView>();
+
+            // Clamps max RenterTexture Rate per second to the max RPC Send rate per second
+            if (globalRPCSendRate > Network.sendRate && clampSendRate) globalRPCSendRate = Network.sendRate;
+            if (debugging) Debug.Log("Global RPC Send Rate = " + this.globalRPCSendRate);
+            
 		}
 
-		void Update() {
-		}
-	
 		//---------------------------------------------------------------------
+
+        public void changeOwner() {
+			Debug.Log ("ChangeOwner");
+            NetworkViewID newViewId = Network.AllocateViewID();
+            this.networkView.RPC("DidAllocateNewId", RPCMode.All, newViewId);
+        }
+
+        //---------------------------------------------------------------------
+
+        [RPC]
+        void DidAllocateNewId(NetworkViewID newId) {
+            networkView.viewID = newId;
+        }
+
+        //---------------------------------------------------------------------
 
 		public static void launchServer(string maxConnections, string listenport, string password) {
 			Debug.Log("Init Server");
@@ -64,6 +99,38 @@ namespace Wb.Companion.Core.WbNetwork {
 		}
 
 		//---------------------------------------------------------------------
+
+		// used by Unity UI Connect Btn on Startpage
+		public void connect(){
+
+            // HACK this is only for debugging purposes
+            // avoids scene loading and following actions
+            if (DebugBypassConnection) {
+
+                if (debugging) {
+                    this.uiManager.toggleMainMenu();
+
+                    if (this.uiManager.useCoherentUI) {
+                        this.uiManager.switchGameUI();
+                    } else {
+                        this.uiManager.diposeStartScreen();
+                    }
+                }
+                return;
+            }
+
+            if (inputIP.text.Equals("") || inputPort.text.Equals("") || inputPassword.text.Equals("")) {
+
+                Debug.Log("Empty connecetion parameter. Fallback to default connection");
+                NetworkManager.connect(this.defaultIP.ToString(), this.defaultPort.ToString(), this.defaultPassword.ToString());
+
+            } else {
+
+                Debug.Log("IP: " + inputIP.text + ":" + inputPort.text + " | " + inputPassword.text);
+                NetworkManager.connect(inputIP.text.ToString(), inputPort.text.ToString(), inputPassword.text.ToString());
+            }
+			
+		}
 
 		public static void connect(string ip, string port, string password){ 
 			int portNum = Convert.ToInt32(port);
@@ -118,23 +185,43 @@ namespace Wb.Companion.Core.WbNetwork {
 		// Call on the client when server connection successfully established
 		private void OnConnectedToServer() {
 			Debug.Log("Server connection successfully established.");
-            //this.uiManager.switchGameUI();
-           
+
+			if(this.uiManager.useCoherentUI){
+				this.uiManager.switchGameUI();
+			}else{
+				this.uiManager.diposeStartScreen();
+			}
+            
 			this.sceneManager.loadScene(this.sceneManager.getDefaultStartScene());
 			NetworkManager.getInstance().isActiveConnection = true;
+
+			// Set StateSync Sender as Owner
+			WbCompStateSyncSending.getInstance().setAsOwner();
 		}
+
+		//---------------------------------------------------------------------
 
 		// Call on the client
 		private void OnDisconnectedFromServer(){
 			Debug.Log("Server connection disconnected.");
-            this.uiManager.unloadGameUI();
+
+			if(this.uiManager.useCoherentUI){
+				this.uiManager.switchGameUI();
+			}else{
+				this.uiManager.diposeStartScreen();
+			}
+
 			NetworkManager.getInstance().isActiveConnection = false;
 		}
+
+		//---------------------------------------------------------------------
 
 		// Call on the server when player has successfully connected
 		private void OnPlayerConnected(){
 			Debug.Log("A player was successfully connected to server.");
 		}
+
+		//---------------------------------------------------------------------
 
 		// Call on the server when a player is disconnected
 		private void OnPlayerDisconnected(){
@@ -142,18 +229,42 @@ namespace Wb.Companion.Core.WbNetwork {
 			NetworkManager.getInstance().isActiveConnection = false;
 		}
 
+		//---------------------------------------------------------------------
+
 		// Called on client
 		private void OnFailedToConnect() {
 			Debug.Log("Failed to establish server connection.");
-			this.uiManager.setConnectionErrorMsg("Failed to establish server connection");
-            this.uiManager.setConnectionLoadingBar();
 
-            // TODO: this is only for debugging purposes
+			if(this.uiManager.useCoherentUI){
+				this.uiManager.setConnectionErrorMsg("Failed to establish server connection");
+				this.uiManager.setConnectionLoadingBar();
+			}
+
+            // HACK this is only for debugging purposes
             if(debugging){
                 this.sceneManager.loadScene(this.sceneManager.getDefaultStartScene());
-                //this.uiManager.loadGameUI();
+                
+				if(this.uiManager.useCoherentUI){
+					this.uiManager.switchGameUI();
+				}else{
+					this.uiManager.diposeStartScreen();
+				}
             }
 		}
+
+        //---------------------------------------------------------------------
+        // SETTER / GETTER
+        //---------------------------------------------------------------------
+
+        public void setGlobalRPCSendRate(float value) {
+            globalRPCSendRate = value;
+            labelSliderDrivingRPCSendRate.text = value.ToString();
+            labelSliderCraneRPCSendRate.text = value.ToString();
+        }
+
+        public float getGlobalRPCSendRate() {
+            return globalRPCSendRate;
+        }
 
 	}
 }

@@ -1,0 +1,132 @@
+fileFormatVersion: 2
+guid: 0ccc0ea9725633443a549a579643153a
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: Aufbau
+    100002: Body
+    100004: Crane
+    100006: //RootNode
+    100008: Hook
+    100010: Hyda
+    100012: Hydb
+    100014: HydBack
+    100016: mesh_b_l_02
+    100018: mesh_b_r_02
+    100020: mesh_f_l_01
+    100022: mesh_f_r_01
+    100024: pivot_b_l_02
+    100026: pivot_b_r_04
+    100028: pivot_f_l_01
+    100030: pivot_f_r_03
+    100032: wheels
+    100034: windows
+    400000: Aufbau
+    400002: Body
+    400004: Crane
+    400006: //RootNode
+    400008: Hook
+    400010: Hyda
+    400012: Hydb
+    400014: HydBack
+    400016: mesh_b_l_02
+    400018: mesh_b_r_02
+    400020: mesh_f_l_01
+    400022: mesh_f_r_01
+    400024: pivot_b_l_02
+    400026: pivot_b_r_04
+    400028: pivot_f_l_01
+    400030: pivot_f_r_03
+    400032: wheels
+    400034: windows
+    2300000: Body
+    2300002: Crane
+    2300004: Hook
+    2300006: Hyda
+    2300008: Hydb
+    2300010: HydBack
+    2300012: mesh_b_l_02
+    2300014: mesh_b_r_02
+    2300016: mesh_f_l_01
+    2300018: mesh_f_r_01
+    2300020: windows
+    2300022: wheels
+    3300000: Body
+    3300002: Crane
+    3300004: Hook
+    3300006: Hyda
+    3300008: Hydb
+    3300010: HydBack
+    3300012: mesh_b_l_02
+    3300014: mesh_b_r_02
+    3300016: mesh_f_l_01
+    3300018: mesh_f_r_01
+    3300020: windows
+    3300022: wheels
+    4300000: mesh_f_l_01
+    4300002: mesh_b_l_02
+    4300004: mesh_b_r_02
+    4300006: mesh_f_r_01
+    4300008: windows
+    4300010: HydBack
+    4300012: Hyda
+    4300014: Hook
+    4300016: Hydb
+    4300018: Crane
+    4300020: Body
+    4300022: wheels
+    9500000: //RootNode
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
