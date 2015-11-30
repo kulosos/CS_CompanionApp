@@ -126,7 +126,7 @@ namespace Wb.Companion.Core.UI {
 			this.mainMenuActivePos = new Vector2(this.mainMenuRect.anchoredPosition.x - this.mainMenuWidth, this.mainMenuRect.anchoredPosition.y);
 			this.mainMenuInactivePos = new Vector2(this.mainMenuRect.anchoredPosition.x , this.mainMenuRect.anchoredPosition.y);
 
-            if (debugging) {
+            /*if (debugging) {
                 Debug.Log("DEBUG Screen h/w " + Screen.height + "/" + Screen.width);
 				Debug.Log("DEBUG start screen ui org pos: " + this.startScreenOriginalPos.ToString());
 				Debug.Log("DEBUG start screen ui target pos: " + this.startScreenTargetPos.ToString());
@@ -135,7 +135,7 @@ namespace Wb.Companion.Core.UI {
                 Debug.Log("DEBUG active menu pos: " + this.mainMenuActivePos.ToString());
                 Debug.Log("DEBUG inactive menu pos: " + this.mainMenuInactivePos.ToString());
 				Debug.Log ("DEBUG main menu WIDTH: " + this.mainMenuWidth);
-            }
+            }*/
         }
 
 		//-----------------------------------------------------------------------------
